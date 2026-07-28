@@ -53,6 +53,10 @@ from the supplied repository, has no software license or fitted model, and
 splits recording IDs without participant identity. Current Brainstem contracts
 also lack its raw expert-labelled ECG input.
 
+The cardiac-arrhythmia CNN-LSTM candidate is E0. Its unlicensed source
+concatenates the original train and test sets, upsamples with replacement, and
+then creates a random split; it also leaves the claimed PCA commented out.
+
 ## Per-paper checks
 
 - license and immutable public source/data;

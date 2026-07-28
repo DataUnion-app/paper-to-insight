@@ -1,0 +1,21 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "paper-bibtex": {
+      "url": "https://citation-needed.springer.com/v2/references/10.1007/978-981-16-8774-7_32?format=bibtex&flavour=citation",
+      "sha256": "6770b3ca0a2ec3ed7ac063744f87e9d6387c8ac51b4d391d5a24c26e29f86338"
+    },
+    "source-main": {
+      "url": "https://raw.githubusercontent.com/shahriar-rahman/Automated-Detection-of-Cardiac-Arrhythmia/dedf64a06e92db213354f918179102bc8fea0290/src/ECG_Hybrid.py",
+      "sha256": "27a1077f377792bb9c82f407492e75a495a77499b17a0b5f87d3c2c36c0554b3"
+    },
+    "source-readme": {
+      "url": "https://raw.githubusercontent.com/shahriar-rahman/Automated-Detection-of-Cardiac-Arrhythmia/dedf64a06e92db213354f918179102bc8fea0290/README.md",
+      "sha256": "061fda6c453025c10d3e450facfe92e5c4cc263649e167bad51813fed55aee67"
+    },
+    "source-tree": {
+      "url": "https://api.github.com/repos/shahriar-rahman/Automated-Detection-of-Cardiac-Arrhythmia/git/trees/dedf64a06e92db213354f918179102bc8fea0290?recursive=1",
+      "sha256": "ead096f85aa781ccac1bcf18ca95ac2aa45d7d945d0850f3969aa41669d5d968"
+    }
+  }
+}

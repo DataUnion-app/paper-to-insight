@@ -1,0 +1,27 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.cardiac-arrhythmia-cnn-lstm",
+  "sourceRevision": "dedf64a06e92db213354f918179102bc8fea0290",
+  "sourceRelationship": "author_reference_implementation",
+  "paperRights": "Springer-standard-copyright",
+  "sourceCodeLicenseVerified": false,
+  "paperClassCount": 5,
+  "rawEcgRequired": true,
+  "sourceCombinesTrainAndTestBeforeSplit": true,
+  "sourceUpsamplesBeforeSplit": true,
+  "duplicateLeakagePossible": true,
+  "claimedPcaEnabled": false,
+  "sourceFittedModelAvailable": false,
+  "publicReproductionAccepted": false,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "evaluation_leakage",
+    "implementation_mismatch",
+    "license_unverified",
+    "participant_split_unproven",
+    "population_or_device_unvalidated",
+    "raw_signal_missing",
+    "reference_labels_missing"
+  ]
+}

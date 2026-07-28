@@ -36,6 +36,9 @@ python3 scripts/validate_candidate.py papers/ecg-hypoglycaemia/candidate.json
 python3 papers/atrial-fibrillation-crnn/test_source_audit.py -v
 python3 papers/atrial-fibrillation-crnn/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/atrial-fibrillation-crnn/candidate.json
+python3 papers/cardiac-arrhythmia-cnn-lstm/test_source_audit.py -v
+python3 papers/cardiac-arrhythmia-cnn-lstm/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/cardiac-arrhythmia-cnn-lstm/candidate.json
 ```
 
 The bundled Codex-compatible skill lives at
@@ -97,6 +100,10 @@ the paired raw-ECG/CGM contract.
 source was identified, but it is unlicensed, has no fitted model or
 participant-separated validation evidence, and requires raw expert-labelled
 ECG that is outside the current Brainstem contract.
+
+`papers/cardiac-arrhythmia-cnn-lstm` is E0 and disabled. Its unlicensed source
+combines the original train and test data and upsamples with replacement before
+creating a new split, so the reported evaluation is not accepted.
 
 ## License
 

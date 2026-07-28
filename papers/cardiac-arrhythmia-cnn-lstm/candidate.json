@@ -1,0 +1,132 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.cardiac-arrhythmia-cnn-lstm",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Automated Detection of Cardiac Arrhythmia Based on a Hybrid CNN-LSTM Network",
+    "canonicalUrl": "https://link.springer.com/chapter/10.1007/978-981-16-8774-7_32",
+    "doi": "10.1007/978-981-16-8774-7_32",
+    "claim": "The paper uses a hybrid CNN-LSTM over raw ECG heartbeat segments to classify five arrhythmia beat classes.",
+    "claimClass": "prediction",
+    "population": "MIT-BIH and PTB-derived ECG heartbeat data; the committed source does not preserve participant identity through its evaluation contract and is not a Brainstem validation population.",
+    "referenceStandard": "Dataset-provided expert beat label mapped to the five ANSI/AAMI-derived classes.",
+    "implementationRelation": "author_reference_implementation",
+    "relationEvidence": "The repository links the paper and publishes one source file. It has no software license or fitted model, disables the claimed PCA, and discards the supplied test boundary before resampling and random splitting.",
+    "classification": {
+      "paperDecision": "classified",
+      "labels": [
+        "non-ectopic",
+        "supraventricular",
+        "ventricular",
+        "fusion",
+        "unclassifiable"
+      ],
+      "unit": "raw-ECG heartbeat segment"
+    }
+  },
+  "sources": [
+    {
+      "name": "Springer bibliographic record and abstract",
+      "url": "https://citation-needed.springer.com/v2/references/10.1007/978-981-16-8774-7_32?format=bibtex&flavour=citation",
+      "revisionType": "content_sha256",
+      "revision": "6770b3ca0a2ec3ed7ac063744f87e9d6387c8ac51b4d391d5a24c26e29f86338",
+      "sha256": "6770b3ca0a2ec3ed7ac063744f87e9d6387c8ac51b4d391d5a24c26e29f86338",
+      "license": "Springer-standard-copyright",
+      "licenseUrl": "https://www.springernature.com/gp/legal/general-terms-of-use/11033520"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated arrhythmia candidate contract fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-contract-fixture",
+      "sha256": "c61391b31ff863a6d1001f1e44e7bf181237e1468d486704e60d64da358074d0",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "not-defined: proposed expert-labelled raw-ECG beat contract",
+    "requiredSignals": [
+      "artifact-screened raw ECG morphology with paper-compatible beat segmentation",
+      "expert beat labels and participant identity for leakage-safe evaluation"
+    ],
+    "window": "Paper implementation uses fixed raw-ECG heartbeat segments of 187 values.",
+    "preprocessing": "Withheld until a licensed implementation and data freeze waveform calibration, filtering, segmentation, class mapping, participant split, resampling, PCA, fitted model, calibration, and uncertainty.",
+    "brainstemVerdict": "incompatible",
+    "mismatches": [
+      "The current Brainstem C2D contract does not export raw ECG morphology.",
+      "Brainstem records do not carry expert beat-level arrhythmia labels.",
+      "The source repository has no software license and no fitted model.",
+      "The source concatenates the original train and test sets and upsamples with replacement before a new random split.",
+      "The source comments out the PCA claimed by the paper and README."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "protocol_bound_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "abstained"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Withheld; the published evaluation boundary is contaminated and no compatible raw-ECG cohort contract exists."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Withheld; no arrhythmia label, probability, alert, chart, or free-text proxy may be returned from this candidate."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "out_of_distribution",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "arrhythmia detection, prediction, or warning",
+    "negative or healthy interpretation of abstention",
+    "clinical rhythm interpretation",
+    "emergency alert",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "dda7aea9bf9d4b8febf4462ebf8d185ef80fe64a70cd63aa44da86a58b887a9a"
+    },
+    {
+      "path": "expected-audit.json",
+      "sha256": "c8b898be7544a6e153328ac4c0f58ed5e3165e15aee7fc9aa046b2c37dc58ded"
+    },
+    {
+      "path": "public-sources.json",
+      "sha256": "c3ad40726d4463241416af0bbcd3218b323b31c9a13e2285045019ffdca69499"
+    },
+    {
+      "path": "source-audit.py",
+      "sha256": "1150268b91ee3f4eb0befaa595f4e3bcc423ace4c90cc2a67eb33b764cbc5018"
+    },
+    {
+      "path": "synthetic-fixture.json",
+      "sha256": "c61391b31ff863a6d1001f1e44e7bf181237e1468d486704e60d64da358074d0"
+    },
+    {
+      "path": "test_source_audit.py",
+      "sha256": "16038e360086299cf77c2d46bde955b3d0a92a55b8489783b6d8b5aa6d4874c1"
+    }
+  ]
+}
