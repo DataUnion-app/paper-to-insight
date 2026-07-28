@@ -1,0 +1,142 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.resting-rr-sample-entropy",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Physiological time-series analysis using approximate entropy and sample entropy",
+    "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/10843903/",
+    "doi": "10.1152/ajpheart.2000.278.6.H2039",
+    "claim": "Implements a fixed normalized sample-entropy estimate of short-term irregularity in five-minute resting R-R intervals without clinical interpretation.",
+    "claimClass": "descriptive",
+    "population": "The methods paper establishes the estimator rather than a Brainstem validation population; the public check uses an official test vector and two healthy resting Fantasia records.",
+    "referenceStandard": "Richman-Moorman sample entropy definition and checksum-pinned PhysioNet sampen 1.2 reference output.",
+    "implementationRelation": "independent_reimplementation",
+    "relationEvidence": "Independent Python standard-library implementation matched the PhysioNet GPL reference output at m=2 and r=0.2 without incorporating its source code.",
+    "classification": {
+      "paperDecision": "not_applicable",
+      "labels": [],
+      "unit": "five-minute resting R-R recording"
+    }
+  },
+  "sources": [
+    {
+      "name": "Independent resting R-R sample-entropy implementation",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "revisionType": "content_sha256",
+      "revision": "f2bb2fe6cc6d2fb95d0f7db3550639db955df8c00520186ba9b31c06712920fa",
+      "sha256": "f2bb2fe6cc6d2fb95d0f7db3550639db955df8c00520186ba9b31c06712920fa",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "PhysioNet sampen 1.2 verification reference",
+      "url": "https://physionet.org/files/sampen/1.0.0/c/sampen.c",
+      "revisionType": "content_sha256",
+      "revision": "76ed515d18a4d23b190a6ea726d56ae0c8204d31e049691e4e6ea6b15325f5f2",
+      "sha256": "76ed515d18a4d23b190a6ea726d56ae0c8204d31e049691e4e6ea6b15325f5f2",
+      "license": "GPL-2.0-or-later",
+      "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "PhysioNet sampen official test vector",
+      "kind": "public",
+      "url": "https://physionet.org/content/sampen/1.0.0/",
+      "version": "1.0.0",
+      "doi": "not-applicable:physionet-sampen-1.0.0",
+      "sha256": "c7f4f60e20eed20d39075d33b490176155632941196b47f2f94d746323ea4afc",
+      "license": "ODC-By-1.0",
+      "licenseUrl": "https://physionet.org/content/sampen/view-license/1.0.0/"
+    },
+    {
+      "name": "PhysioNet Fantasia Database public-data manifest",
+      "kind": "public",
+      "url": "https://physionet.org/content/fantasia/1.0.0/",
+      "version": "1.0.0",
+      "doi": "10.13026/C2RG61",
+      "sha256": "f23d2ba22d01b43159a653152917ac7dc7c005c5b3961d6fc60883dc4684856d",
+      "license": "ODC-By-1.0",
+      "licenseUrl": "https://physionet.org/content/fantasia/view-license/1.0.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "brainstem.resting-rr-record/v1",
+    "requiredSignals": [
+      "continuous R-R intervals in milliseconds",
+      "resting recording context"
+    ],
+    "window": "240–360 seconds with 240–900 uninterrupted intervals.",
+    "preprocessing": "Require every interval to be 300–2000 ms; normalize by population standard deviation; calculate sample entropy at m=2 and r=0.2 with strict reference-compatible matching.",
+    "brainstemVerdict": "compatible",
+    "mismatches": [
+      "The public Fantasia check does not validate the Brainstem device.",
+      "Short-record sample entropy is parameter-sensitive and must retain the fixed method version.",
+      "No interpolation or artifact correction is approved; affected recordings abstain.",
+      "No normative, diagnostic, prognostic, or clinical interpretation is supported."
+    ]
+  },
+  "evidence": {
+    "tier": "E2_brainstem_compatible_exploratory",
+    "useClass": "methods_only",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "not_applicable"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": true,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Median participant sample entropy across compatible recordings; no subgroup, health state, or disease label."
+    },
+    "personal": {
+      "proposed": true,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Owner-only sample entropy compared with a frozen aggregate middle band that is explicitly not a normal range."
+    }
+  },
+  "abstention": [
+    "insufficient_quality",
+    "insufficient_coverage",
+    "privacy_floor",
+    "uncalibrated_device",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "diagnosis",
+    "disease prediction",
+    "biological age",
+    "clinical normal range",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "ec55014a33878ffa3e4f84d56bbb03eaee295102968491a43c724bb3f733c651"
+    },
+    {
+      "path": "algorithm.py",
+      "sha256": "f2bb2fe6cc6d2fb95d0f7db3550639db955df8c00520186ba9b31c06712920fa"
+    },
+    {
+      "path": "expected-public.json",
+      "sha256": "62867766e664eb88ef6853b7522d0a9a0f948b12e9b800178ffa04776d96f370"
+    },
+    {
+      "path": "public-data.json",
+      "sha256": "f23d2ba22d01b43159a653152917ac7dc7c005c5b3961d6fc60883dc4684856d"
+    },
+    {
+      "path": "reproduce.py",
+      "sha256": "ae94c83a85cb8e599a22cac48dd001d5c224580c4f2e085795b2bd566ebe2718"
+    },
+    {
+      "path": "test_algorithm.py",
+      "sha256": "2c0f091994b9869134523bc48408604843acd68418da437ece18d08896c16f3c"
+    }
+  ]
+}
+

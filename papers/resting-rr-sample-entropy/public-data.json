@@ -1,0 +1,51 @@
+{
+  "schema": "paper-to-insight.public-data/v1",
+  "paper": {
+    "doi": "10.1152/ajpheart.2000.278.6.H2039",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10843903/"
+  },
+  "reference": {
+    "name": "PhysioNet Sample Entropy Estimation",
+    "version": "1.0.0",
+    "license": "GPL-2.0-or-later",
+    "licenseUrl": "https://physionet.org/content/sampen/view-license/1.0.0/",
+    "files": [
+      {
+        "name": "sampen.c",
+        "url": "https://physionet.org/files/sampen/1.0.0/c/sampen.c",
+        "sha256": "76ed515d18a4d23b190a6ea726d56ae0c8204d31e049691e4e6ea6b15325f5f2"
+      },
+      {
+        "name": "sampentest.txt",
+        "url": "https://physionet.org/files/sampen/1.0.0/c/sampentest.txt",
+        "sha256": "c7f4f60e20eed20d39075d33b490176155632941196b47f2f94d746323ea4afc"
+      },
+      {
+        "name": "expected.out",
+        "url": "https://physionet.org/files/sampen/1.0.0/c/expected.out",
+        "sha256": "d1d8312f81c309a436f175a317002532d6021c63ca250e95a4aa80af8463dc1e"
+      }
+    ]
+  },
+  "dataset": {
+    "name": "PhysioNet Fantasia Database",
+    "version": "1.0.0",
+    "doi": "10.13026/C2RG61",
+    "license": "ODC-By-1.0",
+    "licenseUrl": "https://physionet.org/content/fantasia/view-license/1.0.0/",
+    "attribution": "Contains information from the PhysioNet Fantasia Database, made available under the Open Data Commons Attribution License.",
+    "files": [
+      {
+        "record": "O1",
+        "url": "https://physionet.org/files/fantasia/1.0.0/subset/O1.txt",
+        "sha256": "03904c7ce83b6777a8eadd15f2a44af26eb1bdecd5015b0509c77b5f5ea6ddd1"
+      },
+      {
+        "record": "Y1",
+        "url": "https://physionet.org/files/fantasia/1.0.0/subset/Y1.txt",
+        "sha256": "943314d55c17e392a38d331c69b991727b0e878675e131056b8c6af1a66a4017"
+      }
+    ]
+  }
+}
+

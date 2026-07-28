@@ -1,0 +1,43 @@
+{
+  "schema": "paper-to-insight.public-reproduction/v1",
+  "paper": "10.1152/ajpheart.2000.278.6.H2039",
+  "method": {
+    "embeddingDimension": 2,
+    "toleranceStandardDeviations": 0.2,
+    "normalization": "population standard deviation",
+    "reference": "PhysioNet sampen 1.2"
+  },
+  "referenceVector": {
+    "intervalCount": 1024,
+    "sampleEntropy": 2.197225
+  },
+  "dataset": {
+    "name": "PhysioNet Fantasia Database",
+    "version": "1.0.0",
+    "doi": "10.13026/C2RG61"
+  },
+  "window": "first complete five-minute interval sequence",
+  "records": [
+    {
+      "record": "O1",
+      "intervalCount": 309,
+      "sampleEntropy": 1.459934,
+      "templateMatches": 986,
+      "extendedMatches": 229
+    },
+    {
+      "record": "Y1",
+      "intervalCount": 390,
+      "sampleEntropy": 1.50762,
+      "templateMatches": 1838,
+      "extendedMatches": 407
+    }
+  ],
+  "paperClassification": {
+    "decision": "not_applicable",
+    "labels": []
+  },
+  "brainstemClassificationEnabled": false,
+  "attribution": "Contains information from the PhysioNet Fantasia Database, made available under the Open Data Commons Attribution License."
+}
+
