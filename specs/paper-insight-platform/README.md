@@ -3,7 +3,7 @@
 Status: active  
 Last updated: 2026-07-28  
 Owner: DataUnion / Brainstem  
-Next slice: [03 — Protected paired package](slices/03-protected-paired-package.md)
+Next slice: [04 — Finite runtime policies](slices/04-finite-runtime-policies.md)
 
 ## Next agent prompt
 

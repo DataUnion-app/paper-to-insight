@@ -1,5 +1,8 @@
 # 03 — Protected paired package
 
+Status: complete (2026-07-29)
+Protected revision: `algo-deploy-scripts@b72a14886e474aad54360d8971d7a9167026e3d6`
+
 ## Goal
 
 Import the public candidate into the existing protected review queue and produce
@@ -39,4 +42,3 @@ access, extra outputs, and results over 256 KiB.
 
 The protected package is reviewable and passes all generated gates. It remains
 unpublished and unallowlisted unless humans separately approve it.
-
