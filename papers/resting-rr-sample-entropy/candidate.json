@@ -23,20 +23,11 @@
     {
       "name": "Independent resting R-R sample-entropy implementation",
       "url": "https://github.com/DataUnion-app/paper-to-insight",
-      "revisionType": "content_sha256",
-      "revision": "f2bb2fe6cc6d2fb95d0f7db3550639db955df8c00520186ba9b31c06712920fa",
+      "revisionType": "git_commit",
+      "revision": "46d96822305cdc021aa4b1e3e396bcab661e9cc5",
       "sha256": "f2bb2fe6cc6d2fb95d0f7db3550639db955df8c00520186ba9b31c06712920fa",
       "license": "Apache-2.0",
       "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
-    },
-    {
-      "name": "PhysioNet sampen 1.2 verification reference",
-      "url": "https://physionet.org/files/sampen/1.0.0/c/sampen.c",
-      "revisionType": "content_sha256",
-      "revision": "76ed515d18a4d23b190a6ea726d56ae0c8204d31e049691e4e6ea6b15325f5f2",
-      "sha256": "76ed515d18a4d23b190a6ea726d56ae0c8204d31e049691e4e6ea6b15325f5f2",
-      "license": "GPL-2.0-or-later",
-      "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
     }
   ],
   "datasets": [
@@ -51,7 +42,7 @@
       "licenseUrl": "https://physionet.org/content/sampen/view-license/1.0.0/"
     },
     {
-      "name": "PhysioNet Fantasia Database public-data manifest",
+      "name": "PhysioNet Fantasia Database",
       "kind": "public",
       "url": "https://physionet.org/content/fantasia/1.0.0/",
       "version": "1.0.0",
@@ -123,7 +114,7 @@
     },
     {
       "path": "expected-public.json",
-      "sha256": "62867766e664eb88ef6853b7522d0a9a0f948b12e9b800178ffa04776d96f370"
+      "sha256": "a350155d151de1bb5609abec0ab0677dc9bd6c4992dedb177caa65709204d41a"
     },
     {
       "path": "public-data.json",
@@ -131,7 +122,7 @@
     },
     {
       "path": "reproduce.py",
-      "sha256": "ae94c83a85cb8e599a22cac48dd001d5c224580c4f2e085795b2bd566ebe2718"
+      "sha256": "fe8971de90ec14a310533a1479775d2db4cba248614a7ff725707a6d62f667b5"
     },
     {
       "path": "test_algorithm.py",
@@ -139,4 +130,3 @@
     }
   ]
 }
-

@@ -94,32 +94,22 @@ def reproduce(cache: Path) -> dict:
             raise ValueError(f'{item["record"]} abstained')
         records.append({
             "record": item["record"],
-            "intervalCount": result["intervalCount"],
-            "sampleEntropy": round(result["sampleEntropy"], 6),
-            "templateMatches": result["templateMatches"],
-            "extendedMatches": result["extendedMatches"],
+            "metrics": {
+                "intervalCount": result["intervalCount"],
+                "sampleEntropy": round(result["sampleEntropy"], 6),
+                "templateMatches": result["templateMatches"],
+                "extendedMatches": result["extendedMatches"],
+            },
         })
 
     return {
         "schema": "paper-to-insight.public-reproduction/v1",
         "paper": manifest["paper"]["doi"],
-        "method": {
-            "embeddingDimension": 2,
-            "toleranceStandardDeviations": 0.2,
-            "normalization": "population standard deviation",
-            "reference": "PhysioNet sampen 1.2",
-        },
-        "referenceVector": {
-            "intervalCount": len(reference_values),
-            "sampleEntropy": expected_reference,
-        },
         "dataset": {
             key: manifest["dataset"][key] for key in ("name", "version", "doi")
         },
         "window": "first complete five-minute interval sequence",
         "records": records,
-        "paperClassification": {"decision": "not_applicable", "labels": []},
-        "brainstemClassificationEnabled": False,
         "attribution": manifest["dataset"]["attribution"],
     }
 
