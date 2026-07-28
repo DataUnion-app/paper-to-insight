@@ -173,6 +173,7 @@ def validate(value: object) -> dict:
     if (classification["paperDecision"] == "not_applicable") != (not labels):
         raise CandidateError("paper classification decision and labels disagree")
 
+    source_revisions: set[tuple[str, str]] = set()
     for name, keyset in (("sources", SOURCE), ("datasets", DATASET)):
         items = root[name]
         if not isinstance(items, list) or not 1 <= len(items) <= 20:
@@ -187,6 +188,12 @@ def validate(value: object) -> dict:
             if license_name.lower() in {"unknown", "none", "unlicensed"}:
                 raise CandidateError(f"$.{name}[{index}].license must be explicit")
             if name == "sources":
+                source_revision = (entry["url"], entry["revision"])
+                if source_revision in source_revisions:
+                    raise CandidateError(
+                        f"$.sources[{index}] duplicates a source revision"
+                    )
+                source_revisions.add(source_revision)
                 if entry["revisionType"] not in {"git_commit", "content_sha256"}:
                     raise CandidateError(f"$.sources[{index}].revisionType is invalid")
                 if not isinstance(entry["revision"], str) or not REVISION.fullmatch(entry["revision"]):

@@ -51,6 +51,14 @@ class CandidateValidationTest(unittest.TestCase):
     def test_rejects_unknown_license(self):
         self.rejects(lambda value: value["sources"][0].update(license="unknown"))
 
+    def test_rejects_duplicate_source_revision(self):
+        def mutate(value):
+            duplicate = copy.deepcopy(value["sources"][0])
+            duplicate["sha256"] = "f" * 64
+            value["sources"].append(duplicate)
+
+        self.rejects(mutate)
+
     def test_rejects_identity_bearing_field(self):
         self.rejects(lambda value: value.update(wallet="0xdeadbeef"))
 
