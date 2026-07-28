@@ -1,6 +1,6 @@
 # 08 — Further compatible papers
 
-Status: active (2026-07-29)
+Status: complete (2026-07-29)
 
 ## Goal
 
@@ -61,6 +61,11 @@ The sudden-cardiac-death HRV candidate is E0. Its supplied SVM repository
 predates and does not implement the paper's CNN, while the paper describes
 selecting hyperparameters on its testing set and has no untouched external
 validation.
+
+The sleep-stage HRV LSTM candidate is E0 but is the highest-priority follow-up.
+Its paper uses participant-level validation and matches Brainstem's full-night
+direction, while promotion still requires an independent public reproduction
+and protected Brainstem-versus-PSG calibration.
 
 ## Per-paper checks
 

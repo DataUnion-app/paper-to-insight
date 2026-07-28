@@ -1,0 +1,17 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "paper-xml": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6775145/fullTextXML",
+      "sha256": "7fca4bc96cf0991765245d670706ab86ea8328fef1c8184b1bf6042efe3f3cbe"
+    },
+    "source-readme": {
+      "url": "https://raw.githubusercontent.com/ChengKang520/HRV_for_SLEEP_and_Pressure_Detection/5c37352230cc9be04b716a665d2f05251ee5848d/README.md",
+      "sha256": "c49962fd0bc3c805e4882d7198b1df92178762eb1851a0e87a195dfb98119e04"
+    },
+    "source-tree": {
+      "url": "https://api.github.com/repos/ChengKang520/HRV_for_SLEEP_and_Pressure_Detection/git/trees/5c37352230cc9be04b716a665d2f05251ee5848d?recursive=1",
+      "sha256": "8522d29bea4980e1936d128a6fc7d72b44385bb38ee04c042f6c5edd9f6d9b80"
+    }
+  }
+}

@@ -15,8 +15,8 @@ Signal similarity is not approval.
 | [Raw-ECG atrial fibrillation CRNN](atrial-fibrillation-crnn/) | E0; runtime disabled | Actual paper source is unlicensed; no fitted model or participant-separated split; raw expert-labelled ECG absent | Licensed reproduction on external participant-separated ECG, then a calibrated raw-waveform Brainstem contract |
 | [Raw-ECG cardiac arrhythmia CNN-LSTM](cardiac-arrhythmia-cnn-lstm/) | E0; runtime disabled | Source unlicensed; original train/test boundary discarded; duplicate leakage after pre-split upsampling; claimed PCA disabled | Leakage-free participant-separated external reproduction plus a calibrated raw-waveform Brainstem contract |
 | [Sudden cardiac death HRV CNN](sudden-cardiac-death-hrv/) | E0; runtime disabled | Supplied SVM repository is unrelated and document-only; paper selects on its testing set; matched diagnostic/event labels absent | Independent participant-separated reproduction with untouched external clinical validation |
-| HRV sleep staging/pressure | Reference-only | Source license absent; original sleep data are restricted; repository calls itself a simple framework | Licensed implementation and participant-separated PSG-labelled reproduction |
+| [HRV sleep-stage LSTM](sleep-stage-hrv-lstm/) | E0; runtime disabled; highest-priority follow-up | Paper model/data unavailable; supplied unlicensed framework uses a different ontology; Brainstem-versus-PSG calibration absent | Independent public reproduction, then protected participant-separated PSG calibration |
 
-Reference-only entries are triage findings, not validated candidates. A community
-contributor may replace one with a checksum-pinned candidate package after
-closing every listed gate.
+Every entry from the supplied list now has a checksum-pinned candidate package.
+Only Resting HRV has enabled paired runtime modes; contributors can advance an
+E0 package by closing its listed evidence gates.

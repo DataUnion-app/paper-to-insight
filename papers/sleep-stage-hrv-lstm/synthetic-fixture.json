@@ -1,0 +1,10 @@
+{
+  "schema": "paper-to-insight.sleep-audit-fixture/v1",
+  "nights": [
+    {
+      "hrvFeatureCount": 132,
+      "sleepStageLabel": null,
+      "use": "contract shape only"
+    }
+  ]
+}

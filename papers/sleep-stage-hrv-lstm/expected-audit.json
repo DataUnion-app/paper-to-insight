@@ -1,0 +1,27 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.sleep-stage-hrv-lstm",
+  "sourceRevision": "5c37352230cc9be04b716a665d2f05251ee5848d",
+  "sourceRelationship": "unrelated_supplied_repository",
+  "paperMethodLicense": "CC-BY-4.0",
+  "sourceCodeLicenseVerified": false,
+  "paperParticipantCount": 292,
+  "paperNightCount": 584,
+  "paperHrvFeatureCount": 132,
+  "paperClassCount": 4,
+  "paperParticipantLevelValidation": true,
+  "paperFittedModelAvailable": false,
+  "paperTrainingDataFreelyAvailable": false,
+  "sourceClassCount": 6,
+  "sourceCallsItselfSimpleFramework": true,
+  "publicReproductionAccepted": false,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "paper_implementation_identity_unproven",
+    "population_or_device_unvalidated",
+    "public_reproduction_failed",
+    "reference_labels_missing",
+    "source_data_license_unverified"
+  ]
+}
