@@ -127,12 +127,13 @@
     },
     "dataset": {
       "type": "object", "additionalProperties": false,
-      "required": ["name", "kind", "url", "version", "sha256", "license", "licenseUrl"],
+      "required": ["name", "kind", "url", "version", "doi", "sha256", "license", "licenseUrl"],
       "properties": {
         "name": {"type": "string", "minLength": 1},
         "kind": {"enum": ["public", "synthetic"]},
         "url": {"type": "string", "format": "uri"},
         "version": {"type": "string", "minLength": 1},
+        "doi": {"type": "string", "minLength": 1},
         "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "license": {"type": "string", "minLength": 1},
         "licenseUrl": {"type": "string", "format": "uri"}

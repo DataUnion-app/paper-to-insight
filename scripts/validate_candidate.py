@@ -26,7 +26,9 @@ CLASSIFICATION = {"paperDecision", "labels", "unit"}
 SOURCE = {
     "name", "url", "revisionType", "revision", "sha256", "license", "licenseUrl"
 }
-DATASET = {"name", "kind", "url", "version", "sha256", "license", "licenseUrl"}
+DATASET = {
+    "name", "kind", "url", "version", "doi", "sha256", "license", "licenseUrl"
+}
 COMPATIBILITY = {
     "brainstemContract", "requiredSignals", "window", "preprocessing",
     "brainstemVerdict", "mismatches"
@@ -204,6 +206,7 @@ def validate(value: object) -> dict:
                 if entry["kind"] not in {"public", "synthetic"}:
                     raise CandidateError(f"$.datasets[{index}].kind is invalid")
                 text(entry["version"], f"$.datasets[{index}].version", 100)
+                text(entry["doi"], f"$.datasets[{index}].doi", 200)
 
     compatibility = exact(root["compatibility"], COMPATIBILITY, "$.compatibility")
     text(compatibility["brainstemContract"], "$.compatibility.brainstemContract", 300)

@@ -36,6 +36,7 @@
       "kind": "public",
       "url": "https://physionet.org/content/fantasia/1.0.0/",
       "version": "1.0.0",
+      "doi": "10.13026/C2RG61",
       "sha256": "b7cd1901ab974d713c340a7a42c9cca19568daf221fa7ef61f25d5f16a0d4ade",
       "license": "ODC-By-1.0",
       "licenseUrl": "https://physionet.org/content/fantasia/view-license/1.0.0/"
