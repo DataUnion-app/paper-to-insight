@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DataUnion-app/paper-to-insight/schemas/candidate.v1.schema.json",
+  "title": "Paper-to-Insight candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "approvalState", "packageId", "version", "paper", "sources",
+    "datasets", "compatibility", "evidence", "modes", "abstention",
+    "prohibitedClaims", "files"
+  ],
+  "properties": {
+    "schema": {"const": "paper-to-insight.candidate/v1"},
+    "approvalState": {"const": "candidate"},
+    "packageId": {"type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{2,79}$"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "paper": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title", "canonicalUrl", "doi", "claim", "claimClass", "population",
+        "referenceStandard", "implementationRelation", "relationEvidence",
+        "classification"
+      ],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "canonicalUrl": {"type": "string", "format": "uri"},
+        "doi": {"type": "string", "minLength": 1},
+        "claim": {"type": "string", "minLength": 1},
+        "claimClass": {"enum": ["descriptive", "association", "prediction", "intervention"]},
+        "population": {"type": "string", "minLength": 1},
+        "referenceStandard": {"type": "string", "minLength": 1},
+        "implementationRelation": {
+          "enum": ["author_reference_implementation", "independent_reimplementation", "method_only"]
+        },
+        "relationEvidence": {"type": "string", "minLength": 1},
+        "classification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["paperDecision", "labels", "unit"],
+          "properties": {
+            "paperDecision": {"enum": ["classified", "abstained", "not_applicable"]},
+            "labels": {
+              "type": "array", "maxItems": 20, "uniqueItems": true,
+              "items": {"type": "string", "minLength": 1}
+            },
+            "unit": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array", "minItems": 1, "maxItems": 20,
+      "items": {"$ref": "#/$defs/source"}
+    },
+    "datasets": {
+      "type": "array", "minItems": 1, "maxItems": 20,
+      "items": {"$ref": "#/$defs/dataset"}
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["brainstemContract", "requiredSignals", "window", "preprocessing", "brainstemVerdict", "mismatches"],
+      "properties": {
+        "brainstemContract": {"type": "string", "minLength": 1},
+        "requiredSignals": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "window": {"type": "string", "minLength": 1},
+        "preprocessing": {"type": "string", "minLength": 1},
+        "brainstemVerdict": {"enum": ["compatible", "partially_compatible", "incompatible", "unknown"]},
+        "mismatches": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tier", "useClass", "clinicalUse", "brainstemDecision"],
+      "properties": {
+        "tier": {"enum": ["E0_candidate", "E1_public_reproduced", "E2_brainstem_compatible_exploratory"]},
+        "useClass": {"enum": ["methods_only", "exploratory_research", "protocol_bound_research"]},
+        "clinicalUse": {"const": "prohibited"},
+        "brainstemDecision": {"enum": ["abstained", "not_applicable"]}
+      }
+    },
+    "modes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cohort", "personal"],
+      "properties": {
+        "cohort": {"$ref": "#/$defs/cohort"},
+        "personal": {"$ref": "#/$defs/personal"}
+      }
+    },
+    "abstention": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"enum": [
+        "unsupported_signal", "insufficient_quality", "insufficient_coverage",
+        "privacy_floor", "uncalibrated_device", "outside_validated_population",
+        "out_of_distribution", "model_uncertainty", "reference_unavailable"
+      ]}
+    },
+    "prohibitedClaims": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "files": {
+      "type": "array", "minItems": 1, "maxItems": 200,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{0,299}$"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "url", "revisionType", "revision", "sha256", "license", "licenseUrl"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "revisionType": {"enum": ["git_commit", "content_sha256"]},
+        "revision": {"type": "string", "pattern": "^[0-9a-f]{7,64}$"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "license": {"type": "string", "minLength": 1},
+        "licenseUrl": {"type": "string", "format": "uri"}
+      }
+    },
+    "dataset": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "kind", "url", "version", "sha256", "license", "licenseUrl"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["public", "synthetic"]},
+        "url": {"type": "string", "format": "uri"},
+        "version": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "license": {"type": "string", "minLength": 1},
+        "licenseUrl": {"type": "string", "format": "uri"}
+      }
+    },
+    "cohort": {
+      "type": "object", "additionalProperties": false,
+      "required": ["proposed", "minimumParticipants", "minimumCell", "output"],
+      "properties": {
+        "proposed": {"type": "boolean"},
+        "minimumParticipants": {"type": "integer", "minimum": 20},
+        "minimumCell": {"type": "integer", "minimum": 20},
+        "output": {"type": "string", "minLength": 1}
+      }
+    },
+    "personal": {
+      "type": "object", "additionalProperties": false,
+      "required": ["proposed", "inputOwner", "referencePolicy", "output"],
+      "properties": {
+        "proposed": {"type": "boolean"},
+        "inputOwner": {"const": "authenticated_participant_only"},
+        "referencePolicy": {"const": "immutable_reviewed_aggregate_only"},
+        "output": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

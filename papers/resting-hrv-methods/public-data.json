@@ -1,0 +1,21 @@
+{
+  "database": "PhysioNet Fantasia Database",
+  "version": "1.0.0",
+  "doi": "10.13026/C2RG61",
+  "license": "ODC-By-1.0",
+  "licenseUrl": "https://physionet.org/content/fantasia/view-license/1.0.0/",
+  "attribution": "Contains information from the PhysioNet Fantasia Database, made available under the Open Data Commons Attribution License.",
+  "files": [
+    {
+      "record": "O1",
+      "url": "https://physionet.org/files/fantasia/1.0.0/subset/O1.txt",
+      "sha256": "03904c7ce83b6777a8eadd15f2a44af26eb1bdecd5015b0509c77b5f5ea6ddd1"
+    },
+    {
+      "record": "Y1",
+      "url": "https://physionet.org/files/fantasia/1.0.0/subset/Y1.txt",
+      "sha256": "943314d55c17e392a38d331c69b991727b0e878675e131056b8c6af1a66a4017"
+    }
+  ]
+}
+

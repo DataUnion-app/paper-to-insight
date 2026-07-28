@@ -1,0 +1,49 @@
+# Paper to Insight
+
+Turn a scientific paper into a reproducible, reviewable candidate for a
+privacy-preserving cohort and personal Insight.
+
+This repository is the public workbench. It contains no participant data,
+credentials, approval keys, or connection to Brainstem infrastructure. Passing
+its checks means **candidate**, not approved or clinically valid.
+
+## Try it
+
+```bash
+python3 scripts/validate_candidate.py examples/minimal-methods/candidate.json
+python3 -m unittest discover -s tests -v
+python3 scripts/validate_candidate.py papers/resting-hrv-methods/candidate.json
+python3 papers/resting-hrv-methods/test_algorithm.py -v
+python3 papers/resting-hrv-methods/reproduce.py --verify
+```
+
+The bundled Codex-compatible skill lives at
+`skills/turn-paper-into-insight/SKILL.md`. Fork this repository, give an agent a
+paper, DOI, source repository, or public dataset, and ask it to use
+`$turn-paper-into-insight`.
+
+## Handoff
+
+```text
+paper + public data
+  -> deterministic candidate package
+  -> protected scientific/privacy/security review
+  -> immutable approved algorithm
+  -> purpose-bound private compute
+```
+
+A candidate proposes a disclosure-protected cohort analysis and a personal
+analysis using only the authenticated participant's compatible records plus a
+frozen aggregate cohort reference. Forks cannot approve, publish, or access
+either mode.
+
+See `specs/paper-insight-platform/README.md` for the implementation plan.
+
+The first real candidate is `papers/resting-hrv-methods`. It implements selected
+descriptive HRV measures in both cohort and owner-only personal modes and pins a
+small public PhysioNet reproduction. It intentionally has no disease label.
+
+## License
+
+Original repository code is Apache-2.0. Paper implementations, models, and
+datasets retain their own licenses and must declare them in every candidate.

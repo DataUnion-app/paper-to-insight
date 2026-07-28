@@ -1,0 +1,34 @@
+{
+  "attribution": "Contains information from the PhysioNet Fantasia Database, made available under the Open Data Commons Attribution License.",
+  "dataset": {
+    "doi": "10.13026/C2RG61",
+    "name": "PhysioNet Fantasia Database",
+    "version": "1.0.0"
+  },
+  "paper": "10.1161/01.CIR.93.5.1043",
+  "records": [
+    {
+      "metrics": {
+        "artifactPercent": 0.0,
+        "rmssdMs": 14.686331,
+        "sd1Ms": 10.401687,
+        "sd2Ms": 54.157606,
+        "sdnnMs": 38.995137
+      },
+      "record": "O1"
+    },
+    {
+      "metrics": {
+        "artifactPercent": 0.0,
+        "rmssdMs": 74.079371,
+        "sd1Ms": 52.447726,
+        "sd2Ms": 80.475105,
+        "sdnnMs": 67.922774
+      },
+      "record": "Y1"
+    }
+  ],
+  "schema": "paper-to-insight.public-reproduction/v1",
+  "window": "first complete five-minute interval sequence"
+}
+

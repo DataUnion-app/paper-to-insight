@@ -1,0 +1,23 @@
+name: verify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -m unittest discover -s tests -v
+      - run: python3 scripts/validate_candidate.py examples/minimal-methods/candidate.json
+      - run: python3 scripts/validate_candidate.py papers/resting-hrv-methods/candidate.json
+      - run: python3 papers/resting-hrv-methods/test_algorithm.py -v
+      - run: python3 papers/resting-hrv-methods/reproduce.py --verify

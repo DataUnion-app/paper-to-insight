@@ -1,0 +1,89 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "example.resting-hrv-methods",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Example resting heart-rate variability methods package",
+    "canonicalUrl": "https://example.org/papers/resting-hrv-methods",
+    "doi": "example:replace-with-a-verified-paper",
+    "claim": "Demonstrates the candidate contract for descriptive resting R-R methods.",
+    "claimClass": "descriptive",
+    "population": "Generated records only; not a scientific validation population.",
+    "referenceStandard": "Deterministic generated fixtures.",
+    "implementationRelation": "method_only",
+    "relationEvidence": "This contract-only example does not claim to implement a scientific paper.",
+    "classification": {
+      "paperDecision": "not_applicable",
+      "labels": [],
+      "unit": "recording"
+    }
+  },
+  "sources": [
+    {
+      "name": "Generated example source",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "revisionType": "content_sha256",
+      "revision": "0000000000000000000000000000000000000000000000000000000000000000",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated resting R-R fixtures",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "brainstem.resting-rr-record/v1 (illustrative; verify before reproduction)",
+    "requiredSignals": ["R-R intervals in milliseconds"],
+    "window": "One generated five-minute resting recording.",
+    "preprocessing": "No preprocessing in this contract-only example.",
+    "brainstemVerdict": "unknown",
+    "mismatches": ["This example has not reproduced a scientific paper."]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "methods_only",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "not_applicable"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": true,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Disclosure-protected descriptive aggregate."
+    },
+    "personal": {
+      "proposed": true,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Owner-only descriptive result against an immutable aggregate reference."
+    }
+  },
+  "abstention": [
+    "insufficient_quality",
+    "insufficient_coverage",
+    "privacy_floor",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "diagnosis",
+    "treatment recommendation",
+    "clinical normal range"
+  ],
+  "files": [
+    {
+      "path": "fixture.txt",
+      "sha256": "d594af13eaaad9c922e9bf70cc088634f682c6c96a48ad8add37d9761c4005da"
+    }
+  ]
+}

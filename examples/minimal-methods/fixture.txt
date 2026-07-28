@@ -1,0 +1,1 @@
+Generated contract fixture. It contains no participant data.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Turn Paper into Insight"
+  short_description: "Reproduce papers as governed private Insights"
+  default_prompt: "Use $turn-paper-into-insight to assess and reproduce this scientific paper as a safe personal and cohort Insight."

@@ -1,0 +1,116 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.resting-hrv-methods",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Heart rate variability: standards of measurement, physiological interpretation and clinical use",
+    "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/8598068/",
+    "doi": "10.1161/01.CIR.93.5.1043",
+    "claim": "Implements selected descriptive five-minute time-domain and Poincaré HRV measures without clinical interpretation.",
+    "claimClass": "descriptive",
+    "population": "The method standard is not a Brainstem validation population; the public check uses two healthy resting Fantasia records only.",
+    "referenceStandard": "Published HRV measure definitions and checksum-pinned public R-R interval fixtures.",
+    "implementationRelation": "method_only",
+    "relationEvidence": "Independent stdlib implementation of selected measures; no author reference implementation is claimed.",
+    "classification": {
+      "paperDecision": "not_applicable",
+      "labels": [],
+      "unit": "five-minute resting recording"
+    }
+  },
+  "sources": [
+    {
+      "name": "Independent resting-HRV methods implementation",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "revisionType": "content_sha256",
+      "revision": "c2199990ea492c90fe678d60be582e1222a731e98e4cdb2a9c8fc30ede19592f",
+      "sha256": "c2199990ea492c90fe678d60be582e1222a731e98e4cdb2a9c8fc30ede19592f",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "PhysioNet Fantasia Database fetch manifest",
+      "kind": "public",
+      "url": "https://physionet.org/content/fantasia/1.0.0/",
+      "version": "1.0.0",
+      "sha256": "b7cd1901ab974d713c340a7a42c9cca19568daf221fa7ef61f25d5f16a0d4ade",
+      "license": "ODC-By-1.0",
+      "licenseUrl": "https://physionet.org/content/fantasia/view-license/1.0.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "brainstem.resting-rr-record/v1",
+    "requiredSignals": ["R-R intervals in milliseconds", "resting recording context"],
+    "window": "240–360 seconds with at least 180 intervals.",
+    "preprocessing": "Remove intervals outside 300–2000 ms; abstain above 5% removal; calculate participant medians across eligible recordings.",
+    "brainstemVerdict": "compatible",
+    "mismatches": [
+      "Fantasia ECG-derived intervals do not validate the Brainstem device.",
+      "No normative, diagnostic, prognostic, or clinical interpretation is supported.",
+      "The fixed artifact screen requires separate scientific review."
+    ]
+  },
+  "evidence": {
+    "tier": "E2_brainstem_compatible_exploratory",
+    "useClass": "methods_only",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "not_applicable"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": true,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Median descriptive HRV measures across compatible participants; no subgroup or disease label."
+    },
+    "personal": {
+      "proposed": true,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Owner-only descriptive measures compared with frozen aggregate middle bands that are explicitly not normal ranges."
+    }
+  },
+  "abstention": [
+    "insufficient_quality",
+    "insufficient_coverage",
+    "privacy_floor",
+    "uncalibrated_device",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "diagnosis",
+    "disease prediction",
+    "clinical normal range",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "fda7aa4149881a4bc0457e5a03f6caeadb32f5ed16618daabde366f21f866fc1"
+    },
+    {
+      "path": "algorithm.py",
+      "sha256": "c2199990ea492c90fe678d60be582e1222a731e98e4cdb2a9c8fc30ede19592f"
+    },
+    {
+      "path": "expected-public.json",
+      "sha256": "a660062f77a2e74a121cdff4610d28d0fa64b9d593701ad2e4063d0694b29061"
+    },
+    {
+      "path": "public-data.json",
+      "sha256": "b7cd1901ab974d713c340a7a42c9cca19568daf221fa7ef61f25d5f16a0d4ade"
+    },
+    {
+      "path": "reproduce.py",
+      "sha256": "56c81e9d101c3cb6e05259aa8a8e6289522e93d71c1a8ab851fef95f02a41b13"
+    },
+    {
+      "path": "test_algorithm.py",
+      "sha256": "d1ae22bed73a9f169703f155829d5ed2597b5f90c240ba9ee0438d4f374057ec"
+    }
+  ]
+}
