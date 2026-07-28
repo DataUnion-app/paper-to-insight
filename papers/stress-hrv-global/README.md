@@ -1,45 +1,41 @@
-# Global HRV stress — reference-only
+# Global HRV stress — independently reproducible, runtime blocked
 
-This source cannot yet become a candidate package.
+This candidate preserves the method and the blockers separately.
 
-The supplied repository at commit
-`4d1568c274fddc25de1b2c6f2416a82197a5d603` contains a README and one
-notebook but no source license. Its README checksum is
-`65b82bcadcf1d58e814fffe01b07ac6f66dd9a4a453adcb82e4f6230071253a0`;
-the notebook checksum is
-`569a29e902699fe58f8b0d419c4ddb64fb9663e193e628b7e2a6845c84139305`.
-No source code is copied here.
-
-The repository corresponds to:
+The CC-BY paper is:
 
 - Dahal, Bogue-Jimenez, and Doblas, *Global Stress Detection Framework
   Combining a Reduced Set of HRV Features and Random Forest Model*,
   <https://doi.org/10.3390/s23115220>.
 
-It does **not** correspond to the previously listed
-*Cross Dataset Analysis for Generalizability of HRV-Based Stress Detection
-Models* (<https://doi.org/10.3390/s23041807>).
+It is not the previously listed *Cross Dataset Analysis for Generalizability
+of HRV-Based Stress Detection Models* (DOI `10.3390/s23041807`).
 
-The paper is CC BY 4.0, so its described method may be independently
-reimplemented with attribution. The source notebook may not be copied or adapted
-without a license. The paper's per-subject 70:30 split also puts data from every
-subject into global training and individual testing; it is not evidence for a
-new participant. Brainstem has no stress labels or matching activity/context
-protocol.
+The paper permits an independent implementation of its eight-feature Random
+Forest method. The supplied repository at commit
+`4d1568c274fddc25de1b2c6f2416a82197a5d603` has no source license, so none of
+its code is copied or adapted here.
 
-## Block reasons
+The source audit also verifies that every subject contributes data to both
+training and testing. The reported result therefore does not establish
+performance for a new participant. The aggregate Kaggle card says CC0, while
+the linked original SWELL dataset currently states CC-BY-NC-SA-4.0; that
+license chain needs legal resolution before a distributable or commercial
+model is trained from the derivative.
 
-```json
-[
-  "license_unverified",
-  "participant_split_leakage",
-  "reference_labels_missing",
-  "population_or_device_unvalidated"
-]
-```
+Brainstem resting R-R recordings can support some of the paper's HRV features,
+but they do not carry the controlled stress/no-stress protocol labels used by
+the paper. A stress label, probability, score, or proxy therefore remains
+withheld in both cohort and personal modes.
 
-The next lawful experiment is an independent implementation of the eight
-published HRV features and Random Forest on explicitly licensed public data,
-using participant-held-out and cross-dataset evaluation. Any Brainstem stress
-classification must still abstain until a protected labelled protocol validates
-the device, population, context, calibration, and uncertainty.
+## Next evidence gate
+
+1. Reimplement the paper method without the unlicensed notebook.
+2. Use a dataset with an unambiguous compatible license.
+3. Evaluate with whole participants held out and report calibration and
+   uncertainty, not only accuracy.
+4. Run a protected Brainstem protocol with context labels and a relevant
+   device/population.
+
+Until those gates pass, this package belongs in the review queue and not the
+DeSciLab catalogue.

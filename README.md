@@ -21,6 +21,9 @@ python3 scripts/validate_candidate.py papers/apnea-ecg-heart-rate/candidate.json
 python3 papers/cardiovascular-event-hrv/test_source_audit.py -v
 python3 papers/cardiovascular-event-hrv/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/cardiovascular-event-hrv/candidate.json
+python3 papers/stress-hrv-global/test_source_audit.py -v
+python3 papers/stress-hrv-global/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/stress-hrv-global/candidate.json
 ```
 
 The bundled Codex-compatible skill lives at
@@ -58,6 +61,11 @@ DeSciLab.
 `papers/cardiovascular-event-hrv` is also E0 and disabled. Its source is licensed
 and paper-associated, but its scaler/test contract is incomplete and its
 published metric calculations are incorrect.
+
+`papers/stress-hrv-global` pins the corrected CC-BY paper and proves that an
+independent implementation is lawful. It remains E0 and disabled because the
+supplied code is unlicensed, every subject appears in training, the source-data
+license chain conflicts, and Brainstem has no matching stress labels.
 
 ## License
 

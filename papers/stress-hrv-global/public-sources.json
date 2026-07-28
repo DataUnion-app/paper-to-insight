@@ -1,0 +1,25 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "dataset-card": {
+      "url": "https://www.kaggle.com/api/v1/datasets/view/qiriro/stress",
+      "sha256": "043556f1e2198128e3e74469ea88f18d86d4d4655c9930e913b0674b25b2581a"
+    },
+    "paper-xml": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10255919/fullTextXML",
+      "sha256": "1538b1799bae2abd8d759b0daabb21e1d7e9e31da99d2a4d6172134dc5114497"
+    },
+    "source-notebook": {
+      "url": "https://raw.githubusercontent.com/OIRL/2023StressModelHRV/4d1568c274fddc25de1b2c6f2416a82197a5d603/combined_20_100.ipynb",
+      "sha256": "569a29e902699fe58f8b0d419c4ddb64fb9663e193e628b7e2a6845c84139305"
+    },
+    "source-readme": {
+      "url": "https://raw.githubusercontent.com/OIRL/2023StressModelHRV/4d1568c274fddc25de1b2c6f2416a82197a5d603/README.md",
+      "sha256": "65b82bcadcf1d58e814fffe01b07ac6f66dd9a4a453adcb82e4f6230071253a0"
+    },
+    "source-tree": {
+      "url": "https://api.github.com/repos/OIRL/2023StressModelHRV/git/trees/4d1568c274fddc25de1b2c6f2416a82197a5d603?recursive=1",
+      "sha256": "bb4d9c554e08189babbc6ac4ee8f202c127cb12045a4899a5680f5809e38159c"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "paper-to-insight.stress-audit-fixture/v1",
+  "participants": [
+    {
+      "participant": "generated-1",
+      "condition": "no-stress",
+      "features": [0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      "participant": "generated-2",
+      "condition": "stress",
+      "features": [1, 1, 1, 1, 1, 1, 1, 1]
+    }
+  ],
+  "use": "parser and contract tests only; not model evidence"
+}

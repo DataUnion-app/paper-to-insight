@@ -1,0 +1,22 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.global-hrv-stress",
+  "sourceRevision": "4d1568c274fddc25de1b2c6f2416a82197a5d603",
+  "paperMethodLicense": "CC-BY-4.0",
+  "sourceCodeLicenseVerified": false,
+  "aggregateDatasetCardLicense": "CC0: Public Domain",
+  "underlyingDatasetLicenseChainVerified": false,
+  "paperFeatureCount": 8,
+  "paperValidationIncludesEverySubjectInTraining": true,
+  "participantHeldOutValidation": false,
+  "eligibleForIndependentReimplementation": true,
+  "publicReproductionAccepted": false,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "license_unverified",
+    "participant_split_leakage",
+    "population_or_device_unvalidated",
+    "reference_labels_missing"
+  ]
+}

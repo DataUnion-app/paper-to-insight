@@ -1,0 +1,130 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.global-hrv-stress",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Global Stress Detection Framework Combining a Reduced Set of HRV Features and Random Forest Model",
+    "canonicalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10255919/",
+    "doi": "10.3390/s23115220",
+    "claim": "The paper classifies controlled-session HRV feature rows as stress or no-stress with an eight-feature Random Forest trained from WESAD and SWELL.",
+    "claimClass": "prediction",
+    "population": "The paper combines 15 WESAD and 22 SWELL participants under controlled stress, amusement, baseline, time-pressure, and interruption conditions; it is not a Brainstem validation population.",
+    "referenceStandard": "Protocol condition labels from the WESAD and SWELL controlled sessions, collapsed by the paper into stress and no-stress.",
+    "implementationRelation": "independent_reimplementation",
+    "relationEvidence": "The paper method is CC BY 4.0 and may be reimplemented with attribution. The supplied repository has no source license, so its code is audit evidence only and is not copied or adapted.",
+    "classification": {
+      "paperDecision": "classified",
+      "labels": [
+        "stress",
+        "no-stress"
+      ],
+      "unit": "paper-defined HRV feature row from a controlled session"
+    }
+  },
+  "sources": [
+    {
+      "name": "CC-BY paper method in Europe PMC XML",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10255919/fullTextXML",
+      "revisionType": "content_sha256",
+      "revision": "1538b1799bae2abd8d759b0daabb21e1d7e9e31da99d2a4d6172134dc5114497",
+      "sha256": "1538b1799bae2abd8d759b0daabb21e1d7e9e31da99d2a4d6172134dc5114497",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated stress candidate contract fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-contract-fixture",
+      "sha256": "dac9a9df8c376124ce63762f9f2404ba209d62760aa2610cbc23502dafec5522",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "not-defined: proposed controlled-context resting R-R stress contract",
+    "requiredSignals": [
+      "artifact-screened beat-to-beat intervals sufficient for all eight paper features",
+      "controlled stress and no-stress protocol context labels"
+    ],
+    "window": "Paper-defined HRV feature rows from controlled WESAD and SWELL sessions; the exact raw-signal window contract is not frozen.",
+    "preprocessing": "Withheld until an independent implementation freezes artifact handling, frequency estimation, feature formulas, participant-held-out evaluation, calibration, and uncertainty.",
+    "brainstemVerdict": "partially_compatible",
+    "mismatches": [
+      "Current Brainstem records do not include the paper's controlled stress and no-stress labels.",
+      "The paper and supplied notebook put data from every participant into training before individual testing.",
+      "The supplied source repository has no license and cannot be copied or adapted.",
+      "The aggregate derivative dataset card's CC0 claim does not resolve the linked original SWELL dataset's non-commercial share-alike terms.",
+      "No Brainstem device, activity context, population, or prospective calibration has been validated."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "protocol_bound_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "abstained"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Withheld until the license chain, participant-held-out reproduction, and protected Brainstem protocol validation pass."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Withheld; no stress label, probability, score, chart, or free-text proxy may be returned from this candidate."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "privacy_floor",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "out_of_distribution",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "acute or chronic stress diagnosis",
+    "negative or healthy interpretation of abstention",
+    "clinical risk score",
+    "mental health assessment",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "284ca6833e6cc3b47bb86edc0fa457750fd7b566b617e5e5f71d6358e00aa82a"
+    },
+    {
+      "path": "expected-audit.json",
+      "sha256": "107e9e9c875a0d9c956e220c8d931bf378b08e6fb1e6b8f758a849bcdfa64e3d"
+    },
+    {
+      "path": "public-sources.json",
+      "sha256": "ed8f0c4fb3e35773d1542bd1a39c255fab9ec31b188bca1710aeac400cd73b68"
+    },
+    {
+      "path": "source-audit.py",
+      "sha256": "2b017bf90bb92187c0e096e82be39c44d1ef992df525d5f0ab97e170729806a4"
+    },
+    {
+      "path": "synthetic-fixture.json",
+      "sha256": "dac9a9df8c376124ce63762f9f2404ba209d62760aa2610cbc23502dafec5522"
+    },
+    {
+      "path": "test_source_audit.py",
+      "sha256": "ff0289f0519ad5bb547481cc1dc26adfbc408bd7f80e732fcbb12bee8e2f5a67"
+    }
+  ]
+}
