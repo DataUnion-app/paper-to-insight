@@ -1,0 +1,26 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.epilepsy-hrv-anomaly",
+  "sourceRevision": "de3b26039f76ce2ceac9a74a6bc179b8f7bddb1e",
+  "sourceRelationship": "unrelated_supplied_repository",
+  "paperMethodLicense": "CC-BY-4.0",
+  "sourceCodeLicense": "BSD-3-Clause",
+  "paperHrvIndexCount": 8,
+  "paperWindowMinutes": 3,
+  "paperPrincipalComponents": 6,
+  "paperTrainingPatients": 14,
+  "paperProspectivePatients": 7,
+  "paperImplementationAvailable": false,
+  "paperFittedModelAvailable": false,
+  "paperTrainingDataAvailable": false,
+  "publicReproductionAccepted": false,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "paper_implementation_identity_unproven",
+    "population_or_device_unvalidated",
+    "public_reproduction_failed",
+    "reference_labels_missing",
+    "temporal_coverage_missing"
+  ]
+}

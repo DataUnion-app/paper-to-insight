@@ -1,0 +1,10 @@
+{
+  "schema": "paper-to-insight.epilepsy-audit-fixture/v1",
+  "rows": [
+    {
+      "hrvIndexCount": 8,
+      "seizureLabel": null,
+      "use": "contract shape only"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.epilepsy-hrv-anomaly",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Wearable Epileptic Seizure Prediction System with Machine-Learning-Based Anomaly Detection of Heart Rate Variability",
+    "canonicalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7411877/",
+    "doi": "10.3390/s20143987",
+    "claim": "The paper uses multivariate statistical process control over eight HRV indices to identify a sustained preictal anomaly during continuous awake monitoring.",
+    "claimClass": "prediction",
+    "population": "The fitted model used interictal data from fourteen refractory-epilepsy patients and was prospectively evaluated on fourteen seizures from seven diagnosed patients during inpatient video-EEG monitoring.",
+    "referenceStandard": "Specialist-adjudicated awake seizure onset and clean interictal periods from synchronized clinical video, EEG, and ECG.",
+    "implementationRelation": "method_only",
+    "relationEvidence": "The CC-BY paper does not publish code, fitted loadings, scaling parameters, or training data. The supplied BSD-licensed repository predates the paper and implements a different patient-specific EEG+ECG deep-learning system.",
+    "classification": {
+      "paperDecision": "classified",
+      "labels": [
+        "preictal anomaly",
+        "interictal"
+      ],
+      "unit": "continuous three-minute HRV window"
+    }
+  },
+  "sources": [
+    {
+      "name": "CC-BY paper method in Europe PMC XML",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7411877/fullTextXML",
+      "revisionType": "content_sha256",
+      "revision": "a4af3c8a399d5ba83869824e429deb577bd5743878cd5a70a17545414daf740a",
+      "sha256": "a4af3c8a399d5ba83869824e429deb577bd5743878cd5a70a17545414daf740a",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "name": "Supplied but unrelated BSD-licensed repository README",
+      "url": "https://raw.githubusercontent.com/akaraspt/epilepsy-system/de3b26039f76ce2ceac9a74a6bc179b8f7bddb1e/README.md",
+      "revisionType": "git_commit",
+      "revision": "de3b26039f76ce2ceac9a74a6bc179b8f7bddb1e",
+      "sha256": "1d4c92734e0ce4dd49ebb0152abc25c91489efd7fe4fa434c16897727c3152c6",
+      "license": "BSD-3-Clause",
+      "licenseUrl": "https://opensource.org/license/bsd-3-clause"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated epilepsy candidate contract fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-contract-fixture",
+      "sha256": "65416a624d587a7f9c6f5e696a3b7465989d2d9f26f026a9c4c727935fcbbfaf",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "not-defined: proposed continuous epilepsy HRV and specialist-adjudicated event contract",
+    "requiredSignals": [
+      "continuous artifact-screened beat-to-beat intervals sufficient for eight paper-defined HRV indices",
+      "diagnosed epilepsy context with specialist-adjudicated awake seizure onset and interictal periods"
+    ],
+    "window": "Three-minute moving HRV window monitored continuously; the paper counts an alert when an anomaly persists for more than ten seconds within the fifteen-minute pre-seizure horizon.",
+    "preprocessing": "Withheld until licensed epilepsy data and an exact implementation freeze R-R correction, interpolation, autoregressive spectral estimation, feature order, scaling, fitted principal components, control limits, temporal state, and uncertainty.",
+    "brainstemVerdict": "partially_compatible",
+    "mismatches": [
+      "Brainstem resting recordings are not continuous awake monitoring before a seizure.",
+      "Brainstem has no specialist-adjudicated seizure onset, interictal, sleep, motion-artifact, or epileptiform-event labels.",
+      "The paper's fitted loadings, scaling parameters, control limits, and training data are not public.",
+      "The paper population consists of diagnosed refractory-epilepsy patients under inpatient video-EEG monitoring.",
+      "The supplied repository implements a different EEG+ECG deep-learning system and cannot establish implementation provenance."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "protocol_bound_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "abstained"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Withheld; the current cohort lacks the paper's diagnosed population, continuous coverage, fitted model, and reference labels."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Withheld; no seizure label, warning, score, probability, chart, or free-text proxy may be returned from this candidate."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "out_of_distribution",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "seizure prediction, detection, or warning",
+    "negative or healthy interpretation of abstention",
+    "clinical risk score",
+    "emergency alert",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "45b1e30727ac476c1e87e0d51a94de8eb7bef039fcf3b53cb5d7890d7cab337d"
+    },
+    {
+      "path": "expected-audit.json",
+      "sha256": "6c6f56db1aef36cbf015ec41b9f67371eb3c6e51510f3a5af77a87b0583bf528"
+    },
+    {
+      "path": "public-sources.json",
+      "sha256": "eeccc51cf9589133754f722044c0a687422f3ca488e15de5cf3dfc595c7e81c3"
+    },
+    {
+      "path": "source-audit.py",
+      "sha256": "7ac4db6c77fa9c053dc6ddf623111926be5747da80039f33fcddb73d8d8dc145"
+    },
+    {
+      "path": "synthetic-fixture.json",
+      "sha256": "65416a624d587a7f9c6f5e696a3b7465989d2d9f26f026a9c4c727935fcbbfaf"
+    },
+    {
+      "path": "test_source_audit.py",
+      "sha256": "bde315e49b34bce3570200645f7356d9cfd5568b65ad42d9c3b05bd83a30fbf8"
+    }
+  ]
+}

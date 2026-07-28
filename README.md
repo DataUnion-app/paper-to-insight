@@ -27,6 +27,9 @@ python3 scripts/validate_candidate.py papers/stress-hrv-global/candidate.json
 python3 papers/in-hospital-cardiac-arrest-hrv/test_source_audit.py -v
 python3 papers/in-hospital-cardiac-arrest-hrv/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/in-hospital-cardiac-arrest-hrv/candidate.json
+python3 papers/epilepsy-hrv-anomaly/test_source_audit.py -v
+python3 papers/epilepsy-hrv-anomaly/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/epilepsy-hrv-anomaly/candidate.json
 ```
 
 The bundled Codex-compatible skill lives at
@@ -73,6 +76,11 @@ license chain conflicts, and Brainstem has no matching stress labels.
 `papers/in-hospital-cardiac-arrest-hrv` is E0 and disabled. The paper-linked
 source is unlicensed and incomplete, its data are private, and its ICU
 event-prediction contract is incompatible with current Brainstem home records.
+
+`papers/epilepsy-hrv-anomaly` is E0 and disabled. The paper's fitted model and
+training data are unavailable, current Brainstem records lack continuous
+video-EEG-labelled epilepsy context, and the supplied repository implements a
+different EEG+ECG system.
 
 ## License
 

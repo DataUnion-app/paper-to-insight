@@ -37,6 +37,12 @@ repository has no license, public data, fitted model, selected-feature manifest,
 or runnable optimizer; more importantly, its ICU event contract is incompatible
 with current Brainstem home data.
 
+The epileptic-seizure HRV candidate is E0. The paper does not publish its
+fitted MSPC model or training data, and Brainstem lacks continuous awake
+monitoring with specialist-adjudicated video-EEG labels. The supplied
+BSD-licensed repository is a different patient-specific EEG+ECG deep-learning
+system and is not implementation provenance for the paper.
+
 ## Per-paper checks
 
 - license and immutable public source/data;

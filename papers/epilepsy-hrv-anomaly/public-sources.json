@@ -1,0 +1,25 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "paper-xml": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7411877/fullTextXML",
+      "sha256": "a4af3c8a399d5ba83869824e429deb577bd5743878cd5a70a17545414daf740a"
+    },
+    "source-license": {
+      "url": "https://raw.githubusercontent.com/akaraspt/epilepsy-system/de3b26039f76ce2ceac9a74a6bc179b8f7bddb1e/LICENSE",
+      "sha256": "464199b4e23c74ae53b10508c302ef0d1b846d393736f90167b7a11a0326b8d2"
+    },
+    "source-prediction-readme": {
+      "url": "https://raw.githubusercontent.com/akaraspt/epilepsy-system/de3b26039f76ce2ceac9a74a6bc179b8f7bddb1e/seizure%20prediction%20code/README.md",
+      "sha256": "f8c664c7aab8fbcc86286aab4104daa4849823b981efa61525ab59a5d06a097f"
+    },
+    "source-readme": {
+      "url": "https://raw.githubusercontent.com/akaraspt/epilepsy-system/de3b26039f76ce2ceac9a74a6bc179b8f7bddb1e/README.md",
+      "sha256": "1d4c92734e0ce4dd49ebb0152abc25c91489efd7fe4fa434c16897727c3152c6"
+    },
+    "source-tree": {
+      "url": "https://api.github.com/repos/akaraspt/epilepsy-system/git/trees/de3b26039f76ce2ceac9a74a6bc179b8f7bddb1e?recursive=1",
+      "sha256": "74fb332b77a89406eff2150f094d3bcdd5de1149b98622250460b4c68a0a073f"
+    }
+  }
+}
