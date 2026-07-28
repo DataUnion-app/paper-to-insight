@@ -16,7 +16,9 @@ Signal similarity is not approval.
 | [Raw-ECG cardiac arrhythmia CNN-LSTM](cardiac-arrhythmia-cnn-lstm/) | E0; runtime disabled | Source unlicensed; original train/test boundary discarded; duplicate leakage after pre-split upsampling; claimed PCA disabled | Leakage-free participant-separated external reproduction plus a calibrated raw-waveform Brainstem contract |
 | [Sudden cardiac death HRV CNN](sudden-cardiac-death-hrv/) | E0; runtime disabled | Supplied SVM repository is unrelated and document-only; paper selects on its testing set; matched diagnostic/event labels absent | Independent participant-separated reproduction with untouched external clinical validation |
 | [HRV sleep-stage LSTM](sleep-stage-hrv-lstm/) | E0; runtime disabled; highest-priority follow-up | Paper model/data unavailable; supplied unlicensed framework uses a different ontology; Brainstem-versus-PSG calibration absent | Independent public reproduction, then protected participant-separated PSG calibration |
+| [SleepECG WRN-GRU](sleepecg-wrn-gru/) | E1 public reproduction; runtime disabled | Independent SLPDB result has accuracy 0.573618, kappa 0.123670, and REM F1 0.199796; population and Brainstem-device calibration absent | Pre-registered held-out Brainstem-device-versus-PSG validation |
 
 Every entry from the supplied list now has a checksum-pinned candidate package.
-Only Resting HRV has enabled paired runtime modes; contributors can advance an
-E0 package by closing its listed evidence gates.
+Only Resting HRV has enabled paired runtime modes. SleepECG demonstrates that a
+licensed off-the-shelf model can be reproduced yet still fail the runtime gate;
+contributors can advance any package only by closing its listed evidence gates.

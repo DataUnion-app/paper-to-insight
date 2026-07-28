@@ -1,0 +1,82 @@
+{
+  "schema": "paper-to-insight.public-reproduction/v1",
+  "candidate": "brainstem.sleepecg-wrn-gru",
+  "sourceVersion": "0.5.9",
+  "sourceSdistSha256": "f15ee55ec5567e13cb57a99009d2fe8533702a32cbb4d24c0551fefd45e920ac",
+  "modelSha256": "5622a858c855b0090e1fbcbdc35334ea459707c830eae1a26a4375e33091e869",
+  "dataset": "MIT-BIH Polysomnographic Database",
+  "datasetVersion": "1.0.0",
+  "datasetManifestSha256": "c07dc13222cbf509d0efc8b598b31b69b71357141f97562ddc97ade72341a7ac",
+  "records": 18,
+  "participants": 16,
+  "epochs": 10181,
+  "ontology": [
+    "NREM",
+    "REM",
+    "WAKE"
+  ],
+  "confusionMatrix": [
+    [
+      4567,
+      56,
+      1743
+    ],
+    [
+      444,
+      98,
+      158
+    ],
+    [
+      1813,
+      127,
+      1175
+    ]
+  ],
+  "accuracy": 0.573618,
+  "cohenKappa": 0.12367,
+  "classMetrics": {
+    "NREM": {
+      "precision": 0.669256,
+      "recall": 0.717405,
+      "f1": 0.692494,
+      "support": 6366
+    },
+    "REM": {
+      "precision": 0.348754,
+      "recall": 0.14,
+      "f1": 0.199796,
+      "support": 700
+    },
+    "WAKE": {
+      "precision": 0.38199,
+      "recall": 0.377207,
+      "f1": 0.379583,
+      "support": 3115
+    }
+  },
+  "participantAccuracy": {
+    "min": 0.291465,
+    "median": 0.572803,
+    "max": 0.690476
+  },
+  "publicReproductionAccepted": true,
+  "transferOutcome": "poor_external_transfer",
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "external_transfer_performance_insufficient",
+    "public_population_not_representative",
+    "brainstem_device_not_calibrated",
+    "brainstem_psg_reference_labels_missing",
+    "model_requires_age_and_binary_gender"
+  ],
+  "environment": {
+    "python": "3.11.13",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "tensorflow": "2.21.0",
+    "wfdb": "4.3.1",
+    "sleepecg": "0.5.9"
+  }
+}
+

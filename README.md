@@ -45,6 +45,9 @@ python3 scripts/validate_candidate.py papers/sudden-cardiac-death-hrv/candidate.
 python3 papers/sleep-stage-hrv-lstm/test_source_audit.py -v
 python3 papers/sleep-stage-hrv-lstm/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/sleep-stage-hrv-lstm/candidate.json
+python3 papers/sleepecg-wrn-gru/test_source_audit.py -v
+python3 papers/sleepecg-wrn-gru/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/sleepecg-wrn-gru/candidate.json
 ```
 
 The bundled Codex-compatible skill lives at
@@ -119,6 +122,11 @@ for hyperparameter selection without publishing an untouched external result.
 Brainstem study candidate. The paper uses participant-level evaluation and
 full-night HRV; promotion still needs a licensed public reproduction and
 Brainstem-versus-PSG calibration.
+
+`papers/sleepecg-wrn-gru` is a separate E1 negative result. The exact
+BSD-licensed shipped model runs on an independent public PSG dataset, but its
+external accuracy, kappa, and REM performance are insufficient. It remains
+unavailable in DeSciLab pending a held-out Brainstem-device-versus-PSG study.
 
 ## License
 

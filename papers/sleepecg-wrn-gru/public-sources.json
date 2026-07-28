@@ -1,0 +1,18 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "sleepecg-sdist": {
+      "url": "https://files.pythonhosted.org/packages/10/e4/ff5e2b6d7241bc4c214e5142f794d615e4cd41e92e74fae61460f3509d14/sleepecg-0.5.9.tar.gz",
+      "sha256": "f15ee55ec5567e13cb57a99009d2fe8533702a32cbb4d24c0551fefd45e920ac"
+    },
+    "slpdb-checksums": {
+      "url": "https://physionet.org/files/slpdb/1.0.0/SHA256SUMS.txt",
+      "sha256": "c07dc13222cbf509d0efc8b598b31b69b71357141f97562ddc97ade72341a7ac"
+    },
+    "slpdb-records": {
+      "url": "https://physionet.org/files/slpdb/1.0.0/RECORDS",
+      "sha256": "aed670a466eb29b50de1f9098928a6818a51f043415137a1c88d24bb84e05d48"
+    }
+  }
+}
+

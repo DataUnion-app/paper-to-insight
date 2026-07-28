@@ -1,0 +1,22 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.sleepecg-wrn-gru",
+  "sourceVersion": "0.5.9",
+  "sourceLicense": "BSD-3-Clause",
+  "softwarePaperDoi": "10.21105/joss.05411",
+  "modelSha256": "5622a858c855b0090e1fbcbdc35334ea459707c830eae1a26a4375e33091e869",
+  "modelStagesMode": "wake-rem-nrem",
+  "modelUsesAgeAndGender": true,
+  "authorTrainingDataset": "MESA",
+  "authorExternalTestDataset": "SHHS",
+  "authorTrainingNights": 1971,
+  "authorExternalTestNights": 1000,
+  "authorExternalAccuracy": 0.75,
+  "authorExternalKappa": 0.54,
+  "slpdbRecordCount": 18,
+  "slpdbParticipantCount": 16,
+  "slpdbAnnotationFilesPinned": 54,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false
+}
+

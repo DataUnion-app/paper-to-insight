@@ -1,0 +1,144 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.sleepecg-wrn-gru",
+  "version": "0.1.0",
+  "paper": {
+    "title": "SleepECG: A Python package for sleep staging based on heart rate",
+    "canonicalUrl": "https://joss.theoj.org/papers/10.21105/joss.05411",
+    "doi": "10.21105/joss.05411",
+    "claim": "The shipped WRN-GRU classifier predicts NREM, REM, or wake for each thirty-second epoch from heart-rate features and participant metadata.",
+    "claimClass": "prediction",
+    "population": "The model was trained on 1,971 MESA nights and author-tested on 1,000 SHHS nights; this reproduction uses 18 SLPDB records from 16 all-male participants evaluated for apnea or CPAP.",
+    "referenceStandard": "PSG sleep-stage annotations distributed with SLPDB, mapped to the model's three-class wake, REM, and NREM ontology.",
+    "implementationRelation": "author_reference_implementation",
+    "relationEvidence": "SleepECG 0.5.9 is the BSD-licensed package described by the software paper and ships the checksum-pinned WRN-GRU model, training script, feature contract, and reported external metrics.",
+    "classification": {
+      "paperDecision": "classified",
+      "labels": [
+        "NREM",
+        "REM",
+        "WAKE"
+      ],
+      "unit": "thirty-second sleep epoch"
+    }
+  },
+  "sources": [
+    {
+      "name": "SleepECG 0.5.9 source distribution and embedded model",
+      "url": "https://files.pythonhosted.org/packages/10/e4/ff5e2b6d7241bc4c214e5142f794d615e4cd41e92e74fae61460f3509d14/sleepecg-0.5.9.tar.gz",
+      "revisionType": "content_sha256",
+      "revision": "f15ee55ec5567e13cb57a99009d2fe8533702a32cbb4d24c0551fefd45e920ac",
+      "sha256": "f15ee55ec5567e13cb57a99009d2fe8533702a32cbb4d24c0551fefd45e920ac",
+      "license": "BSD-3-Clause",
+      "licenseUrl": "https://github.com/cbrnr/sleepecg/blob/v0.5.9/LICENSE"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "MIT-BIH Polysomnographic Database checksum manifest",
+      "kind": "public",
+      "url": "https://physionet.org/content/slpdb/1.0.0/",
+      "version": "1.0.0",
+      "doi": "10.13026/C23K5S",
+      "sha256": "c07dc13222cbf509d0efc8b598b31b69b71357141f97562ddc97ade72341a7ac",
+      "license": "ODC-By-1.0",
+      "licenseUrl": "https://physionet.org/content/slpdb/view-license/1.0.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "not-defined: proposed full-night beat-interval sleep-staging contract",
+    "requiredSignals": [
+      "continuous artifact-screened full-night beat-to-beat intervals",
+      "recording start time",
+      "age",
+      "binary gender"
+    ],
+    "window": "Thirty-second epochs with 120-second lookback and 150-second lookforward.",
+    "preprocessing": "Use 0.3–2.0 second intervals, at most fifty percent missing values, SleepECG time and frequency HRV features, recording start time, age, and binary gender.",
+    "brainstemVerdict": "partially_compatible",
+    "mismatches": [
+      "External SLPDB accuracy is 0.573618 with kappa 0.123670 and REM F1 0.199796.",
+      "SLPDB contains only sixteen all-male participants evaluated for apnea or CPAP.",
+      "The model requires age and binary gender as sensitive features.",
+      "Brainstem full-night intervals have not been calibrated against this pipeline.",
+      "Brainstem recordings do not carry independent PSG reference labels."
+    ]
+  },
+  "evidence": {
+    "tier": "E1_public_reproduced",
+    "useClass": "exploratory_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "abstained"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Withheld; the public reproduction documents insufficient external transfer and does not authorize Brainstem sleep-stage distributions."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Withheld; no personal sleep-stage label, sleep score, condition inference, chart, or free-text proxy may be returned."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "out_of_distribution",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "clinical sleep-stage scoring",
+    "sleep-disorder detection or diagnosis",
+    "negative or healthy interpretation of abstention",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "97011b6f2e29a08c29d71756997c53f1aaf46779930bbe6731c3cc84b9c94fe9"
+    },
+    {
+      "path": "expected-audit.json",
+      "sha256": "ddb108969b611cdbb882a04985a949ba3d1b25c8f32e77fe1a062d07bec98a74"
+    },
+    {
+      "path": "expected-public.json",
+      "sha256": "29bbe6ef13151e6735250e09b0faee2eec97b550094c96e3c5ce089d14ee15aa"
+    },
+    {
+      "path": "public-sources.json",
+      "sha256": "f8bef91f73d1f6f1680b190b2a4ad43385da370a327fa4470aa563d3edafffd8"
+    },
+    {
+      "path": "reproduce.py",
+      "sha256": "4d66ce38b5499ae6f5eba51fca82cda2cd4caf2295c55f3280b00e54374797a8"
+    },
+    {
+      "path": "reproduction-environment.json",
+      "sha256": "33a53088f7ed3a1bd07ef17d76c809c1a7b004f65de850678fe4c6bceefba703"
+    },
+    {
+      "path": "source-audit.py",
+      "sha256": "dd6e9704ef53f2b5b506d02a56079d4b143e85517cd30590ce284b7677617449"
+    },
+    {
+      "path": "test_reproduce.py",
+      "sha256": "360f1441358beb4a4b1c3bffe524d11a45c2d9f949507281bd7ba0064ee45b4d"
+    },
+    {
+      "path": "test_source_audit.py",
+      "sha256": "bb153760a6aceb8d71080675634b964213537f02564cd88d221b831846a84c90"
+    }
+  ]
+}
+
