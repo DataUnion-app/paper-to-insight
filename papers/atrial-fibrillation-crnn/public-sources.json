@@ -1,0 +1,25 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "paper-pdf": {
+      "url": "https://arxiv.org/pdf/1710.06122v2",
+      "sha256": "be75cd19ad8081fdd54c665483347ea7d7e2efa13081b3bedd3517987d1913fb"
+    },
+    "source-dataset-helper": {
+      "url": "https://raw.githubusercontent.com/yruffiner/ecg-classification/81a7983574153d2ef2d3c412a650900f8b1127d4/codes/utils/dataset_helper.py",
+      "sha256": "5780340941969c83070cbe6ea2b8d55400a80ab71eb276454696e8c80d574ca2"
+    },
+    "source-readme": {
+      "url": "https://raw.githubusercontent.com/yruffiner/ecg-classification/81a7983574153d2ef2d3c412a650900f8b1127d4/README.md",
+      "sha256": "8ec059c9b007db59a98844349800eb05f6e792c8ddffa6e8f34ea6b363ed18ff"
+    },
+    "source-split-properties": {
+      "url": "https://raw.githubusercontent.com/yruffiner/ecg-classification/81a7983574153d2ef2d3c412a650900f8b1127d4/data/training2017/splits/split_5_6_14/properties.json",
+      "sha256": "d851ad550bc5e7cfe2694f1b8f39644dc79451871ae3499ae8ac875d120f73e1"
+    },
+    "source-tree": {
+      "url": "https://api.github.com/repos/yruffiner/ecg-classification/git/trees/81a7983574153d2ef2d3c412a650900f8b1127d4?recursive=1",
+      "sha256": "6f6b8cda9707b43bbc3d693d4487dda216267c5c8d85edd357852bfaaa963f4e"
+    }
+  }
+}

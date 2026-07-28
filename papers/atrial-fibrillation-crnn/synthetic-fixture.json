@@ -1,0 +1,10 @@
+{
+  "schema": "paper-to-insight.af-audit-fixture/v1",
+  "rows": [
+    {
+      "rawEcg": null,
+      "rhythmLabel": null,
+      "use": "contract shape only"
+    }
+  ]
+}

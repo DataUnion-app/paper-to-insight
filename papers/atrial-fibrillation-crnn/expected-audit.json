@@ -1,0 +1,26 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.atrial-fibrillation-crnn",
+  "sourceRevision": "81a7983574153d2ef2d3c412a650900f8b1127d4",
+  "sourceRelationship": "author_reference_implementation",
+  "paperVersion": "arXiv:1710.06122v2",
+  "paperLicense": "arXiv-nonexclusive-distribution-1.0",
+  "sourceCodeLicenseVerified": false,
+  "paperClassCount": 4,
+  "rawEcgRequired": true,
+  "paperHiddenTestAvailable": false,
+  "sourceFittedModelAvailable": false,
+  "participantIdentityAvailableForSplit": false,
+  "participantSeparatedValidation": false,
+  "publicReproductionAccepted": false,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "license_unverified",
+    "participant_split_unproven",
+    "population_or_device_unvalidated",
+    "public_reproduction_failed",
+    "raw_signal_missing",
+    "reference_labels_missing"
+  ]
+}

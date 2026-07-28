@@ -33,6 +33,9 @@ python3 scripts/validate_candidate.py papers/epilepsy-hrv-anomaly/candidate.json
 python3 papers/ecg-hypoglycaemia/test_source_audit.py -v
 python3 papers/ecg-hypoglycaemia/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/ecg-hypoglycaemia/candidate.json
+python3 papers/atrial-fibrillation-crnn/test_source_audit.py -v
+python3 papers/atrial-fibrillation-crnn/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/atrial-fibrillation-crnn/candidate.json
 ```
 
 The bundled Codex-compatible skill lives at
@@ -89,6 +92,11 @@ different EEG+ECG system.
 prospective protocol rather than a completed classifier study; its supplied
 repository contains documentation but no executable model, and Brainstem lacks
 the paired raw-ECG/CGM contract.
+
+`papers/atrial-fibrillation-crnn` is E0 and disabled. The actual paper-linked
+source was identified, but it is unlicensed, has no fitted model or
+participant-separated validation evidence, and requires raw expert-labelled
+ECG that is outside the current Brainstem contract.
 
 ## License
 

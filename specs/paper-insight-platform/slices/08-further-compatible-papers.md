@@ -48,6 +48,11 @@ protocol, not a completed classifier, and its supplied repository contains
 only documents. Current Brainstem contracts also lack raw ECG paired with CGM
 reference values.
 
+The atrial-fibrillation CRNN candidate is E0. The actual author source differs
+from the supplied repository, has no software license or fitted model, and
+splits recording IDs without participant identity. Current Brainstem contracts
+also lack its raw expert-labelled ECG input.
+
 ## Per-paper checks
 
 - license and immutable public source/data;

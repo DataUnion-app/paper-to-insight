@@ -1,0 +1,131 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.atrial-fibrillation-crnn",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Convolutional Recurrent Neural Networks for Electrocardiogram Classification",
+    "canonicalUrl": "https://arxiv.org/abs/1710.06122v2",
+    "doi": "10.48550/arXiv.1710.06122",
+    "claim": "The paper classifies arbitrary-length single-lead ECG recordings into four rhythm classes with a convolutional recurrent neural network.",
+    "claimClass": "prediction",
+    "population": "Serendipitous patient-initiated recordings from AliveCor devices in the 2017 PhysioNet/CinC Challenge; participant identities and a Brainstem validation population are not available.",
+    "referenceStandard": "Challenge-provided expert rhythm label for each 9-to-60-second, 300 Hz, single-lead ECG recording.",
+    "implementationRelation": "author_reference_implementation",
+    "relationEvidence": "The arXiv record and repository identify the source as the paper implementation. The repository has no software license, no fitted model, and no participant identity with which to prove participant-separated evaluation.",
+    "classification": {
+      "paperDecision": "classified",
+      "labels": [
+        "normal sinus rhythm",
+        "atrial fibrillation",
+        "other rhythm",
+        "too noisy to classify"
+      ],
+      "unit": "single short raw-ECG recording"
+    }
+  },
+  "sources": [
+    {
+      "name": "Versioned arXiv paper PDF",
+      "url": "https://arxiv.org/pdf/1710.06122v2",
+      "revisionType": "content_sha256",
+      "revision": "be75cd19ad8081fdd54c665483347ea7d7e2efa13081b3bedd3517987d1913fb",
+      "sha256": "be75cd19ad8081fdd54c665483347ea7d7e2efa13081b3bedd3517987d1913fb",
+      "license": "arXiv-nonexclusive-distribution-1.0",
+      "licenseUrl": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated AF candidate contract fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-contract-fixture",
+      "sha256": "fb320201ec45f2bb490de68468c16b399676d32ba9e12f4031e954adc58f45f4",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "not-defined: proposed expert-labelled short raw-ECG rhythm contract",
+    "requiredSignals": [
+      "artifact-screened single-lead raw ECG sampled at the paper-compatible rate",
+      "expert rhythm labels and participant identity for separated validation"
+    ],
+    "window": "Paper evaluation uses variable 9-to-60-second raw-ECG recordings, with a median around thirty seconds.",
+    "preprocessing": "Withheld until a licensed implementation and data freeze waveform calibration, filtering, resampling, augmentation, class mapping, participant split, fitted model, calibration, and uncertainty.",
+    "brainstemVerdict": "incompatible",
+    "mismatches": [
+      "The current Brainstem C2D contract does not export raw single-lead ECG morphology.",
+      "Brainstem records do not carry expert normal, AF, other-rhythm, and noise labels.",
+      "The source repository is unlicensed and cannot be copied or adapted.",
+      "No fitted model is published and the hidden challenge test set is unavailable.",
+      "The committed split stratifies recording IDs without participant identity."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "protocol_bound_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "abstained"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Withheld; no licensed, participant-separated, Brainstem-compatible raw-ECG classifier has passed review."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Withheld; no AF or rhythm label, probability, alert, chart, or free-text proxy may be returned from this candidate."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "out_of_distribution",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "atrial-fibrillation or arrhythmia detection, prediction, or warning",
+    "negative or healthy interpretation of abstention",
+    "clinical rhythm interpretation",
+    "emergency alert",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "50f982eb5dd398f9635543044bc91dcff466e0176a1b1915f3ff34148d0ae464"
+    },
+    {
+      "path": "expected-audit.json",
+      "sha256": "5012b31213ede0269c0053f4f622d3a15237f297a5586e9e0ba0b096a0b4d8dd"
+    },
+    {
+      "path": "public-sources.json",
+      "sha256": "76a657ca802e928d05614ef0881fcaa38743274b0a18fb2d39b2d0930e0a1a7f"
+    },
+    {
+      "path": "source-audit.py",
+      "sha256": "a23277b4c955c8a9b60d7684b5a5399f5a9554ebdb5c0e5433e351754cfa3245"
+    },
+    {
+      "path": "synthetic-fixture.json",
+      "sha256": "fb320201ec45f2bb490de68468c16b399676d32ba9e12f4031e954adc58f45f4"
+    },
+    {
+      "path": "test_source_audit.py",
+      "sha256": "34ca19514a95aa1c72fb999c142b6a495c6420f2413978473ae81a296a02d3b6"
+    }
+  ]
+}
