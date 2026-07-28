@@ -32,7 +32,7 @@
   ],
   "datasets": [
     {
-      "name": "PhysioNet Fantasia Database fetch manifest",
+      "name": "PhysioNet Fantasia Database",
       "kind": "public",
       "url": "https://physionet.org/content/fantasia/1.0.0/",
       "version": "1.0.0",
