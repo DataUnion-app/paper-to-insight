@@ -1,0 +1,24 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.apnea-ecg-heart-rate",
+  "sourceRevision": "aaaf046741696e1c6267f707853e6e79b31c9ae5",
+  "sourceRelationship": "independent_personal_project",
+  "sourceLicenseVerified": true,
+  "publicDatasetLicense": "ODC-By-1.0",
+  "recordLevelCrossValidation": true,
+  "participantIdentifiersAvailable": false,
+  "knownOverlappingRecordsInTraining": [
+    "c05",
+    "c06"
+  ],
+  "sourcePopulationCountUnitMismatch": true,
+  "publicReproductionAccepted": false,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "paper_implementation_identity_unproven",
+    "participant_split_leakage",
+    "population_or_device_unvalidated",
+    "reference_labels_missing"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.apnea-ecg-heart-rate",
+  "version": "0.1.0",
+  "paper": {
+    "title": "The Apnea-ECG Database",
+    "canonicalUrl": "https://doi.org/10.1109/CIC.2000.898505",
+    "doi": "10.1109/CIC.2000.898505",
+    "claim": "The reference task classifies full-night ECG-derived one-minute epochs as apnea or non-apnea using expert respiratory annotations.",
+    "claimClass": "prediction",
+    "population": "The public database contains repeated overnight recordings from 32 subjects referred for possible sleep-disordered breathing; it is not a Brainstem validation population.",
+    "referenceStandard": "Expert minute annotations derived from simultaneously recorded respiration and related signals in PhysioNet Apnea-ECG 1.0.0.",
+    "implementationRelation": "independent_reimplementation",
+    "relationEvidence": "The inspected source identifies itself as a personal Insight Data Science project and provides no evidence that it is the paper authors' implementation.",
+    "classification": {
+      "paperDecision": "classified",
+      "labels": [
+        "apnea minute",
+        "non-apnea minute"
+      ],
+      "unit": "one-minute full-night epoch"
+    }
+  },
+  "sources": [
+    {
+      "name": "Independent Apnea-ECG model evaluation source",
+      "url": "https://github.com/ChiQiao/Apnea-ECG/tree/aaaf046741696e1c6267f707853e6e79b31c9ae5",
+      "revisionType": "git_commit",
+      "revision": "aaaf046741696e1c6267f707853e6e79b31c9ae5",
+      "sha256": "deba3de1b6b499e94474cc51b2bd878d2af0cc65a32fbbb8401c3668b845fa20",
+      "license": "MIT",
+      "licenseUrl": "https://raw.githubusercontent.com/ChiQiao/Apnea-ECG/aaaf046741696e1c6267f707853e6e79b31c9ae5/LICENSE"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "PhysioNet Apnea-ECG Database",
+      "kind": "public",
+      "url": "https://physionet.org/content/apnea-ecg/1.0.0/",
+      "version": "1.0.0",
+      "doi": "10.13026/C23W2R",
+      "sha256": "970d643ec848af6bbc2bda148d1f8e165d439514948b23e5df76e962ba7a5b61",
+      "license": "ODC-By-1.0",
+      "licenseUrl": "https://physionet.org/content/apnea-ecg/view-license/1.0.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "not-defined: proposed full-night beat-to-beat interval contract",
+    "requiredSignals": [
+      "continuous full-night beat-to-beat intervals",
+      "expert minute-level apnea and hypopnea reference labels"
+    ],
+    "window": "Continuous seven-to-ten-hour overnight recording divided into non-overlapping one-minute epochs.",
+    "preprocessing": "Withheld until a participant-separated public reproduction freezes beat detection, artifact handling, feature extraction, missingness, and evaluation.",
+    "brainstemVerdict": "partially_compatible",
+    "mismatches": [
+      "Brainstem recordings have no expert respiratory apnea reference labels.",
+      "The inspected public evaluation splits records rather than identified participants.",
+      "The public source includes overlapping c05 and c06 recordings in its training index.",
+      "No Brainstem device or population calibration has been performed."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "exploratory_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "abstained"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Withheld until participant-separated reproduction and protected validation support aggregate research output."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Withheld; no apnea label, probability, score, or proxy may be returned from this candidate."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "privacy_floor",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "out_of_distribution",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "sleep apnea diagnosis",
+    "screening",
+    "negative or healthy interpretation of abstention",
+    "clinical risk score",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "ea3658feba0c585d8e41dda214729d88ef0e7379ba17a3c2915c780e3428193e"
+    },
+    {
+      "path": "expected-audit.json",
+      "sha256": "cf00413a5f58557d4205978439fff485cd26d72717261bfa7bbfb1d7748a8c99"
+    },
+    {
+      "path": "public-sources.json",
+      "sha256": "b39205df260a2f88f791c2dbabcddfc62b80eee019897e578fc34f1966c51ab1"
+    },
+    {
+      "path": "source-audit.py",
+      "sha256": "d286b89e35629b31139271e02d14dbdd03431444c4e8342d3ffccd6bd8bd5f87"
+    },
+    {
+      "path": "test_source_audit.py",
+      "sha256": "9a1b81de5cb2f0d0c65452a1b77c74ef5db632c851cd7aff30099e8a3bbe17b0"
+    }
+  ]
+}
