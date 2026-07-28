@@ -1,0 +1,126 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.cardiovascular-event-hrv",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Deep Learning for Risky Cardiovascular and Cerebrovascular Event Prediction in Hypertensive Patients",
+    "canonicalUrl": "https://doi.org/10.3390/app15031178",
+    "doi": "10.3390/app15031178",
+    "claim": "The reference task classifies hypertensive patients by whether an adjudicated cardiovascular or cerebrovascular event occurs during a 12-month follow-up.",
+    "claimClass": "prediction",
+    "population": "Hypertensive patients aged 55 and older from one Naples center; 17 of 139 experienced an adjudicated event during 12-month follow-up.",
+    "referenceStandard": "Twelve-month follow-up with cardiovascular and cerebrovascular events adjudicated from clinical records, patient history, and the reference general practitioner.",
+    "implementationRelation": "author_reference_implementation",
+    "relationEvidence": "The repository cites the exact paper and is maintained by a named paper coauthor at the pinned revision.",
+    "classification": {
+      "paperDecision": "classified",
+      "labels": [
+        "event during 12-month follow-up",
+        "no event during 12-month follow-up"
+      ],
+      "unit": "hypertensive participant aged 55 or older"
+    }
+  },
+  "sources": [
+    {
+      "name": "Paper-associated HRV model source",
+      "url": "https://github.com/alexsalman/Heart-Rate-Variability/tree/acda0446d9996314005a7d20492369d5212f4ac5",
+      "revisionType": "git_commit",
+      "revision": "acda0446d9996314005a7d20492369d5212f4ac5",
+      "sha256": "59966adda885d3bac7b34679efd3a6242fcebe9ea401a695e3a077cc1c727a4c",
+      "license": "MIT",
+      "licenseUrl": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/LICENSE"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Repository cardiovascular-event synthetic baseline",
+      "kind": "synthetic",
+      "url": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/data/dataset_ce_synthesized_baseline.csv",
+      "version": "acda0446d9996314005a7d20492369d5212f4ac5",
+      "doi": "10.3390/app15031178",
+      "sha256": "7539b371c8c07291d1ac06938130ad4988cf53f8f4408f21ea8eb8f034c45902",
+      "license": "MIT",
+      "licenseUrl": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/LICENSE"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "not-defined: exact 64-feature Kubios-compatible contract",
+    "requiredSignals": [
+      "high-quality five-minute three-lead ECG segment",
+      "64 exact Kubios Premium 3.4.1 HRV features",
+      "adjudicated 12-month cardiovascular outcome"
+    ],
+    "window": "A low-noise five-minute segment selected from a 24-hour Holter recording.",
+    "preprocessing": "Kubios Premium 3.4.1 beat detection and artifact correction followed by the paper's exact feature extraction, scaling, and frozen model.",
+    "brainstemVerdict": "partially_compatible",
+    "mismatches": [
+      "The current Brainstem resting R-R contract does not reproduce all 64 exact Kubios features.",
+      "The fitted source scaler and paired public test labels are unavailable.",
+      "The source evaluator reports incorrect AUC and sensitivity/specificity calculations.",
+      "Brainstem has no matching adjudicated hypertensive 55+ outcome cohort."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "exploratory_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "abstained"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Withheld until corrected public reproduction and protected matching-population validation support an aggregate research result."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Withheld; no cardiovascular-event label, probability, risk score, or proxy may be returned from this candidate."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "privacy_floor",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "out_of_distribution",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "cardiovascular diagnosis",
+    "cardiovascular screening",
+    "negative or healthy interpretation of abstention",
+    "clinical risk score",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "cc1f2a839d7c24a1d621cb272850dde3cfc8062eb68ede6f33e258c4dc3528f2"
+    },
+    {
+      "path": "expected-audit.json",
+      "sha256": "37b475e2e8dba35d90dd010cb8c749648426d86f49c02cc1797e4634524b85e0"
+    },
+    {
+      "path": "public-sources.json",
+      "sha256": "41dfe27691704d62ab5d8ce16c7a98e5c09d467834ab25fbe05f21959b3d2601"
+    },
+    {
+      "path": "source-audit.py",
+      "sha256": "7e4be69262a5583ece26c3d5f2f941f494c09663b2e797b9b18a45a0405fe5c3"
+    },
+    {
+      "path": "test_source_audit.py",
+      "sha256": "e5b19eb71f8325b1cf463345dfd381696c294099f809528c77664df20d399509"
+    }
+  ]
+}

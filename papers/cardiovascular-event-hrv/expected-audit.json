@@ -1,0 +1,23 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.cardiovascular-event-hrv",
+  "sourceRevision": "acda0446d9996314005a7d20492369d5212f4ac5",
+  "sourceRelationship": "author_reference_implementation",
+  "sourceLicenseVerified": true,
+  "featureCount": 64,
+  "serializedScalerAvailable": false,
+  "productionInferenceAvailable": false,
+  "pairedPublicTestLabelsAvailable": false,
+  "probabilityBasedAuc": false,
+  "sensitivitySpecificityMappingCorrect": false,
+  "publicReproductionAccepted": false,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "brainstem_contract_missing",
+    "population_or_device_unvalidated",
+    "public_reproduction_failed",
+    "reference_labels_missing",
+    "required_signal_missing"
+  ]
+}

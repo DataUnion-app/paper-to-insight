@@ -1,0 +1,37 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "source-license": {
+      "url": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/LICENSE",
+      "sha256": "a7dc8795e1f8a68d97ebcbb44bf2086f265407a572cc5639bf6195f87ac5d810"
+    },
+    "source-make-dataset": {
+      "url": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/src/data/make_dataset.py",
+      "sha256": "41b197a35274495a6c1969614ff37b61d486a055cbc566deeff3dc7285ae0cb1"
+    },
+    "source-predict-model": {
+      "url": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/src/models/predict_model.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source-readme": {
+      "url": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/README.md",
+      "sha256": "395a8f63e6ea49e57135fffc4eadef1510837f598d8d4e6f2bfff078694f83e1"
+    },
+    "source-synthetic-ce": {
+      "url": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/data/dataset_ce_synthesized_baseline.csv",
+      "sha256": "7539b371c8c07291d1ac06938130ad4988cf53f8f4408f21ea8eb8f034c45902"
+    },
+    "source-test-model": {
+      "url": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/src/models/test_model.py",
+      "sha256": "f88dcf9daa2dfa24ef0b56e99450af90c388e074a262ce469d6a0e07847d5ac7"
+    },
+    "source-train-model": {
+      "url": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/src/models/train_model.py",
+      "sha256": "59966adda885d3bac7b34679efd3a6242fcebe9ea401a695e3a077cc1c727a4c"
+    },
+    "source-transfer-model": {
+      "url": "https://raw.githubusercontent.com/alexsalman/Heart-Rate-Variability/acda0446d9996314005a7d20492369d5212f4ac5/src/models/transfer_model.py",
+      "sha256": "3ff3357167ac4f885ead516a549b7198419db2ff90c15298f1b39cf9cc8ce470"
+    }
+  }
+}

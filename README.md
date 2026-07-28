@@ -18,6 +18,9 @@ python3 papers/resting-hrv-methods/reproduce.py --verify
 python3 papers/apnea-ecg-heart-rate/test_source_audit.py -v
 python3 papers/apnea-ecg-heart-rate/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/apnea-ecg-heart-rate/candidate.json
+python3 papers/cardiovascular-event-hrv/test_source_audit.py -v
+python3 papers/cardiovascular-event-hrv/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/cardiovascular-event-hrv/candidate.json
 ```
 
 The bundled Codex-compatible skill lives at
@@ -50,6 +53,10 @@ small public PhysioNet reproduction. It intentionally has no disease label.
 audit finds record-level evaluation and an overlapping-record leak, so it remains
 an E0 candidate with both runtime modes disabled. It is not published to
 DeSciLab.
+
+`papers/cardiovascular-event-hrv` is also E0 and disabled. Its source is licensed
+and paper-associated, but its scaler/test contract is incomplete and its
+published metric calculations are incorrect.
 
 ## License
 
