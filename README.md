@@ -44,6 +44,7 @@ frozen aggregate cohort reference. Forks cannot approve, publish, or access
 either mode.
 
 See `specs/paper-insight-platform/README.md` for the implementation plan.
+See `papers/README.md` for the evidence-gated candidate queue.
 
 The first real candidate is `papers/resting-hrv-methods`. It implements selected
 descriptive HRV measures in both cohort and owner-only personal modes and pins a
