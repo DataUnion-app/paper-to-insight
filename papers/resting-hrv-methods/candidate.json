@@ -24,8 +24,8 @@
       "name": "Independent resting-HRV methods implementation",
       "url": "https://github.com/DataUnion-app/paper-to-insight",
       "revisionType": "content_sha256",
-      "revision": "c2199990ea492c90fe678d60be582e1222a731e98e4cdb2a9c8fc30ede19592f",
-      "sha256": "c2199990ea492c90fe678d60be582e1222a731e98e4cdb2a9c8fc30ede19592f",
+      "revision": "dbbf8fb0aec53cff437e83fd5e2cacd79e34727b6d763026c66bba6fd525edf4",
+      "sha256": "dbbf8fb0aec53cff437e83fd5e2cacd79e34727b6d763026c66bba6fd525edf4",
       "license": "Apache-2.0",
       "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
     }
@@ -94,7 +94,7 @@
     },
     {
       "path": "algorithm.py",
-      "sha256": "c2199990ea492c90fe678d60be582e1222a731e98e4cdb2a9c8fc30ede19592f"
+      "sha256": "dbbf8fb0aec53cff437e83fd5e2cacd79e34727b6d763026c66bba6fd525edf4"
     },
     {
       "path": "expected-public.json",
@@ -110,7 +110,7 @@
     },
     {
       "path": "test_algorithm.py",
-      "sha256": "d1ae22bed73a9f169703f155829d5ed2597b5f90c240ba9ee0438d4f374057ec"
+      "sha256": "7647ff2c9e03d5f1303173af2906ee78d799eb7304f589df868897066bcb689e"
     }
   ]
 }

@@ -76,6 +76,21 @@ class RestingHrvMethodsTest(unittest.TestCase):
         self.assertEqual(result["status"], "insufficient_data")
         self.assertEqual(result["abstentionReason"], "insufficient_quality")
 
+    def test_rejected_interval_does_not_join_non_adjacent_beats(self):
+        values = intervals()
+        values[100] = 2500.0
+        result = algorithm.hrv(values)
+        valid = [300 <= value <= 2000 for value in values]
+        differences = [
+            values[index] - values[index - 1]
+            for index in range(1, len(values))
+            if valid[index] and valid[index - 1]
+        ]
+        self.assertAlmostEqual(
+            result["rmssdMs"],
+            math.sqrt(sum(value * value for value in differences) / len(differences)),
+        )
+
     def test_reference_digest_is_enforced(self):
         reference = algorithm.build_reference(cohort(), "generated-test-v1")
         reference["bands"]["sdnnMs"][0] += 1

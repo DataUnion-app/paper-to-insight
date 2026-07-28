@@ -175,15 +175,21 @@ def validate_input(value: object) -> dict:
 
 
 def hrv(intervals: list[float]) -> dict[str, float] | None:
-    corrected = [float(item) for item in intervals if 300 <= item <= 2000]
-    artifact_fraction = 1 - len(corrected) / len(intervals)
-    if artifact_fraction > MAX_ARTIFACT_FRACTION or len(corrected) < 180:
-        return None
+    valid = [300 <= item <= 2000 for item in intervals]
+    accepted = [float(item) for item, keep in zip(intervals, valid) if keep]
+    artifact_fraction = 1 - len(accepted) / len(intervals)
     differences = [
-        corrected[index] - corrected[index - 1]
-        for index in range(1, len(corrected))
+        float(intervals[index] - intervals[index - 1])
+        for index in range(1, len(intervals))
+        if valid[index] and valid[index - 1]
     ]
-    sdnn = statistics.stdev(corrected)
+    if (
+        artifact_fraction > MAX_ARTIFACT_FRACTION
+        or len(accepted) < 180
+        or len(differences) < 2
+    ):
+        return None
+    sdnn = statistics.stdev(accepted)
     sdsd = statistics.stdev(differences)
     rmssd = math.sqrt(statistics.fmean(item * item for item in differences))
     return {
