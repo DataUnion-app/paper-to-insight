@@ -43,6 +43,11 @@ monitoring with specialist-adjudicated video-EEG labels. The supplied
 BSD-licensed repository is a different patient-specific EEG+ECG deep-learning
 system and is not implementation provenance for the paper.
 
+The ECG hypoglycaemia candidate is E0. The cited paper is a prospective study
+protocol, not a completed classifier, and its supplied repository contains
+only documents. Current Brainstem contracts also lack raw ECG paired with CGM
+reference values.
+
 ## Per-paper checks
 
 - license and immutable public source/data;

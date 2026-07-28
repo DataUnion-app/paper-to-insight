@@ -1,0 +1,25 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.ecg-hypoglycaemia",
+  "sourceRevision": "38a95fc6600cb4f82574a543f91941c19eddde51",
+  "sourceRelationship": "unproven_supporting_artifacts",
+  "paperMethodLicense": "CC-BY-4.0",
+  "sourceLicense": "Apache-2.0",
+  "paperIsProspectiveProtocol": true,
+  "paperPlannedParticipants": 64,
+  "paperRawEcgRequired": true,
+  "paperCgmLabelsRequired": true,
+  "sourceExecutableFiles": 0,
+  "sourceFittedModelAvailable": false,
+  "sourceValidationReceiptAvailable": false,
+  "publicReproductionAccepted": false,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "paper_is_protocol",
+    "population_or_device_unvalidated",
+    "public_reproduction_failed",
+    "raw_signal_missing",
+    "reference_labels_missing"
+  ]
+}

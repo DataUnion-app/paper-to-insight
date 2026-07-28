@@ -1,0 +1,139 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.ecg-hypoglycaemia",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Artificial intelligence for non-invasive glycaemic-events detection via ECG in a paediatric population: study protocol",
+    "canonicalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9899724/",
+    "doi": "10.1007/s12553-022-00719-x",
+    "claim": "The protocol proposes training personalized and generalized models to classify glycaemic events from raw ECG excerpts paired with continuous-glucose-monitor readings.",
+    "claimClass": "prediction",
+    "population": "Planned single-centre observational study of 64 participants under 18 with type-1 diabetes who already use continuous glucose monitoring.",
+    "referenceStandard": "Time-aligned continuous-glucose-monitor measurements interpolated against five-to-fifteen-minute raw-ECG excerpts.",
+    "implementationRelation": "method_only",
+    "relationEvidence": "The CC-BY article is a prospective protocol and publishes no completed classifier. The supplied Apache-licensed repository is not linked by the paper and contains supporting documents but no executable implementation or fitted model.",
+    "classification": {
+      "paperDecision": "abstained",
+      "labels": [
+        "severe hypoglycaemic event",
+        "normal glycaemic range",
+        "severe hyperglycaemic event"
+      ],
+      "unit": "paper-proposed raw-ECG excerpt"
+    }
+  },
+  "sources": [
+    {
+      "name": "CC-BY study protocol in Europe PMC XML",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9899724/fullTextXML",
+      "revisionType": "content_sha256",
+      "revision": "4b85d08895d7971f335aeb8f1aedce38fe8b2b6fd956af631f1834ac49843bcb",
+      "sha256": "4b85d08895d7971f335aeb8f1aedce38fe8b2b6fd956af631f1834ac49843bcb",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "name": "Supplied Apache-licensed documentation repository README",
+      "url": "https://raw.githubusercontent.com/pratyaksh10/ECG_DIABETES/38a95fc6600cb4f82574a543f91941c19eddde51/README.md",
+      "revisionType": "git_commit",
+      "revision": "38a95fc6600cb4f82574a543f91941c19eddde51",
+      "sha256": "090d0d4deec12646ea754805d1386cb5451f10a79d9074fc72ea221921a68670",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated hypoglycaemia candidate contract fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-contract-fixture",
+      "sha256": "d96f5c66945294a2342dcc5520ff5a6c698597cfd3a0ef59509729879db10e5c",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "not-defined: proposed raw ECG and paired continuous-glucose-monitor study contract",
+    "requiredSignals": [
+      "artifact-screened raw ECG morphology sampled sufficiently for fiducial and spectrogram features",
+      "time-aligned continuous-glucose-monitor values with paediatric type-1-diabetes study context"
+    ],
+    "window": "Paper-proposed five-to-fifteen-minute raw-ECG excerpts paired to interpolated glucose measurements.",
+    "preprocessing": "Withheld until a completed study and licensed implementation freeze ECG sampling, baseline removal, normalization, beat segmentation, label thresholds, participant split, fitted model, calibration, and uncertainty.",
+    "brainstemVerdict": "incompatible",
+    "mismatches": [
+      "The current Brainstem C2D contract does not export raw ECG morphology.",
+      "Brainstem records are not paired with continuous-glucose-monitor reference values.",
+      "The planned paper population is paediatric participants with diagnosed type-1 diabetes.",
+      "The paper is a protocol and reports no completed data collection, fitted classifier, calibration, or validation result.",
+      "The supplied repository contains no executable source, model, split manifest, or reproducibility receipt."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "protocol_bound_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "abstained"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Withheld; there is no completed validated model or compatible raw-ECG and CGM cohort contract."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Withheld; no glycaemic label, alert, score, probability, chart, or free-text proxy may be returned from this candidate."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "out_of_distribution",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "hypoglycaemia or hyperglycaemia detection, prediction, or warning",
+    "glucose estimation",
+    "negative or healthy interpretation of abstention",
+    "clinical risk score",
+    "treatment or insulin recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "bac66084c9d0621faabba39497c9caf6b3048779d295d9c06c77d20818f82ff8"
+    },
+    {
+      "path": "expected-audit.json",
+      "sha256": "c6dbb4609488c497a363eb420a4a1535f038569586f18c290e5a3dc320d94df2"
+    },
+    {
+      "path": "public-sources.json",
+      "sha256": "0cad629905237eee3f8a0cba0197ed81fbda5f6f45bd169c26816b93b86fed4c"
+    },
+    {
+      "path": "source-audit.py",
+      "sha256": "ba1e4441147fca6f961c08db90672be42a3d25693988053cda1279e715472b30"
+    },
+    {
+      "path": "synthetic-fixture.json",
+      "sha256": "d96f5c66945294a2342dcc5520ff5a6c698597cfd3a0ef59509729879db10e5c"
+    },
+    {
+      "path": "test_source_audit.py",
+      "sha256": "ce48deabed191fb868170374c9b312c83aed064a580c1a8dfba4c8a4118e5b1f"
+    }
+  ]
+}

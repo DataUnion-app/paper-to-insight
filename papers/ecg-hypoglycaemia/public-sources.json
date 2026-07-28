@@ -1,0 +1,21 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "paper-xml": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9899724/fullTextXML",
+      "sha256": "4b85d08895d7971f335aeb8f1aedce38fe8b2b6fd956af631f1834ac49843bcb"
+    },
+    "source-license": {
+      "url": "https://raw.githubusercontent.com/pratyaksh10/ECG_DIABETES/38a95fc6600cb4f82574a543f91941c19eddde51/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "source-readme": {
+      "url": "https://raw.githubusercontent.com/pratyaksh10/ECG_DIABETES/38a95fc6600cb4f82574a543f91941c19eddde51/README.md",
+      "sha256": "090d0d4deec12646ea754805d1386cb5451f10a79d9074fc72ea221921a68670"
+    },
+    "source-tree": {
+      "url": "https://api.github.com/repos/pratyaksh10/ECG_DIABETES/git/trees/38a95fc6600cb4f82574a543f91941c19eddde51?recursive=1",
+      "sha256": "720fbf95b70238a214cc5716b0a2eaf9e48bea6afb618691bb0630c4cb5c9428"
+    }
+  }
+}

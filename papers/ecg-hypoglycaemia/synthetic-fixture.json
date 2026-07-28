@@ -1,0 +1,10 @@
+{
+  "schema": "paper-to-insight.hypoglycaemia-audit-fixture/v1",
+  "rows": [
+    {
+      "rawEcg": null,
+      "glucoseLabel": null,
+      "use": "contract shape only"
+    }
+  ]
+}

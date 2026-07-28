@@ -30,6 +30,9 @@ python3 scripts/validate_candidate.py papers/in-hospital-cardiac-arrest-hrv/cand
 python3 papers/epilepsy-hrv-anomaly/test_source_audit.py -v
 python3 papers/epilepsy-hrv-anomaly/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/epilepsy-hrv-anomaly/candidate.json
+python3 papers/ecg-hypoglycaemia/test_source_audit.py -v
+python3 papers/ecg-hypoglycaemia/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/ecg-hypoglycaemia/candidate.json
 ```
 
 The bundled Codex-compatible skill lives at
@@ -81,6 +84,11 @@ event-prediction contract is incompatible with current Brainstem home records.
 training data are unavailable, current Brainstem records lack continuous
 video-EEG-labelled epilepsy context, and the supplied repository implements a
 different EEG+ECG system.
+
+`papers/ecg-hypoglycaemia` is E0 and disabled. The cited article is a
+prospective protocol rather than a completed classifier study; its supplied
+repository contains documentation but no executable model, and Brainstem lacks
+the paired raw-ECG/CGM contract.
 
 ## License
 

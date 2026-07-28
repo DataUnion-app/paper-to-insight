@@ -164,7 +164,7 @@ These questions must have exact answers before their slice starts:
 - [x] [05 — DeSciLab paired experience](slices/05-desci-paired-experience.md)
 - [x] [06 — Generated end-to-end proof](slices/06-generated-end-to-end-proof.md)
 - [ ] [07 — Apnea-ECG public reproduction](slices/07-apnea-public-reproduction.md) — E0 source audit complete; blocked on participant mapping/leakage
-- [ ] [08 — Further compatible papers](slices/08-further-compatible-papers.md) — cardiovascular, stress, ICU cardiac-arrest, and epilepsy E0 audits complete; none is runtime eligible
+- [ ] [08 — Further compatible papers](slices/08-further-compatible-papers.md) — cardiovascular, stress, ICU cardiac-arrest, epilepsy, and hypoglycaemia E0 audits complete; none is runtime eligible
 
 ## Deliberately skipped
 
