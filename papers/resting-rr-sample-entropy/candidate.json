@@ -24,7 +24,7 @@
       "name": "Independent resting R-R sample-entropy implementation",
       "url": "https://github.com/DataUnion-app/paper-to-insight",
       "revisionType": "git_commit",
-      "revision": "46d96822305cdc021aa4b1e3e396bcab661e9cc5",
+      "revision": "764c5c18b77e0c3168adce793afa4f45970978ec",
       "sha256": "f2bb2fe6cc6d2fb95d0f7db3550639db955df8c00520186ba9b31c06712920fa",
       "license": "Apache-2.0",
       "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
