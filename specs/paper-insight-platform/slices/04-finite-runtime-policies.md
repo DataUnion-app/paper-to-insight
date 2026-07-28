@@ -39,8 +39,23 @@ Unknown analysis, cross-analysis grant, replay, expiry, wrong image/schema/
 profile/reference, cross-owner access, consent withdrawal, deletion, source
 drift, or extra fields fail closed. Two generated policies run independently.
 
+## Personal claim contract
+
+The BFF starts a run with only `{ analysisId, grant }`. Node selects one
+configured compute environment by `analysisId`; duplicate configured IDs fail
+startup. Crab's claim response must exactly bind:
+
+- `analysisId`, `algorithmVersion`, image digest, input schema and input policy;
+- result schema and result profile;
+- candidate-manifest, approved-manifest and cohort-reference digests, using
+  `null` only for the named legacy overview;
+- evidence tier, use class, `clinicalUse: prohibited`, recording limit and Node
+  audience.
+
+Node compares every field to its selected server configuration before fetching
+the dataset. The browser cannot provide or override any bound field.
+
 ## Done when
 
 Existing resting-heart behavior and the new methods Insight both pass consumer
 tests through the same finite policy owner.
-
