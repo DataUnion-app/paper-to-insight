@@ -23,8 +23,8 @@
     {
       "name": "Independent resting-HRV methods implementation",
       "url": "https://github.com/DataUnion-app/paper-to-insight",
-      "revisionType": "content_sha256",
-      "revision": "dbbf8fb0aec53cff437e83fd5e2cacd79e34727b6d763026c66bba6fd525edf4",
+      "revisionType": "git_commit",
+      "revision": "58606c9ff6b92719817bd876a4cef3c7ac989dca",
       "sha256": "dbbf8fb0aec53cff437e83fd5e2cacd79e34727b6d763026c66bba6fd525edf4",
       "license": "Apache-2.0",
       "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
