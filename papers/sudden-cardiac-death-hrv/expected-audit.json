@@ -1,0 +1,26 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.sudden-cardiac-death-hrv",
+  "sourceRevision": "25f405beeeede69f9870ff1e5760467242f34ffc",
+  "sourceRelationship": "unrelated_supplied_repository",
+  "paperMethodLicense": "CC-BY-4.0",
+  "sourceCodeLicenseVerified": false,
+  "paperSubjectCount": 115,
+  "paperGroupCount": 5,
+  "paperHrvFeatureCount": 8,
+  "paperSegmentsPerSubject": 6,
+  "paperWindowMinutes": 5,
+  "paperUsesTestingSetForModelSelection": true,
+  "sourceExecutableFiles": 0,
+  "sourceFittedModelAvailable": false,
+  "publicReproductionAccepted": false,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "paper_implementation_identity_unproven",
+    "population_or_device_unvalidated",
+    "public_reproduction_failed",
+    "reference_labels_missing",
+    "test_set_model_selection"
+  ]
+}

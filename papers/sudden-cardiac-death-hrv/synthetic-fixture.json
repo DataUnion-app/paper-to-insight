@@ -1,0 +1,11 @@
+{
+  "schema": "paper-to-insight.scd-audit-fixture/v1",
+  "rows": [
+    {
+      "hrvFeatureCount": 8,
+      "diagnosticGroup": null,
+      "eventWithinMinutes": null,
+      "use": "contract shape only"
+    }
+  ]
+}

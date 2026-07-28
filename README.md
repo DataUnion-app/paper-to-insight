@@ -39,6 +39,9 @@ python3 scripts/validate_candidate.py papers/atrial-fibrillation-crnn/candidate.
 python3 papers/cardiac-arrhythmia-cnn-lstm/test_source_audit.py -v
 python3 papers/cardiac-arrhythmia-cnn-lstm/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/cardiac-arrhythmia-cnn-lstm/candidate.json
+python3 papers/sudden-cardiac-death-hrv/test_source_audit.py -v
+python3 papers/sudden-cardiac-death-hrv/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/sudden-cardiac-death-hrv/candidate.json
 ```
 
 The bundled Codex-compatible skill lives at
@@ -104,6 +107,10 @@ ECG that is outside the current Brainstem contract.
 `papers/cardiac-arrhythmia-cnn-lstm` is E0 and disabled. Its unlicensed source
 combines the original train and test data and upsamples with replacement before
 creating a new split, so the reported evaluation is not accepted.
+
+`papers/sudden-cardiac-death-hrv` is E0 and disabled. The supplied SVM
+repository is unrelated to the paper's CNN, and the paper uses its testing set
+for hyperparameter selection without publishing an untouched external result.
 
 ## License
 

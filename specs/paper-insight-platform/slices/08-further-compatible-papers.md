@@ -57,6 +57,11 @@ The cardiac-arrhythmia CNN-LSTM candidate is E0. Its unlicensed source
 concatenates the original train and test sets, upsamples with replacement, and
 then creates a random split; it also leaves the claimed PCA commented out.
 
+The sudden-cardiac-death HRV candidate is E0. Its supplied SVM repository
+predates and does not implement the paper's CNN, while the paper describes
+selecting hyperparameters on its testing set and has no untouched external
+validation.
+
 ## Per-paper checks
 
 - license and immutable public source/data;

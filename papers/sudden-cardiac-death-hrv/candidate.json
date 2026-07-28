@@ -1,0 +1,132 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.sudden-cardiac-death-hrv",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Accurate Prediction of Sudden Cardiac Death Based on Heart Rate Variability Analysis Using Convolutional Neural Network",
+    "canonicalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10456609/",
+    "doi": "10.3390/medicina59081394",
+    "claim": "The paper classifies eight linear HRV features from five-minute ECG segments into five diagnostic groups with a 1D-CNN Wavenet.",
+    "claimClass": "prediction",
+    "population": "PhysioNet-derived data from 115 subjects across NSR, CAD, CHF, VT, and SCD groups; SCD recordings cover the thirty minutes preceding ventricular fibrillation.",
+    "referenceStandard": "Source-database diagnostic group and ventricular-fibrillation event timing for the SCD group.",
+    "implementationRelation": "method_only",
+    "relationEvidence": "The CC-BY paper publishes the method but no linked implementation or fitted model. The supplied 2019 repository describes an SVM and contains only an unlicensed PDF and README, so it is not provenance for the paper's 2023 CNN.",
+    "classification": {
+      "paperDecision": "classified",
+      "labels": [
+        "normal sinus rhythm group",
+        "coronary artery disease group",
+        "congestive heart failure group",
+        "ventricular tachycardia group",
+        "sudden cardiac death group"
+      ],
+      "unit": "five-minute HRV feature segment"
+    }
+  },
+  "sources": [
+    {
+      "name": "CC-BY paper method in Europe PMC XML",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10456609/fullTextXML",
+      "revisionType": "content_sha256",
+      "revision": "6f612d3c57741f5446b1c74cb8fc2e94b6a52b5966922776b5fb23498699eaeb",
+      "sha256": "6f612d3c57741f5446b1c74cb8fc2e94b6a52b5966922776b5fb23498699eaeb",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated SCD candidate contract fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-contract-fixture",
+      "sha256": "ef76f61697ab8af59c0951417748a267a0d56312ce6f747d478bd7b1f0b739b7",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "not-defined: proposed clinical SCD HRV and event-label contract",
+    "requiredSignals": [
+      "artifact-screened five-minute beat-to-beat intervals sufficient for eight paper HRV features",
+      "matched clinical diagnostic group and adjudicated ventricular-fibrillation event timing"
+    ],
+    "window": "Six consecutive five-minute segments across thirty minutes; SCD segments precede ventricular fibrillation.",
+    "preprocessing": "Withheld until an independent implementation and data freeze R-peak detection, feature formulas, segment order, participant split, model selection, fitted model, calibration, and uncertainty.",
+    "brainstemVerdict": "partially_compatible",
+    "mismatches": [
+      "Brainstem resting R-R recordings have no matched NSR, CAD, CHF, VT, or SCD diagnostic reference label.",
+      "Brainstem has no adjudicated ventricular-fibrillation event timing.",
+      "The paper population and pre-event clinical recordings are not a general home-wearable cohort.",
+      "The supplied repository is an unrelated unlicensed SVM document, not the paper's CNN implementation.",
+      "The paper describes selecting hyperparameters by performance on the testing set and publishes no untouched external test result."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "protocol_bound_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "abstained"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Withheld; no untouched external reproduction or matching labelled clinical Brainstem cohort exists."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Withheld; no SCD or diagnostic-group label, probability, alert, chart, or free-text proxy may be returned from this candidate."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "out_of_distribution",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "sudden-cardiac-death detection, prediction, or warning",
+    "diagnostic group classification",
+    "negative or healthy interpretation of abstention",
+    "clinical risk score",
+    "emergency alert",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "0496e55244b0f01a86c97ffa9d1b98c94f436ba29d0b7c57781d8bb308f7728c"
+    },
+    {
+      "path": "expected-audit.json",
+      "sha256": "619776cbe834ef424cad1eb0ac742db5b69a741b258116a54add6a0cc8e0b6cc"
+    },
+    {
+      "path": "public-sources.json",
+      "sha256": "9f3edf8766fb2dce072c704f1f7a450ba0606eb87aa8b3ee6708cf6bf4f37c84"
+    },
+    {
+      "path": "source-audit.py",
+      "sha256": "d2e57179dd7f84b56bea8f9f8e67487999f312406ba745141560dd064af77d48"
+    },
+    {
+      "path": "synthetic-fixture.json",
+      "sha256": "ef76f61697ab8af59c0951417748a267a0d56312ce6f747d478bd7b1f0b739b7"
+    },
+    {
+      "path": "test_source_audit.py",
+      "sha256": "187be0b372abe39da5016704538e93164eff7eab7ddeb634a093ed94c95b4491"
+    }
+  ]
+}

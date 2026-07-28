@@ -1,0 +1,17 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "paper-xml": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10456609/fullTextXML",
+      "sha256": "6f612d3c57741f5446b1c74cb8fc2e94b6a52b5966922776b5fb23498699eaeb"
+    },
+    "source-readme": {
+      "url": "https://raw.githubusercontent.com/towfeeqf/Research-paper-SVM-Sudden-Cardiac-Arrest-Prediction/25f405beeeede69f9870ff1e5760467242f34ffc/README.md",
+      "sha256": "5b016095cddb1ac182c85991cced7094c4e898e77929ef38b7046c916ad9ee04"
+    },
+    "source-tree": {
+      "url": "https://api.github.com/repos/towfeeqf/Research-paper-SVM-Sudden-Cardiac-Arrest-Prediction/git/trees/25f405beeeede69f9870ff1e5760467242f34ffc?recursive=1",
+      "sha256": "85c18adf161851b249165124ab73e5ff7b9265e52eb9291aa613bdf6b34be7c4"
+    }
+  }
+}
