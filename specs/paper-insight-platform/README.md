@@ -3,7 +3,7 @@
 Status: active
 Last updated: 2026-07-29
 Owner: DataUnion / Brainstem
-Next slice: no implementation slice until another candidate passes its public evidence gate
+Next slice: independent review and release decision; no production deployment is authorized
 
 ## Next agent prompt
 
@@ -120,6 +120,7 @@ the same immutable approved-manifest bytes to the local proof.
 01 -> 07 Apnea-ECG public reproduction and compatibility gate
 06 -> 08 further papers under paper-specific gates
 08 -> 09 SleepECG public external reproduction
+08 -> 10 sample-entropy paired Insight
 ```
 
 ## Recursive fog audit
@@ -165,8 +166,9 @@ These questions must have exact answers before their slice starts:
 - [x] [05 — DeSciLab paired experience](slices/05-desci-paired-experience.md)
 - [x] [06 — Generated end-to-end proof](slices/06-generated-end-to-end-proof.md)
 - [ ] [07 — Apnea-ECG public reproduction](slices/07-apnea-public-reproduction.md) — E0 source audit complete; blocked on participant mapping/leakage
-- [x] [08 — Further compatible papers](slices/08-further-compatible-papers.md) — every supplied reference has a pinned candidate and explicit gate; only Resting HRV is runtime eligible
+- [x] [08 — Further compatible papers](slices/08-further-compatible-papers.md) — every supplied reference has a pinned candidate and explicit gate; Resting HRV and sample entropy are runtime eligible
 - [x] [09 — SleepECG public external reproduction](slices/09-sleepecg-public-reproduction.md) — exact model reproduced on all SLPDB records; poor transfer keeps both runtime modes disabled
+- [x] [10 — Resting R-R sample entropy paired Insight](slices/10-resting-rr-sample-entropy.md) — public reproduction and generated-only cohort/personal paths pass; production remains unapproved
 
 ## Deliberately skipped
 

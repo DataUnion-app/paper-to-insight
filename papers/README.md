@@ -6,6 +6,7 @@ Signal similarity is not approval.
 | Candidate | Current state | Blocking evidence | Next gate |
 | --- | --- | --- | --- |
 | [Resting HRV methods](resting-hrv-methods/) | E2 methods-only; local protected cohort and personal proofs complete | No disease classification; production approval and deployment absent | Independent scientific/privacy/security approval |
+| [Resting R-R sample entropy](resting-rr-sample-entropy/) | E2 methods-only; local protected cohort and personal proofs complete | Descriptive complexity metric only; production approval and deployment absent | Independent scientific/privacy/security approval |
 | [Apnea-ECG heart rate](apnea-ecg-heart-rate/) | E0; runtime disabled | Record-level evaluation, overlapping recordings, no Brainstem respiratory labels | Participant-separated public reproduction, then matching protected study |
 | [Cardiovascular-event HRV](cardiovascular-event-hrv/) | E0; runtime disabled | Missing scaler/test contract, incorrect metrics, 64-feature and population mismatch | Correct public reproduction, then hypertensive 55+ outcome study |
 | [Global HRV stress](stress-hrv-global/) | E0; runtime disabled | Source license absent; derivative data license conflicts with original; prior list named the wrong paper; every subject appears in training | Independent CC-BY method implementation on unambiguously licensed data with participant-held-out evaluation |
@@ -19,6 +20,7 @@ Signal similarity is not approval.
 | [SleepECG WRN-GRU](sleepecg-wrn-gru/) | E1 public reproduction; runtime disabled | Independent SLPDB result has accuracy 0.573618, kappa 0.123670, and REM F1 0.199796; population and Brainstem-device calibration absent | Pre-registered held-out Brainstem-device-versus-PSG validation |
 
 Every entry from the supplied list now has a checksum-pinned candidate package.
-Only Resting HRV has enabled paired runtime modes. SleepECG demonstrates that a
-licensed off-the-shelf model can be reproduced yet still fail the runtime gate;
-contributors can advance any package only by closing its listed evidence gates.
+Resting HRV and resting R-R sample entropy have paired local runtime modes.
+SleepECG demonstrates that a licensed off-the-shelf model can be reproduced yet
+still fail the runtime gate; contributors can advance any package only by
+closing its listed evidence gates.

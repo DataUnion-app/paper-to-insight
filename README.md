@@ -15,6 +15,9 @@ python3 -m unittest discover -s tests -v
 python3 scripts/validate_candidate.py papers/resting-hrv-methods/candidate.json
 python3 papers/resting-hrv-methods/test_algorithm.py -v
 python3 papers/resting-hrv-methods/reproduce.py --verify
+python3 scripts/validate_candidate.py papers/resting-rr-sample-entropy/candidate.json
+python3 papers/resting-rr-sample-entropy/test_algorithm.py -v
+python3 papers/resting-rr-sample-entropy/reproduce.py --verify
 python3 papers/apnea-ecg-heart-rate/test_source_audit.py -v
 python3 papers/apnea-ecg-heart-rate/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/apnea-ecg-heart-rate/candidate.json
@@ -76,6 +79,12 @@ See `papers/README.md` for the evidence-gated candidate queue.
 The first real candidate is `papers/resting-hrv-methods`. It implements selected
 descriptive HRV measures in both cohort and owner-only personal modes and pins a
 small public PhysioNet reproduction. It intentionally has no disease label.
+
+`papers/resting-rr-sample-entropy` is the second runtime-eligible methods
+candidate. It reproduces the PhysioNet sample-entropy method on pinned public
+Fantasia intervals, then exposes one disclosure-protected cohort metric and an
+owner-only comparison with an immutable aggregate reference. It also
+intentionally has no disease label or clinical interpretation.
 
 `papers/apnea-ecg-heart-rate` demonstrates the failure path. Its pinned source
 audit finds record-level evaluation and an overlapping-record leak, so it remains
