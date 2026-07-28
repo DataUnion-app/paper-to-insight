@@ -1,5 +1,7 @@
 # 07 — Apnea-ECG public reproduction
 
+Status: blocked at E0 (2026-07-29)
+
 ## Goal
 
 Demonstrate that a disease-relevant off-the-shelf paper can be reproduced without
@@ -28,3 +30,13 @@ scientific/privacy/security approval at `E3`.
 The public reproduction is deterministic and the DeSciLab public example clearly
 distinguishes reproduced paper performance from unavailable Brainstem validation.
 
+## Current evidence
+
+The pinned independent source uses record-level cross-validation and its training
+index contains `c05` and `c06`, which PhysioNet documents as overlapping versions
+of one original recording. The source has no participant mapping with which to
+keep all nights from one person in one split. The E0 package at
+`papers/apnea-ecg-heart-rate` therefore disables both modes and classification.
+
+Resume only with an authoritative participant mapping or a different licensed
+source/data pair that proves participant-separated reproduction.

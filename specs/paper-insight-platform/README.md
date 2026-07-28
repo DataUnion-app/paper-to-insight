@@ -1,9 +1,9 @@
 # Paper-to-Insight platform
 
-Status: active  
-Last updated: 2026-07-28  
-Owner: DataUnion / Brainstem  
-Next slice: [04 — Finite runtime policies](slices/04-finite-runtime-policies.md)
+Status: active
+Last updated: 2026-07-29
+Owner: DataUnion / Brainstem
+Next slice: [08 — Further compatible papers](slices/08-further-compatible-papers.md)
 
 ## Next agent prompt
 
@@ -159,11 +159,11 @@ These questions must have exact answers before their slice starts:
 
 - [x] [01 — Public candidate boundary](slices/01-public-candidate-boundary.md)
 - [x] [02 — Resting-HRV reproduction](slices/02-resting-hrv-reproduction.md)
-- [ ] [03 — Protected paired package](slices/03-protected-paired-package.md)
-- [ ] [04 — Finite runtime policies](slices/04-finite-runtime-policies.md)
-- [ ] [05 — DeSciLab paired experience](slices/05-desci-paired-experience.md)
-- [ ] [06 — Generated end-to-end proof](slices/06-generated-end-to-end-proof.md)
-- [ ] [07 — Apnea-ECG public reproduction](slices/07-apnea-public-reproduction.md)
+- [x] [03 — Protected paired package](slices/03-protected-paired-package.md)
+- [x] [04 — Finite runtime policies](slices/04-finite-runtime-policies.md)
+- [x] [05 — DeSciLab paired experience](slices/05-desci-paired-experience.md)
+- [x] [06 — Generated end-to-end proof](slices/06-generated-end-to-end-proof.md)
+- [ ] [07 — Apnea-ECG public reproduction](slices/07-apnea-public-reproduction.md) — E0 source audit complete; blocked on participant mapping/leakage
 - [ ] [08 — Further compatible papers](slices/08-further-compatible-papers.md)
 
 ## Deliberately skipped

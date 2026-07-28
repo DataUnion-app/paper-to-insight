@@ -1,5 +1,7 @@
 # 08 — Further compatible papers
 
+Status: active (2026-07-29)
+
 ## Goal
 
 Add papers only through the same candidate and dual-scope gates.
@@ -17,6 +19,16 @@ Add papers only through the same candidate and dual-scope gates.
 
 An incompatible paper remains a useful public compatibility report; it is not
 forced into the catalogue.
+
+The supplied OIRL repository maps to DOI `10.3390/s23115220`, not
+`10.3390/s23041807`. It has no source license and cannot be copied. A lawful next
+attempt may independently implement the CC-BY paper method, but only after the
+WESAD/SWELL input license and immutable participant mapping are proven. Use
+participant-held-out evaluation rather than the paper's per-subject 70:30 split.
+
+The cardiovascular-event source audit is also E0: its fitted scaler and paired
+test labels are absent, its prediction module is empty, and its metric
+implementation is incorrect. Do not load or publish its committed model.
 
 ## Per-paper checks
 
@@ -39,4 +51,3 @@ versioning, and notification ownership are decided.
 
 Each added paper has a public candidate and either a justified protected
 dual-mode release or an explicit, machine-readable block reason.
-
