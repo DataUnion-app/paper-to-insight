@@ -1,0 +1,21 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "paper-xml": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10665411/fullTextXML",
+      "sha256": "d68ed19b8a484ae2deb20706949292895e76df7c602f9b5034f2e686942e3067"
+    },
+    "source-main": {
+      "url": "https://raw.githubusercontent.com/HyeonhoonLee/hrvarrest/7d87a343a8f2d476577f66e668f814e133b802e3/main.py",
+      "sha256": "49a9417c944a16903401007d79e21f50ccb332ee9c0dd72144a17736d4e0e47a"
+    },
+    "source-readme": {
+      "url": "https://raw.githubusercontent.com/HyeonhoonLee/hrvarrest/7d87a343a8f2d476577f66e668f814e133b802e3/README.md",
+      "sha256": "7e386e0573ce860c04bfe127ccdc48847d5ce4c360556af1166deadda9cc80b0"
+    },
+    "source-tree": {
+      "url": "https://api.github.com/repos/HyeonhoonLee/hrvarrest/git/trees/7d87a343a8f2d476577f66e668f814e133b802e3?recursive=1",
+      "sha256": "1a8f395e99ea1de5f505177892c1524a9c5c2c173cde50b95ae57e5cfa86c2d1"
+    }
+  }
+}

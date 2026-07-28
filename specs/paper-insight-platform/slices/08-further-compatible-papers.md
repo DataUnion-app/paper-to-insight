@@ -32,6 +32,11 @@ The cardiovascular-event source audit is also E0: its fitted scaler and paired
 test labels are absent, its prediction module is empty, and its metric
 implementation is incorrect. Do not load or publish its committed model.
 
+The in-hospital cardiac-arrest source is likewise E0. Its paper-linked
+repository has no license, public data, fitted model, selected-feature manifest,
+or runnable optimizer; more importantly, its ICU event contract is incompatible
+with current Brainstem home data.
+
 ## Per-paper checks
 
 - license and immutable public source/data;

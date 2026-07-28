@@ -1,0 +1,129 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.in-hospital-cardiac-arrest-hrv",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Real-time machine learning model to predict in-hospital cardiac arrest using heart rate variability in ICU",
+    "canonicalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10665411/",
+    "doi": "10.1038/s41746-023-00960-2",
+    "claim": "The paper uses 33 selected HRV measures from five-minute ICU ECG epochs to predict an in-hospital cardiac-arrest event within 0.5 to 24 hours.",
+    "claimClass": "prediction",
+    "population": "Single-center retrospective cohort of 4821 critically ill patients across 5679 ICU stays at Seoul National University Hospital; it is not a home-wearable or Brainstem validation population.",
+    "referenceStandard": "The first documented cardiopulmonary-resuscitation event and its time during an ICU stay, linked to preceding continuous ECG epochs.",
+    "implementationRelation": "author_reference_implementation",
+    "relationEvidence": "The CC-BY paper's code-availability statement links the audited repository. The repository has no software license and contains an incomplete training script rather than a distributable inference package.",
+    "classification": {
+      "paperDecision": "classified",
+      "labels": [
+        "cardiac arrest within 0.5 to 24 hours",
+        "no cardiac arrest within 0.5 to 24 hours"
+      ],
+      "unit": "five-minute ICU ECG epoch"
+    }
+  },
+  "sources": [
+    {
+      "name": "CC-BY paper method in Europe PMC XML",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10665411/fullTextXML",
+      "revisionType": "content_sha256",
+      "revision": "d68ed19b8a484ae2deb20706949292895e76df7c602f9b5034f2e686942e3067",
+      "sha256": "d68ed19b8a484ae2deb20706949292895e76df7c602f9b5034f2e686942e3067",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated cardiac-arrest candidate contract fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-contract-fixture",
+      "sha256": "760d815d1ceddb477cc25ea86fc6237735a317168e820ed157d97339ec0e3473",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "not-defined: proposed continuous ICU ECG and cardiac-event contract",
+    "requiredSignals": [
+      "continuous ECG or beat-to-beat intervals sufficient for the exact 33 selected HRV measures",
+      "ICU stay context with adjudicated cardiac-arrest event and timing"
+    ],
+    "window": "Five-minute epochs sampled throughout 0.5 to 24 hours before the first in-hospital cardiac-arrest event or a matched control period.",
+    "preprocessing": "Withheld until a licensed implementation and data freeze the paper's ECG quality screen, NeuroKit2 feature settings, selected-feature order, missingness, fitted model, calibration, and uncertainty.",
+    "brainstemVerdict": "incompatible",
+    "mismatches": [
+      "Brainstem home recordings are not continuous ICU telemetry.",
+      "Brainstem has no adjudicated in-hospital cardiac-arrest event or event-time reference standard.",
+      "The paper population is critically ill ICU patients from one hospital.",
+      "The linked source has no license, data, selected-feature manifest, fitted model, or saved hyperparameters.",
+      "The linked training script references undefined optimization code and cannot reproduce the paper as committed."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "protocol_bound_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "abstained"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Withheld; the current Brainstem cohort does not match the paper's ICU population, telemetry, or outcome contract."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Withheld; no cardiac-arrest label, probability, score, alert, chart, or proxy may be returned from this candidate."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "out_of_distribution",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "cardiac-arrest prediction or warning",
+    "negative or healthy interpretation of abstention",
+    "clinical risk score",
+    "emergency alert",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "91781e7a512e4963fa6e34c33ea0eda59f312cb9bbcae07966c6c698598b85af"
+    },
+    {
+      "path": "expected-audit.json",
+      "sha256": "8aa22b761903583d3b8c904bbbb5387bc0d2a30b37ad10c86f8f15149f5c4de8"
+    },
+    {
+      "path": "public-sources.json",
+      "sha256": "a07078a39df500620bd7b7af00a6b07c9c40b9f5b1a0e13faea35275677fc89b"
+    },
+    {
+      "path": "source-audit.py",
+      "sha256": "84250c19d64f1b1a275a552c533c8ce9b114bc3fc13d4e02c7eae17b96a24fec"
+    },
+    {
+      "path": "synthetic-fixture.json",
+      "sha256": "760d815d1ceddb477cc25ea86fc6237735a317168e820ed157d97339ec0e3473"
+    },
+    {
+      "path": "test_source_audit.py",
+      "sha256": "2e7d3f02ac66c18b25ed6f34362d9422aee4d67f5ae80d1c0981fccc50a488a0"
+    }
+  ]
+}

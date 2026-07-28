@@ -24,6 +24,9 @@ python3 scripts/validate_candidate.py papers/cardiovascular-event-hrv/candidate.
 python3 papers/stress-hrv-global/test_source_audit.py -v
 python3 papers/stress-hrv-global/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/stress-hrv-global/candidate.json
+python3 papers/in-hospital-cardiac-arrest-hrv/test_source_audit.py -v
+python3 papers/in-hospital-cardiac-arrest-hrv/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/in-hospital-cardiac-arrest-hrv/candidate.json
 ```
 
 The bundled Codex-compatible skill lives at
@@ -66,6 +69,10 @@ published metric calculations are incorrect.
 independent implementation is lawful. It remains E0 and disabled because the
 supplied code is unlicensed, every subject appears in training, the source-data
 license chain conflicts, and Brainstem has no matching stress labels.
+
+`papers/in-hospital-cardiac-arrest-hrv` is E0 and disabled. The paper-linked
+source is unlicensed and incomplete, its data are private, and its ICU
+event-prediction contract is incompatible with current Brainstem home records.
 
 ## License
 

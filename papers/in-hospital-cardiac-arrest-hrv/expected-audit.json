@@ -1,0 +1,25 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.in-hospital-cardiac-arrest-hrv",
+  "sourceRevision": "7d87a343a8f2d476577f66e668f814e133b802e3",
+  "sourceRelationship": "author_reference_implementation",
+  "paperMethodLicense": "CC-BY-4.0",
+  "sourceCodeLicenseVerified": false,
+  "paperFeatureCount": 33,
+  "paperEpochMinutes": 5,
+  "paperPatientLevelValidation": true,
+  "publicTrainingDataAvailable": false,
+  "selectedFeatureManifestAvailable": false,
+  "fittedModelAvailable": false,
+  "trainingScriptRunnable": false,
+  "publicReproductionAccepted": false,
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "brainstem_contract_missing",
+    "license_unverified",
+    "population_or_device_unvalidated",
+    "public_reproduction_failed",
+    "reference_labels_missing"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "paper-to-insight.cardiac-arrest-audit-fixture/v1",
+  "rows": [
+    {
+      "featureCount": 33,
+      "eventWithinHours": null,
+      "use": "contract shape only"
+    }
+  ]
+}
