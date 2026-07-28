@@ -31,10 +31,31 @@ BLOCK_REASONS = [
     "population_or_device_unvalidated",
     "reference_labels_missing",
 ]
+DATASET_CARD_FIELDS = (
+    "id",
+    "ref",
+    "title",
+    "ownerRef",
+    "licenseName",
+    "currentVersionNumber",
+    "lastUpdated",
+    "totalBytes",
+)
 
 
 class AuditError(ValueError):
     pass
+
+
+def checksum(name: str, data: bytes) -> str:
+    if name == "dataset-card":
+        dataset = json.loads(data)
+        data = json.dumps(
+            {field: dataset.get(field) for field in DATASET_CARD_FIELDS},
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode()
+    return hashlib.sha256(data).hexdigest()
 
 
 def load_sources(path: Path = ROOT / "public-sources.json") -> dict:
@@ -57,7 +78,7 @@ def download(assets: dict) -> dict[str, bytes]:
             data = response.read(MAX_BYTES + 1)
         if len(data) > MAX_BYTES:
             raise AuditError(f"{name} exceeds {MAX_BYTES} bytes")
-        if hashlib.sha256(data).hexdigest() != item["sha256"]:
+        if checksum(name, data) != item["sha256"]:
             raise AuditError(f"{name} checksum differs")
         result[name] = data
     return result

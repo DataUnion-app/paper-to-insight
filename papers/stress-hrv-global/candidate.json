@@ -112,11 +112,11 @@
     },
     {
       "path": "public-sources.json",
-      "sha256": "ed8f0c4fb3e35773d1542bd1a39c255fab9ec31b188bca1710aeac400cd73b68"
+      "sha256": "fe3c00082109a07b48415e9ed80a0f69d16ce6a8ed3d216d499d67eeed48b58b"
     },
     {
       "path": "source-audit.py",
-      "sha256": "2b017bf90bb92187c0e096e82be39c44d1ef992df525d5f0ab97e170729806a4"
+      "sha256": "be0a2ad9b0ae2b97f49f8c0de8bc742fd8d0c6c03661776e31cb7e8af21a339a"
     },
     {
       "path": "synthetic-fixture.json",
@@ -124,7 +124,7 @@
     },
     {
       "path": "test_source_audit.py",
-      "sha256": "ff0289f0519ad5bb547481cc1dc26adfbc408bd7f80e732fcbb12bee8e2f5a67"
+      "sha256": "390fc7650be0afa713452ec3cd2a71283dbe62bac25fb613052c1d4037f22a28"
     }
   ]
 }

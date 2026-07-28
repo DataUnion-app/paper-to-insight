@@ -50,6 +50,25 @@ def evidence():
 
 
 class SourceAuditTest(unittest.TestCase):
+    def test_dataset_checksum_ignores_usage_counters(self):
+        card = {
+            "id": 191041,
+            "ref": "qiriro/stress",
+            "title": "Biometrics for stress monitoring",
+            "ownerRef": "qiriro",
+            "licenseName": "CC0: Public Domain",
+            "currentVersionNumber": 1,
+            "lastUpdated": "2019-05-12T16:31:04.393Z",
+            "totalBytes": 9253090345,
+            "viewCount": 1,
+        }
+        first = source_audit.checksum("dataset-card", json.dumps(card).encode())
+        card["viewCount"] = 2
+        self.assertEqual(
+            first,
+            source_audit.checksum("dataset-card", json.dumps(card).encode()),
+        )
+
     def test_blocks_subject_mixed_unlicensed_source(self):
         result = source_audit.audit(evidence())
         self.assertFalse(result["eligibleForRuntimeReview"])
