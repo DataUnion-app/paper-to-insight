@@ -11,6 +11,7 @@ its checks means **candidate**, not approved or clinically valid.
 
 ```bash
 python3 scripts/validate_candidate.py examples/minimal-methods/candidate.json
+python3 -m unittest tests.test_validate_e3_receipt -v
 python3 -m unittest discover -s tests -v
 python3 scripts/validate_candidate.py papers/resting-hrv-methods/candidate.json
 python3 papers/resting-hrv-methods/test_algorithm.py -v
@@ -57,6 +58,11 @@ The bundled Codex-compatible skill lives at
 `skills/turn-paper-into-insight/SKILL.md`. Fork this repository, give an agent a
 paper, DOI, source repository, or public dataset, and ask it to use
 `$turn-paper-into-insight`.
+
+Protected reviewers can validate an E3 evidence receipt with
+`scripts/validate_e3_receipt.py`. The receipt contains no participant rows and
+rejects self-report-only labels, participant leakage, sparse evaluation,
+missing calibration/abstention, or clinical claims.
 
 ## Handoff
 
