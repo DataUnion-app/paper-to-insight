@@ -21,6 +21,9 @@ python3 papers/resting-rr-sample-entropy/test_algorithm.py -v
 python3 papers/resting-rr-sample-entropy/reproduce.py --verify
 python3 papers/apnea-ecg-heart-rate/test_source_audit.py -v
 python3 papers/apnea-ecg-heart-rate/source-audit.py --verify
+python3 papers/apnea-ecg-heart-rate/test_external_validate.py -v
+python3 papers/apnea-ecg-heart-rate/reproduce.py --verify --cache "$PUBLIC_CACHE"
+python3 papers/apnea-ecg-heart-rate/external_validate.py --verify --cache "$PUBLIC_CACHE"
 python3 scripts/validate_candidate.py papers/apnea-ecg-heart-rate/candidate.json
 python3 papers/cardiovascular-event-hrv/test_source_audit.py -v
 python3 papers/cardiovascular-event-hrv/source-audit.py --verify
@@ -92,10 +95,11 @@ Fantasia intervals, then exposes one disclosure-protected cohort metric and an
 owner-only comparison with an immutable aggregate reference. It also
 intentionally has no disease label or clinical interpretation.
 
-`papers/apnea-ecg-heart-rate` demonstrates the failure path. Its pinned source
-audit finds record-level evaluation and an overlapping-record leak, so it remains
-an E0 candidate with both runtime modes disabled. It is not published to
-DeSciLab.
+`papers/apnea-ecg-heart-rate` demonstrates an evidence-only negative path. The
+current official package misses the historical Apnea-ECG headline, and its
+precommitted UCDDB extension has low sensitivity. It remains E0 with both
+runtime modes disabled, while DeSciLab may present the exact public evidence and
+limitations without an execution or personal-result path.
 
 `papers/cardiovascular-event-hrv` is also E0 and disabled. Its source is licensed
 and paper-associated, but its scaler/test contract is incomplete and its

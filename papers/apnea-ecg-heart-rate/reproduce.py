@@ -123,11 +123,10 @@ def _seconds(value: str) -> int:
     return hours * 3600 + minutes * 60 + seconds
 
 
-def _run_record(record: str, data: Path, runner: Path, work: Path, wfdb) -> dict:
-    local = work / record
+def _execute_apdet(runner: Path, record: Path, local: Path) -> tuple[list[tuple[int, int]], float]:
     local.mkdir()
     completed = subprocess.run(
-        [str(runner), str(data / record), "qrs"],
+        [str(runner), str(record), "qrs"],
         cwd=local,
         check=True,
         capture_output=True,
@@ -141,10 +140,14 @@ def _run_record(record: str, data: Path, runner: Path, work: Path, wfdb) -> dict
             intervals.append((_seconds(match.group(1)), _seconds(match.group(2))))
     total = re.search(r"tot = (\d\d:\d\d:\d\d) / (\d\d:\d\d:\d\d) = ([0-9.]+)", completed.stdout)
     if not total:
-        raise ReproductionError(f"{record} output is invalid")
+        raise ReproductionError(f"{record.name} output is invalid")
     detected_seconds = _seconds(total.group(1))
     total_seconds = _seconds(total.group(2))
-    fraction = detected_seconds / total_seconds
+    return intervals, detected_seconds / total_seconds
+
+
+def _run_record(record: str, data: Path, runner: Path, work: Path, wfdb) -> dict:
+    intervals, fraction = _execute_apdet(runner, data / record, work / record)
 
     header = wfdb.rdheader(str(data / record))
     truth = wfdb.rdann(str(data / record), "apn")

@@ -1,0 +1,696 @@
+{
+  "abstentions": [
+    {
+      "abstention": "sleep_stage_code_invalid",
+      "participant": "ucddb008"
+    },
+    {
+      "abstention": "sleep_stage_code_invalid",
+      "participant": "ucddb024"
+    }
+  ],
+  "aggregateMinuteConfusionMatrixRowsTruthNThenA": [
+    [
+      6656,
+      289
+    ],
+    [
+      1891,
+      717
+    ]
+  ],
+  "aggregateMinuteMetrics": {
+    "accuracy": 0.771799,
+    "balancedAccuracy": 0.616655,
+    "sensitivity": 0.274923,
+    "specificity": 0.958387
+  },
+  "brainstemDeviceValidated": false,
+  "calibration": {
+    "meanAbsolutePrevalenceError": 0.178185,
+    "medianSignedPrevalenceError": -0.164975,
+    "prevalenceSpearman": 0.578942
+  },
+  "candidate": "brainstem.apnea-ecg-heart-rate",
+  "dataset": "UCDDB",
+  "datasetManifestSha256": "c844fb0eb8bc35936d7a5b07cecab895e29d9a2c93dac3a23465e799e00385a1",
+  "datasetVersion": "1.0.0",
+  "environment": {
+    "numpy": "2.5.1",
+    "pyedflib": "0.1.42",
+    "python": "3.12.13",
+    "scipy": "1.18.0",
+    "wfdb": "4.3.1"
+  },
+  "participantBootstrap95": {
+    "accuracy": {
+      "high": 0.8123,
+      "low": 0.727951
+    },
+    "balancedAccuracy": {
+      "high": 0.58615,
+      "low": 0.525675
+    },
+    "sensitivity": {
+      "high": 0.271618,
+      "low": 0.083166
+    },
+    "specificity": {
+      "high": 0.974904,
+      "low": 0.884233
+    }
+  },
+  "participantMacroMean": {
+    "accuracy": 0.770989,
+    "balancedAccuracy": 0.554286,
+    "sensitivity": 0.171856,
+    "specificity": 0.936716
+  },
+  "participantMedian": {
+    "accuracy": 0.787589,
+    "balancedAccuracy": 0.5,
+    "sensitivity": 0.0,
+    "specificity": 0.977273
+  },
+  "participantResultsSha256": "5887a5518a014bbc459166f95571710a706507bcee1185f5b4ac85d83e6087a5",
+  "participants": [
+    {
+      "accuracy": 0.719251,
+      "balancedAccuracy": 0.538636,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          258,
+          6
+        ],
+        [
+          99,
+          11
+        ]
+      ],
+      "derivedAhi": 23.732057,
+      "detectedTimeFraction": 0.042729,
+      "durationHours": 6.241667,
+      "medianRrSeconds": 0.984375,
+      "minutes": 374,
+      "participant": "ucddb002",
+      "predictedPositiveFraction": 0.045455,
+      "referencePositiveFraction": 0.294118,
+      "respiratoryEvents": 124,
+      "sensitivity": 0.1,
+      "specificity": 0.977273
+    },
+    {
+      "accuracy": 0.768707,
+      "balancedAccuracy": 0.766204,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          200,
+          25
+        ],
+        [
+          77,
+          139
+        ]
+      ],
+      "derivedAhi": 51.260504,
+      "detectedTimeFraction": 0.35806,
+      "durationHours": 7.355,
+      "medianRrSeconds": 0.929688,
+      "minutes": 441,
+      "participant": "ucddb003",
+      "predictedPositiveFraction": 0.371882,
+      "referencePositiveFraction": 0.489796,
+      "respiratoryEvents": 305,
+      "sensitivity": 0.643519,
+      "specificity": 0.888889
+    },
+    {
+      "accuracy": 0.847458,
+      "balancedAccuracy": 0.5,
+      "beatCoverage": 0.992736,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          350,
+          0
+        ],
+        [
+          63,
+          0
+        ]
+      ],
+      "derivedAhi": 13.230174,
+      "detectedTimeFraction": 0.0,
+      "durationHours": 6.888333,
+      "medianRrSeconds": 1.070312,
+      "minutes": 413,
+      "participant": "ucddb005",
+      "predictedPositiveFraction": 0.0,
+      "referencePositiveFraction": 0.152542,
+      "respiratoryEvents": 57,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.690594,
+      "balancedAccuracy": 0.5,
+      "beatCoverage": 0.977723,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          279,
+          0
+        ],
+        [
+          125,
+          0
+        ]
+      ],
+      "derivedAhi": 31.340782,
+      "detectedTimeFraction": 0.0,
+      "durationHours": 6.740833,
+      "medianRrSeconds": 0.804688,
+      "minutes": 404,
+      "participant": "ucddb006",
+      "predictedPositiveFraction": 0.0,
+      "referencePositiveFraction": 0.309406,
+      "respiratoryEvents": 187,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.800493,
+      "balancedAccuracy": 0.5,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          325,
+          0
+        ],
+        [
+          81,
+          0
+        ]
+      ],
+      "derivedAhi": 12.016461,
+      "detectedTimeFraction": 0.0,
+      "durationHours": 6.779167,
+      "medianRrSeconds": 1.015625,
+      "minutes": 406,
+      "participant": "ucddb007",
+      "predictedPositiveFraction": 0.0,
+      "referencePositiveFraction": 0.199507,
+      "respiratoryEvents": 73,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.833333,
+      "balancedAccuracy": 0.5,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          385,
+          0
+        ],
+        [
+          77,
+          0
+        ]
+      ],
+      "derivedAhi": 12.408163,
+      "detectedTimeFraction": 0.0,
+      "durationHours": 7.710833,
+      "medianRrSeconds": 0.945312,
+      "minutes": 462,
+      "participant": "ucddb009",
+      "predictedPositiveFraction": 0.0,
+      "referencePositiveFraction": 0.166667,
+      "respiratoryEvents": 76,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.675497,
+      "balancedAccuracy": 0.543627,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          285,
+          15
+        ],
+        [
+          132,
+          21
+        ]
+      ],
+      "derivedAhi": 33.565426,
+      "detectedTimeFraction": 0.074975,
+      "durationHours": 7.558611,
+      "medianRrSeconds": 0.789062,
+      "minutes": 453,
+      "participant": "ucddb010",
+      "predictedPositiveFraction": 0.07947,
+      "referencePositiveFraction": 0.337748,
+      "respiratoryEvents": 233,
+      "sensitivity": 0.137255,
+      "specificity": 0.95
+    },
+    {
+      "accuracy": 0.873333,
+      "balancedAccuracy": 0.479268,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          393,
+          17
+        ],
+        [
+          40,
+          0
+        ]
+      ],
+      "derivedAhi": 7.720588,
+      "detectedTimeFraction": 0.035517,
+      "durationHours": 7.508333,
+      "medianRrSeconds": 0.796875,
+      "minutes": 450,
+      "participant": "ucddb011",
+      "predictedPositiveFraction": 0.037778,
+      "referencePositiveFraction": 0.088889,
+      "respiratoryEvents": 35,
+      "sensitivity": 0.0,
+      "specificity": 0.958537
+    },
+    {
+      "accuracy": 0.740741,
+      "balancedAccuracy": 0.632203,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          279,
+          2
+        ],
+        [
+          110,
+          41
+        ]
+      ],
+      "derivedAhi": 24.653061,
+      "detectedTimeFraction": 0.097155,
+      "durationHours": 7.205833,
+      "medianRrSeconds": 0.984375,
+      "minutes": 432,
+      "participant": "ucddb012",
+      "predictedPositiveFraction": 0.099537,
+      "referencePositiveFraction": 0.349537,
+      "respiratoryEvents": 151,
+      "sensitivity": 0.271523,
+      "specificity": 0.992883
+    },
+    {
+      "accuracy": 0.720988,
+      "balancedAccuracy": 0.650533,
+      "beatCoverage": 0.958025,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          254,
+          81
+        ],
+        [
+          32,
+          38
+        ]
+      ],
+      "derivedAhi": 15.789474,
+      "detectedTimeFraction": 0.281123,
+      "durationHours": 6.759167,
+      "medianRrSeconds": 0.867188,
+      "minutes": 405,
+      "participant": "ucddb013",
+      "predictedPositiveFraction": 0.293827,
+      "referencePositiveFraction": 0.17284,
+      "respiratoryEvents": 65,
+      "sensitivity": 0.542857,
+      "specificity": 0.758209
+    },
+    {
+      "accuracy": 0.586563,
+      "balancedAccuracy": 0.576364,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          176,
+          24
+        ],
+        [
+          136,
+          51
+        ]
+      ],
+      "derivedAhi": 35.862069,
+      "detectedTimeFraction": 0.18591,
+      "durationHours": 6.455278,
+      "medianRrSeconds": 0.859375,
+      "minutes": 387,
+      "participant": "ucddb014",
+      "predictedPositiveFraction": 0.193798,
+      "referencePositiveFraction": 0.483204,
+      "respiratoryEvents": 182,
+      "sensitivity": 0.272727,
+      "specificity": 0.88
+    },
+    {
+      "accuracy": 0.860262,
+      "balancedAccuracy": 0.474699,
+      "beatCoverage": 0.984716,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          394,
+          21
+        ],
+        [
+          43,
+          0
+        ]
+      ],
+      "derivedAhi": 6.271186,
+      "detectedTimeFraction": 0.043659,
+      "durationHours": 7.635556,
+      "medianRrSeconds": 0.796875,
+      "minutes": 458,
+      "participant": "ucddb015",
+      "predictedPositiveFraction": 0.045852,
+      "referencePositiveFraction": 0.093886,
+      "respiratoryEvents": 37,
+      "sensitivity": 0.0,
+      "specificity": 0.949398
+    },
+    {
+      "accuracy": 0.835025,
+      "balancedAccuracy": 0.5,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          329,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "derivedAhi": 11.895044,
+      "detectedTimeFraction": 0.0,
+      "durationHours": 6.578889,
+      "medianRrSeconds": 0.929688,
+      "minutes": 394,
+      "participant": "ucddb017",
+      "predictedPositiveFraction": 0.0,
+      "referencePositiveFraction": 0.164975,
+      "respiratoryEvents": 68,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.978102,
+      "balancedAccuracy": 0.5,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          402,
+          0
+        ],
+        [
+          9,
+          0
+        ]
+      ],
+      "derivedAhi": 2.186235,
+      "detectedTimeFraction": 0.0,
+      "durationHours": 6.856944,
+      "medianRrSeconds": 0.859375,
+      "minutes": 411,
+      "participant": "ucddb018",
+      "predictedPositiveFraction": 0.0,
+      "referencePositiveFraction": 0.021898,
+      "respiratoryEvents": 9,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.812207,
+      "balancedAccuracy": 0.616408,
+      "beatCoverage": 0.997653,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          321,
+          13
+        ],
+        [
+          67,
+          25
+        ]
+      ],
+      "derivedAhi": 15.979513,
+      "detectedTimeFraction": 0.084772,
+      "durationHours": 7.103611,
+      "medianRrSeconds": 0.875,
+      "minutes": 426,
+      "participant": "ucddb019",
+      "predictedPositiveFraction": 0.089202,
+      "referencePositiveFraction": 0.215962,
+      "respiratoryEvents": 104,
+      "sensitivity": 0.271739,
+      "specificity": 0.961078
+    },
+    {
+      "accuracy": 0.819149,
+      "balancedAccuracy": 0.5,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          308,
+          0
+        ],
+        [
+          68,
+          0
+        ]
+      ],
+      "derivedAhi": 15.025729,
+      "detectedTimeFraction": 0.0,
+      "durationHours": 6.273889,
+      "medianRrSeconds": 1.125,
+      "minutes": 376,
+      "participant": "ucddb020",
+      "predictedPositiveFraction": 0.0,
+      "referencePositiveFraction": 0.180851,
+      "respiratoryEvents": 73,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.804825,
+      "balancedAccuracy": 0.528035,
+      "beatCoverage": 0.989035,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          360,
+          9
+        ],
+        [
+          80,
+          7
+        ]
+      ],
+      "derivedAhi": 12.851406,
+      "detectedTimeFraction": 0.032838,
+      "durationHours": 7.613611,
+      "medianRrSeconds": 0.796875,
+      "minutes": 456,
+      "participant": "ucddb021",
+      "predictedPositiveFraction": 0.035088,
+      "referencePositiveFraction": 0.190789,
+      "respiratoryEvents": 80,
+      "sensitivity": 0.08046,
+      "specificity": 0.97561
+    },
+    {
+      "accuracy": 0.916244,
+      "balancedAccuracy": 0.5,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          361,
+          0
+        ],
+        [
+          33,
+          0
+        ]
+      ],
+      "derivedAhi": 7.043478,
+      "detectedTimeFraction": 0.0,
+      "durationHours": 6.566667,
+      "medianRrSeconds": 0.945312,
+      "minutes": 394,
+      "participant": "ucddb022",
+      "predictedPositiveFraction": 0.0,
+      "referencePositiveFraction": 0.083756,
+      "respiratoryEvents": 27,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.737209,
+      "balancedAccuracy": 0.668364,
+      "beatCoverage": 0.946512,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          251,
+          28
+        ],
+        [
+          85,
+          66
+        ]
+      ],
+      "derivedAhi": 39.585492,
+      "detectedTimeFraction": 0.208978,
+      "durationHours": 7.180556,
+      "medianRrSeconds": 0.726562,
+      "minutes": 430,
+      "participant": "ucddb023",
+      "predictedPositiveFraction": 0.218605,
+      "referencePositiveFraction": 0.351163,
+      "respiratoryEvents": 191,
+      "sensitivity": 0.437086,
+      "specificity": 0.899642
+    },
+    {
+      "accuracy": 0.771831,
+      "balancedAccuracy": 0.649635,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          21,
+          22
+        ],
+        [
+          59,
+          253
+        ]
+      ],
+      "derivedAhi": 94.817518,
+      "detectedTimeFraction": 0.747611,
+      "durationHours": 5.930556,
+      "medianRrSeconds": 0.890625,
+      "minutes": 355,
+      "participant": "ucddb025",
+      "predictedPositiveFraction": 0.774648,
+      "referencePositiveFraction": 0.878873,
+      "respiratoryEvents": 433,
+      "sensitivity": 0.810897,
+      "specificity": 0.488372
+    },
+    {
+      "accuracy": 0.787589,
+      "balancedAccuracy": 0.5,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          330,
+          0
+        ],
+        [
+          89,
+          0
+        ]
+      ],
+      "derivedAhi": 13.884298,
+      "detectedTimeFraction": 0.0,
+      "durationHours": 6.988889,
+      "medianRrSeconds": 0.9375,
+      "minutes": 419,
+      "participant": "ucddb026",
+      "predictedPositiveFraction": 0.0,
+      "referencePositiveFraction": 0.212411,
+      "respiratoryEvents": 84,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.513453,
+      "balancedAccuracy": 0.5,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          229,
+          0
+        ],
+        [
+          217,
+          0
+        ]
+      ],
+      "derivedAhi": 55.300261,
+      "detectedTimeFraction": 0.0,
+      "durationHours": 7.441944,
+      "medianRrSeconds": 0.710938,
+      "minutes": 446,
+      "participant": "ucddb027",
+      "predictedPositiveFraction": 0.0,
+      "referencePositiveFraction": 0.486547,
+      "respiratoryEvents": 353,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.639889,
+      "balancedAccuracy": 0.624599,
+      "beatCoverage": 1.0,
+      "confusionMatrixRowsTruthNThenA": [
+        [
+          166,
+          26
+        ],
+        [
+          104,
+          65
+        ]
+      ],
+      "derivedAhi": 48.194726,
+      "detectedTimeFraction": 0.241019,
+      "durationHours": 6.016667,
+      "medianRrSeconds": 0.84375,
+      "minutes": 361,
+      "participant": "ucddb028",
+      "predictedPositiveFraction": 0.252078,
+      "referencePositiveFraction": 0.468144,
+      "respiratoryEvents": 198,
+      "sensitivity": 0.384615,
+      "specificity": 0.864583
+    }
+  ],
+  "participantsEvaluated": 23,
+  "participantsPlanned": 25,
+  "personalApneaOutputEnabled": false,
+  "planSha256": "44ed0e698e21dcb683e332e90b50756a19c28954b7c30c2c80a1a2ac1fdb3d68",
+  "runnableApneaOfferEnabled": false,
+  "schema": "paper-to-insight.external-validation/v1",
+  "secondary": {
+    "detectedFractionAhiSpearman": 0.592861,
+    "recordConfusionMatrixRowsAhiBelow15ThenAtLeast15": [
+      [
+        10,
+        0
+      ],
+      [
+        4,
+        9
+      ]
+    ]
+  },
+  "status": "reported_without_success_threshold"
+}

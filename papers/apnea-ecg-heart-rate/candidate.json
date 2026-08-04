@@ -2,7 +2,7 @@
   "schema": "paper-to-insight.candidate/v1",
   "approvalState": "candidate",
   "packageId": "brainstem.apnea-ecg-heart-rate",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "paper": {
     "title": "Detection of Obstructive Sleep Apnea from Cardiac Interbeat Interval Time Series",
     "canonicalUrl": "https://physionet.org/files/challenge-2000/1.0.0/papers/00898634.pdf",
@@ -56,7 +56,7 @@
     }
   ],
   "compatibility": {
-    "brainstemContract": "not-defined: bounded full-night R-R quality contract pending",
+    "brainstemContract": "brainstem.full-night-rr-cohort/v1: bounded 5-12 hour detector-R-R input; normal-to-normal provenance unverified and official-method compatibility false",
     "requiredSignals": [
       "continuous full-night normal-to-normal intervals",
       "respiratory or polysomnographic reference labels for validation"
@@ -68,6 +68,8 @@
       "Brainstem interval records do not prove normal-to-normal beat classification.",
       "Brainstem recordings do not contain respiratory or polysomnographic reference labels.",
       "The current official package does not exactly reproduce the historical Apnea-ECG learning headline.",
+      "The precommitted UCDDB extension evaluated 23 of 25 participants and had 27.4923% aggregate minute sensitivity.",
+      "The UCDDB ECG adaptation and Brainstem records use detector R-R intervals that are not proven normal-to-normal.",
       "No Brainstem device or population validation has been performed."
     ]
   },
@@ -82,7 +84,7 @@
       "proposed": false,
       "minimumParticipants": 20,
       "minimumCell": 20,
-      "output": "Withheld; the public reproduction mismatch and external-validation gate remain unresolved."
+      "output": "Execution withheld. Only the exact public reproduction, external-validation result, and limitations may be presented as non-executable evidence."
     },
     "personal": {
       "proposed": false,
@@ -114,7 +116,7 @@
   "files": [
     {
       "path": "README.md",
-      "sha256": "4d9ce294ae908b44b826b51246879a89f47f602d3afc366f3b1d45dea1d6c2e0"
+      "sha256": "49eced7d955d8380edc7296c8360f63775afd7151899120dd93a299a16f5349f"
     },
     {
       "path": "authority-freeze.json",
@@ -125,8 +127,16 @@
       "sha256": "a930e5ef1f3a8aafda806ee0dfaf05a94fc6da9bc99ddc7cc788721f04a28e90"
     },
     {
+      "path": "expected-external.json",
+      "sha256": "342066cc31dc4b2291c6947fc7b67fca19a1ca466aa2555a2de48028e0f6921c"
+    },
+    {
       "path": "expected-public.json",
       "sha256": "b79506674313dc2bd8fbab714cb34f2c3150e92310b6442cf972401e2d94840b"
+    },
+    {
+      "path": "external_validate.py",
+      "sha256": "3dd462417dfd885814ca59f54485463d1a7e2710db2d5d0820d4d8f1fc5bfb97"
     },
     {
       "path": "public-sources.json",
@@ -134,7 +144,7 @@
     },
     {
       "path": "reproduce.py",
-      "sha256": "ff6e7105b91c09bef8a5575d19522ff9168ff5c3f34399ca09c5635d22e544bd"
+      "sha256": "7ff2658b8c7d18f61df39cc9d38f791bd4aa79b8dde04ed73b6be011f8a729f3"
     },
     {
       "path": "reproduction-environment.json",
@@ -143,6 +153,10 @@
     {
       "path": "source-audit.py",
       "sha256": "e3dedaf75ab02afc41126c43ca4949339911aa2d89739e87cd709a2c12347f57"
+    },
+    {
+      "path": "test_external_validate.py",
+      "sha256": "3b4dbb612c8fe3a027c34c10bd05a455486e90b80450df197c6eb40c47a95b32"
     },
     {
       "path": "test_source_audit.py",
