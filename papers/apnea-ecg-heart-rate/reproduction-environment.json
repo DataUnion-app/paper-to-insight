@@ -1,0 +1,8 @@
+{
+  "python": "3.12.13",
+  "wfdb": "4.3.1",
+  "system": "Darwin",
+  "machine": "arm64",
+  "release": "25.5.0",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)"
+}

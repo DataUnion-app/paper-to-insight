@@ -1,0 +1,66 @@
+{
+  "schema": "paper-to-insight.apnea-authority-freeze/v1",
+  "frozenAt": "2026-08-04",
+  "method": {
+    "name": "Hilbert-transform based apnea detector",
+    "officialResource": "https://physionet.org/content/apdet/1.0.0/",
+    "implementationRelation": "author_reference_implementation",
+    "pipeline": [
+      "normal-to-normal intervals only",
+      "filt 0.2 20 -x 0.4 2.0",
+      "linear resampling at 1 Hz",
+      "local detrending with a 40-sample half-window",
+      "5-sample smoothing",
+      "Hilbert transform",
+      "60-sample median filtering",
+      "mean-amplitude normalization",
+      "five-minute windows advanced every minute",
+      "at least 15 consecutive selected windows"
+    ],
+    "correctedAmplitudeThreshold": "-0.555 + 1.3 * (mid + 1) / 2",
+    "paperThresholdDiscrepancy": "The paper prints coefficients 0.3 and 1.85; the official software states that those printed values are incorrect and uses -0.555 and 1.3.",
+    "recordDecision": "detected fraction >= 0.05 for non-borderline record classification"
+  },
+  "licence": {
+    "catalogueLabel": "ODC-By-1.0",
+    "embeddedExecutableNotice": "GPL-2.0-or-later",
+    "archiveContainsCopyingFile": false,
+    "redistributionDecision": "pending_human_licence_review",
+    "repositoryPolicy": "Do not vendor the archive or publish a binary/container containing it until the discrepancy is reviewed. A checksum-verified local download may be used for public-data reproduction."
+  },
+  "datasets": {
+    "apneaEcg": {
+      "version": "1.0.0",
+      "doi": "10.13026/C23W2R",
+      "licence": "ODC-By-1.0",
+      "records": 70,
+      "learningRecords": 35,
+      "testRecords": 35,
+      "knownOverlap": "c05 and c06 are overlapping versions of one original recording",
+      "availableMinuteLabels": "The current public package exposes .apn labels for the 35 learning records, not the hidden challenge test reference labels."
+    },
+    "ucddb": {
+      "version": "1.0.0",
+      "doi": "10.13026/C26C7D",
+      "licence": "ODC-By-1.0",
+      "participants": 25,
+      "reference": "full polysomnography with annotated respiratory events"
+    }
+  },
+  "originalClaims": {
+    "paperLearningMinuteResult": "13985 / 17045 (82.1%)",
+    "paperLearningNonBorderlineRecordResult": "26 / 30",
+    "paperTestMinuteResult": "14591 / 17268",
+    "paperTestNonBorderlineRecordResult": "28 / 30",
+    "physioNetPageDiscrepancy": "The resource page also reports 13895 / 17045 as 82.1% and swaps learning/test labels in another paragraph; those statements are not treated as reproduction targets."
+  },
+  "limitations": [
+    "The parameters were optimized using combined source datasets, so the historical result is not a clean untouched external validation.",
+    "The method is ineffective for people whose disordered breathing does not create the assumed oscillatory heart-rate dynamics.",
+    "The output estimates disturbed breathing from heart-rate dynamics and is not an apnea-hypopnea index.",
+    "Actual apnea and hypopnea reference labels require respiratory or polysomnographic signals that Brainstem does not currently collect.",
+    "Apnea-ECG contains repeated people and the documented overlapping c05/c06 records, so record-level results are not evidence of new-person transfer.",
+    "External public-dataset performance is not validation on the Brainstem device or population."
+  ],
+  "brainstemDecision": "withhold_personal_and_runnable_apnea_outputs"
+}

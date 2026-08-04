@@ -1,24 +1,14 @@
 {
-  "schema": "paper-to-insight.source-audit/v1",
+  "schema": "paper-to-insight.source-audit/v2",
   "candidate": "brainstem.apnea-ecg-heart-rate",
-  "sourceRevision": "aaaf046741696e1c6267f707853e6e79b31c9ae5",
-  "sourceRelationship": "independent_personal_project",
-  "sourceLicenseVerified": true,
-  "publicDatasetLicense": "ODC-By-1.0",
-  "recordLevelCrossValidation": true,
-  "participantIdentifiersAvailable": false,
-  "knownOverlappingRecordsInTraining": [
-    "c05",
-    "c06"
-  ],
-  "sourcePopulationCountUnitMismatch": true,
-  "publicReproductionAccepted": false,
-  "brainstemClassificationEnabled": false,
-  "eligibleForRuntimeReview": false,
-  "blockReasons": [
-    "paper_implementation_identity_unproven",
-    "participant_split_leakage",
-    "population_or_device_unvalidated",
-    "reference_labels_missing"
-  ]
+  "officialSourceSha256": "b4961dae0e5bded52a2caecf6bcc186837d4deccf1ac2f173c9f6d5f0a376eac",
+  "sourceRelationship": "author_reference_implementation",
+  "embeddedSoftwareLicence": "GPL-2.0-or-later",
+  "catalogueResourceLicence": "ODC-By-1.0",
+  "licenceReviewRequiredBeforeRedistribution": true,
+  "methodConstantsVerified": true,
+  "apneaEcgRecords": 70,
+  "ucddbParticipants": 25,
+  "personalApneaOutputEnabled": false,
+  "runnableApneaOfferEnabled": false
 }

@@ -1,0 +1,113 @@
+{
+  "schema": "paper-to-insight.ucddb-evaluation-plan/v1",
+  "status": "locked_before_outcome_evaluation",
+  "lockedAt": "2026-08-04",
+  "purpose": "External public-dataset evaluation of the unchanged PhysioNet apdet 1.0.0 method after a predeclared ECG-to-R-R adaptation.",
+  "dataset": {
+    "name": "St. Vincent's University Hospital / University College Dublin Sleep Apnea Database",
+    "version": "1.0.0",
+    "doi": "10.13026/C26C7D",
+    "manifestSha256": "c844fb0eb8bc35936d7a5b07cecab895e29d9a2c93dac3a23465e799e00385a1",
+    "participants": [
+      "ucddb002",
+      "ucddb003",
+      "ucddb005",
+      "ucddb006",
+      "ucddb007",
+      "ucddb008",
+      "ucddb009",
+      "ucddb010",
+      "ucddb011",
+      "ucddb012",
+      "ucddb013",
+      "ucddb014",
+      "ucddb015",
+      "ucddb017",
+      "ucddb018",
+      "ucddb019",
+      "ucddb020",
+      "ucddb021",
+      "ucddb022",
+      "ucddb023",
+      "ucddb024",
+      "ucddb025",
+      "ucddb026",
+      "ucddb027",
+      "ucddb028"
+    ]
+  },
+  "input": {
+    "file": "<participant>.rec",
+    "channel": "the single EDF signal whose trimmed label equals ECG",
+    "expectedSampleRateHz": 128,
+    "unitsPolicy": "Use physical values returned by pyedflib without amplitude rescaling.",
+    "beatDetector": "wfdb.processing.xqrs_detect(sig=ecg, fs=128, verbose=False), version 4.3.1",
+    "intervalSemantics": "Successive detector R-R intervals are supplied to apdet as normal annotations because UCDDB has no normal-beat classification.",
+    "adaptationLimitation": "Detector R-R is not proven normal-to-normal. This is a locked external adaptation, not an exact input match or Brainstem validation."
+  },
+  "quality": {
+    "recordingDurationHours": [
+      5,
+      12
+    ],
+    "finiteEcgSamplesRequired": true,
+    "strictlyIncreasingPeaksRequired": true,
+    "completeMinuteBeatCoverage": "At least 80% of complete recording minutes must contain at least 20 detected beats.",
+    "medianRrSeconds": [
+      0.4,
+      2.0
+    ],
+    "failurePolicy": "Abstain the participant, report the reason, and do not alter thresholds after inspecting outcomes."
+  },
+  "reference": {
+    "eventFile": "<participant>_respevt.txt",
+    "positiveTypes": "Rows whose type begins APNEA- or HYP-; periodic-breathing-only rows are excluded.",
+    "timeAlignment": "Interpret event time as time-of-day on the EDF start date, advancing one day when needed to obtain the first time not before recording start.",
+    "minuteGrid": "Complete non-overlapping minutes from EDF recording start; a minute is positive when any positive event overlaps it by more than zero seconds.",
+    "sleepFile": "<participant>_stage.txt, consecutive 30-second epochs from EDF start",
+    "sleepStages": "Stages 1 through 5 count as sleep; 0, 6, and 7 do not.",
+    "derivedAhi": "Count positive respiratory events divided by stage-defined sleep hours."
+  },
+  "method": {
+    "sourceSha256": "b4961dae0e5bded52a2caecf6bcc186837d4deccf1ac2f173c9f6d5f0a376eac",
+    "parameters": "Unchanged corrected apdet 1.0.0 software values.",
+    "recordThreshold": "Detected fraction >= 0.05, evaluated secondarily against derived AHI >= 15.",
+    "tuning": "No parameter, detector, quality threshold, event mapping, record threshold, or metric may change after outcome evaluation. Any change creates a new version and a new external dataset."
+  },
+  "metrics": {
+    "primary": [
+      "aggregate minute confusion matrix",
+      "minute sensitivity",
+      "minute specificity",
+      "minute balanced accuracy",
+      "minute accuracy"
+    ],
+    "participantSeparated": [
+      "per-participant sensitivity, specificity, balanced accuracy, and accuracy",
+      "participant-macro means and medians",
+      "95% participant bootstrap intervals with 10000 resamples and seed 20260804"
+    ],
+    "calibration": [
+      "per-participant predicted-positive fraction versus reference-positive minute fraction",
+      "mean absolute prevalence error",
+      "median signed prevalence error",
+      "Spearman correlation"
+    ],
+    "secondary": [
+      "fixed 5% record decision versus derived AHI >= 15 confusion matrix",
+      "detected fraction versus derived AHI Spearman correlation"
+    ]
+  },
+  "reporting": {
+    "successThreshold": "none; report the locked result regardless of direction",
+    "abstentions": "Report participant and public quality reason, with no imputation.",
+    "claims": "Public method evidence only. No diagnosis, screening, personal result, Brainstem-device validation, prevalence estimate, AHI estimate for a Brainstem participant, or treatment advice."
+  },
+  "environment": {
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "wfdb": "4.3.1",
+    "pyedflib": "0.1.42"
+  }
+}

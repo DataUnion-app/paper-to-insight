@@ -2,35 +2,35 @@
   "schema": "paper-to-insight.candidate/v1",
   "approvalState": "candidate",
   "packageId": "brainstem.apnea-ecg-heart-rate",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "paper": {
-    "title": "The Apnea-ECG Database",
-    "canonicalUrl": "https://doi.org/10.1109/CIC.2000.898505",
-    "doi": "10.1109/CIC.2000.898505",
-    "claim": "The reference task classifies full-night ECG-derived one-minute epochs as apnea or non-apnea using expert respiratory annotations.",
+    "title": "Detection of Obstructive Sleep Apnea from Cardiac Interbeat Interval Time Series",
+    "canonicalUrl": "https://physionet.org/files/challenge-2000/1.0.0/papers/00898634.pdf",
+    "doi": "10.1109/CIC.2000.898634",
+    "claim": "The historical method uses oscillatory normal-to-normal interval dynamics to identify periods associated with prolonged high-density obstructive sleep apnea.",
     "claimClass": "prediction",
-    "population": "The public database contains repeated overnight recordings from 32 subjects referred for possible sleep-disordered breathing; it is not a Brainstem validation population.",
-    "referenceStandard": "Expert minute annotations derived from simultaneously recorded respiration and related signals in PhysioNet Apnea-ECG 1.0.0.",
-    "implementationRelation": "independent_reimplementation",
-    "relationEvidence": "The inspected source identifies itself as a personal Insight Data Science project and provides no evidence that it is the paper authors' implementation.",
+    "population": "The historical evaluation combines public sleep-apnea, polysomnographic, and normal-sinus-rhythm data and is not a Brainstem device or population validation.",
+    "referenceStandard": "Expert respiratory or polysomnographic annotations in public PhysioNet datasets.",
+    "implementationRelation": "author_reference_implementation",
+    "relationEvidence": "The checksum-pinned PhysioNet apdet 1.0.0 archive is the software linked from the authors' official method resource.",
     "classification": {
       "paperDecision": "classified",
       "labels": [
-        "apnea minute",
-        "non-apnea minute"
+        "apnea-associated minute",
+        "non-apnea-associated minute"
       ],
-      "unit": "one-minute full-night epoch"
+      "unit": "one-minute epoch within a full-night normal-to-normal interval series"
     }
   },
   "sources": [
     {
-      "name": "Independent Apnea-ECG model evaluation source",
-      "url": "https://github.com/ChiQiao/Apnea-ECG/tree/aaaf046741696e1c6267f707853e6e79b31c9ae5",
-      "revisionType": "git_commit",
-      "revision": "aaaf046741696e1c6267f707853e6e79b31c9ae5",
-      "sha256": "deba3de1b6b499e94474cc51b2bd878d2af0cc65a32fbbb8401c3668b845fa20",
-      "license": "MIT",
-      "licenseUrl": "https://raw.githubusercontent.com/ChiQiao/Apnea-ECG/aaaf046741696e1c6267f707853e6e79b31c9ae5/LICENSE"
+      "name": "Official PhysioNet apdet 1.0.0 source archive",
+      "url": "https://physionet.org/files/apdet/1.0.0/apdet.src.tar.gz",
+      "revisionType": "content_sha256",
+      "revision": "b4961dae0e5bded52a2caecf6bcc186837d4deccf1ac2f173c9f6d5f0a376eac",
+      "sha256": "b4961dae0e5bded52a2caecf6bcc186837d4deccf1ac2f173c9f6d5f0a376eac",
+      "license": "GPL-2.0-or-later embedded notices; redistribution review pending",
+      "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
     }
   ],
   "datasets": [
@@ -43,27 +43,37 @@
       "sha256": "970d643ec848af6bbc2bda148d1f8e165d439514948b23e5df76e962ba7a5b61",
       "license": "ODC-By-1.0",
       "licenseUrl": "https://physionet.org/content/apnea-ecg/view-license/1.0.0/"
+    },
+    {
+      "name": "University College Dublin Sleep Apnea Database",
+      "kind": "public",
+      "url": "https://physionet.org/content/ucddb/1.0.0/",
+      "version": "1.0.0",
+      "doi": "10.13026/C26C7D",
+      "sha256": "c844fb0eb8bc35936d7a5b07cecab895e29d9a2c93dac3a23465e799e00385a1",
+      "license": "ODC-By-1.0",
+      "licenseUrl": "https://physionet.org/content/ucddb/view-license/1.0.0/"
     }
   ],
   "compatibility": {
-    "brainstemContract": "not-defined: proposed full-night beat-to-beat interval contract",
+    "brainstemContract": "not-defined: bounded full-night R-R quality contract pending",
     "requiredSignals": [
-      "continuous full-night beat-to-beat intervals",
-      "expert minute-level apnea and hypopnea reference labels"
+      "continuous full-night normal-to-normal intervals",
+      "respiratory or polysomnographic reference labels for validation"
     ],
-    "window": "Continuous seven-to-ten-hour overnight recording divided into non-overlapping one-minute epochs.",
-    "preprocessing": "Withheld until a participant-separated public reproduction freezes beat detection, artifact handling, feature extraction, missingness, and evaluation.",
+    "window": "A continuous overnight interval series, historically seven to ten hours, evaluated in five-minute windows advanced once per minute.",
+    "preprocessing": "Official apdet 1.0.0 corrected pipeline, checksum-pinned in authority-freeze.json and source-audit.py.",
     "brainstemVerdict": "partially_compatible",
     "mismatches": [
-      "Brainstem recordings have no expert respiratory apnea reference labels.",
-      "The inspected public evaluation splits records rather than identified participants.",
-      "The public source includes overlapping c05 and c06 recordings in its training index.",
-      "No Brainstem device or population calibration has been performed."
+      "Brainstem interval records do not prove normal-to-normal beat classification.",
+      "Brainstem recordings do not contain respiratory or polysomnographic reference labels.",
+      "The current official package does not exactly reproduce the historical Apnea-ECG learning headline.",
+      "No Brainstem device or population validation has been performed."
     ]
   },
   "evidence": {
     "tier": "E0_candidate",
-    "useClass": "exploratory_research",
+    "useClass": "methods_only",
     "clinicalUse": "prohibited",
     "brainstemDecision": "abstained"
   },
@@ -72,13 +82,13 @@
       "proposed": false,
       "minimumParticipants": 20,
       "minimumCell": 20,
-      "output": "Withheld until participant-separated reproduction and protected validation support aggregate research output."
+      "output": "Withheld; the public reproduction mismatch and external-validation gate remain unresolved."
     },
     "personal": {
       "proposed": false,
       "inputOwner": "authenticated_participant_only",
       "referencePolicy": "immutable_reviewed_aggregate_only",
-      "output": "Withheld; no apnea label, probability, score, or proxy may be returned from this candidate."
+      "output": "Unavailable; no apnea label, score, probability, AHI, screening statement, or reassurance may be returned."
     }
   },
   "abstention": [
@@ -94,7 +104,8 @@
   ],
   "prohibitedClaims": [
     "sleep apnea diagnosis",
-    "screening",
+    "sleep apnea screening",
+    "apnea-hypopnea index",
     "negative or healthy interpretation of abstention",
     "clinical risk score",
     "treatment recommendation",
@@ -103,23 +114,43 @@
   "files": [
     {
       "path": "README.md",
-      "sha256": "ea3658feba0c585d8e41dda214729d88ef0e7379ba17a3c2915c780e3428193e"
+      "sha256": "4d9ce294ae908b44b826b51246879a89f47f602d3afc366f3b1d45dea1d6c2e0"
+    },
+    {
+      "path": "authority-freeze.json",
+      "sha256": "04396b9a172ba1962705c8183b7a0d88df578cdca2e207ae2544b6fa98e6b83d"
     },
     {
       "path": "expected-audit.json",
-      "sha256": "cf00413a5f58557d4205978439fff485cd26d72717261bfa7bbfb1d7748a8c99"
+      "sha256": "a930e5ef1f3a8aafda806ee0dfaf05a94fc6da9bc99ddc7cc788721f04a28e90"
+    },
+    {
+      "path": "expected-public.json",
+      "sha256": "b79506674313dc2bd8fbab714cb34f2c3150e92310b6442cf972401e2d94840b"
     },
     {
       "path": "public-sources.json",
-      "sha256": "b39205df260a2f88f791c2dbabcddfc62b80eee019897e578fc34f1966c51ab1"
+      "sha256": "2f6652d2bd778a10b238b2df27508c779d99928eb354fb7154a4961c5b872ab9"
+    },
+    {
+      "path": "reproduce.py",
+      "sha256": "ff6e7105b91c09bef8a5575d19522ff9168ff5c3f34399ca09c5635d22e544bd"
+    },
+    {
+      "path": "reproduction-environment.json",
+      "sha256": "9591cd17aad71ea98beda5cdbf66328f63207d1cb2ec4f6ef539d87cd4bbd5b8"
     },
     {
       "path": "source-audit.py",
-      "sha256": "d286b89e35629b31139271e02d14dbdd03431444c4e8342d3ffccd6bd8bd5f87"
+      "sha256": "e3dedaf75ab02afc41126c43ca4949339911aa2d89739e87cd709a2c12347f57"
     },
     {
       "path": "test_source_audit.py",
-      "sha256": "9a1b81de5cb2f0d0c65452a1b77c74ef5db632c851cd7aff30099e8a3bbe17b0"
+      "sha256": "53d704405f36ee420a90fbe1d7950a93df4254f2e551f2ca5b105b56feed8cb3"
+    },
+    {
+      "path": "ucddb-evaluation-plan.json",
+      "sha256": "44ed0e698e21dcb683e332e90b50756a19c28954b7c30c2c80a1a2ac1fdb3d68"
     }
   ]
 }

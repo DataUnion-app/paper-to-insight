@@ -1,0 +1,68 @@
+{
+  "schema": "paper-to-insight.public-reproduction/v2",
+  "candidate": "brainstem.apnea-ecg-heart-rate",
+  "method": "official PhysioNet apdet 1.0.0 source",
+  "sourceSha256": "b4961dae0e5bded52a2caecf6bcc186837d4deccf1ac2f173c9f6d5f0a376eac",
+  "dataset": "PhysioNet Apnea-ECG Database",
+  "datasetVersion": "1.0.0",
+  "datasetManifestSha256": "970d643ec848af6bbc2bda148d1f8e165d439514948b23e5df76e962ba7a5b61",
+  "learningRecords": 35,
+  "participantSeparated": false,
+  "knownOverlappingRecords": [
+    "c05",
+    "c06"
+  ],
+  "minutes": 17045,
+  "confusionMatrixRowsTruthNThenA": [
+    [
+      9691,
+      840
+    ],
+    [
+      2380,
+      4134
+    ]
+  ],
+  "correctMinutes": 13825,
+  "minuteAccuracy": 0.811088,
+  "sensitivity": 0.634633,
+  "specificity": 0.920235,
+  "balancedAccuracy": 0.777434,
+  "nonBorderlineRecordCorrect": 24,
+  "nonBorderlineRecordTotal": 30,
+  "nonBorderlineMisclassified": [
+    "a06",
+    "a09",
+    "a10",
+    "a18",
+    "c07",
+    "c08"
+  ],
+  "borderlineRecordPredictions": {
+    "b01": "C",
+    "b02": "A",
+    "b03": "A",
+    "b04": "C",
+    "b05": "A"
+  },
+  "recordResultsSha256": "2a1da847d3871765f0dc06757a1598ebba5cd9137fcb75b6e33a78afcc705343",
+  "historicalPaperTarget": {
+    "correctMinutes": 13985,
+    "minutes": 17045,
+    "nonBorderlineRecordCorrect": 26,
+    "nonBorderlineRecordTotal": 30
+  },
+  "historicalHeadlineReproducedExactly": false,
+  "publicReproductionAccepted": false,
+  "status": "current_official_package_executed_historical_result_mismatch",
+  "brainstemClassificationEnabled": false,
+  "eligibleForRuntimeReview": false,
+  "environment": {
+    "python": "3.12.13",
+    "wfdb": "4.3.1",
+    "system": "Darwin",
+    "machine": "arm64",
+    "release": "25.5.0",
+    "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)"
+  }
+}

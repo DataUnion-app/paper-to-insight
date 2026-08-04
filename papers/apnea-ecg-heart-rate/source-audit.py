@@ -1,35 +1,63 @@
 #!/usr/bin/env python3
-"""Checksum-pinned audit of the proposed Apnea-ECG source."""
+"""Freeze the checksum-pinned official Apnea-ECG method authority."""
 
 from __future__ import annotations
 
 import argparse
-import csv
 import hashlib
 import io
 import json
+import re
 import sys
+import tarfile
 from pathlib import Path
 from urllib.request import Request, urlopen
 
 
 ROOT = Path(__file__).resolve().parent
-REVISION = "aaaf046741696e1c6267f707853e6e79b31c9ae5"
-MAX_BYTES = 2_000_000
+MAX_BYTES = 5_000_000
 REQUIRED = {
-    "dataset-manifest",
-    "dataset-page",
-    "source-license",
-    "source-model-evaluation",
-    "source-readme",
-    "source-training-index",
+    "apdet-source",
+    "apnea-ecg-manifest",
+    "apnea-ecg-paper",
+    "apnea-ecg-records",
+    "method-paper",
+    "ucddb-manifest",
+    "ucddb-records",
 }
-BLOCK_REASONS = [
-    "paper_implementation_identity_unproven",
-    "participant_split_leakage",
-    "population_or_device_unvalidated",
-    "reference_labels_missing",
-]
+EXECUTABLES = {
+    "apdet-1.0/av.c",
+    "apdet-1.0/detruns.c",
+    "apdet-1.0/filt.c",
+    "apdet-1.0/get_apdet",
+    "apdet-1.0/ht.c",
+    "apdet-1.0/htavsd.c",
+    "apdet-1.0/htmedfilt.c",
+    "apdet-1.0/ldetrend.c",
+    "apdet-1.0/linsamp.c",
+    "apdet-1.0/mm.c",
+    "apdet-1.0/rrlist.c",
+    "apdet-1.0/smooth.c",
+}
+METHOD_MARKERS = (
+    "NFLAG='-a N'",
+    'FILT="0.2 20 -x 0.4 2.0"',
+    "RESAMP=1.0",
+    "DETREND=40",
+    "SMOOTH=5",
+    "MEDFILT=60",
+    'AVSDOUT="1:00 5:00"',
+    "MINLEN=15:00",
+    'AMPTHRES="-0.555 1.3"',
+    "AVAMP0=0.65",
+    "AVAMP1=2.5",
+    "SDAMP1=0.6",
+    "AMPTIME0=0.006",
+    "AVFREQ0=0.01",
+    "AVFREQ1=0.055",
+    "SDFREQ1=0.01",
+    "FREQTIME0=0.7",
+)
 
 
 class AuditError(ValueError):
@@ -37,7 +65,7 @@ class AuditError(ValueError):
 
 
 def fetch(url: str) -> bytes:
-    request = Request(url, headers={"User-Agent": "paper-to-insight-source-audit/1"})
+    request = Request(url, headers={"User-Agent": "paper-to-insight-source-audit/2"})
     with urlopen(request, timeout=30) as response:
         data = response.read(MAX_BYTES + 1)
     if len(data) > MAX_BYTES:
@@ -69,72 +97,64 @@ def audit(assets: dict[str, bytes]) -> dict:
     if set(assets) != REQUIRED:
         raise AuditError("audit asset set differs")
 
-    readme = assets["source-readme"].decode()
-    license_text = assets["source-license"].decode()
-    evaluator = assets["source-model-evaluation"].decode()
-    dataset_page = assets["dataset-page"].decode()
-    manifest = assets["dataset-manifest"].decode()
-    rows = list(csv.DictReader(io.StringIO(assets["source-training-index"].decode())))
+    try:
+        with tarfile.open(fileobj=io.BytesIO(assets["apdet-source"]), mode="r:gz") as archive:
+            members = {
+                member.name: archive.extractfile(member).read()
+                for member in archive.getmembers()
+                if member.isfile()
+            }
+    except (tarfile.TarError, AttributeError, OSError) as exc:
+        raise AuditError("apdet source archive is invalid") from exc
 
-    personal_project = "personal project for the Insight Data Science program" in readme
-    record_split = all(
-        marker in evaluator
-        for marker in (
-            "StratifiedKFold",
-            'skf.split(file_df, file_df["group"])',
-            'file_df.loc[idx_train, "file"]',
-            'file_df.loc[idx_val, "file"]',
-        )
-    )
-    participant_ids = bool(rows) and any(
-        key.lower() in {"participant", "participant_id", "patient", "subject", "subject_id"}
-        for key in rows[0]
-    )
-    training_records = {row.get("file") for row in rows}
-    overlapping_pair = {"c05", "c06"}.issubset(training_records) and all(
-        marker in dataset_page
-        for marker in (
-            "same original recording",
-            "c05 begins 80 seconds later than c06",
-        )
-    )
-    count_unit_mismatch = (
-        "70 participants" in readme and "The data consist of 70 records" in dataset_page
-    )
-    manifest_pins_metadata = (
-        "25c86153fc254cff961541ee414d8174c9b5f29e3ec989cebc1103edd02b8ec9 "
-        "additional-information.txt" in manifest
-    )
-    source_license = "MIT License" in license_text
+    if not EXECUTABLES.issubset(members):
+        raise AuditError("official executable source set differs")
+    licence = b"GNU General Public License"
+    publisher = b"Free Software Foundation"
+    version = b"either version 2 of the License, or (at your option) any later"
+    if any(
+        licence not in members[name]
+        or publisher not in members[name]
+        or version not in members[name]
+        for name in EXECUTABLES
+    ):
+        raise AuditError("embedded executable licence notice differs")
 
-    checks = {
-        "independent personal project": personal_project,
-        "record-level cross-validation": record_split,
-        "participant identifiers absent": not participant_ids,
-        "documented overlapping records in training": overlapping_pair,
-        "record/participant count mismatch": count_unit_mismatch,
-        "official metadata is manifest-pinned": manifest_pins_metadata,
-        "source license is explicit": source_license,
-    }
-    failed = sorted(name for name, passed in checks.items() if not passed)
-    if failed:
-        raise AuditError(f"source evidence differs: {', '.join(failed)}")
+    script = members["apdet-1.0/get_apdet"].decode("ascii")
+    missing = [marker for marker in METHOD_MARKERS if marker not in script]
+    if missing:
+        raise AuditError(f"official method constants differ: {missing}")
+
+    apnea_index = assets["apnea-ecg-records"].decode("ascii").splitlines()
+    apnea_records = [name for name in apnea_index if re.fullmatch(r"[abcx][0-9]{2}", name)]
+    ucddb_index = assets["ucddb-records"].decode("ascii").splitlines()
+    ucddb_records = [name.removesuffix(".rec") for name in ucddb_index if name.endswith(".rec")]
+    if len(apnea_records) != 70 or apnea_records[:2] != ["a01", "a02"]:
+        raise AuditError("Apnea-ECG record list differs")
+    if len(ucddb_records) != 25 or ucddb_records[:2] != ["ucddb002", "ucddb003"]:
+        raise AuditError("UCDDB record list differs")
+    if "a01.apn" not in assets["apnea-ecg-manifest"].decode("ascii"):
+        raise AuditError("Apnea-ECG minute-label manifest entry is absent")
+    if "ucddb002_respevt.txt" not in assets["ucddb-manifest"].decode("ascii"):
+        raise AuditError("UCDDB respiratory-event manifest entry is absent")
+
+    freeze = json.loads((ROOT / "authority-freeze.json").read_text(encoding="utf-8"))
+    if freeze.get("brainstemDecision") != "withhold_personal_and_runnable_apnea_outputs":
+        raise AuditError("Brainstem decision is not fail-closed")
 
     return {
-        "schema": "paper-to-insight.source-audit/v1",
+        "schema": "paper-to-insight.source-audit/v2",
         "candidate": "brainstem.apnea-ecg-heart-rate",
-        "sourceRevision": REVISION,
-        "sourceRelationship": "independent_personal_project",
-        "sourceLicenseVerified": True,
-        "publicDatasetLicense": "ODC-By-1.0",
-        "recordLevelCrossValidation": True,
-        "participantIdentifiersAvailable": False,
-        "knownOverlappingRecordsInTraining": ["c05", "c06"],
-        "sourcePopulationCountUnitMismatch": True,
-        "publicReproductionAccepted": False,
-        "brainstemClassificationEnabled": False,
-        "eligibleForRuntimeReview": False,
-        "blockReasons": BLOCK_REASONS,
+        "officialSourceSha256": hashlib.sha256(assets["apdet-source"]).hexdigest(),
+        "sourceRelationship": "author_reference_implementation",
+        "embeddedSoftwareLicence": "GPL-2.0-or-later",
+        "catalogueResourceLicence": "ODC-By-1.0",
+        "licenceReviewRequiredBeforeRedistribution": True,
+        "methodConstantsVerified": True,
+        "apneaEcgRecords": len(apnea_records),
+        "ucddbParticipants": len(ucddb_records),
+        "personalApneaOutputEnabled": False,
+        "runnableApneaOfferEnabled": False,
     }
 
 

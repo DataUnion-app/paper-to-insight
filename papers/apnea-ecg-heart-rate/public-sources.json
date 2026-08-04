@@ -1,29 +1,33 @@
 {
   "schema": "paper-to-insight.public-sources/v1",
   "assets": {
-    "dataset-manifest": {
+    "apdet-source": {
+      "url": "https://physionet.org/files/apdet/1.0.0/apdet.src.tar.gz",
+      "sha256": "b4961dae0e5bded52a2caecf6bcc186837d4deccf1ac2f173c9f6d5f0a376eac"
+    },
+    "apnea-ecg-manifest": {
       "url": "https://physionet.org/files/apnea-ecg/1.0.0/SHA256SUMS.txt",
       "sha256": "970d643ec848af6bbc2bda148d1f8e165d439514948b23e5df76e962ba7a5b61"
     },
-    "dataset-page": {
-      "url": "https://physionet.org/content/apnea-ecg/1.0.0/",
-      "sha256": "4ce9d56f069c1fd12c44f7523f8b248bd6410b0a432d6352a960807f30ad377a"
+    "apnea-ecg-paper": {
+      "url": "https://physionet.org/files/challenge-2000/1.0.0/papers/apnea-ecg-cinc-2000.pdf",
+      "sha256": "9b1de6a65af6a5c4aedbea2ee807561bfa32e2a3952e74aa394a0aad2752874e"
     },
-    "source-license": {
-      "url": "https://raw.githubusercontent.com/ChiQiao/Apnea-ECG/aaaf046741696e1c6267f707853e6e79b31c9ae5/LICENSE",
-      "sha256": "94a12ad83e0af4145eb36d5ab278732cdb6faaaa608e9489e0112864586421c4"
+    "apnea-ecg-records": {
+      "url": "https://physionet.org/files/apnea-ecg/1.0.0/RECORDS",
+      "sha256": "4094ff6241e4ef84ea818eb6356319a152e49e73094d132d442f9213514ee734"
     },
-    "source-model-evaluation": {
-      "url": "https://raw.githubusercontent.com/ChiQiao/Apnea-ECG/aaaf046741696e1c6267f707853e6e79b31c9ae5/notebooks/model_evaluation.py",
-      "sha256": "deba3de1b6b499e94474cc51b2bd878d2af0cc65a32fbbb8401c3668b845fa20"
+    "method-paper": {
+      "url": "https://physionet.org/files/challenge-2000/1.0.0/papers/00898634.pdf",
+      "sha256": "80bbb288c019ca0358a8a72a08a439f0026f48b412886abe813e393b4a4e05dc"
     },
-    "source-readme": {
-      "url": "https://raw.githubusercontent.com/ChiQiao/Apnea-ECG/aaaf046741696e1c6267f707853e6e79b31c9ae5/README.md",
-      "sha256": "05a9100025ae1e152ed0444dd6ad55b776ff459813b1eebdb1b459466770df4c"
+    "ucddb-manifest": {
+      "url": "https://physionet.org/files/ucddb/1.0.0/SHA256SUMS.txt",
+      "sha256": "c844fb0eb8bc35936d7a5b07cecab895e29d9a2c93dac3a23465e799e00385a1"
     },
-    "source-training-index": {
-      "url": "https://raw.githubusercontent.com/ChiQiao/Apnea-ECG/aaaf046741696e1c6267f707853e6e79b31c9ae5/resources/File_train.csv",
-      "sha256": "6865ce9e08a7362371ca34ab6739ef5b3057d73874536f9e993f3b9e90b04e1c"
+    "ucddb-records": {
+      "url": "https://physionet.org/files/ucddb/1.0.0/RECORDS",
+      "sha256": "1f74753cc5af759b42d4bb6fff518e9c9ea773bccf93c27179aad60755afde1e"
     }
   }
 }

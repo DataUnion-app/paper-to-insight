@@ -1,4 +1,7 @@
 import importlib.util
+import io
+import json
+import tarfile
 import unittest
 from pathlib import Path
 
@@ -10,46 +13,45 @@ assert SPEC.loader
 SPEC.loader.exec_module(source_audit)
 
 
+def source_archive() -> bytes:
+    stream = io.BytesIO()
+    with tarfile.open(fileobj=stream, mode="w:gz") as archive:
+        for name in sorted(source_audit.EXECUTABLES):
+            body = (
+                "GNU General Public License\nFree Software Foundation\n"
+                "either version 2 of the License, or (at your option) any later\n"
+            )
+            if name.endswith("get_apdet"):
+                body += "\n".join(source_audit.METHOD_MARKERS)
+            data = body.encode()
+            member = tarfile.TarInfo(name)
+            member.size = len(data)
+            archive.addfile(member, io.BytesIO(data))
+    return stream.getvalue()
+
+
 def evidence():
     return {
-        "source-readme": b"This is a personal project for the Insight Data Science program. The dataset has 70 participants.",
-        "source-license": b"MIT License",
-        "source-model-evaluation": (
-            b"StratifiedKFold\n"
-            b'skf.split(file_df, file_df["group"])\n'
-            b'file_df.loc[idx_train, "file"]\n'
-            b'file_df.loc[idx_val, "file"]\n'
-        ),
-        "source-training-index": b"file,group,neg,pos\nc05,C,1,2\nc06,C,2,1\n",
-        "dataset-page": (
-            b"The data consist of 70 records. c05 and c06 come from the same original recording; "
-            b"c05 begins 80 seconds later than c06."
-        ),
-        "dataset-manifest": (
-            b"25c86153fc254cff961541ee414d8174c9b5f29e3ec989cebc1103edd02b8ec9 "
-            b"additional-information.txt\n"
-        ),
+        "apdet-source": source_archive(),
+        "apnea-ecg-manifest": b"00 a01.apn\n",
+        "apnea-ecg-paper": b"paper",
+        "apnea-ecg-records": "\n".join([f"a{i:02d}" for i in range(1, 36)] + [f"x{i:02d}" for i in range(1, 36)]).encode(),
+        "method-paper": b"method",
+        "ucddb-manifest": b"00 ucddb002_respevt.txt\n",
+        "ucddb-records": "\n".join(["ucddb002.rec", "ucddb003.rec"] + [f"ucddb{i:03d}.rec" for i in range(4, 27)]).encode(),
     }
 
 
 class SourceAuditTest(unittest.TestCase):
-    def test_blocks_record_level_source(self):
+    def test_freezes_official_method_and_fails_closed(self):
         result = source_audit.audit(evidence())
-        self.assertFalse(result["eligibleForRuntimeReview"])
-        self.assertFalse(result["brainstemClassificationEnabled"])
-        self.assertIn("participant_split_leakage", result["blockReasons"])
+        self.assertTrue(result["methodConstantsVerified"])
+        self.assertTrue(result["licenceReviewRequiredBeforeRedistribution"])
+        self.assertFalse(result["personalApneaOutputEnabled"])
 
-    def test_requires_complete_evidence(self):
+    def test_rejects_missing_method_constant(self):
         assets = evidence()
-        del assets["dataset-page"]
-        with self.assertRaises(source_audit.AuditError):
-            source_audit.audit(assets)
-
-    def test_requires_participant_mapping(self):
-        assets = evidence()
-        assets["source-training-index"] = (
-            b"file,group,neg,pos,participant_id\nc05,C,1,2,p1\nc06,C,2,1,p1\n"
-        )
+        source_audit.METHOD_MARKERS += ("missing-marker",)
         with self.assertRaises(source_audit.AuditError):
             source_audit.audit(assets)
 
