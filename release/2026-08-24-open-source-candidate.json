@@ -1,8 +1,9 @@
 {
   "schema": "paper-to-insight.open-source-candidate/v1",
-  "createdAt": "2026-08-24T03:20:40Z",
-  "sourceCommit": "868a3f10eb2782a25a07301c6397cdd8e501a72a",
-  "sourceTree": "90ccccd11ee94d1d32bd1964639478cf66a24682",
+  "createdAt": "2026-08-24T09:20:00Z",
+  "releaseTag": "v0.1.0",
+  "sourceCommit": "73c3038dc081de8c02c11aaa9cd9f8f1c1a17883",
+  "sourceTree": "02fa24e0c9704c39273c9f113cda94b18a9b6bfd",
   "license": "Apache-2.0",
   "productionConnectivity": false,
   "participantDataIncluded": false,
