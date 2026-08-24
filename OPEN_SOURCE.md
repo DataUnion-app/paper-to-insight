@@ -24,11 +24,14 @@ systems; public contributors do not need them to create a candidate.
 
 ## Publication controls
 
-Before making the repository public, the owner must enable GitHub private
-vulnerability reporting, protect the default branch, require the local checks on
-pull requests, and verify the release manifest against the named source commit.
-Repository visibility is a human operation and is not implied by a passing
-candidate or release receipt.
+The repository is public under `DataUnion-app`, uses Apache-2.0, and has private
+vulnerability reporting enabled. Release candidates enter the default branch
+only through pull requests that pass the local checks in CI. Verify each release
+manifest against its named source commit before merging and create signed tags
+only as a separate owner action.
+
+Public visibility does not make any candidate approved, clinically valid, or
+eligible for protected data.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the contributor contract and
 [SECURITY.md](SECURITY.md) for private disclosure.

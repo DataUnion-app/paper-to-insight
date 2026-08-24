@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "productionConnectivity": false,
   "participantDataIncluded": false,
-  "publicationApproved": false,
+  "publicationApproved": true,
   "checks": {
     "rootTestsPassed": 19,
     "paperTestFilesPassed": 14,
@@ -18,10 +18,7 @@
     "highConfidenceSecretFindings": 0
   },
   "humanGates": [
-    "enable-private-vulnerability-reporting",
     "protect-default-branch",
-    "choose-public-repository-owner",
-    "approve-repository-visibility",
     "create-signed-release-tag"
   ]
 }
