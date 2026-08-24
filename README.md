@@ -7,6 +7,9 @@ This repository is the public workbench. It contains no participant data,
 credentials, approval keys, or connection to Brainstem infrastructure. Passing
 its checks means **candidate**, not approved or clinically valid.
 
+The exact public/private boundary and repository-publication gates are in
+[`OPEN_SOURCE.md`](OPEN_SOURCE.md).
+
 ## Try it
 
 ```bash
