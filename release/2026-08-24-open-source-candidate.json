@@ -1,0 +1,24 @@
+{
+  "schema": "paper-to-insight.open-source-candidate/v1",
+  "createdAt": "2026-08-24T03:20:40Z",
+  "sourceCommit": "868a3f10eb2782a25a07301c6397cdd8e501a72a",
+  "sourceTree": "90ccccd11ee94d1d32bd1964639478cf66a24682",
+  "license": "Apache-2.0",
+  "productionConnectivity": false,
+  "participantDataIncluded": false,
+  "publicationApproved": true,
+  "checks": {
+    "rootTestsPassed": 19,
+    "paperTestFilesPassed": 14,
+    "candidateManifestsValidated": 14,
+    "historyUniqueObjects": 383,
+    "historyTextBlobsScanned": 210,
+    "historyBinaryBlobs": 0,
+    "historyLargeBlobs": 0,
+    "highConfidenceSecretFindings": 0
+  },
+  "humanGates": [
+    "protect-default-branch",
+    "create-signed-release-tag"
+  ]
+}

@@ -54,6 +54,10 @@ Public work may claim at most `E0_candidate`, `E1_public_reproduced`, or
 `E2_brainstem_compatible_exploratory`. Brainstem disease classifications must
 abstain at these tiers. `clinicalUse` is always `prohibited`.
 
+For a protected E3 proposal, read
+[e3-validation-gate.md](references/e3-validation-gate.md). Self-report alone
+cannot serve as the reference standard.
+
 ### 4. Design both modes
 
 Use one pure scientific calculation owner where possible.
