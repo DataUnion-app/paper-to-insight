@@ -57,6 +57,18 @@ class BidsleepPreflightTest(unittest.TestCase):
         with self.assertRaises(module.PreflightError):
             module.validate_preflight(preflight)
 
+    def test_rejects_published_experiment_or_architecture_drift(self):
+        mutations = [
+            ("experiment", "splitSubjects", {"train": 29, "validation": 9, "test": 9}),
+            ("experiment", "crossValidationFolds", 10),
+            ("architectureEvidence", "variantResolved", True),
+        ]
+        for section, key, value in mutations:
+            preflight = copy.deepcopy(self.preflight)
+            preflight["paper"][section][key] = value
+            with self.assertRaises(module.PreflightError):
+                module.validate_preflight(preflight)
+
     @staticmethod
     def public_entries():
         entries = {}
@@ -73,8 +85,13 @@ class BidsleepPreflightTest(unittest.TestCase):
         self.assertEqual(plan["counts"], {"subjects": 47, "nights": 253, "files": 759})
         self.assertEqual(
             {name: len(value["subjects"]) for name, value in plan["partitions"].items()},
-            {"train": 29, "validation": 9, "test": 9},
+            {"train": 31, "validation": 5, "test": 11},
         )
+        self.assertEqual(plan["schema"], "paper-to-insight.bidsleep-public-plan/v2")
+        self.assertEqual(plan["assignment"]["status"], "reconstructed_from_published_counts")
+        self.assertFalse(plan["assignment"]["publishedSubjectIdentitiesAvailable"])
+        self.assertEqual(plan["publishedExperiment"]["training"]["optimizationEpochs"], 500)
+        self.assertFalse(plan["modelEvidence"]["variantResolved"])
         self.assertIn(plan["benchmark"]["night"], plan["partitions"]["train"]["nights"])
         self.assertEqual(set(plan["benchmark"]["files"]), module.NIGHT_FILES)
         self.assertEqual(

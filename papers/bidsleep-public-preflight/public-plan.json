@@ -1,4 +1,9 @@
 {
+  "assignment": {
+    "method": "sha256(seed + NUL + subject); first 11 test, next 5 validation, remaining 31 train",
+    "publishedSubjectIdentitiesAvailable": false,
+    "status": "reconstructed_from_published_counts"
+  },
   "benchmark": {
     "files": {
       "hr.csv": {
@@ -32,6 +37,18 @@
     "doi": "10.13026/a0sy-7t69",
     "version": "1.0.0"
   },
+  "modelEvidence": {
+    "paperEpochCovariates": [
+      "Freq",
+      "Time"
+    ],
+    "paperRecurrentCell": "LSTM",
+    "sourceConvolutionEpochCovariateCount": 5,
+    "sourceRecurrentCell": "GRU",
+    "sourceTestEpochCovariateCount": 3,
+    "sourceTrainEpochCovariateCount": 5,
+    "variantResolved": false
+  },
   "partitions": {
     "test": {
       "nights": [
@@ -40,6 +57,9 @@
         "Bidslab11/3",
         "Bidslab11/4",
         "Bidslab11/5",
+        "Bidslab15/1",
+        "Bidslab15/2",
+        "Bidslab15/3",
         "Bidslab17/1",
         "Bidslab17/2",
         "Bidslab17/3",
@@ -51,6 +71,11 @@
         "Bidslab20/3",
         "Bidslab20/4",
         "Bidslab20/5",
+        "Bidslab34/1",
+        "Bidslab34/2",
+        "Bidslab34/3",
+        "Bidslab34/4",
+        "Bidslab34/5",
         "Bidslab45/1",
         "Bidslab45/2",
         "Bidslab45/3",
@@ -82,8 +107,10 @@
       ],
       "subjects": [
         "Bidslab11",
+        "Bidslab15",
         "Bidslab17",
         "Bidslab20",
+        "Bidslab34",
         "Bidslab45",
         "Bidslab49",
         "Bidslab51",
@@ -181,6 +208,12 @@
         "Bidslab30/5",
         "Bidslab30/6",
         "Bidslab30/7",
+        "Bidslab31/1",
+        "Bidslab31/2",
+        "Bidslab31/3",
+        "Bidslab31/4",
+        "Bidslab31/5",
+        "Bidslab31/6",
         "Bidslab32/1",
         "Bidslab32/2",
         "Bidslab32/3",
@@ -220,6 +253,11 @@
         "Bidslab42/3",
         "Bidslab42/4",
         "Bidslab42/5",
+        "Bidslab43/1",
+        "Bidslab43/2",
+        "Bidslab43/3",
+        "Bidslab43/4",
+        "Bidslab43/5",
         "Bidslab50/1",
         "Bidslab50/2",
         "Bidslab50/3",
@@ -273,6 +311,7 @@
         "Bidslab19",
         "Bidslab22",
         "Bidslab30",
+        "Bidslab31",
         "Bidslab32",
         "Bidslab36",
         "Bidslab38",
@@ -280,6 +319,7 @@
         "Bidslab40",
         "Bidslab41",
         "Bidslab42",
+        "Bidslab43",
         "Bidslab50",
         "Bidslab52",
         "Bidslab55",
@@ -298,31 +338,12 @@
         "Bidslab02/4",
         "Bidslab02/5",
         "Bidslab02/6",
-        "Bidslab15/1",
-        "Bidslab15/2",
-        "Bidslab15/3",
-        "Bidslab31/1",
-        "Bidslab31/2",
-        "Bidslab31/3",
-        "Bidslab31/4",
-        "Bidslab31/5",
-        "Bidslab31/6",
-        "Bidslab34/1",
-        "Bidslab34/2",
-        "Bidslab34/3",
-        "Bidslab34/4",
-        "Bidslab34/5",
         "Bidslab35/1",
         "Bidslab35/2",
         "Bidslab35/3",
         "Bidslab35/4",
         "Bidslab35/5",
         "Bidslab35/6",
-        "Bidslab43/1",
-        "Bidslab43/2",
-        "Bidslab43/3",
-        "Bidslab43/4",
-        "Bidslab43/5",
         "Bidslab44/1",
         "Bidslab44/2",
         "Bidslab44/3",
@@ -341,18 +362,38 @@
       ],
       "subjects": [
         "Bidslab02",
-        "Bidslab15",
-        "Bidslab31",
-        "Bidslab34",
         "Bidslab35",
-        "Bidslab43",
         "Bidslab44",
         "Bidslab47",
         "Bidslab65"
       ]
     }
   },
-  "schema": "paper-to-insight.bidsleep-public-plan/v1",
+  "publishedExperiment": {
+    "crossValidationFolds": 5,
+    "evaluationMetrics": [
+      "accuracy",
+      "sensitivity",
+      "specificity",
+      "precision",
+      "weighted_f1",
+      "weighted_mcc"
+    ],
+    "splitSubjectIdentitiesPublished": false,
+    "splitSubjects": {
+      "test": 11,
+      "train": 31,
+      "validation": 5
+    },
+    "training": {
+      "batchSize": 20,
+      "learningRate": 0.00015,
+      "lossClaim": "real-world weighting loss",
+      "optimizationEpochs": 500,
+      "optimizer": "Adam"
+    }
+  },
+  "schema": "paper-to-insight.bidsleep-public-plan/v2",
   "splitSeed": "bidsleep-public-reproduction-v1",
   "status": "metadata_only"
 }

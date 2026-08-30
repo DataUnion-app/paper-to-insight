@@ -1,13 +1,43 @@
 {
-  "schema": "paper-to-insight.public-preflight/v1",
+  "schema": "paper-to-insight.public-preflight/v2",
   "status": "preflight_only",
   "paper": {
     "title": "AI-Driven Sleep Staging Using Instantaneous Heart Rate and Accelerometry: Insights From an Apple Watch Study",
     "doi": "10.1109/TBME.2025.3612158",
+    "pmcid": "PMC12931632",
     "classes": ["wake", "light", "deep", "rem"],
     "epochSeconds": 30,
     "reportedAccuracy": 0.71,
-    "population": "47 healthy adults without a history of sleep disorders"
+    "population": "47 healthy adults without a history of sleep disorders",
+    "experiment": {
+      "splitSubjects": {"train": 31, "validation": 5, "test": 11},
+      "splitSubjectIdentitiesPublished": false,
+      "crossValidationFolds": 5,
+      "training": {
+        "optimizer": "Adam",
+        "learningRate": 0.00015,
+        "batchSize": 20,
+        "optimizationEpochs": 500,
+        "lossClaim": "real-world weighting loss"
+      },
+      "evaluationMetrics": [
+        "accuracy",
+        "sensitivity",
+        "specificity",
+        "precision",
+        "weighted_f1",
+        "weighted_mcc"
+      ]
+    },
+    "architectureEvidence": {
+      "paperRecurrentCell": "LSTM",
+      "paperEpochCovariates": ["Freq", "Time"],
+      "sourceRecurrentCell": "GRU",
+      "sourceTrainEpochCovariateCount": 5,
+      "sourceTestEpochCovariateCount": 3,
+      "sourceConvolutionEpochCovariateCount": 5,
+      "variantResolved": false
+    }
   },
   "dataset": {
     "name": "A Multi-Night Instantaneous Heart Rate and Accelerometry Dataset with EEG Sleep Stage Labels",
@@ -88,14 +118,14 @@
       "seed Python, NumPy, PyTorch, data-loader, and accelerator operations",
       "persist weights, optimizer state, split manifest, and per-class metrics"
     ],
-    "computeEstimate": "benchmark one epoch first; source requests 1000 epochs on two GPUs, so full GPU-hours cannot be honestly estimated before the port",
+    "computeEstimate": "benchmark one epoch first; the paper reports 500 epochs while the source requests 1000 epochs on two GPUs, so full GPU-hours cannot be honestly estimated before the port",
     "diskBudget": "reserve at least 100 GB for the 5.9 GB archive, 27.9 GB expansion, converted tensors, checkpoints, and receipts"
   },
   "blockers": [
     "no raw-to-intermediate preprocessing code is published",
     "no trained weights are published",
     "the published train and validation directories do not prove participant separation",
-    "the paper specifies two epoch covariates, training supplies five, and testing supplies three to a five-channel convolution",
+    "the paper specifies LSTMs and two epoch covariates while the source implements GRUs, trains with five covariates, and tests with three against a five-channel convolution",
     "the public dataset does not contain longitudinal steps required for the personalized circadian clock",
     "the source has no locked install environment or random seeds",
     "Apple Watch PPG and wrist motion are not calibrated to Brainstem R-R and device movement"

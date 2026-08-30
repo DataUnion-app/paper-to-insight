@@ -8,8 +8,8 @@ entry, trained model, or transfer-validation result.
 
 - Paper: Song et al., *AI-Driven Sleep Staging Using Instantaneous Heart Rate
   and Accelerometry: Insights From an Apple Watch Study*, DOI
-  `10.1109/TBME.2025.3612158`. The paper reports four 30-second classes and 71%
-  overall accuracy in 47 healthy adults.
+  `10.1109/TBME.2025.3612158`, PMCID `PMC12931632`. The paper reports four
+  30-second classes and 71% overall accuracy in 47 healthy adults.
 - Dataset: PhysioNet BIDSleep `1.0.0`, DOI `10.13026/a0sy-7t69`, published
   12 May 2026 under ODC-By 1.0. Its official checksum manifest contains 759
   signal/label files: 253 nights from 47 subjects. PhysioNet reports 5.9 GB ZIP
@@ -48,6 +48,7 @@ The source cannot reproduce as committed:
 - no weights are published and checkpoint saving is commented out;
 - the paper describes `Freq` and `Time`, training supplies five epoch channels,
   and testing supplies three to a convolution that expects five;
+- the paper describes LSTM components while the pinned implementation uses GRUs;
 - the public BIDSleep files contain no longitudinal step series for the
   personalised circadian model, and the paper does not identify which time
   variant produced the reported result;
@@ -66,7 +67,9 @@ claim the notebooks already run.
 1. Reserve at least 100 GB scratch space.
 2. Download and verify PhysioNet `1.0.0` only after human approval.
 3. Convert one public night with an explicit timestamp/label alignment receipt.
-4. Freeze a subject-level split manifest before tensor generation.
+4. Freeze a subject-level split manifest before tensor generation. Preserve the
+   paper's 31/5/11 subject counts while labelling the deterministic identities as
+   reconstructed because the author assignments are not published.
 5. Run one seeded epoch on one GPU and record peak memory, wall time, and output
    shapes.
 6. Use that receipt to approve or reject the full training budget. Do not infer
@@ -97,18 +100,22 @@ does not download any night recording.
 
 ## Public participant split plan
 
-The metadata-only plan reads the official pinned checksum manifest, assigns all
-253 nights by their 47 subjects to deterministic train/validation/test
-partitions, and selects one training night for a future benchmark. It records
-URLs and hashes but neither downloads nor authorizes signal data:
+The metadata-only v2 plan reads the official pinned checksum manifest, assigns
+all 253 nights by their 47 subjects to the paper's 31/5/11 train/validation/test
+counts, and selects one training night for a future benchmark. Because the paper
+does not publish subject identities, the plan labels its hash-ordered assignment
+as a reconstruction. It also pins the paper's five-fold cross-validation,
+optimizer, learning rate, batch size, 500-epoch schedule, and evaluation metrics.
+It records URLs and hashes but neither downloads nor authorizes signal data:
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 papers/bidsleep-public-preflight/preflight.py \
   --verify-upstream --public-plan-output /tmp/bidsleep-public-plan.json
 ```
 
-`public-plan.json` is the committed deterministic receipt. Upstream verification
-fails if regenerating it from the pinned manifest produces any difference.
+`public-plan.json` is the committed deterministic receipt. The earlier 29/9/9
+v1 plan is superseded. Upstream verification fails if regenerating v2 from the
+pinned manifest produces any difference.
 
 ## Generated converter checkpoint
 

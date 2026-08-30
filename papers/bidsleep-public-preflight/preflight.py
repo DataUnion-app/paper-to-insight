@@ -38,10 +38,77 @@ def validate_preflight(value):
         },
         "$",
     )
-    if root["schema"] != "paper-to-insight.public-preflight/v1":
+    if root["schema"] != "paper-to-insight.public-preflight/v2":
         raise PreflightError("unsupported preflight schema")
     if root["status"] != "preflight_only" or not root["blockers"]:
         raise PreflightError("preflight must remain blocked")
+    paper = exact(
+        root["paper"],
+        {
+            "title", "doi", "pmcid", "classes", "epochSeconds",
+            "reportedAccuracy", "population", "experiment", "architectureEvidence",
+        },
+        "$.paper",
+    )
+    experiment = exact(
+        paper["experiment"],
+        {
+            "splitSubjects", "splitSubjectIdentitiesPublished", "crossValidationFolds",
+            "training", "evaluationMetrics",
+        },
+        "$.paper.experiment",
+    )
+    training = exact(
+        experiment["training"],
+        {"optimizer", "learningRate", "batchSize", "optimizationEpochs", "lossClaim"},
+        "$.paper.experiment.training",
+    )
+    architecture = exact(
+        paper["architectureEvidence"],
+        {
+            "paperRecurrentCell", "paperEpochCovariates", "sourceRecurrentCell",
+            "sourceTrainEpochCovariateCount", "sourceTestEpochCovariateCount",
+            "sourceConvolutionEpochCovariateCount", "variantResolved",
+        },
+        "$.paper.architectureEvidence",
+    )
+    if (
+        paper["title"]
+        != "AI-Driven Sleep Staging Using Instantaneous Heart Rate and Accelerometry: Insights From an Apple Watch Study"
+        or paper["doi"] != "10.1109/TBME.2025.3612158"
+        or paper["pmcid"] != "PMC12931632"
+        or paper["classes"] != ["wake", "light", "deep", "rem"]
+        or paper["epochSeconds"] != 30
+        or paper["reportedAccuracy"] != 0.71
+        or paper["population"] != "47 healthy adults without a history of sleep disorders"
+        or experiment["splitSubjects"] != {"train": 31, "validation": 5, "test": 11}
+        or experiment["splitSubjectIdentitiesPublished"] is not False
+        or experiment["crossValidationFolds"] != 5
+        or training
+        != {
+            "optimizer": "Adam",
+            "learningRate": 0.00015,
+            "batchSize": 20,
+            "optimizationEpochs": 500,
+            "lossClaim": "real-world weighting loss",
+        }
+        or experiment["evaluationMetrics"]
+        != [
+            "accuracy", "sensitivity", "specificity", "precision",
+            "weighted_f1", "weighted_mcc",
+        ]
+        or architecture
+        != {
+            "paperRecurrentCell": "LSTM",
+            "paperEpochCovariates": ["Freq", "Time"],
+            "sourceRecurrentCell": "GRU",
+            "sourceTrainEpochCovariateCount": 5,
+            "sourceTestEpochCovariateCount": 3,
+            "sourceConvolutionEpochCovariateCount": 5,
+            "variantResolved": False,
+        }
+    ):
+        raise PreflightError("published experiment contract drifted or source conflict was hidden")
     dataset = root["dataset"]
     if (dataset["version"], dataset["subjects"], dataset["nights"], dataset["files"]) != (
         "1.0.0", 47, 253, 759
@@ -108,18 +175,33 @@ def validate_preflight(value):
     return root
 
 
-def participant_split(subject_ids, seed="bidsleep-public-reproduction-v1"):
+def participant_split(
+    subject_ids,
+    seed="bidsleep-public-reproduction-v1",
+    *,
+    validation_count=None,
+    test_count=None,
+):
     if len(subject_ids) < 5 or len(subject_ids) != len(set(subject_ids)):
         raise PreflightError("at least five unique subjects are required")
     ordered = sorted(
         subject_ids,
         key=lambda item: hashlib.sha256(f"{seed}\0{item}".encode()).hexdigest(),
     )
-    holdout = max(1, len(ordered) // 5)
+    if validation_count is None and test_count is None:
+        validation_count = test_count = max(1, len(ordered) // 5)
+    if (
+        type(validation_count) is not int
+        or type(test_count) is not int
+        or validation_count < 1
+        or test_count < 1
+        or validation_count + test_count >= len(ordered)
+    ):
+        raise PreflightError("split counts are invalid")
     return {
-        "train": ordered[2 * holdout :],
-        "validation": ordered[holdout : 2 * holdout],
-        "test": ordered[:holdout],
+        "train": ordered[test_count + validation_count :],
+        "validation": ordered[test_count : test_count + validation_count],
+        "test": ordered[:test_count],
     }
 
 
@@ -163,7 +245,14 @@ def assemble_public_plan(preflight, entries, seed="bidsleep-public-reproduction-
     ):
         raise PreflightError("public inventory count differs")
 
-    split = participant_split(sorted(subjects), seed)
+    experiment = preflight["paper"]["experiment"]
+    published_split = experiment["splitSubjects"]
+    split = participant_split(
+        sorted(subjects),
+        seed,
+        validation_count=published_split["validation"],
+        test_count=published_split["test"],
+    )
     owner = {subject: name for name, values in split.items() for subject in values}
     partitions = {}
     for name in ("train", "validation", "test"):
@@ -189,10 +278,20 @@ def assemble_public_plan(preflight, entries, seed="bidsleep-public-reproduction-
         for name in sorted(NIGHT_FILES)
     }
     return {
-        "schema": "paper-to-insight.bidsleep-public-plan/v1",
+        "schema": "paper-to-insight.bidsleep-public-plan/v2",
         "status": "metadata_only",
         "dataset": {"doi": dataset["doi"], "version": dataset["version"]},
         "splitSeed": seed,
+        "assignment": {
+            "status": "reconstructed_from_published_counts",
+            "publishedSubjectIdentitiesAvailable": False,
+            "method": (
+                "sha256(seed + NUL + subject); first 11 test, next 5 validation, "
+                "remaining 31 train"
+            ),
+        },
+        "publishedExperiment": experiment,
+        "modelEvidence": preflight["paper"]["architectureEvidence"],
         "counts": {"subjects": len(subjects), "nights": len(nights), "files": len(entries)},
         "partitions": partitions,
         "benchmark": {"night": benchmark_night, "partition": "train", "files": benchmark_files},
