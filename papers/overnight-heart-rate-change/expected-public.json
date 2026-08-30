@@ -1,0 +1,24 @@
+{
+  "brainstemTranslation": {
+    "baselineMedianBpm": 63.0,
+    "baselineNightCount": 7,
+    "comparisonNightCount": 2,
+    "consecutiveIncreaseAtLeast3Bpm": false,
+    "consecutiveIncreaseAtLeast4Bpm": false,
+    "latestDifferenceBpm": 5.0,
+    "previousDifferenceBpm": -1.0
+  },
+  "schema": "paper-to-insight.overnight-heart-rate-change/result-v1",
+  "sourceReproduction": {
+    "finalInclusiveMedianBpm": 60,
+    "nightCount": 30,
+    "threshold3TwoNightEventOrdinals": [22],
+    "threshold4TwoNightEventOrdinals": []
+  },
+  "status": "complete",
+  "warnings": [
+    "Descriptive change from a personal baseline only.",
+    "This does not detect infection, illness, disease, or health risk.",
+    "The public wearable sample does not validate a Brainstem device."
+  ]
+}

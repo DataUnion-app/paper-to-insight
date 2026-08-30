@@ -1,0 +1,100 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.overnight-heart-rate-change",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Pre-symptomatic detection of COVID-19 from smartwatch data",
+    "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/33208926/",
+    "doi": "10.1038/s41551-020-00640-6",
+    "claim": "Reproduces the published NightSignal threshold mechanics, then limits the Brainstem translation to descriptive overnight heart-rate change from a personal baseline.",
+    "claimClass": "descriptive",
+    "population": "The paper and public sample do not validate a Brainstem device or participant population.",
+    "referenceStandard": "Pinned author implementation and checksum-pinned compact derivative of its public Fitbit sample.",
+    "implementationRelation": "independent_reimplementation",
+    "relationEvidence": "The source running-median and two-night +3/+4 bpm mechanics are independently reproduced; the Brainstem seven-prior-night translation is explicitly separate and non-clinical.",
+    "classification": {
+      "paperDecision": "not_applicable",
+      "labels": [],
+      "unit": "ordered nightly mean heart-rate measurement"
+    }
+  },
+  "sources": [
+    {
+      "name": "Stanford wearable-infection NightSignal implementation",
+      "url": "https://github.com/StanfordBioinformatics/wearable-infection",
+      "revisionType": "git_commit",
+      "revision": "99b3bd7937e72d42c2670c7a259d9f9f8728dc06",
+      "sha256": "198487887166afa2c7f884d832c2c837d41f2973b684da0303ec5aa8ad54a999",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/StanfordBioinformatics/wearable-infection/blob/99b3bd7937e72d42c2670c7a259d9f9f8728dc06/LICENSE"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Compact NightSignal Fitbit nightly-mean derivative",
+      "kind": "public",
+      "url": "https://github.com/StanfordBioinformatics/wearable-infection/blob/99b3bd7937e72d42c2670c7a259d9f9f8728dc06/P682517-Fitbit-rhr.csv",
+      "version": "99b3bd7937e72d42c2670c7a259d9f9f8728dc06",
+      "doi": "10.1038/s41551-020-00640-6",
+      "sha256": "eb645b9200da77f1aa3b9418eaef7708a332de8e24538f237a2ac6dccf6dae95",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/StanfordBioinformatics/wearable-infection/blob/99b3bd7937e72d42c2670c7a259d9f9f8728dc06/LICENSE"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "brainstem.full-night-summary-selector/v1",
+    "requiredSignals": ["R-R-derived full-night sleeping rate", "ordered distinct qualifying nights"],
+    "window": "Seven prior qualifying nights followed by two comparison nights.",
+    "preprocessing": "Use compact full-night summaries; calculate the prior-seven median without allowing comparison nights to move their own baseline.",
+    "brainstemVerdict": "compatible",
+    "mismatches": [
+      "The source uses Fitbit/Apple Watch resting heart rate rather than Brainstem R-R-derived sleeping rate.",
+      "Source infection labels and alerts are deliberately excluded.",
+      "Historical capture-time and device-provenance limitations remain explicit."
+    ]
+  },
+  "evidence": {
+    "tier": "E1_public_reproduced",
+    "useClass": "methods_only",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "not_applicable"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": true,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Participant-equal aggregate distribution of within-person overnight change; no nightly or disease-labelled rows."
+    },
+    "personal": {
+      "proposed": true,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Owner-only two-night change from the preceding seven-night personal median, with non-clinical limitations."
+    }
+  },
+  "abstention": [
+    "insufficient_quality",
+    "insufficient_coverage",
+    "privacy_floor",
+    "uncalibrated_device",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "infection or illness alert",
+    "diagnosis",
+    "disease prediction or risk",
+    "clinical normal range",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {"path": "README.md", "sha256": "affb1d87ffb8a7681754b512256b138fb4dee01dfa34d6f1dac30294e4bda007"},
+    {"path": "algorithm.py", "sha256": "e4fa1bd912253fbd38886b7fed56612adbfcc142f4912ae728137116d7afe305"},
+    {"path": "expected-public.json", "sha256": "556dc43e168024d292dcd4d275b25b21376f6c0a829f66adc1da21e693cea04b"},
+    {"path": "public-data.json", "sha256": "eb645b9200da77f1aa3b9418eaef7708a332de8e24538f237a2ac6dccf6dae95"},
+    {"path": "reproduce.py", "sha256": "32efc9eb0e97b8b76ae270d5d6ed8a130874ccbd85bb90b7f3fcfa19b95861cd"},
+    {"path": "test_algorithm.py", "sha256": "7e3b4255c2966c854febf276022efb5d7eeda27e15ef396fc72a89c42f1d7552"}
+  ]
+}

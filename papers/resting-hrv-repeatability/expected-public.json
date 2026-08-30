@@ -1,0 +1,19 @@
+{
+  "iccModel": "ICC(1,1) balanced one-way random-effects absolute agreement",
+  "metrics": {
+    "heartRateBpm": {"icc11": 0.9064, "icc11Ci95": [0.84, 0.9291], "medianWithinParticipantCvPercent": 1.078},
+    "rmssdMs": {"icc11": 0.9064, "icc11Ci95": [0.8477, 0.9298], "medianWithinParticipantCvPercent": 3.09},
+    "sd1Ms": {"icc11": 0.9064, "icc11Ci95": [0.8429, 0.9297], "medianWithinParticipantCvPercent": 3.104},
+    "sd2Ms": {"icc11": 0.9064, "icc11Ci95": [0.8435, 0.9299], "medianWithinParticipantCvPercent": 2.509},
+    "sdnnMs": {"icc11": 0.9064, "icc11Ci95": [0.8433, 0.9288], "medianWithinParticipantCvPercent": 2.482}
+  },
+  "mode": "cohort",
+  "participantCountBand": "20 to 49",
+  "recordingsPerParticipant": 7,
+  "schema": "paper-to-insight.resting-hrv-repeatability/result-v1",
+  "status": "complete",
+  "warnings": [
+    "Generated methods example; not a Brainstem reference.",
+    "Repeatability describes measurement consistency, not health or clinical status."
+  ]
+}

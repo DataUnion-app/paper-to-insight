@@ -1,0 +1,102 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.resting-hrv-repeatability",
+  "version": "0.1.0",
+  "paper": {
+    "title": "One-week test–retest stability of heart rate variability during rest and deep breathing",
+    "canonicalUrl": "https://doi.org/10.1088/1361-6579/adae51",
+    "doi": "10.1088/1361-6579/adae51",
+    "claim": "Implements a generated methods example for within-person repeatability of selected five-minute resting HRV measures without health interpretation.",
+    "claimClass": "descriptive",
+    "population": "The paper studied controlled ECG and respiration recordings; the package contains generated participants only.",
+    "referenceStandard": "Published test-retest method and deterministic participant-grouped generated fixture.",
+    "implementationRelation": "method_only",
+    "relationEvidence": "Independent stdlib ICC(1,1), participant bootstrap, and within-participant coefficient-of-variation example; it does not reproduce the laboratory cohort or acquisition.",
+    "classification": {
+      "paperDecision": "not_applicable",
+      "labels": [],
+      "unit": "repeated eligible five-minute rest recording"
+    }
+  },
+  "sources": [
+    {
+      "name": "Independent resting-HRV repeatability implementation",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "revisionType": "content_sha256",
+      "revision": "f420b8fe8e497c3ef16e027418c1018e9bda0f9734c700379b8a4aacede730a5",
+      "sha256": "f420b8fe8e497c3ef16e027418c1018e9bda0f9734c700379b8a4aacede730a5",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated participant-grouped resting-HRV fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-fixture",
+      "sha256": "d67b8d0df94abe4576e6d0cc59a55291f82840e549e59718f1e29b0907e676d1",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "brainstem.resting-hrv-methods/v1 plus a proposed distinct-record repeatability selector",
+    "requiredSignals": ["eligible five-minute resting R-R intervals", "repeated recordings from the same participant"],
+    "window": "Two to seven distinct eligible recordings for personal output; exactly seven per participant for cohort reliability.",
+    "preprocessing": "Reuse the reviewed resting-HRV method for heart rate, SDNN, RMSSD, SD1, and SD2; aggregate participants equally; bootstrap participants rather than recordings.",
+    "brainstemVerdict": "compatible",
+    "mismatches": [
+      "Ordinary field recordings do not reproduce the paper's controlled ECG, respiration, posture, acclimation, or time-of-day protocol.",
+      "Detector R-R is not asserted to be validated N-N input.",
+      "Seven recordings are a bounded product window, not a universal scientific minimum."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "methods_only",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "not_applicable"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": true,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Participant-equal aggregate reliability and within-participant variation; no subject or recording rows."
+    },
+    "personal": {
+      "proposed": true,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Owner-only median, range, and recording-to-recording variation for selected descriptive measures."
+    }
+  },
+  "abstention": [
+    "insufficient_quality",
+    "insufficient_coverage",
+    "privacy_floor",
+    "uncalibrated_device",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "laboratory replication",
+    "diagnosis",
+    "disease prediction or risk",
+    "clinical normal range",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {"path": "README.md", "sha256": "0a7f7daeb2349557ee707c6e065c3a305af5742f23f9610076afd4aa77d98c6b"},
+    {"path": "algorithm.py", "sha256": "f420b8fe8e497c3ef16e027418c1018e9bda0f9734c700379b8a4aacede730a5"},
+    {"path": "expected-public.json", "sha256": "a58feb31217ea2483f60efe479cd2c0a503958b4d28233d248feba640bd1d370"},
+    {"path": "generate_fixture.py", "sha256": "fb848f25a09e05cd66ab081d6b41602621b492545a19ad465c2aad9d1edf3931"},
+    {"path": "public-data.json", "sha256": "d67b8d0df94abe4576e6d0cc59a55291f82840e549e59718f1e29b0907e676d1"},
+    {"path": "reproduce.py", "sha256": "764a757e59f5c7fc06254a50698ced6aaded3c841361ef74c27902643502976f"},
+    {"path": "test_algorithm.py", "sha256": "92372b385afa39e2c3b2fa7c52251ffcd551db53c93b4a63457aba6cfbcba01e"}
+  ]
+}

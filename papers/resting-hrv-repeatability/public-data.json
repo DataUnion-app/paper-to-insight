@@ -1,0 +1,1226 @@
+{
+  "mode": "cohort",
+  "participants": [
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 57.0,
+          "recordingIndex": 1,
+          "rmssdMs": 35.9,
+          "sd1Ms": 25.5,
+          "sd2Ms": 50.7,
+          "sdnnMs": 40.2
+        },
+        {
+          "heartRateBpm": 58.4,
+          "recordingIndex": 2,
+          "rmssdMs": 38.84,
+          "sd1Ms": 27.6,
+          "sd2Ms": 53.92,
+          "sdnnMs": 42.72
+        },
+        {
+          "heartRateBpm": 57.7,
+          "recordingIndex": 3,
+          "rmssdMs": 37.37,
+          "sd1Ms": 26.55,
+          "sd2Ms": 52.31,
+          "sdnnMs": 41.46
+        },
+        {
+          "heartRateBpm": 58.8,
+          "recordingIndex": 4,
+          "rmssdMs": 39.68,
+          "sd1Ms": 28.2,
+          "sd2Ms": 54.84,
+          "sdnnMs": 43.44
+        },
+        {
+          "heartRateBpm": 57.3,
+          "recordingIndex": 5,
+          "rmssdMs": 36.53,
+          "sd1Ms": 25.95,
+          "sd2Ms": 51.39,
+          "sdnnMs": 40.74
+        },
+        {
+          "heartRateBpm": 58.5,
+          "recordingIndex": 6,
+          "rmssdMs": 39.05,
+          "sd1Ms": 27.75,
+          "sd2Ms": 54.15,
+          "sdnnMs": 42.9
+        },
+        {
+          "heartRateBpm": 58.0,
+          "recordingIndex": 7,
+          "rmssdMs": 38.0,
+          "sd1Ms": 27.0,
+          "sd2Ms": 53.0,
+          "sdnnMs": 42.0
+        }
+      ],
+      "subjectId": "97623c857ff028fe45f73fcf0de5ffa6e7bc84bb600b9583aa05f1639fbfdbe9"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 57.35,
+          "recordingIndex": 1,
+          "rmssdMs": 36.635,
+          "sd1Ms": 26.025,
+          "sd2Ms": 51.505,
+          "sdnnMs": 40.83
+        },
+        {
+          "heartRateBpm": 58.75,
+          "recordingIndex": 2,
+          "rmssdMs": 39.575,
+          "sd1Ms": 28.125,
+          "sd2Ms": 54.725,
+          "sdnnMs": 43.35
+        },
+        {
+          "heartRateBpm": 58.05,
+          "recordingIndex": 3,
+          "rmssdMs": 38.105,
+          "sd1Ms": 27.075,
+          "sd2Ms": 53.115,
+          "sdnnMs": 42.09
+        },
+        {
+          "heartRateBpm": 59.15,
+          "recordingIndex": 4,
+          "rmssdMs": 40.415,
+          "sd1Ms": 28.725,
+          "sd2Ms": 55.645,
+          "sdnnMs": 44.07
+        },
+        {
+          "heartRateBpm": 57.65,
+          "recordingIndex": 5,
+          "rmssdMs": 37.265,
+          "sd1Ms": 26.475,
+          "sd2Ms": 52.195,
+          "sdnnMs": 41.37
+        },
+        {
+          "heartRateBpm": 58.85,
+          "recordingIndex": 6,
+          "rmssdMs": 39.785,
+          "sd1Ms": 28.275,
+          "sd2Ms": 54.955,
+          "sdnnMs": 43.53
+        },
+        {
+          "heartRateBpm": 58.35,
+          "recordingIndex": 7,
+          "rmssdMs": 38.735,
+          "sd1Ms": 27.525,
+          "sd2Ms": 53.805,
+          "sdnnMs": 42.63
+        }
+      ],
+      "subjectId": "d456e264f31586417cb7634e708433c6be09f64e1164f58ba7b742039b7d1679"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 57.7,
+          "recordingIndex": 1,
+          "rmssdMs": 37.37,
+          "sd1Ms": 26.55,
+          "sd2Ms": 52.31,
+          "sdnnMs": 41.46
+        },
+        {
+          "heartRateBpm": 59.1,
+          "recordingIndex": 2,
+          "rmssdMs": 40.31,
+          "sd1Ms": 28.65,
+          "sd2Ms": 55.53,
+          "sdnnMs": 43.98
+        },
+        {
+          "heartRateBpm": 58.4,
+          "recordingIndex": 3,
+          "rmssdMs": 38.84,
+          "sd1Ms": 27.6,
+          "sd2Ms": 53.92,
+          "sdnnMs": 42.72
+        },
+        {
+          "heartRateBpm": 59.5,
+          "recordingIndex": 4,
+          "rmssdMs": 41.15,
+          "sd1Ms": 29.25,
+          "sd2Ms": 56.45,
+          "sdnnMs": 44.7
+        },
+        {
+          "heartRateBpm": 58.0,
+          "recordingIndex": 5,
+          "rmssdMs": 38.0,
+          "sd1Ms": 27.0,
+          "sd2Ms": 53.0,
+          "sdnnMs": 42.0
+        },
+        {
+          "heartRateBpm": 59.2,
+          "recordingIndex": 6,
+          "rmssdMs": 40.52,
+          "sd1Ms": 28.8,
+          "sd2Ms": 55.76,
+          "sdnnMs": 44.16
+        },
+        {
+          "heartRateBpm": 58.7,
+          "recordingIndex": 7,
+          "rmssdMs": 39.47,
+          "sd1Ms": 28.05,
+          "sd2Ms": 54.61,
+          "sdnnMs": 43.26
+        }
+      ],
+      "subjectId": "dd875f1612355d6b66c170a478d4ab9fe1eef3cdceadc5ed94e0e8fcffba0fea"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 58.05,
+          "recordingIndex": 1,
+          "rmssdMs": 38.105,
+          "sd1Ms": 27.075,
+          "sd2Ms": 53.115,
+          "sdnnMs": 42.09
+        },
+        {
+          "heartRateBpm": 59.45,
+          "recordingIndex": 2,
+          "rmssdMs": 41.045,
+          "sd1Ms": 29.175,
+          "sd2Ms": 56.335,
+          "sdnnMs": 44.61
+        },
+        {
+          "heartRateBpm": 58.75,
+          "recordingIndex": 3,
+          "rmssdMs": 39.575,
+          "sd1Ms": 28.125,
+          "sd2Ms": 54.725,
+          "sdnnMs": 43.35
+        },
+        {
+          "heartRateBpm": 59.85,
+          "recordingIndex": 4,
+          "rmssdMs": 41.885,
+          "sd1Ms": 29.775,
+          "sd2Ms": 57.255,
+          "sdnnMs": 45.33
+        },
+        {
+          "heartRateBpm": 58.35,
+          "recordingIndex": 5,
+          "rmssdMs": 38.735,
+          "sd1Ms": 27.525,
+          "sd2Ms": 53.805,
+          "sdnnMs": 42.63
+        },
+        {
+          "heartRateBpm": 59.55,
+          "recordingIndex": 6,
+          "rmssdMs": 41.255,
+          "sd1Ms": 29.325,
+          "sd2Ms": 56.565,
+          "sdnnMs": 44.79
+        },
+        {
+          "heartRateBpm": 59.05,
+          "recordingIndex": 7,
+          "rmssdMs": 40.205,
+          "sd1Ms": 28.575,
+          "sd2Ms": 55.415,
+          "sdnnMs": 43.89
+        }
+      ],
+      "subjectId": "7e27576ac578a61100b1cf28a83a7a4f4a57516d5ca1a6515960f6ca295a25c0"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 58.4,
+          "recordingIndex": 1,
+          "rmssdMs": 38.84,
+          "sd1Ms": 27.6,
+          "sd2Ms": 53.92,
+          "sdnnMs": 42.72
+        },
+        {
+          "heartRateBpm": 59.8,
+          "recordingIndex": 2,
+          "rmssdMs": 41.78,
+          "sd1Ms": 29.7,
+          "sd2Ms": 57.14,
+          "sdnnMs": 45.24
+        },
+        {
+          "heartRateBpm": 59.1,
+          "recordingIndex": 3,
+          "rmssdMs": 40.31,
+          "sd1Ms": 28.65,
+          "sd2Ms": 55.53,
+          "sdnnMs": 43.98
+        },
+        {
+          "heartRateBpm": 60.2,
+          "recordingIndex": 4,
+          "rmssdMs": 42.62,
+          "sd1Ms": 30.3,
+          "sd2Ms": 58.06,
+          "sdnnMs": 45.96
+        },
+        {
+          "heartRateBpm": 58.7,
+          "recordingIndex": 5,
+          "rmssdMs": 39.47,
+          "sd1Ms": 28.05,
+          "sd2Ms": 54.61,
+          "sdnnMs": 43.26
+        },
+        {
+          "heartRateBpm": 59.9,
+          "recordingIndex": 6,
+          "rmssdMs": 41.99,
+          "sd1Ms": 29.85,
+          "sd2Ms": 57.37,
+          "sdnnMs": 45.42
+        },
+        {
+          "heartRateBpm": 59.4,
+          "recordingIndex": 7,
+          "rmssdMs": 40.94,
+          "sd1Ms": 29.1,
+          "sd2Ms": 56.22,
+          "sdnnMs": 44.52
+        }
+      ],
+      "subjectId": "8176888ec85eec396616022b992288f2362a32d62ebb341bf20b6c0d1ed92949"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 58.75,
+          "recordingIndex": 1,
+          "rmssdMs": 39.575,
+          "sd1Ms": 28.125,
+          "sd2Ms": 54.725,
+          "sdnnMs": 43.35
+        },
+        {
+          "heartRateBpm": 60.15,
+          "recordingIndex": 2,
+          "rmssdMs": 42.515,
+          "sd1Ms": 30.225,
+          "sd2Ms": 57.945,
+          "sdnnMs": 45.87
+        },
+        {
+          "heartRateBpm": 59.45,
+          "recordingIndex": 3,
+          "rmssdMs": 41.045,
+          "sd1Ms": 29.175,
+          "sd2Ms": 56.335,
+          "sdnnMs": 44.61
+        },
+        {
+          "heartRateBpm": 60.55,
+          "recordingIndex": 4,
+          "rmssdMs": 43.355,
+          "sd1Ms": 30.825,
+          "sd2Ms": 58.865,
+          "sdnnMs": 46.59
+        },
+        {
+          "heartRateBpm": 59.05,
+          "recordingIndex": 5,
+          "rmssdMs": 40.205,
+          "sd1Ms": 28.575,
+          "sd2Ms": 55.415,
+          "sdnnMs": 43.89
+        },
+        {
+          "heartRateBpm": 60.25,
+          "recordingIndex": 6,
+          "rmssdMs": 42.725,
+          "sd1Ms": 30.375,
+          "sd2Ms": 58.175,
+          "sdnnMs": 46.05
+        },
+        {
+          "heartRateBpm": 59.75,
+          "recordingIndex": 7,
+          "rmssdMs": 41.675,
+          "sd1Ms": 29.625,
+          "sd2Ms": 57.025,
+          "sdnnMs": 45.15
+        }
+      ],
+      "subjectId": "9c5dd3418aaabd080a1183086e32d13502b7e3dcd7d10ac54e888c3000cfb6b6"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 59.1,
+          "recordingIndex": 1,
+          "rmssdMs": 40.31,
+          "sd1Ms": 28.65,
+          "sd2Ms": 55.53,
+          "sdnnMs": 43.98
+        },
+        {
+          "heartRateBpm": 60.5,
+          "recordingIndex": 2,
+          "rmssdMs": 43.25,
+          "sd1Ms": 30.75,
+          "sd2Ms": 58.75,
+          "sdnnMs": 46.5
+        },
+        {
+          "heartRateBpm": 59.8,
+          "recordingIndex": 3,
+          "rmssdMs": 41.78,
+          "sd1Ms": 29.7,
+          "sd2Ms": 57.14,
+          "sdnnMs": 45.24
+        },
+        {
+          "heartRateBpm": 60.9,
+          "recordingIndex": 4,
+          "rmssdMs": 44.09,
+          "sd1Ms": 31.35,
+          "sd2Ms": 59.67,
+          "sdnnMs": 47.22
+        },
+        {
+          "heartRateBpm": 59.4,
+          "recordingIndex": 5,
+          "rmssdMs": 40.94,
+          "sd1Ms": 29.1,
+          "sd2Ms": 56.22,
+          "sdnnMs": 44.52
+        },
+        {
+          "heartRateBpm": 60.6,
+          "recordingIndex": 6,
+          "rmssdMs": 43.46,
+          "sd1Ms": 30.9,
+          "sd2Ms": 58.98,
+          "sdnnMs": 46.68
+        },
+        {
+          "heartRateBpm": 60.1,
+          "recordingIndex": 7,
+          "rmssdMs": 42.41,
+          "sd1Ms": 30.15,
+          "sd2Ms": 57.83,
+          "sdnnMs": 45.78
+        }
+      ],
+      "subjectId": "1f8484404eb44de22530365408dd3d3b5684b8ec087d9306287c6df302b71913"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 59.45,
+          "recordingIndex": 1,
+          "rmssdMs": 41.045,
+          "sd1Ms": 29.175,
+          "sd2Ms": 56.335,
+          "sdnnMs": 44.61
+        },
+        {
+          "heartRateBpm": 60.85,
+          "recordingIndex": 2,
+          "rmssdMs": 43.985,
+          "sd1Ms": 31.275,
+          "sd2Ms": 59.555,
+          "sdnnMs": 47.13
+        },
+        {
+          "heartRateBpm": 60.15,
+          "recordingIndex": 3,
+          "rmssdMs": 42.515,
+          "sd1Ms": 30.225,
+          "sd2Ms": 57.945,
+          "sdnnMs": 45.87
+        },
+        {
+          "heartRateBpm": 61.25,
+          "recordingIndex": 4,
+          "rmssdMs": 44.825,
+          "sd1Ms": 31.875,
+          "sd2Ms": 60.475,
+          "sdnnMs": 47.85
+        },
+        {
+          "heartRateBpm": 59.75,
+          "recordingIndex": 5,
+          "rmssdMs": 41.675,
+          "sd1Ms": 29.625,
+          "sd2Ms": 57.025,
+          "sdnnMs": 45.15
+        },
+        {
+          "heartRateBpm": 60.95,
+          "recordingIndex": 6,
+          "rmssdMs": 44.195,
+          "sd1Ms": 31.425,
+          "sd2Ms": 59.785,
+          "sdnnMs": 47.31
+        },
+        {
+          "heartRateBpm": 60.45,
+          "recordingIndex": 7,
+          "rmssdMs": 43.145,
+          "sd1Ms": 30.675,
+          "sd2Ms": 58.635,
+          "sdnnMs": 46.41
+        }
+      ],
+      "subjectId": "72a0b2847259c75dd0a789456d6ed21cb352d7b56fc28f29846787b6325b4c2c"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 59.8,
+          "recordingIndex": 1,
+          "rmssdMs": 41.78,
+          "sd1Ms": 29.7,
+          "sd2Ms": 57.14,
+          "sdnnMs": 45.24
+        },
+        {
+          "heartRateBpm": 61.2,
+          "recordingIndex": 2,
+          "rmssdMs": 44.72,
+          "sd1Ms": 31.8,
+          "sd2Ms": 60.36,
+          "sdnnMs": 47.76
+        },
+        {
+          "heartRateBpm": 60.5,
+          "recordingIndex": 3,
+          "rmssdMs": 43.25,
+          "sd1Ms": 30.75,
+          "sd2Ms": 58.75,
+          "sdnnMs": 46.5
+        },
+        {
+          "heartRateBpm": 61.6,
+          "recordingIndex": 4,
+          "rmssdMs": 45.56,
+          "sd1Ms": 32.4,
+          "sd2Ms": 61.28,
+          "sdnnMs": 48.48
+        },
+        {
+          "heartRateBpm": 60.1,
+          "recordingIndex": 5,
+          "rmssdMs": 42.41,
+          "sd1Ms": 30.15,
+          "sd2Ms": 57.83,
+          "sdnnMs": 45.78
+        },
+        {
+          "heartRateBpm": 61.3,
+          "recordingIndex": 6,
+          "rmssdMs": 44.93,
+          "sd1Ms": 31.95,
+          "sd2Ms": 60.59,
+          "sdnnMs": 47.94
+        },
+        {
+          "heartRateBpm": 60.8,
+          "recordingIndex": 7,
+          "rmssdMs": 43.88,
+          "sd1Ms": 31.2,
+          "sd2Ms": 59.44,
+          "sdnnMs": 47.04
+        }
+      ],
+      "subjectId": "3a6ca77ffa424e14ed63cd364fe2b3844045296f62a6e2dcbcc6143d073f7264"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 60.15,
+          "recordingIndex": 1,
+          "rmssdMs": 42.515,
+          "sd1Ms": 30.225,
+          "sd2Ms": 57.945,
+          "sdnnMs": 45.87
+        },
+        {
+          "heartRateBpm": 61.55,
+          "recordingIndex": 2,
+          "rmssdMs": 45.455,
+          "sd1Ms": 32.325,
+          "sd2Ms": 61.165,
+          "sdnnMs": 48.39
+        },
+        {
+          "heartRateBpm": 60.85,
+          "recordingIndex": 3,
+          "rmssdMs": 43.985,
+          "sd1Ms": 31.275,
+          "sd2Ms": 59.555,
+          "sdnnMs": 47.13
+        },
+        {
+          "heartRateBpm": 61.95,
+          "recordingIndex": 4,
+          "rmssdMs": 46.295,
+          "sd1Ms": 32.925,
+          "sd2Ms": 62.085,
+          "sdnnMs": 49.11
+        },
+        {
+          "heartRateBpm": 60.45,
+          "recordingIndex": 5,
+          "rmssdMs": 43.145,
+          "sd1Ms": 30.675,
+          "sd2Ms": 58.635,
+          "sdnnMs": 46.41
+        },
+        {
+          "heartRateBpm": 61.65,
+          "recordingIndex": 6,
+          "rmssdMs": 45.665,
+          "sd1Ms": 32.475,
+          "sd2Ms": 61.395,
+          "sdnnMs": 48.57
+        },
+        {
+          "heartRateBpm": 61.15,
+          "recordingIndex": 7,
+          "rmssdMs": 44.615,
+          "sd1Ms": 31.725,
+          "sd2Ms": 60.245,
+          "sdnnMs": 47.67
+        }
+      ],
+      "subjectId": "626405b7e85b8182ef56140b01aee999bcc202ab874733f879859c989126fb91"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 60.5,
+          "recordingIndex": 1,
+          "rmssdMs": 43.25,
+          "sd1Ms": 30.75,
+          "sd2Ms": 58.75,
+          "sdnnMs": 46.5
+        },
+        {
+          "heartRateBpm": 61.9,
+          "recordingIndex": 2,
+          "rmssdMs": 46.19,
+          "sd1Ms": 32.85,
+          "sd2Ms": 61.97,
+          "sdnnMs": 49.02
+        },
+        {
+          "heartRateBpm": 61.2,
+          "recordingIndex": 3,
+          "rmssdMs": 44.72,
+          "sd1Ms": 31.8,
+          "sd2Ms": 60.36,
+          "sdnnMs": 47.76
+        },
+        {
+          "heartRateBpm": 62.3,
+          "recordingIndex": 4,
+          "rmssdMs": 47.03,
+          "sd1Ms": 33.45,
+          "sd2Ms": 62.89,
+          "sdnnMs": 49.74
+        },
+        {
+          "heartRateBpm": 60.8,
+          "recordingIndex": 5,
+          "rmssdMs": 43.88,
+          "sd1Ms": 31.2,
+          "sd2Ms": 59.44,
+          "sdnnMs": 47.04
+        },
+        {
+          "heartRateBpm": 62.0,
+          "recordingIndex": 6,
+          "rmssdMs": 46.4,
+          "sd1Ms": 33.0,
+          "sd2Ms": 62.2,
+          "sdnnMs": 49.2
+        },
+        {
+          "heartRateBpm": 61.5,
+          "recordingIndex": 7,
+          "rmssdMs": 45.35,
+          "sd1Ms": 32.25,
+          "sd2Ms": 61.05,
+          "sdnnMs": 48.3
+        }
+      ],
+      "subjectId": "fd760a938357dcfaec526a34149eb1c958e2415c9dbddccadf20fdb36f59c7cc"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 60.85,
+          "recordingIndex": 1,
+          "rmssdMs": 43.985,
+          "sd1Ms": 31.275,
+          "sd2Ms": 59.555,
+          "sdnnMs": 47.13
+        },
+        {
+          "heartRateBpm": 62.25,
+          "recordingIndex": 2,
+          "rmssdMs": 46.925,
+          "sd1Ms": 33.375,
+          "sd2Ms": 62.775,
+          "sdnnMs": 49.65
+        },
+        {
+          "heartRateBpm": 61.55,
+          "recordingIndex": 3,
+          "rmssdMs": 45.455,
+          "sd1Ms": 32.325,
+          "sd2Ms": 61.165,
+          "sdnnMs": 48.39
+        },
+        {
+          "heartRateBpm": 62.65,
+          "recordingIndex": 4,
+          "rmssdMs": 47.765,
+          "sd1Ms": 33.975,
+          "sd2Ms": 63.695,
+          "sdnnMs": 50.37
+        },
+        {
+          "heartRateBpm": 61.15,
+          "recordingIndex": 5,
+          "rmssdMs": 44.615,
+          "sd1Ms": 31.725,
+          "sd2Ms": 60.245,
+          "sdnnMs": 47.67
+        },
+        {
+          "heartRateBpm": 62.35,
+          "recordingIndex": 6,
+          "rmssdMs": 47.135,
+          "sd1Ms": 33.525,
+          "sd2Ms": 63.005,
+          "sdnnMs": 49.83
+        },
+        {
+          "heartRateBpm": 61.85,
+          "recordingIndex": 7,
+          "rmssdMs": 46.085,
+          "sd1Ms": 32.775,
+          "sd2Ms": 61.855,
+          "sdnnMs": 48.93
+        }
+      ],
+      "subjectId": "50b670a96d384cb93123843036e151d149c38a4dc1eb5610bc11de54bf5360e9"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 61.2,
+          "recordingIndex": 1,
+          "rmssdMs": 44.72,
+          "sd1Ms": 31.8,
+          "sd2Ms": 60.36,
+          "sdnnMs": 47.76
+        },
+        {
+          "heartRateBpm": 62.6,
+          "recordingIndex": 2,
+          "rmssdMs": 47.66,
+          "sd1Ms": 33.9,
+          "sd2Ms": 63.58,
+          "sdnnMs": 50.28
+        },
+        {
+          "heartRateBpm": 61.9,
+          "recordingIndex": 3,
+          "rmssdMs": 46.19,
+          "sd1Ms": 32.85,
+          "sd2Ms": 61.97,
+          "sdnnMs": 49.02
+        },
+        {
+          "heartRateBpm": 63.0,
+          "recordingIndex": 4,
+          "rmssdMs": 48.5,
+          "sd1Ms": 34.5,
+          "sd2Ms": 64.5,
+          "sdnnMs": 51.0
+        },
+        {
+          "heartRateBpm": 61.5,
+          "recordingIndex": 5,
+          "rmssdMs": 45.35,
+          "sd1Ms": 32.25,
+          "sd2Ms": 61.05,
+          "sdnnMs": 48.3
+        },
+        {
+          "heartRateBpm": 62.7,
+          "recordingIndex": 6,
+          "rmssdMs": 47.87,
+          "sd1Ms": 34.05,
+          "sd2Ms": 63.81,
+          "sdnnMs": 50.46
+        },
+        {
+          "heartRateBpm": 62.2,
+          "recordingIndex": 7,
+          "rmssdMs": 46.82,
+          "sd1Ms": 33.3,
+          "sd2Ms": 62.66,
+          "sdnnMs": 49.56
+        }
+      ],
+      "subjectId": "779aa47200c642f7da1827c17159182dd97d70da54647d96c2d1cd4d8e2c07c6"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 61.55,
+          "recordingIndex": 1,
+          "rmssdMs": 45.455,
+          "sd1Ms": 32.325,
+          "sd2Ms": 61.165,
+          "sdnnMs": 48.39
+        },
+        {
+          "heartRateBpm": 62.95,
+          "recordingIndex": 2,
+          "rmssdMs": 48.395,
+          "sd1Ms": 34.425,
+          "sd2Ms": 64.385,
+          "sdnnMs": 50.91
+        },
+        {
+          "heartRateBpm": 62.25,
+          "recordingIndex": 3,
+          "rmssdMs": 46.925,
+          "sd1Ms": 33.375,
+          "sd2Ms": 62.775,
+          "sdnnMs": 49.65
+        },
+        {
+          "heartRateBpm": 63.35,
+          "recordingIndex": 4,
+          "rmssdMs": 49.235,
+          "sd1Ms": 35.025,
+          "sd2Ms": 65.305,
+          "sdnnMs": 51.63
+        },
+        {
+          "heartRateBpm": 61.85,
+          "recordingIndex": 5,
+          "rmssdMs": 46.085,
+          "sd1Ms": 32.775,
+          "sd2Ms": 61.855,
+          "sdnnMs": 48.93
+        },
+        {
+          "heartRateBpm": 63.05,
+          "recordingIndex": 6,
+          "rmssdMs": 48.605,
+          "sd1Ms": 34.575,
+          "sd2Ms": 64.615,
+          "sdnnMs": 51.09
+        },
+        {
+          "heartRateBpm": 62.55,
+          "recordingIndex": 7,
+          "rmssdMs": 47.555,
+          "sd1Ms": 33.825,
+          "sd2Ms": 63.465,
+          "sdnnMs": 50.19
+        }
+      ],
+      "subjectId": "45660c79a3990828c16841930835758161ddc197a58bf7012184f50a40e2ec6e"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 61.9,
+          "recordingIndex": 1,
+          "rmssdMs": 46.19,
+          "sd1Ms": 32.85,
+          "sd2Ms": 61.97,
+          "sdnnMs": 49.02
+        },
+        {
+          "heartRateBpm": 63.3,
+          "recordingIndex": 2,
+          "rmssdMs": 49.13,
+          "sd1Ms": 34.95,
+          "sd2Ms": 65.19,
+          "sdnnMs": 51.54
+        },
+        {
+          "heartRateBpm": 62.6,
+          "recordingIndex": 3,
+          "rmssdMs": 47.66,
+          "sd1Ms": 33.9,
+          "sd2Ms": 63.58,
+          "sdnnMs": 50.28
+        },
+        {
+          "heartRateBpm": 63.7,
+          "recordingIndex": 4,
+          "rmssdMs": 49.97,
+          "sd1Ms": 35.55,
+          "sd2Ms": 66.11,
+          "sdnnMs": 52.26
+        },
+        {
+          "heartRateBpm": 62.2,
+          "recordingIndex": 5,
+          "rmssdMs": 46.82,
+          "sd1Ms": 33.3,
+          "sd2Ms": 62.66,
+          "sdnnMs": 49.56
+        },
+        {
+          "heartRateBpm": 63.4,
+          "recordingIndex": 6,
+          "rmssdMs": 49.34,
+          "sd1Ms": 35.1,
+          "sd2Ms": 65.42,
+          "sdnnMs": 51.72
+        },
+        {
+          "heartRateBpm": 62.9,
+          "recordingIndex": 7,
+          "rmssdMs": 48.29,
+          "sd1Ms": 34.35,
+          "sd2Ms": 64.27,
+          "sdnnMs": 50.82
+        }
+      ],
+      "subjectId": "52af3388becda34f14906a1a38cdfefa88b3a2cf93fddaec80c222ea83093562"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 62.25,
+          "recordingIndex": 1,
+          "rmssdMs": 46.925,
+          "sd1Ms": 33.375,
+          "sd2Ms": 62.775,
+          "sdnnMs": 49.65
+        },
+        {
+          "heartRateBpm": 63.65,
+          "recordingIndex": 2,
+          "rmssdMs": 49.865,
+          "sd1Ms": 35.475,
+          "sd2Ms": 65.995,
+          "sdnnMs": 52.17
+        },
+        {
+          "heartRateBpm": 62.95,
+          "recordingIndex": 3,
+          "rmssdMs": 48.395,
+          "sd1Ms": 34.425,
+          "sd2Ms": 64.385,
+          "sdnnMs": 50.91
+        },
+        {
+          "heartRateBpm": 64.05,
+          "recordingIndex": 4,
+          "rmssdMs": 50.705,
+          "sd1Ms": 36.075,
+          "sd2Ms": 66.915,
+          "sdnnMs": 52.89
+        },
+        {
+          "heartRateBpm": 62.55,
+          "recordingIndex": 5,
+          "rmssdMs": 47.555,
+          "sd1Ms": 33.825,
+          "sd2Ms": 63.465,
+          "sdnnMs": 50.19
+        },
+        {
+          "heartRateBpm": 63.75,
+          "recordingIndex": 6,
+          "rmssdMs": 50.075,
+          "sd1Ms": 35.625,
+          "sd2Ms": 66.225,
+          "sdnnMs": 52.35
+        },
+        {
+          "heartRateBpm": 63.25,
+          "recordingIndex": 7,
+          "rmssdMs": 49.025,
+          "sd1Ms": 34.875,
+          "sd2Ms": 65.075,
+          "sdnnMs": 51.45
+        }
+      ],
+      "subjectId": "cd7f556e9ca4caf67475d2455fd324594919cfa58ec6b6782255dd5b64bdf819"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 62.6,
+          "recordingIndex": 1,
+          "rmssdMs": 47.66,
+          "sd1Ms": 33.9,
+          "sd2Ms": 63.58,
+          "sdnnMs": 50.28
+        },
+        {
+          "heartRateBpm": 64.0,
+          "recordingIndex": 2,
+          "rmssdMs": 50.6,
+          "sd1Ms": 36.0,
+          "sd2Ms": 66.8,
+          "sdnnMs": 52.8
+        },
+        {
+          "heartRateBpm": 63.3,
+          "recordingIndex": 3,
+          "rmssdMs": 49.13,
+          "sd1Ms": 34.95,
+          "sd2Ms": 65.19,
+          "sdnnMs": 51.54
+        },
+        {
+          "heartRateBpm": 64.4,
+          "recordingIndex": 4,
+          "rmssdMs": 51.44,
+          "sd1Ms": 36.6,
+          "sd2Ms": 67.72,
+          "sdnnMs": 53.52
+        },
+        {
+          "heartRateBpm": 62.9,
+          "recordingIndex": 5,
+          "rmssdMs": 48.29,
+          "sd1Ms": 34.35,
+          "sd2Ms": 64.27,
+          "sdnnMs": 50.82
+        },
+        {
+          "heartRateBpm": 64.1,
+          "recordingIndex": 6,
+          "rmssdMs": 50.81,
+          "sd1Ms": 36.15,
+          "sd2Ms": 67.03,
+          "sdnnMs": 52.98
+        },
+        {
+          "heartRateBpm": 63.6,
+          "recordingIndex": 7,
+          "rmssdMs": 49.76,
+          "sd1Ms": 35.4,
+          "sd2Ms": 65.88,
+          "sdnnMs": 52.08
+        }
+      ],
+      "subjectId": "efb05719d32ccf9118b9e3dc55c156d445788964618830bbd02e61e197aa3fa8"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 62.95,
+          "recordingIndex": 1,
+          "rmssdMs": 48.395,
+          "sd1Ms": 34.425,
+          "sd2Ms": 64.385,
+          "sdnnMs": 50.91
+        },
+        {
+          "heartRateBpm": 64.35,
+          "recordingIndex": 2,
+          "rmssdMs": 51.335,
+          "sd1Ms": 36.525,
+          "sd2Ms": 67.605,
+          "sdnnMs": 53.43
+        },
+        {
+          "heartRateBpm": 63.65,
+          "recordingIndex": 3,
+          "rmssdMs": 49.865,
+          "sd1Ms": 35.475,
+          "sd2Ms": 65.995,
+          "sdnnMs": 52.17
+        },
+        {
+          "heartRateBpm": 64.75,
+          "recordingIndex": 4,
+          "rmssdMs": 52.175,
+          "sd1Ms": 37.125,
+          "sd2Ms": 68.525,
+          "sdnnMs": 54.15
+        },
+        {
+          "heartRateBpm": 63.25,
+          "recordingIndex": 5,
+          "rmssdMs": 49.025,
+          "sd1Ms": 34.875,
+          "sd2Ms": 65.075,
+          "sdnnMs": 51.45
+        },
+        {
+          "heartRateBpm": 64.45,
+          "recordingIndex": 6,
+          "rmssdMs": 51.545,
+          "sd1Ms": 36.675,
+          "sd2Ms": 67.835,
+          "sdnnMs": 53.61
+        },
+        {
+          "heartRateBpm": 63.95,
+          "recordingIndex": 7,
+          "rmssdMs": 50.495,
+          "sd1Ms": 35.925,
+          "sd2Ms": 66.685,
+          "sdnnMs": 52.71
+        }
+      ],
+      "subjectId": "8a3dc47c01ece953631515905509038b566aa54beb562674fa96f7913cd8d49d"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 63.3,
+          "recordingIndex": 1,
+          "rmssdMs": 49.13,
+          "sd1Ms": 34.95,
+          "sd2Ms": 65.19,
+          "sdnnMs": 51.54
+        },
+        {
+          "heartRateBpm": 64.7,
+          "recordingIndex": 2,
+          "rmssdMs": 52.07,
+          "sd1Ms": 37.05,
+          "sd2Ms": 68.41,
+          "sdnnMs": 54.06
+        },
+        {
+          "heartRateBpm": 64.0,
+          "recordingIndex": 3,
+          "rmssdMs": 50.6,
+          "sd1Ms": 36.0,
+          "sd2Ms": 66.8,
+          "sdnnMs": 52.8
+        },
+        {
+          "heartRateBpm": 65.1,
+          "recordingIndex": 4,
+          "rmssdMs": 52.91,
+          "sd1Ms": 37.65,
+          "sd2Ms": 69.33,
+          "sdnnMs": 54.78
+        },
+        {
+          "heartRateBpm": 63.6,
+          "recordingIndex": 5,
+          "rmssdMs": 49.76,
+          "sd1Ms": 35.4,
+          "sd2Ms": 65.88,
+          "sdnnMs": 52.08
+        },
+        {
+          "heartRateBpm": 64.8,
+          "recordingIndex": 6,
+          "rmssdMs": 52.28,
+          "sd1Ms": 37.2,
+          "sd2Ms": 68.64,
+          "sdnnMs": 54.24
+        },
+        {
+          "heartRateBpm": 64.3,
+          "recordingIndex": 7,
+          "rmssdMs": 51.23,
+          "sd1Ms": 36.45,
+          "sd2Ms": 67.49,
+          "sdnnMs": 53.34
+        }
+      ],
+      "subjectId": "b3a73ad01993ff3b2aad04fafdcc30eee50ba70f3ddbc3dfe290c24837d577a9"
+    },
+    {
+      "recordings": [
+        {
+          "heartRateBpm": 63.65,
+          "recordingIndex": 1,
+          "rmssdMs": 49.865,
+          "sd1Ms": 35.475,
+          "sd2Ms": 65.995,
+          "sdnnMs": 52.17
+        },
+        {
+          "heartRateBpm": 65.05,
+          "recordingIndex": 2,
+          "rmssdMs": 52.805,
+          "sd1Ms": 37.575,
+          "sd2Ms": 69.215,
+          "sdnnMs": 54.69
+        },
+        {
+          "heartRateBpm": 64.35,
+          "recordingIndex": 3,
+          "rmssdMs": 51.335,
+          "sd1Ms": 36.525,
+          "sd2Ms": 67.605,
+          "sdnnMs": 53.43
+        },
+        {
+          "heartRateBpm": 65.45,
+          "recordingIndex": 4,
+          "rmssdMs": 53.645,
+          "sd1Ms": 38.175,
+          "sd2Ms": 70.135,
+          "sdnnMs": 55.41
+        },
+        {
+          "heartRateBpm": 63.95,
+          "recordingIndex": 5,
+          "rmssdMs": 50.495,
+          "sd1Ms": 35.925,
+          "sd2Ms": 66.685,
+          "sdnnMs": 52.71
+        },
+        {
+          "heartRateBpm": 65.15,
+          "recordingIndex": 6,
+          "rmssdMs": 53.015,
+          "sd1Ms": 37.725,
+          "sd2Ms": 69.445,
+          "sdnnMs": 54.87
+        },
+        {
+          "heartRateBpm": 64.65,
+          "recordingIndex": 7,
+          "rmssdMs": 51.965,
+          "sd1Ms": 36.975,
+          "sd2Ms": 68.295,
+          "sdnnMs": 53.97
+        }
+      ],
+      "subjectId": "1f07561602ec66dbff53bc3e77ceb3c6bbc0d4fa6727c8d5a7764df5fa013b83"
+    }
+  ],
+  "schema": "paper-to-insight.resting-hrv-repeatability/generated-v1"
+}
