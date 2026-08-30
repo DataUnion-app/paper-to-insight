@@ -1,0 +1,103 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.guided-breathing-response",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Methods for Heart Rate Variability Biofeedback (HRVB): A Systematic Review and Guidelines",
+    "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/36917418/",
+    "doi": "10.1007/s10484-023-09582-6",
+    "claim": "Implements a generated, descriptive, protocol-matched summary of heart-rate dynamics during Brainstem guided-breathing sessions.",
+    "claimClass": "descriptive",
+    "population": "The systematic review and its included populations do not validate a Brainstem device; this package contains generated participants only.",
+    "referenceStandard": "Published reporting guidance plus a deterministic participant-grouped generated R-R fixture.",
+    "implementationRelation": "method_only",
+    "relationEvidence": "The package applies the review's reproducibility requirement by binding the complete pace and phase tuple, then independently recomputes bounded time-domain measures from generated R-R intervals.",
+    "classification": {
+      "paperDecision": "not_applicable",
+      "labels": [],
+      "unit": "eligible guided-breathing session under one exact protocol tuple"
+    }
+  },
+  "sources": [
+    {
+      "name": "Independent guided-breathing response implementation",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "revisionType": "content_sha256",
+      "revision": "b58d89aba742f4fe8d86296600681697731d6a3efd38d1d96475b05c36457be1",
+      "sha256": "b58d89aba742f4fe8d86296600681697731d6a3efd38d1d96475b05c36457be1",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated participant-grouped guided-breathing fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-fixture",
+      "sha256": "09dafebaebab44c72aa5dccead10d39e7aae88ef4ac3b3ebb3b8aba43a1f7587",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "historical exercise plus finite rateCPM/ih/ip/eh/ep and raw R-R; protected contract proposed separately",
+    "requiredSignals": ["guided-session R-R intervals", "rateCPM", "ih", "ip", "eh", "ep"],
+    "window": "Use the complete accepted guided-breathing session and compare only recordings with the exact same pace and phase tuple.",
+    "preprocessing": "Reject generic exercise, missing or non-finite protocol fields, inconsistent pace/phase timing, implausible intervals, short sessions, and mixed protocols; recompute mean heart rate, RMSSD, and SD1; aggregate each participant once.",
+    "brainstemVerdict": "compatible",
+    "mismatches": [
+      "Brainstem stores the prescribed pacing protocol but does not measure breathing adherence or respiratory volume.",
+      "The generated package does not validate sensor placement, detector error, a clinical population, or a normal range.",
+      "Uploaded averageHR, rsa, lnLF, and sf are deliberately ignored rather than treated as canonical measures."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "methods_only",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "not_applicable"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": true,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Participant-equal aggregate quartiles for one exact guided-breathing protocol; no subject, recording, raw R-R, respiratory-adherence, or diagnostic rows."
+    },
+    "personal": {
+      "proposed": true,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Owner-only matched-session summaries and latest-minus-earliest change across up to seven eligible guided-breathing sessions."
+    }
+  },
+  "abstention": [
+    "insufficient_quality",
+    "insufficient_coverage",
+    "unsupported_signal",
+    "privacy_floor",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "stress reduction or treatment effect",
+    "optimal therapeutic or resonance frequency",
+    "autonomic diagnosis",
+    "diagnosis or screening",
+    "disease prediction or risk",
+    "clinical normal range",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {"path": "README.md", "sha256": "86d082c8614ec61d6214713ac41f3cb0f2d4d34e524e0df8451163242cc15ed0"},
+    {"path": "algorithm.py", "sha256": "b58d89aba742f4fe8d86296600681697731d6a3efd38d1d96475b05c36457be1"},
+    {"path": "expected-public.json", "sha256": "6a3d9567e21103545907355f1cf1d99926c6067c40cf72804ac84eb7d6dc825e"},
+    {"path": "generate_fixture.py", "sha256": "6279968b4bcdfffe02576af5bf6643d86ed268db20cd93c10f9b114e878f872f"},
+    {"path": "public-data.json", "sha256": "09dafebaebab44c72aa5dccead10d39e7aae88ef4ac3b3ebb3b8aba43a1f7587"},
+    {"path": "reproduce.py", "sha256": "2605811b05cf6f18009fa397d301429d0e93d16a7169fccdb4abe6260e118b4a"},
+    {"path": "test_algorithm.py", "sha256": "663bd7aced2788c308ec3fa0f602e8f2358a0b0a0d5d8112e191b7e0b6496be5"}
+  ]
+}

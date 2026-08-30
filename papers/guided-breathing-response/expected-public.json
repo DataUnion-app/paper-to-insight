@@ -1,0 +1,49 @@
+{
+  "schema": "paper-to-insight.guided-breathing-response/result-v1",
+  "status": "complete",
+  "mode": "cohort",
+  "protocol": {
+    "rateCPM": 6.0,
+    "ih": 5.0,
+    "ip": 0.0,
+    "eh": 5.0,
+    "ep": 0.0
+  },
+  "participantCountBand": "20 to 49",
+  "metrics": {
+    "meanHeartRateBpm": {
+      "p25": 65.059,
+      "median": 66.107,
+      "p75": 67.163,
+      "changeLatestMinusEarliest": {
+        "p25": 0.139,
+        "median": 0.146,
+        "p75": 0.149
+      }
+    },
+    "rmssdMs": {
+      "p25": 12.998,
+      "median": 13.348,
+      "p75": 13.648,
+      "changeLatestMinusEarliest": {
+        "p25": 0.537,
+        "median": 0.718,
+        "p75": 0.936
+      }
+    },
+    "sd1Ms": {
+      "p25": 9.191,
+      "median": 9.438,
+      "p75": 9.65,
+      "changeLatestMinusEarliest": {
+        "p25": 0.38,
+        "median": 0.506,
+        "p75": 0.663
+      }
+    }
+  },
+  "warnings": [
+    "Generated methods example; not a Brainstem reference range.",
+    "Each participant contributes one median and one matched-session change."
+  ]
+}
