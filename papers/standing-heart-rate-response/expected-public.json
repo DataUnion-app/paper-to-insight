@@ -1,0 +1,27 @@
+{
+  "schema": "paper-to-insight.standing-heart-rate-response/result-v1",
+  "status": "complete",
+  "mode": "cohort",
+  "participantCountBand": "20 to 49",
+  "metrics": {
+    "restingHeartRateBpm": {
+      "p25": 59.125,
+      "median": 62.0,
+      "p75": 64.875
+    },
+    "standingP95HeartRateBpm": {
+      "p25": 71.517,
+      "median": 74.537,
+      "p75": 77.776
+    },
+    "responseBpm": {
+      "p25": 11.148,
+      "median": 12.303,
+      "p75": 13.925
+    }
+  },
+  "warnings": [
+    "Generated methods example; not a Brainstem reference range.",
+    "Each participant contributes one median regardless of recording count."
+  ]
+}

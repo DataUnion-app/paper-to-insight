@@ -7,6 +7,7 @@ Signal similarity is not approval.
 
 | Candidate | Current state | Blocking evidence | Next gate |
 | --- | --- | --- | --- |
+| [Standing heart-rate response](standing-heart-rate-response/) | E0 generated methods candidate; runtime disabled | Heart-rate-only descriptor; no beat-to-beat blood pressure, Brainstem reference, or clinical validation | Protected generated proof and independent scientific/privacy/security review |
 | [Resting HRV methods](resting-hrv-methods/) | E2 methods-only; local protected cohort and personal proofs complete | No disease classification; production approval and deployment absent | Independent scientific/privacy/security approval |
 | [Resting R-R sample entropy](resting-rr-sample-entropy/) | E2 methods-only; local protected cohort and personal proofs complete | Descriptive complexity metric only; production approval and deployment absent | Independent scientific/privacy/security approval |
 | [Sleep measure reliability](sleep-measure-reliability/) | E0 generated teaching candidate; runtime disabled | Generated values only; no Brainstem cohort reference or device validation | Governed protected cohort run and independent scientific/privacy/security review |

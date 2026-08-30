@@ -1,0 +1,102 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.standing-heart-rate-response",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Active Stand Testing for Identification of Orthostatic Intolerance",
+    "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/31076939/",
+    "doi": "10.1007/s10286-019-00606-y",
+    "claim": "Implements a generated, descriptive heart-rate response to Brainstem's existing standing protocol without blood-pressure or clinical interpretation.",
+    "claimClass": "descriptive",
+    "population": "The practical clinical method and its population do not validate a Brainstem device; this package contains generated participants only.",
+    "referenceStandard": "Published active-stand protocol context and deterministic participant-grouped generated R-R fixture.",
+    "implementationRelation": "method_only",
+    "relationEvidence": "The package independently computes a bounded heart-rate-only descriptor from Brainstem's existing timing contract; it deliberately excludes the blood-pressure measurements and clinical interpretation required by the source method.",
+    "classification": {
+      "paperDecision": "not_applicable",
+      "labels": [],
+      "unit": "eligible five-minute posture recording"
+    }
+  },
+  "sources": [
+    {
+      "name": "Independent standing heart-rate response implementation",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "revisionType": "content_sha256",
+      "revision": "624c3fb9df14fb1959fbf31041204fa395e068c6cd6536c7e44da487694c9405",
+      "sha256": "624c3fb9df14fb1959fbf31041204fa395e068c6cd6536c7e44da487694c9405",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated participant-grouped posture fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-fixture",
+      "sha256": "59f283b56715556a65303241621a5e39583e84c0a18c4bb748ec123db4d30595",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "brainstem.posture-response/generated-v1 with protected contract proposed separately",
+    "requiredSignals": ["five-minute posture R-R intervals", "120-second rest window", "60-second standing window"],
+    "window": "Use rest [-180s,-60s) and stand [-60s,0s) relative to the end of a complete five-minute recording.",
+    "preprocessing": "Reject non-finite or implausible intervals and incomplete windows; recompute resting rate, standing p95 rate, and their difference; aggregate each participant once.",
+    "brainstemVerdict": "compatible",
+    "mismatches": [
+      "Brainstem does not collect the continuous beat-to-beat blood pressure required by the clinical active-stand method.",
+      "The generated package does not validate sensor placement, detector error, a clinical population, or a normal range.",
+      "The canonical standing p95 is intentionally more robust than the legacy app's maximum-heart-rate score."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "methods_only",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "not_applicable"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": true,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Participant-equal aggregate quartiles of descriptive standing response; no subject, recording, raw R-R, blood-pressure, or diagnostic rows."
+    },
+    "personal": {
+      "proposed": true,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Owner-only median and range across up to seven eligible posture sessions, with explicit heart-rate-only limitations."
+    }
+  },
+  "abstention": [
+    "insufficient_quality",
+    "insufficient_coverage",
+    "privacy_floor",
+    "uncalibrated_device",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "POTS or orthostatic hypotension",
+    "blood-pressure response",
+    "diagnosis or screening",
+    "disease prediction or risk",
+    "clinical normal range",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {"path": "README.md", "sha256": "4158c814392e34276764bcf7dff84016d5583c5f9592cb65bafb70e98b5ef30e"},
+    {"path": "algorithm.py", "sha256": "624c3fb9df14fb1959fbf31041204fa395e068c6cd6536c7e44da487694c9405"},
+    {"path": "expected-public.json", "sha256": "6dffca85f1b858524f56a7343e5a1b8501396e28ae2b7f811f8c45f232778919"},
+    {"path": "generate_fixture.py", "sha256": "d1556041e7f0d044f643325f9ca982564182bde18dc7a2101b4e39cd098dcea3"},
+    {"path": "public-data.json", "sha256": "59f283b56715556a65303241621a5e39583e84c0a18c4bb748ec123db4d30595"},
+    {"path": "reproduce.py", "sha256": "0824b3642823bd4fd03ade9f3f81194678cdf976813381546dd60991d29e5f27"},
+    {"path": "test_algorithm.py", "sha256": "c738d6fde8ebdebfd3b67802d48f1832c001594dedad460e7069a8e6496ac2a2"}
+  ]
+}
