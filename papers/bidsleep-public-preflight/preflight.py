@@ -9,14 +9,14 @@ import json
 import re
 from pathlib import Path
 from urllib.parse import urlparse
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 
 ROOT = Path(__file__).resolve().parent
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 SUBJECT = re.compile(r"^generated-subject-[a-z]$")
 NIGHT_FILES = {"hr.csv", "motion.csv", "labels.mat"}
-UPSTREAM_HOSTS = {"physionet.org", "raw.githubusercontent.com"}
+UPSTREAM_HOSTS = {"api.github.com", "physionet.org", "raw.githubusercontent.com"}
 
 
 class PreflightError(ValueError):
@@ -345,7 +345,8 @@ def smoke(preflight, fixture):
 
 
 def fetch_small(url, limit=5_000_000):
-    with urlopen(url, timeout=30) as response:
+    request = Request(url, headers={"User-Agent": "paper-to-insight-bidsleep-preflight/1"})
+    with urlopen(request, timeout=30) as response:
         host = (urlparse(response.geturl()).hostname or "").lower()
         if host not in UPSTREAM_HOSTS:
             raise PreflightError("upstream redirect left the allowlist")
@@ -353,6 +354,20 @@ def fetch_small(url, limit=5_000_000):
     if len(body) > limit:
         raise PreflightError("upstream metadata exceeded the byte limit")
     return body
+
+
+def verify_source_availability(source):
+    base = "https://api.github.com/repos/BIDSLabUMass/SLAMSS-IFS"
+    try:
+        head = json.loads(fetch_small(f"{base}/commits/main"))
+        releases = json.loads(fetch_small(f"{base}/releases?per_page=1"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise PreflightError("source availability response is invalid") from error
+    if not isinstance(head, dict) or head.get("sha") != source["revision"]:
+        raise PreflightError("source main changed; re-audit before continuing")
+    if not isinstance(releases, list) or releases:
+        raise PreflightError("source release state changed; re-audit before continuing")
+    return {"status": "passed", "mainHead": head["sha"], "releaseCount": 0}
 
 
 def verify_upstream(preflight):
@@ -381,6 +396,8 @@ def verify_upstream(preflight):
         if hashlib.sha256(fetch_small(f"{prefix}/{name}")).hexdigest() != expected:
             raise PreflightError(f"source upstream hash changed: {name}")
         verified += 1
+    source_availability = verify_source_availability(source)
+    verified += 2
     time_reference = preflight["timeReference"]
     prefix = f"https://raw.githubusercontent.com/ojwalch/sleep_classifiers/{time_reference['revision']}"
     for name, expected in time_reference["fileSha256"].items():
@@ -395,6 +412,7 @@ def verify_upstream(preflight):
         "status": "passed",
         "smallFilesVerified": verified,
         "publicPlanSha256": hashlib.sha256(committed_plan_path.read_bytes()).hexdigest(),
+        "sourceAvailability": source_availability,
     }
 
 

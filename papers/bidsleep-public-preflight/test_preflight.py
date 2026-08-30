@@ -4,6 +4,7 @@ import importlib.util
 import json
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parent
@@ -116,6 +117,25 @@ class BidsleepPreflightTest(unittest.TestCase):
         entries.pop("Bidslab00/1/hr.csv")
         with self.assertRaises(module.PreflightError):
             module.assemble_public_plan(self.preflight, entries)
+
+    def test_source_availability_guard(self):
+        revision = self.preflight["source"]["revision"]
+
+        def responses(head=revision, releases=None):
+            def fetch(url, limit=5_000_000):
+                value = {"sha": head} if url.endswith("/commits/main") else (releases or [])
+                return json.dumps(value).encode()
+            return fetch
+
+        with mock.patch.object(module, "fetch_small", responses()):
+            self.assertEqual(
+                module.verify_source_availability(self.preflight["source"]),
+                {"status": "passed", "mainHead": revision, "releaseCount": 0},
+            )
+        for fetch in (responses(head="0" * 40), responses(releases=[{"tag_name": "v1"}])):
+            with mock.patch.object(module, "fetch_small", fetch):
+                with self.assertRaises(module.PreflightError):
+                    module.verify_source_availability(self.preflight["source"])
 
 
 if __name__ == "__main__":

@@ -95,8 +95,10 @@ deterministic subject-only split over generated identifiers, and fails if a
 Brainstem runtime, catalogue entry, transfer claim, clinical use, or Slice 12
 gate is enabled.
 The optional upstream check downloads only eight pinned public metadata/source
-files plus three pinned time-reference files under a 5 MB per-file limit; it
-does not download any night recording.
+files, three pinned time-reference files, and two bounded GitHub metadata
+responses under a 5 MB per-response limit. It fails if the cited repository's
+`main` HEAD changes or a release appears, forcing a re-audit instead of silently
+missing a newly published model. It does not download any night recording.
 
 ## Public participant split plan
 
