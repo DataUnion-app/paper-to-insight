@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import importlib.util
 import json
 import unittest
@@ -55,6 +56,49 @@ class BidsleepPreflightTest(unittest.TestCase):
         preflight["timeReference"]["cosineFormula"] = "cos(seconds_since_start)"
         with self.assertRaises(module.PreflightError):
             module.validate_preflight(preflight)
+
+    @staticmethod
+    def public_entries():
+        entries = {}
+        for subject in range(47):
+            nights = 6 if subject < 18 else 5
+            for night in range(1, nights + 1):
+                for name in module.NIGHT_FILES:
+                    path = f"Bidslab{subject:02d}/{night}/{name}"
+                    entries[path] = hashlib.sha256(path.encode()).hexdigest()
+        return entries
+
+    def test_public_plan_is_exhaustive_and_subject_separated(self):
+        plan = module.assemble_public_plan(self.preflight, self.public_entries())
+        self.assertEqual(plan["counts"], {"subjects": 47, "nights": 253, "files": 759})
+        self.assertEqual(
+            {name: len(value["subjects"]) for name, value in plan["partitions"].items()},
+            {"train": 29, "validation": 9, "test": 9},
+        )
+        self.assertIn(plan["benchmark"]["night"], plan["partitions"]["train"]["nights"])
+        self.assertEqual(set(plan["benchmark"]["files"]), module.NIGHT_FILES)
+        self.assertEqual(
+            plan["controls"],
+            {
+                "signalFilesDownloaded": False,
+                "downloadApproved": False,
+                "modelVariantSelected": False,
+                "brainstemExecutionEnabled": False,
+            },
+        )
+
+    def test_rejects_bad_manifest_and_incomplete_night(self):
+        digest = "0" * 64
+        with self.assertRaises(module.PreflightError):
+            module.parse_signal_manifest(f"bad  Bidslab00/1/hr.csv\n".encode())
+        with self.assertRaises(module.PreflightError):
+            module.parse_signal_manifest(
+                f"{digest}  Bidslab00/1/hr.csv\n{digest}  Bidslab00/1/hr.csv\n".encode()
+            )
+        entries = self.public_entries()
+        entries.pop("Bidslab00/1/hr.csv")
+        with self.assertRaises(module.PreflightError):
+            module.assemble_public_plan(self.preflight, entries)
 
 
 if __name__ == "__main__":

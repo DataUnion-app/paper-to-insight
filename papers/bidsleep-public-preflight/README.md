@@ -92,7 +92,23 @@ deterministic subject-only split over generated identifiers, and fails if a
 Brainstem runtime, catalogue entry, transfer claim, clinical use, or Slice 12
 gate is enabled.
 The optional upstream check downloads only eight pinned public metadata/source
-files under a 5 MB per-file limit; it does not download any night recording.
+files plus three pinned time-reference files under a 5 MB per-file limit; it
+does not download any night recording.
+
+## Public participant split plan
+
+The metadata-only plan reads the official pinned checksum manifest, assigns all
+253 nights by their 47 subjects to deterministic train/validation/test
+partitions, and selects one training night for a future benchmark. It records
+URLs and hashes but neither downloads nor authorizes signal data:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 papers/bidsleep-public-preflight/preflight.py \
+  --verify-upstream --public-plan-output /tmp/bidsleep-public-plan.json
+```
+
+`public-plan.json` is the committed deterministic receipt. Upstream verification
+fails if regenerating it from the pinned manifest produces any difference.
 
 ## Generated converter checkpoint
 

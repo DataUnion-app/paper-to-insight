@@ -123,6 +123,95 @@ def participant_split(subject_ids, seed="bidsleep-public-reproduction-v1"):
     }
 
 
+def parse_signal_manifest(body):
+    entries = {}
+    for line in body.decode().splitlines():
+        parts = line.split(maxsplit=1)
+        if len(parts) != 2:
+            continue
+        digest, path = parts
+        match = re.fullmatch(
+            r"(Bidslab[0-9]+/[1-9][0-9]*)/(hr\.csv|motion\.csv|labels\.mat)",
+            path,
+        )
+        if not match:
+            if path.startswith("Bidslab"):
+                raise PreflightError(f"unsupported signal manifest path: {path}")
+            continue
+        if not SHA256.fullmatch(digest) or path in entries:
+            raise PreflightError("signal manifest hash or path is invalid")
+        entries[path] = digest
+    if not entries:
+        raise PreflightError("signal manifest contains no nights")
+    return entries
+
+
+def assemble_public_plan(preflight, entries, seed="bidsleep-public-reproduction-v1"):
+    validate_preflight(preflight)
+    nights = {}
+    for path, digest in entries.items():
+        night, name = path.rsplit("/", 1)
+        if name in nights.setdefault(night, {}):
+            raise PreflightError("night contains a duplicate file")
+        nights[night][name] = digest
+    if any(set(files) != NIGHT_FILES for files in nights.values()):
+        raise PreflightError("night file set is incomplete")
+    subjects = {night.split("/", 1)[0] for night in nights}
+    dataset = preflight["dataset"]
+    if (len(entries), len(subjects), len(nights)) != (
+        dataset["files"], dataset["subjects"], dataset["nights"]
+    ):
+        raise PreflightError("public inventory count differs")
+
+    split = participant_split(sorted(subjects), seed)
+    owner = {subject: name for name, values in split.items() for subject in values}
+    partitions = {}
+    for name in ("train", "validation", "test"):
+        partition_subjects = sorted(split[name])
+        partition_nights = sorted(
+            night for night in nights if owner[night.split("/", 1)[0]] == name
+        )
+        partitions[name] = {"subjects": partition_subjects, "nights": partition_nights}
+    assigned_nights = [night for partition in partitions.values() for night in partition["nights"]]
+    if len(assigned_nights) != len(set(assigned_nights)) or set(assigned_nights) != set(nights):
+        raise PreflightError("night leakage detected")
+
+    benchmark_night = min(
+        partitions["train"]["nights"],
+        key=lambda night: hashlib.sha256(f"{seed}\0benchmark\0{night}".encode()).hexdigest(),
+    )
+    prefix = f"https://physionet.org/files/bidsleep-dataset/{dataset['version']}"
+    benchmark_files = {
+        name: {
+            "sha256": nights[benchmark_night][name],
+            "url": f"{prefix}/{benchmark_night}/{name}",
+        }
+        for name in sorted(NIGHT_FILES)
+    }
+    return {
+        "schema": "paper-to-insight.bidsleep-public-plan/v1",
+        "status": "metadata_only",
+        "dataset": {"doi": dataset["doi"], "version": dataset["version"]},
+        "splitSeed": seed,
+        "counts": {"subjects": len(subjects), "nights": len(nights), "files": len(entries)},
+        "partitions": partitions,
+        "benchmark": {"night": benchmark_night, "partition": "train", "files": benchmark_files},
+        "controls": {
+            "signalFilesDownloaded": False,
+            "downloadApproved": False,
+            "modelVariantSelected": False,
+            "brainstemExecutionEnabled": False,
+        },
+    }
+
+
+def build_public_plan(preflight, checksum_manifest):
+    expected = preflight["dataset"]["checksumManifestSha256"]
+    if hashlib.sha256(checksum_manifest).hexdigest() != expected:
+        raise PreflightError("dataset checksum manifest hash changed")
+    return assemble_public_plan(preflight, parse_signal_manifest(checksum_manifest))
+
+
 def smoke(preflight, fixture):
     validate_preflight(preflight)
     exact(fixture, {"schema", "generatedOnly", "subjects", "nightFiles", "labelEncoding"}, "fixture")
@@ -199,27 +288,21 @@ def verify_upstream(preflight):
         if hashlib.sha256(fetch_small(f"{prefix}/{name}")).hexdigest() != expected:
             raise PreflightError(f"time reference upstream hash changed: {name}")
         verified += 1
-    entries = [
-        line.split(maxsplit=1)[1]
-        for line in checksum_manifest.decode().splitlines()
-        if len(line.split(maxsplit=1)) == 2
-        and re.fullmatch(
-            r"Bidslab[0-9]+/[0-9]+/(?:hr\.csv|motion\.csv|labels\.mat)",
-            line.split(maxsplit=1)[1],
-        )
-    ]
-    subjects = {item.split("/")[0] for item in entries}
-    nights = {"/".join(item.split("/")[:2]) for item in entries}
-    if (len(entries), len(subjects), len(nights)) != (
-        dataset["files"], dataset["subjects"], dataset["nights"]
-    ):
-        raise PreflightError("dataset checksum inventory changed")
-    return {"status": "passed", "smallFilesVerified": verified}
+    public_plan = build_public_plan(preflight, checksum_manifest)
+    committed_plan_path = ROOT / "public-plan.json"
+    if public_plan != json.loads(committed_plan_path.read_text()):
+        raise PreflightError("committed public plan drifted")
+    return {
+        "status": "passed",
+        "smallFilesVerified": verified,
+        "publicPlanSha256": hashlib.sha256(committed_plan_path.read_bytes()).hexdigest(),
+    }
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--verify-upstream", action="store_true")
+    parser.add_argument("--public-plan-output", type=Path)
     args = parser.parse_args()
     preflight = json.loads((ROOT / "preflight.json").read_text())
     report = smoke(
@@ -228,6 +311,18 @@ def main():
     )
     if args.verify_upstream:
         report["upstream"] = verify_upstream(preflight)
+    if args.public_plan_output:
+        dataset = preflight["dataset"]
+        manifest = fetch_small(
+            f"https://physionet.org/files/bidsleep-dataset/{dataset['version']}/SHA256SUMS.txt"
+        )
+        plan = build_public_plan(preflight, manifest)
+        args.public_plan_output.write_text(json.dumps(plan, indent=2, sort_keys=True) + "\n")
+        report["publicPlan"] = {
+            "status": plan["status"],
+            "subjects": plan["counts"]["subjects"],
+            "nights": plan["counts"]["nights"],
+        }
     print(json.dumps(report, sort_keys=True, separators=(",", ":")))
 
 
