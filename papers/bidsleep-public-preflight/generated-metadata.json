@@ -1,0 +1,24 @@
+{
+  "schema": "paper-to-insight.generated-bidsleep-metadata/v1",
+  "generatedOnly": true,
+  "subjects": [
+    {"id": "generated-subject-a", "nights": ["1", "2"]},
+    {"id": "generated-subject-b", "nights": ["1", "2"]},
+    {"id": "generated-subject-c", "nights": ["1", "2"]},
+    {"id": "generated-subject-d", "nights": ["1", "2"]},
+    {"id": "generated-subject-e", "nights": ["1", "2"]}
+  ],
+  "nightFiles": {
+    "hr.csv": ["timestamp_unix_seconds", "heart_rate_bpm"],
+    "motion.csv": ["timestamp_unix_seconds", "x_g", "y_g", "z_g"],
+    "labels.mat": ["recStart", "dreem_label", "expert_label"]
+  },
+  "labelEncoding": {
+    "0": "wake",
+    "1": "n1",
+    "2": "n2",
+    "3": "n3",
+    "4": "rem",
+    "5": "unknown"
+  }
+}

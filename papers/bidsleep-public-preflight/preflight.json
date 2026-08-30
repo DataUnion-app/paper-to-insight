@@ -1,0 +1,99 @@
+{
+  "schema": "paper-to-insight.public-preflight/v1",
+  "status": "preflight_only",
+  "paper": {
+    "title": "AI-Driven Sleep Staging Using Instantaneous Heart Rate and Accelerometry: Insights From an Apple Watch Study",
+    "doi": "10.1109/TBME.2025.3612158",
+    "classes": ["wake", "light", "deep", "rem"],
+    "epochSeconds": 30,
+    "reportedAccuracy": 0.71,
+    "population": "47 healthy adults without a history of sleep disorders"
+  },
+  "dataset": {
+    "name": "A Multi-Night Instantaneous Heart Rate and Accelerometry Dataset with EEG Sleep Stage Labels",
+    "version": "1.0.0",
+    "doi": "10.13026/a0sy-7t69",
+    "url": "https://physionet.org/content/bidsleep-dataset/1.0.0/",
+    "license": "Open Data Commons Attribution License 1.0",
+    "licenseSha256": "86c0ad300f6d380591298bc03652e30b81f65954bbf22435812bcfd46812ab06",
+    "readmeSha256": "e8549b50505e2fef970a4582d2b0c21ef022abda24e1d69b3dc29618b94df0d9",
+    "checksumManifestSha256": "13333dff4d4640167435188bc6019c1782684b96d09838cb7e7b3ad005a51460",
+    "subjects": 47,
+    "nights": 253,
+    "files": 759,
+    "compressedSize": "5.9 GB",
+    "expandedSize": "27.9 GB"
+  },
+  "source": {
+    "url": "https://github.com/BIDSLabUMass/SLAMSS-IFS",
+    "revision": "088e363873b4ac5b27bc23fb038abc052889698c",
+    "tree": "9a69685b694571e2f92f6c30fda3ce5422239638",
+    "license": "BSD-3-Clause",
+    "licenseSha256": "f033cebd42e27c149c9c4c629c66b211bbca2d6e746a753a4a9dd2ef61f69e76",
+    "fileSha256": {
+      "README.md": "4ea6fff100c47e98358efa0606f85adc5c343b29563b983dfacc7922a435daf2",
+      "SLAMSS_IFS_Testing.ipynb": "65eb9473f18b5bb3f88d6e5650bffb5adf4fbddfa6d80611cef4dac3cf4a6a64",
+      "SLAMSS_IFS_Training_Example.ipynb": "ba8046a9e7f7ee06c4c20953ae84e89e4a103707bee011ad3642e400bb4a7605",
+      "model/SLAMSS_IFS_Model.py": "528582591d9b4b31ae56a109394dce3d927d07ed77a7edb2e2087a280423561e"
+    },
+    "trainedWeightsPublished": false,
+    "rawToModelPreprocessorPublished": false
+  },
+  "modelContract": {
+    "rawNightFiles": ["hr.csv", "motion.csv", "labels.mat"],
+    "authorIntermediateFields": ["hr", "hr2", "act", "clock", "time", "hz", "stg_cor_cln"],
+    "subEpochSamples": 30,
+    "maximumEpochs": 1200,
+    "sequenceShape": [36000, 2],
+    "epochCovariateShape": [1200, 5],
+    "labelShape": [1200],
+    "unknownLabel": 5
+  },
+  "reproduction": {
+    "participantSeparatedSplitRequired": true,
+    "nightsMayNotCrossSplits": true,
+    "randomSeedsRequired": true,
+    "publishedSplitReusable": false,
+    "legacyEnvironment": [
+      "Python 3.7.16",
+      "PyTorch 1.9.0",
+      "NumPy 1.21.5",
+      "SciPy 1.6.2",
+      "CUDA 11.8",
+      "CuDNN 8.2.1.32",
+      "two NVIDIA GPUs"
+    ],
+    "portRequirements": [
+      "write the missing raw CSV and MAT-label to model-tensor converter",
+      "replace author-local paths and fixed 64-night output buffers",
+      "fix the testing notebook three-versus-five covariate-channel mismatch",
+      "replace fixed two-GPU DataParallel with an explicit device parameter",
+      "pin a supported Python, PyTorch, CUDA, NumPy, and SciPy environment",
+      "seed Python, NumPy, PyTorch, data-loader, and accelerator operations",
+      "persist weights, optimizer state, split manifest, and per-class metrics"
+    ],
+    "computeEstimate": "benchmark one epoch first; source requests 1000 epochs on two GPUs, so full GPU-hours cannot be honestly estimated before the port",
+    "diskBudget": "reserve at least 100 GB for the 5.9 GB archive, 27.9 GB expansion, converted tensors, checkpoints, and receipts"
+  },
+  "blockers": [
+    "no raw-to-intermediate preprocessing code is published",
+    "no trained weights are published",
+    "the published train and validation directories do not prove participant separation",
+    "the testing notebook supplies three covariate channels to a five-channel convolution",
+    "the source has no locked install environment or random seeds",
+    "Apple Watch PPG and wrist motion are not calibrated to Brainstem R-R and device movement"
+  ],
+  "controls": {
+    "generatedOrPublicOnly": true,
+    "brainstemExecutionEnabled": false,
+    "catalogueEntryEnabled": false,
+    "participantTransferClaim": false,
+    "clinicalUse": false
+  },
+  "slice12Gate": {
+    "decision": "human_approval_required",
+    "minimumFreeDisk": "100 GB",
+    "firstComputeStep": "port plus one-epoch public-data benchmark",
+    "fullTrainingBudget": "decide only from the benchmark receipt"
+  }
+}
