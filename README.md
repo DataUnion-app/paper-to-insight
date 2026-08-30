@@ -22,6 +22,9 @@ python3 papers/resting-hrv-methods/reproduce.py --verify
 python3 scripts/validate_candidate.py papers/resting-rr-sample-entropy/candidate.json
 python3 papers/resting-rr-sample-entropy/test_algorithm.py -v
 python3 papers/resting-rr-sample-entropy/reproduce.py --verify
+python3 scripts/validate_candidate.py papers/sleep-measure-reliability/candidate.json
+python3 papers/sleep-measure-reliability/test_algorithm.py -v
+python3 papers/sleep-measure-reliability/reproduce.py --verify
 python3 papers/apnea-ecg-heart-rate/test_source_audit.py -v
 python3 papers/apnea-ecg-heart-rate/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/apnea-ecg-heart-rate/candidate.json
@@ -94,6 +97,12 @@ candidate. It reproduces the PhysioNet sample-entropy method on pinned public
 Fantasia intervals, then exposes one disclosure-protected cohort metric and an
 owner-only comparison with an immutable aggregate reference. It also
 intentionally has no disease label or clinical interpretation.
+
+`papers/sleep-measure-reliability` is a generated E0 teaching candidate for
+repeated measurements. It keeps participants—not nights—as the independent
+unit and shows how to report an explicit ICC model, participant-level
+bootstrap interval, minimum-night threshold, and disclosure floor. It does not
+validate a device, dataset, or health claim.
 
 `papers/apnea-ecg-heart-rate` demonstrates the failure path. Its pinned source
 audit finds record-level evaluation and an overlapping-record leak, so it remains
