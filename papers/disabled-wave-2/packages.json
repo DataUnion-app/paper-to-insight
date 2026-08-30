@@ -1,0 +1,119 @@
+{
+  "schema": "paper-to-insight.disabled-packages/v1",
+  "packages": [
+    {
+      "packageId": "disease-linked-association",
+      "status": "disabled",
+      "purpose": "Test whether descriptive personal baseline departures are associated with separately dated outcomes without presenting an illness prediction.",
+      "primarySources": [
+        {"name": "Pre-symptomatic detection of COVID-19 from smartwatch data", "url": "https://pubmed.ncbi.nlm.nih.gov/33208926/", "identifier": "10.1038/s41551-020-00640-6", "license": "Publisher copyright", "use": "method and study design only"},
+        {"name": "Stanford NightSignal implementation", "url": "https://github.com/StanfordBioinformatics/wearable-infection/tree/99b3bd7937e72d42c2670c7a259d9f9f8728dc06", "identifier": "99b3bd7937e72d42c2670c7a259d9f9f8728dc06", "license": "Apache-2.0", "use": "licensed threshold mechanics"}
+      ],
+      "evidenceBindings": [
+        {"path": "papers/overnight-heart-rate-change/candidate.json", "sha256": "a87be7d8216d8c554e0879836b09ced7e7dfa261600577e8cba2af96ddae37d9"}
+      ],
+      "missingDelta": ["dated symptom and diagnostic-test outcomes", "prospective outcome definitions and collection cadence", "participant-separated device and population validation", "prespecified sensitivity, specificity, calibration, and abstention analysis"],
+      "proposedStudy": {"design": "Prospective association study over descriptive nightly baseline departures.", "participants": "Consenting participants who separately provide dated outcomes.", "reference": "Prespecified symptom and adjudicated diagnostic-test dates; device data never invents labels.", "split": "Participant-held-out development, calibration, and test sets.", "retention": "Purpose-bound study copy with identifiers replaced by a study pseudonym and governed retention."},
+      "claimBoundary": {"allowedNow": ["descriptive nightly baseline departure"], "prohibited": ["infection alert", "disease probability", "screening", "diagnosis", "treatment advice"]},
+      "cost": {"tier": "M", "mainCosts": ["outcome survey and adjudication", "prospective follow-up", "held-out statistical evaluation"]},
+      "promotionGate": ["approved dated-outcome protocol", "licensed immutable method package", "participant-held-out public or study reproduction", "scientific privacy security and ethics approval"],
+      "blockers": ["current recordings have no dated outcome ground truth", "the wearable and population transfer is unvalidated"],
+      "execution": {"algorithmPolicy": false, "apiRoute": false, "participantStudy": false, "personalCard": false, "payment": false, "notification": false, "schedule": false}
+    },
+    {
+      "packageId": "standardised-exercise-recovery",
+      "status": "disabled",
+      "purpose": "Measure repeatable heart-rate recovery after one frozen exercise protocol before considering any outcome association.",
+      "primarySources": [
+        {"name": "Heart-rate recovery immediately after exercise as a predictor of mortality", "url": "https://pubmed.ncbi.nlm.nih.gov/10536127/", "identifier": "10.1056/NEJM199910283411804", "license": "Publisher copyright", "use": "protocol and recovery-window context only"}
+      ],
+      "evidenceBindings": [
+        {"path": "papers/standing-heart-rate-response/candidate.json", "sha256": "2ec158d4d254e718a1107964ed0f77839b1ac937d40f86c4537640e6eb8e47b8"},
+        {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "16f672e2dd39159fce30357cc49bb356669dc1f4df4221df6a1e43a7753cf7de"}
+      ],
+      "missingDelta": ["explicit exercise subtype and protocol version", "intensity or workload and exertion-end marker", "frozen one-minute and later recovery windows", "artifact and protocol-adherence evidence", "cross-device unit and timing parity"],
+      "proposedStudy": {"design": "Within-person repeatability study for one standardised exercise and recovery sequence.", "participants": "Consenting adults able to perform the selected protocol safely.", "reference": "Versioned exercise phase markers, workload, and observed heart-rate recovery; no mortality label.", "split": "Participant-held-out protocol validation plus repeated sessions per participant.", "retention": "Purpose-bound protocol records with governed study pseudonyms."},
+      "claimBoundary": {"allowedNow": ["descriptive heart-rate change after a frozen activity"], "prohibited": ["fitness age", "mortality prediction", "disease risk", "clinical recovery classification", "treatment advice"]},
+      "cost": {"tier": "S-M", "mainCosts": ["mobile protocol markers", "safety and eligibility wording", "repeat sessions and review"]},
+      "promotionGate": ["one approved exercise protocol", "cross-platform phase-marker contract", "repeatability result", "scientific privacy security and ethics approval"],
+      "blockers": ["generic exercise records mix incompatible activities", "current uploads do not identify exertion end or workload"],
+      "execution": {"algorithmPolicy": false, "apiRoute": false, "participantStudy": false, "personalCard": false, "payment": false, "notification": false, "schedule": false}
+    },
+    {
+      "packageId": "six-rate-resonance",
+      "status": "disabled",
+      "purpose": "Estimate a repeatable response curve across six paced-breathing rates without calling one therapeutic or optimal.",
+      "primarySources": [
+        {"name": "A Practical Guide to Resonance Frequency Assessment for Heart Rate Variability Biofeedback", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7578229/", "identifier": "10.3389/fnins.2020.570400", "license": "CC-BY-4.0", "use": "assessment protocol context"},
+        {"name": "Effects of a Brief Resonance Frequency Breathing Exercise", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12081530/", "identifier": "10.1007/s10484-025-09687-0", "license": "CC-BY-4.0", "use": "7.0-to-4.5 cycles-per-minute protocol context"}
+      ],
+      "evidenceBindings": [
+        {"path": "papers/guided-breathing-response/candidate.json", "sha256": "2f92167b6c17e4a1ba071c64f8bb6c3bca36906b720b930801bc19b0e209e4bd"},
+        {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "16f672e2dd39159fce30357cc49bb356669dc1f4df4221df6a1e43a7753cf7de"}
+      ],
+      "missingDelta": ["one versioned upload containing the complete six-rate curve", "trial order and exact phase timing", "adherence and artifact evidence for every rate", "one cross-platform response and tie rule", "respiration synchrony or an explicit limitation when absent"],
+      "proposedStudy": {"design": "Repeated six-rate within-person protocol with counterbalanced or frozen order.", "participants": "Consenting participants with complete compatible guided-breathing sessions.", "reference": "Prespecified curve features and repeat-session agreement, not a clinical endpoint.", "split": "Participant-held-out protocol evaluation; repeated sessions assess within-person stability.", "retention": "Purpose-bound complete-curve records with governed study pseudonyms."},
+      "claimBoundary": {"allowedNow": ["descriptive response at one known breathing rate"], "prohibited": ["optimal therapeutic frequency", "autonomic diagnosis", "anxiety treatment effect", "medical recommendation"]},
+      "cost": {"tier": "S-M", "mainCosts": ["full-curve mobile upload", "cross-platform parity", "repeat-session collection"]},
+      "promotionGate": ["versioned six-rate producer contract", "frozen response and tie rule", "repeatability result", "scientific privacy security and ethics approval"],
+      "blockers": ["current server uploads do not bind all six trials into one curve", "cross-platform full-curve provenance is not frozen"],
+      "execution": {"algorithmPolicy": false, "apiRoute": false, "participantStudy": false, "personalCard": false, "payment": false, "notification": false, "schedule": false}
+    },
+    {
+      "packageId": "apple-health-local-composites",
+      "status": "disabled",
+      "purpose": "Evaluate one explicitly selected mobile or Apple Health measure only after its formula, provenance, units, and cross-platform owner are frozen.",
+      "primarySources": [
+        {"name": "Apple HealthKit documentation", "url": "https://developer.apple.com/documentation/healthkit", "identifier": "HealthKit documentation current at preflight", "license": "Apple Developer Website Terms", "use": "platform provenance and API semantics only"}
+      ],
+      "evidenceBindings": [
+        {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "16f672e2dd39159fce30357cc49bb356669dc1f4df4221df6a1e43a7753cf7de"}
+      ],
+      "missingDelta": ["selected measure and versioned formula", "source-device provenance and units", "versioned consented upload contract", "cross-platform owner and equivalence rule", "missingness and device-family policy"],
+      "proposedStudy": {"design": "Paired feasibility and repeatability study for one selected measure across supported platforms.", "participants": "Consenting users with the exact source device and application version.", "reference": "Frozen server recomputation or a documented platform measurement with provenance.", "split": "Participant-held-out evaluation with repeated observations per device family.", "retention": "Purpose-bound derived and source-provenance records with governed study pseudonyms."},
+      "claimBoundary": {"allowedNow": ["local app display under its existing formula"], "prohibited": ["cross-platform equivalence", "clinical normality", "disease risk", "server result from an unversioned formula"]},
+      "cost": {"tier": "M", "mainCosts": ["mobile contract and migration", "paired devices", "cross-platform validation"]},
+      "promotionGate": ["one selected formula and owner", "versioned consented upload", "paired cross-platform evaluation", "scientific privacy security and ethics approval"],
+      "blockers": ["local fields are not a versioned server input contract", "source devices and formulas are not cross-platform equivalent"],
+      "execution": {"algorithmPolicy": false, "apiRoute": false, "participantStudy": false, "personalCard": false, "payment": false, "notification": false, "schedule": false}
+    },
+    {
+      "packageId": "ecg-arrhythmia",
+      "status": "disabled",
+      "purpose": "Prepare a leakage-safe expert-labelled raw-ECG feasibility study without exposing a rhythm prediction.",
+      "primarySources": [
+        {"name": "Convolutional Recurrent Neural Networks for Electrocardiogram Classification", "url": "https://arxiv.org/abs/1710.06122v2", "identifier": "10.48550/arXiv.1710.06122", "license": "arXiv non-exclusive distribution licence", "use": "paper method only; linked implementation is unlicensed"}
+      ],
+      "evidenceBindings": [
+        {"path": "papers/atrial-fibrillation-crnn/candidate.json", "sha256": "9a30310b724d5bafdd14025426d004fb30513311cdc28bf64cfe9a46c6e30f8c"}
+      ],
+      "missingDelta": ["consistent single-lead ECG availability, sample rate, units, and lead provenance", "artifact-screened waveform contract", "expert rhythm labels and participant identity for separated validation", "licensed implementation and fitted model", "device and population calibration plus uncertainty policy"],
+      "proposedStudy": {"design": "Condition-specific raw-ECG feasibility study with expert adjudication.", "participants": "Separately consenting participants with the exact supported ECG hardware and protocol.", "reference": "Expert rhythm label for each waveform, including an explicit unclassifiable class.", "split": "Participant-held-out train, calibration, and untouched test sets.", "retention": "Purpose-bound raw ECG and labels under a dedicated approved study retention policy."},
+      "claimBoundary": {"allowedNow": [], "prohibited": ["atrial fibrillation result", "arrhythmia result", "cardiac diagnosis", "clinical alert", "treatment advice"]},
+      "cost": {"tier": "L", "mainCosts": ["consistent ECG capture", "expert waveform labels", "licensed model development", "external validation"]},
+      "promotionGate": ["licensed immutable source and data", "expert-labelled waveform contract", "participant-separated external validation", "scientific privacy security and ethics approval"],
+      "blockers": ["current records do not consistently contain calibrated raw ECG", "expert rhythm labels and a licensed fitted model are absent"],
+      "execution": {"algorithmPolicy": false, "apiRoute": false, "participantStudy": false, "personalCard": false, "payment": false, "notification": false, "schedule": false}
+    },
+    {
+      "packageId": "sleep-apnea",
+      "status": "disabled",
+      "purpose": "Prepare a paired Brainstem and respiratory-reference feasibility study without returning an apnea label or score.",
+      "primarySources": [
+        {"name": "The Apnea-ECG Database", "url": "https://doi.org/10.1109/CIC.2000.898505", "identifier": "10.1109/CIC.2000.898505", "license": "Publisher copyright", "use": "reference task and database paper"},
+        {"name": "PhysioNet Apnea-ECG 1.0.0", "url": "https://physionet.org/content/apnea-ecg/1.0.0/", "identifier": "10.13026/C23W2R", "license": "ODC-By-1.0", "use": "public data reproduction"},
+        {"name": "Independent Apnea-ECG evaluation source", "url": "https://github.com/ChiQiao/Apnea-ECG/tree/aaaf046741696e1c6267f707853e6e79b31c9ae5", "identifier": "aaaf046741696e1c6267f707853e6e79b31c9ae5", "license": "MIT", "use": "independent source audit only"}
+      ],
+      "evidenceBindings": [
+        {"path": "papers/apnea-ecg-heart-rate/candidate.json", "sha256": "62b6e4709ebc15a8ac1ce9698f8910bf4408614e5e172ba76ed340fdf0bd91ef"}
+      ],
+      "missingDelta": ["paired PSG respiratory events and AHI reference", "exact Brainstem ECG or R-R provenance and continuous coverage", "participant-separated licensed public reproduction", "paired device and population calibration", "prespecified uncertainty and abstention policy"],
+      "proposedStudy": {"design": "Paired overnight Brainstem plus PSG feasibility and external-validation study.", "participants": "Separately consenting participants recruited across relevant AHI and demographic ranges.", "reference": "Expert-scored respiratory events and AHI from PSG; wearable data never invents the reference.", "split": "Participant-held-out development, calibration, and external test cohorts.", "retention": "Purpose-bound raw signals and reference labels under a dedicated approved study retention policy."},
+      "claimBoundary": {"allowedNow": [], "prohibited": ["apnea probability", "AHI estimate", "sleep-apnea screening", "diagnosis", "treatment advice"]},
+      "cost": {"tier": "L", "mainCosts": ["PSG nights", "expert scoring", "device pairing", "external validation"]},
+      "promotionGate": ["licensed public reproduction", "paired PSG and Brainstem protocol", "participant-separated device validation", "scientific privacy security and ethics approval"],
+      "blockers": ["Brainstem recordings have no paired respiratory-event or AHI labels", "device and population transfer have not been validated"],
+      "execution": {"algorithmPolicy": false, "apiRoute": false, "participantStudy": false, "personalCard": false, "payment": false, "notification": false, "schedule": false}
+    }
+  ]
+}
