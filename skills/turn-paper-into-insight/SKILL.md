@@ -67,6 +67,10 @@ Use one pure scientific calculation owner where possible.
 - Personal: one authenticated participant's compatible inputs only, compared
   with a frozen disclosure-safe aggregate reference by digest.
 
+For repeated-measure reliability, keep nights/windows grouped by participant,
+resample participants rather than their observations, and make any minimum-
+observation rule metric-, time-window-, and confidence-threshold-specific.
+
 Define every quality, coverage, privacy, device, population, OOD, uncertainty,
 and missing-reference condition that forces abstention. Abstention is not a
 negative result. When a disease classification abstains, do not return its

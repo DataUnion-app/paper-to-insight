@@ -31,3 +31,4 @@ jobs:
           done < <(find papers -mindepth 2 -maxdepth 2 -name candidate.json -print | sort)
           python3 papers/resting-hrv-methods/reproduce.py --verify
           python3 papers/resting-rr-sample-entropy/reproduce.py --verify
+          python3 papers/sleep-measure-reliability/reproduce.py --verify

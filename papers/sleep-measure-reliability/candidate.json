@@ -1,0 +1,98 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "example.sleep-measure-reliability",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Minimum number of nights for reliable estimation of habitual sleep using a consumer sleep tracker",
+    "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/37193398/",
+    "doi": "10.1093/sleepadvances/zpac026",
+    "claim": "Demonstrates that minimum nights for habitual sleep estimates depend on the measure, aggregation window, and target reliability.",
+    "claimClass": "descriptive",
+    "population": "The paper studied consumer-tracker sleep in adults; this package uses generated participants only.",
+    "referenceStandard": "Published minimum-night methodology; deterministic participant-grouped generated fixture for this package.",
+    "implementationRelation": "method_only",
+    "relationEvidence": "Independent Apache-2.0 implementation of a participant-level ICC reliability example; it does not reproduce the paper's device, cohort, data, or exact model.",
+    "classification": {
+      "paperDecision": "not_applicable",
+      "labels": [],
+      "unit": "repeated nightly descriptive measure"
+    }
+  },
+  "sources": [
+    {
+      "name": "Independent generated reliability implementation",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "revisionType": "content_sha256",
+      "revision": "884b8593016e2554dd3c65695d92df55755ef0a5464d33f060ea2d2e740e130c",
+      "sha256": "884b8593016e2554dd3c65695d92df55755ef0a5464d33f060ea2d2e740e130c",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated participant-grouped nightly sleep-duration fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-fixture",
+      "sha256": "518b8d5f0b1a4800bc28692885e901b8920af295566c97759a98d344cb450062",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "brainstem.sleep-nightly-summary-cohort/v1 (proposed; protected review required)",
+    "requiredSignals": ["participant-grouped nightly descriptive measurements"],
+    "window": "Exactly seven distinct nightly measurements per participant.",
+    "preprocessing": "Keep each participant's nights together; calculate balanced ICC(1,1); bootstrap participants rather than nights; abstain below twenty participants.",
+    "brainstemVerdict": "unknown",
+    "mismatches": [
+      "Generated duration values do not validate any Brainstem device or cohort.",
+      "The paper's consumer device, population, dataset, and exact statistical model are not reproduced.",
+      "A protected scientific review must freeze the production estimator and uncertainty method."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "methods_only",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "not_applicable"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": true,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Aggregate reliability curve and minimum-night guidance; no participant or nightly rows."
+    },
+    "personal": {
+      "proposed": true,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Owner-only descriptive trend with cohort placement withheld until the reviewed metric-specific night requirement is met."
+    }
+  },
+  "abstention": [
+    "insufficient_coverage",
+    "privacy_floor",
+    "model_uncertainty",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "diagnosis",
+    "disease prediction",
+    "clinical normal range",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {"path": "README.md", "sha256": "8c9b34857a85e3673f70c9fd856cb5d34cc8d74312dea85b78ff989f23741daa"},
+    {"path": "algorithm.py", "sha256": "884b8593016e2554dd3c65695d92df55755ef0a5464d33f060ea2d2e740e130c"},
+    {"path": "expected-public.json", "sha256": "3a9190cf8aab6a6121ffa3b9511d7f1d4098c928c19e4525c315ae5e965fc4ba"},
+    {"path": "public-data.json", "sha256": "518b8d5f0b1a4800bc28692885e901b8920af295566c97759a98d344cb450062"},
+    {"path": "reproduce.py", "sha256": "2ea6a21f28627795035933acf27b51832b9cec368b7250071c94626202416dd3"},
+    {"path": "test_algorithm.py", "sha256": "71415b2c369392b6612f6b2385767b9cf54e9dab8a88813365dfdea176b68556"}
+  ]
+}

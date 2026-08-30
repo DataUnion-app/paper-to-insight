@@ -1,0 +1,21 @@
+{
+  "schema": "paper-to-insight.sleep-measure-reliability/result-v1",
+  "status": "complete",
+  "participantCountBand": "20 to 49",
+  "metric": "sleepDurationHours",
+  "iccModel": "ICC(1,1) balanced one-way random-effects absolute agreement",
+  "reliabilityByNights": [
+    {"nights": 1, "estimate": 0.9863, "ci95": [0.9763, 0.99]},
+    {"nights": 2, "estimate": 0.9931, "ci95": [0.988, 0.995]},
+    {"nights": 3, "estimate": 0.9954, "ci95": [0.992, 0.9966]},
+    {"nights": 4, "estimate": 0.9965, "ci95": [0.994, 0.9975]},
+    {"nights": 5, "estimate": 0.9972, "ci95": [0.9952, 0.998]},
+    {"nights": 6, "estimate": 0.9977, "ci95": [0.996, 0.9983]},
+    {"nights": 7, "estimate": 0.998, "ci95": [0.9965, 0.9986]}
+  ],
+  "minimumNightsForLowerCi80": 1,
+  "warnings": [
+    "Generated methods example only; not a Brainstem reference.",
+    "Reliability describes repeatability, not health, risk, or diagnosis."
+  ]
+}
