@@ -86,3 +86,29 @@ Brainstem runtime, catalogue entry, transfer claim, clinical use, or Slice 12
 gate is enabled.
 The optional upstream check downloads only eight pinned public metadata/source
 files under a 5 MB per-file limit; it does not download any night recording.
+
+## Generated converter checkpoint
+
+`converter.py` implements the parts of the paper's preprocessing that are fully
+specified by the public paper and dataset: per-channel 3-sigma filtering,
+1 Hz linear interpolation without extrapolation, acceleration vector magnitude,
+per-epoch pre-interpolation heart-rate sample frequency, and four-class label
+mapping. It writes a deterministic compressed archive plus a provenance
+receipt.
+`generated-converter-receipt.json` freezes the resulting contract from a
+deterministic generated 600-epoch night; its archive hash is reproduced twice
+by the focused test fixture.
+
+The output deliberately states `modelReady: false`. The paper and source do
+not define enough information to reconstruct the author-specific `clock` and
+personalised `time` fields. The converter therefore produces a transparent
+aligned public intermediate rather than pretending to reproduce the unpublished
+MAT files. No public signal night is needed for its generated tests:
+
+```sh
+python3 -m venv /tmp/bidsleep-converter
+/tmp/bidsleep-converter/bin/pip install -r \
+  papers/bidsleep-public-preflight/requirements-converter.txt
+/tmp/bidsleep-converter/bin/python \
+  papers/bidsleep-public-preflight/test_converter.py
+```

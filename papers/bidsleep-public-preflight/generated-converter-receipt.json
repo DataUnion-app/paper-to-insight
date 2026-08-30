@@ -1,0 +1,90 @@
+{
+  "arrays": {
+    "dreem_stage_original": {
+      "dtype": "uint8",
+      "shape": [
+        600
+      ]
+    },
+    "epoch_covariates": {
+      "dtype": "float32",
+      "shape": [
+        600,
+        3
+      ]
+    },
+    "epoch_start_unix": {
+      "dtype": "float64",
+      "shape": [
+        600
+      ]
+    },
+    "signal_1hz": {
+      "dtype": "float32",
+      "shape": [
+        18000,
+        2
+      ]
+    },
+    "signal_valid": {
+      "dtype": "bool",
+      "shape": [
+        18000
+      ]
+    },
+    "stage_four": {
+      "dtype": "uint8",
+      "shape": [
+        600
+      ]
+    },
+    "stage_mask": {
+      "dtype": "bool",
+      "shape": [
+        600
+      ]
+    },
+    "stage_original": {
+      "dtype": "uint8",
+      "shape": [
+        600
+      ]
+    }
+  },
+  "brainstemExecutionEnabled": false,
+  "catalogueEntryEnabled": false,
+  "counts": {
+    "epochs": 600,
+    "fullyCoveredEpochs": 600,
+    "releasedLabels": 502
+  },
+  "dataset": {
+    "doi": "10.13026/a0sy-7t69",
+    "license": "ODC-By-1.0",
+    "version": "1.0.0"
+  },
+  "inputSha256": {
+    "hr.csv": "b742b2f32fda3fb49c035a1b48ee903c2a609bcb16335a759c559f0d6fe9cb08",
+    "labels.mat": "048c905eefbc1404485d64b2fdff376459c8621eb4aea56cf8885370c006afb1",
+    "motion.csv": "301c37695f442de4c96869c1631c5c6ff1925e9be02b27a96824c67fba07fbbc"
+  },
+  "modelReady": false,
+  "outputSha256": "1c703b24933b905cbfa061d3651a8ba1545b17a9116f654a2a29c8861c1a7a9e",
+  "participantTransferClaim": false,
+  "publicIdentity": {
+    "night": "generated-night-a",
+    "subject": "generated-subject-a"
+  },
+  "schema": "paper-to-insight.bidsleep-aligned-night/v1",
+  "status": "converted",
+  "transform": {
+    "acceleration": "sqrt(x^2+y^2+z^2) after interpolation",
+    "fourClassLabels": "Wake, Light(N1+N2), Deep(N3), REM; Unknown masked",
+    "interpolation": "linear 1 Hz anchored at recStart; no extrapolation",
+    "outlierRule": "absolute population z-score <= 3 per source channel"
+  },
+  "unsupportedAuthorFields": [
+    "clock",
+    "time"
+  ]
+}
