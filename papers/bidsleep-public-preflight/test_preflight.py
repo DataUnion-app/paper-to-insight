@@ -43,6 +43,19 @@ class BidsleepPreflightTest(unittest.TestCase):
         with self.assertRaises(module.PreflightError):
             module.validate_preflight(preflight)
 
+    def test_rejects_personalized_clock_or_reported_variant_claim(self):
+        for key in ("personalizedClockReproducible", "reportedBidsleepVariantKnown"):
+            preflight = copy.deepcopy(self.preflight)
+            preflight["timeReference"][key] = True
+            with self.assertRaises(module.PreflightError):
+                module.validate_preflight(preflight)
+
+    def test_rejects_time_formula_drift(self):
+        preflight = copy.deepcopy(self.preflight)
+        preflight["timeReference"]["cosineFormula"] = "cos(seconds_since_start)"
+        with self.assertRaises(module.PreflightError):
+            module.validate_preflight(preflight)
+
 
 if __name__ == "__main__":
     unittest.main()

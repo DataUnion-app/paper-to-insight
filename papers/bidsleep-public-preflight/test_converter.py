@@ -58,6 +58,15 @@ class ConverterTest(unittest.TestCase):
             np.testing.assert_allclose(arrays["signal_1hz"][:, 1], 5)
             np.testing.assert_array_equal(arrays["stage_four"], [0, 1, 1, 2])
             np.testing.assert_array_equal(arrays["stage_mask"], [True] * 4)
+            self.assertEqual(arrays["epoch_freq_hr_stats"].shape, (4, 3))
+            self.assertEqual(arrays["epoch_time_candidates"].shape, (4, 2))
+            np.testing.assert_allclose(
+                arrays["epoch_time_candidates"][:, 1], np.arange(4) * 30 / 3600
+            )
+            self.assertAlmostEqual(
+                float(arrays["epoch_time_candidates"][0, 0]),
+                -math.cos((-5 * 3600) * 2 * math.pi / (24 * 3600)),
+            )
             first = night / "first.npz"
             second = night / "second.npz"
             converter.write_npz(first, arrays)
@@ -77,7 +86,7 @@ class ConverterTest(unittest.TestCase):
         )
         self.assertEqual(float(arrays["signal_1hz"][15, 0]), 60)
         self.assertEqual(float(arrays["signal_1hz"][15, 1]), 1)
-        self.assertAlmostEqual(float(arrays["epoch_covariates"][0, 0]), 29 / 30)
+        self.assertAlmostEqual(float(arrays["epoch_freq_hr_stats"][0, 0]), 29 / 30)
 
     def test_motion_outliers_are_filtered_per_axis(self):
         start = 1_700_000_000.0
@@ -144,7 +153,7 @@ class ConverterTest(unittest.TestCase):
             self.assertEqual(receipt, expected)
             self.assertEqual(receipt["counts"]["epochs"], 600)
             self.assertFalse(receipt["modelReady"])
-            self.assertEqual(receipt["unsupportedAuthorFields"], ["clock", "time"])
+            self.assertEqual(receipt["unsupportedAuthorFields"], ["personalized_circadian_clock"])
             self.assertFalse(receipt["brainstemExecutionEnabled"])
             self.assertTrue(output.with_suffix(".npz").is_file())
 

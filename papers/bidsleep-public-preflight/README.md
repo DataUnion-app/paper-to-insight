@@ -19,6 +19,10 @@ entry, trained model, or transfer-validation result.
   `9a69685b694571e2f92f6c30fda3ce5422239638`, BSD-3-Clause. Exact dataset,
   licence, README, notebook, and model-file SHA-256 values are in
   `preflight.json`.
+- Time reference: Walch et al., DOI `10.1093/sleep/zsz180`, and its
+  `ojwalch/sleep_classifiers` commit
+  `7f2b521b3778b8cc2dd1cf2f013fef360e006958`. This pins the published
+  five-hour-shifted cosine proxy and elapsed-hours calculation.
 
 ## What the public data contains
 
@@ -42,8 +46,11 @@ The source cannot reproduce as committed:
 - training/validation are author-local directories with no published subject
   split manifest;
 - no weights are published and checkpoint saving is commented out;
-- the testing notebook passes three covariate channels into a convolution that
-  expects five;
+- the paper describes `Freq` and `Time`, training supplies five epoch channels,
+  and testing supplies three to a convolution that expects five;
+- the public BIDSleep files contain no longitudinal step series for the
+  personalised circadian model, and the paper does not identify which time
+  variant produced the reported result;
 - output buffers assume 64 validation nights, execution assumes two GPUs, and
   paths are absolute;
 - the README lists Python 3.7, PyTorch 1.9, NumPy 1.21, SciPy 1.6, CUDA 11.8,
@@ -99,11 +106,13 @@ receipt.
 deterministic generated 600-epoch night; its archive hash is reproduced twice
 by the focused test fixture.
 
-The output deliberately states `modelReady: false`. The paper and source do
-not define enough information to reconstruct the author-specific `clock` and
-personalised `time` fields. The converter therefore produces a transparent
-aligned public intermediate rather than pretending to reproduce the unpublished
-MAT files. No public signal night is needed for its generated tests:
+The output deliberately states `modelReady: false`. It now includes the exact
+public cosine clock candidate and elapsed-hours candidate from the cited 2019
+implementation. The personalised clock still requires unpublished longitudinal
+step input, while the BIDSleep paper, training notebook, and testing notebook
+disagree on the epoch-channel count. The converter therefore produces a
+transparent aligned public intermediate rather than choosing an undocumented
+model variant. No public signal night is needed for its generated tests:
 
 ```sh
 python3 -m venv /tmp/bidsleep-converter

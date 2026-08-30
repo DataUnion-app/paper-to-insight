@@ -193,7 +193,10 @@ def convert_arrays(
     hr_std = np.full(epochs, np.nan, dtype=np.float32)
     hr_mean[covered] = reshaped_hr[covered].mean(axis=1)
     hr_std[covered] = reshaped_hr[covered].std(axis=1)
-    covariates = np.column_stack((frequency, hr_mean, hr_std)).astype(np.float32)
+    epoch_evidence = np.column_stack((frequency, hr_mean, hr_std)).astype(np.float32)
+    elapsed_seconds = np.arange(epochs, dtype=np.float64) * 30
+    cosine_clock = -np.cos((elapsed_seconds - 5 * 3600) * 2 * np.pi / (24 * 3600))
+    time_candidates = np.column_stack((cosine_clock, elapsed_seconds / 3600)).astype(np.float32)
 
     stage_four = np.asarray([0, 1, 1, 2, 3, 0], dtype=np.uint8)[expert_labels]
     epoch_signal_valid = signal_valid.reshape(epochs, 30).all(axis=1)
@@ -201,7 +204,8 @@ def convert_arrays(
     return {
         "signal_1hz": signal,
         "signal_valid": signal_valid,
-        "epoch_covariates": covariates,
+        "epoch_freq_hr_stats": epoch_evidence,
+        "epoch_time_candidates": time_candidates,
         "epoch_start_unix": epoch_start,
         "stage_original": expert_labels.astype(np.uint8),
         "stage_four": stage_four,
@@ -253,9 +257,20 @@ def convert_night(night: Path, output: Path, subject_id: str, night_id: str) -> 
             "interpolation": "linear 1 Hz anchored at recStart; no extrapolation",
             "acceleration": "sqrt(x^2+y^2+z^2) after interpolation",
             "fourClassLabels": "Wake, Light(N1+N2), Deep(N3), REM; Unknown masked",
+            "cosineClock": "-cos((seconds_since_start - 5*3600) * 2*pi / (24*3600))",
+            "elapsedTime": "seconds_since_start / 3600",
+        },
+        "arrayColumns": {
+            "epoch_freq_hr_stats": ["accepted_ihr_hz", "ihr_mean_bpm", "ihr_std_bpm"],
+            "epoch_time_candidates": ["cosine_clock_proxy", "elapsed_hours"],
+            "signal_1hz": ["ihr_bpm", "acceleration_magnitude_g"],
         },
         "modelReady": False,
-        "unsupportedAuthorFields": ["clock", "time"],
+        "unsupportedAuthorFields": ["personalized_circadian_clock"],
+        "modelBoundary": (
+            "paper=2 epoch channels; training source=5; "
+            "testing source=3 into a 5-channel convolution"
+        ),
         "brainstemExecutionEnabled": False,
         "catalogueEntryEnabled": False,
         "participantTransferClaim": False,

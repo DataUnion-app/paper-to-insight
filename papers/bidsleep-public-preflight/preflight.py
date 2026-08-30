@@ -34,7 +34,7 @@ def validate_preflight(value):
         value,
         {
             "schema", "status", "paper", "dataset", "source", "modelContract",
-            "reproduction", "blockers", "controls", "slice12Gate",
+            "timeReference", "reproduction", "blockers", "controls", "slice12Gate",
         },
         "$",
     )
@@ -57,6 +57,34 @@ def validate_preflight(value):
         raise PreflightError("source availability is overstated")
     if any(not SHA256.fullmatch(item) for item in source.get("fileSha256", {}).values()):
         raise PreflightError("source files are not pinned")
+    time_reference = exact(
+        root["timeReference"],
+        {
+            "paperTitle", "paperDoi", "sourceUrl", "revision", "licenseClaim",
+            "fileSha256", "cosineFormula", "elapsedTimeFormula",
+            "personalizedClockReproducible", "reportedBidsleepVariantKnown",
+        },
+        "$.timeReference",
+    )
+    time_files = time_reference.get("fileSha256", {})
+    if (
+        not re.fullmatch(r"[0-9a-f]{40}", time_reference.get("revision", ""))
+        or set(time_files)
+        != {
+            "README.md", "source/constants.py",
+            "source/preprocessing/time/time_based_feature_service.py",
+        }
+        or any(not SHA256.fullmatch(item) for item in time_files.values())
+        or time_reference.get("paperDoi") != "10.1093/sleep/zsz180"
+        or time_reference.get("sourceUrl") != "https://github.com/ojwalch/sleep_classifiers"
+        or time_reference.get("licenseClaim") != "MIT in pinned README"
+        or time_reference.get("cosineFormula")
+        != "-cos((seconds_since_start - 5*3600) * 2*pi / (24*3600))"
+        or time_reference.get("elapsedTimeFormula") != "seconds_since_start / 3600"
+        or time_reference.get("personalizedClockReproducible") is not False
+        or time_reference.get("reportedBidsleepVariantKnown") is not False
+    ):
+        raise PreflightError("time reference overstates public reproducibility")
     controls = root["controls"]
     if controls != {
         "generatedOrPublicOnly": True,
@@ -164,6 +192,12 @@ def verify_upstream(preflight):
     for name, expected in source_files.items():
         if hashlib.sha256(fetch_small(f"{prefix}/{name}")).hexdigest() != expected:
             raise PreflightError(f"source upstream hash changed: {name}")
+        verified += 1
+    time_reference = preflight["timeReference"]
+    prefix = f"https://raw.githubusercontent.com/ojwalch/sleep_classifiers/{time_reference['revision']}"
+    for name, expected in time_reference["fileSha256"].items():
+        if hashlib.sha256(fetch_small(f"{prefix}/{name}")).hexdigest() != expected:
+            raise PreflightError(f"time reference upstream hash changed: {name}")
         verified += 1
     entries = [
         line.split(maxsplit=1)[1]

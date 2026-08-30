@@ -1,4 +1,19 @@
 {
+  "arrayColumns": {
+    "epoch_freq_hr_stats": [
+      "accepted_ihr_hz",
+      "ihr_mean_bpm",
+      "ihr_std_bpm"
+    ],
+    "epoch_time_candidates": [
+      "cosine_clock_proxy",
+      "elapsed_hours"
+    ],
+    "signal_1hz": [
+      "ihr_bpm",
+      "acceleration_magnitude_g"
+    ]
+  },
   "arrays": {
     "dreem_stage_original": {
       "dtype": "uint8",
@@ -6,7 +21,7 @@
         600
       ]
     },
-    "epoch_covariates": {
+    "epoch_freq_hr_stats": {
       "dtype": "float32",
       "shape": [
         600,
@@ -17,6 +32,13 @@
       "dtype": "float64",
       "shape": [
         600
+      ]
+    },
+    "epoch_time_candidates": {
+      "dtype": "float32",
+      "shape": [
+        600,
+        2
       ]
     },
     "signal_1hz": {
@@ -68,8 +90,9 @@
     "labels.mat": "048c905eefbc1404485d64b2fdff376459c8621eb4aea56cf8885370c006afb1",
     "motion.csv": "301c37695f442de4c96869c1631c5c6ff1925e9be02b27a96824c67fba07fbbc"
   },
+  "modelBoundary": "paper=2 epoch channels; training source=5; testing source=3 into a 5-channel convolution",
   "modelReady": false,
-  "outputSha256": "1c703b24933b905cbfa061d3651a8ba1545b17a9116f654a2a29c8861c1a7a9e",
+  "outputSha256": "540dabbe24320a3b84976d8e5e080442f4e59fdf72f75c682d17ea42a86f874b",
   "participantTransferClaim": false,
   "publicIdentity": {
     "night": "generated-night-a",
@@ -79,12 +102,13 @@
   "status": "converted",
   "transform": {
     "acceleration": "sqrt(x^2+y^2+z^2) after interpolation",
+    "cosineClock": "-cos((seconds_since_start - 5*3600) * 2*pi / (24*3600))",
+    "elapsedTime": "seconds_since_start / 3600",
     "fourClassLabels": "Wake, Light(N1+N2), Deep(N3), REM; Unknown masked",
     "interpolation": "linear 1 Hz anchored at recStart; no extrapolation",
     "outlierRule": "absolute population z-score <= 3 per source channel"
   },
   "unsupportedAuthorFields": [
-    "clock",
-    "time"
+    "personalized_circadian_clock"
   ]
 }

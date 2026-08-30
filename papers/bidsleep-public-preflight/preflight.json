@@ -39,6 +39,22 @@
     "trainedWeightsPublished": false,
     "rawToModelPreprocessorPublished": false
   },
+  "timeReference": {
+    "paperTitle": "Sleep stage prediction with raw acceleration and photoplethysmography heart rate data derived from a consumer wearable device",
+    "paperDoi": "10.1093/sleep/zsz180",
+    "sourceUrl": "https://github.com/ojwalch/sleep_classifiers",
+    "revision": "7f2b521b3778b8cc2dd1cf2f013fef360e006958",
+    "licenseClaim": "MIT in pinned README",
+    "fileSha256": {
+      "README.md": "e4c0506373baae13026a289b9c77f4f4c8917a1da0e7ae28bb2ec35dca96b299",
+      "source/constants.py": "a8cbea6ea102f39519aab0edf074e2c98c7fe0561b4469aacc869ef3e4e03afa",
+      "source/preprocessing/time/time_based_feature_service.py": "953957e5ec631c33ca339cb64b3a4496d8db7a78e395cfe1cfa25edc116dd9e1"
+    },
+    "cosineFormula": "-cos((seconds_since_start - 5*3600) * 2*pi / (24*3600))",
+    "elapsedTimeFormula": "seconds_since_start / 3600",
+    "personalizedClockReproducible": false,
+    "reportedBidsleepVariantKnown": false
+  },
   "modelContract": {
     "rawNightFiles": ["hr.csv", "motion.csv", "labels.mat"],
     "authorIntermediateFields": ["hr", "hr2", "act", "clock", "time", "hz", "stg_cor_cln"],
@@ -79,7 +95,8 @@
     "no raw-to-intermediate preprocessing code is published",
     "no trained weights are published",
     "the published train and validation directories do not prove participant separation",
-    "the testing notebook supplies three covariate channels to a five-channel convolution",
+    "the paper specifies two epoch covariates, training supplies five, and testing supplies three to a five-channel convolution",
+    "the public dataset does not contain longitudinal steps required for the personalized circadian clock",
     "the source has no locked install environment or random seeds",
     "Apple Watch PPG and wrist motion are not calibrated to Brainstem R-R and device movement"
   ],
