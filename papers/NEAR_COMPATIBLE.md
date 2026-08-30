@@ -5,8 +5,8 @@ This is the review queue for methods that are scientifically interesting but do 
 ## Sleep staging from heart rate and movement
 
 - **Primary lead:** [BIDSleep](https://physionet.org/content/bidsleep-dataset/1.0.0/), 253 nights from 47 adults with Apple Watch heart rate/accelerometry aligned to Dreem EEG labels.
-- **What already fits:** Brainstem can collect full-night R-R/heart-rate and movement-like payloads.
-- **Exact delta:** versioned, timestamp-aligned XYZ acceleration with units/sample rate/time basis; trusted capture-time provenance; licensed model or independent reproduction; participant-held-out Brainstem-versus-EEG calibration.
+- **What already fits:** Brainstem can collect full-night R-R/heart-rate and movement-like payloads. Current forward mobile releases include capture-time provenance.
+- **Exact delta:** freeze timestamp-aligned movement units, axes, sample rate, time basis, missingness, and device provenance; port and retrain the BSD-3-Clause SLAMSS-IFS source because its public repository does not ship trained weights; reproduce with participant-level splits; then run a participant-held-out paired Brainstem-versus-EEG calibration. BIDSleep is ODC-By 1.0 and approximately 5.9 GB compressed / 27.9 GB expanded; the audited source snapshot is `088e363873b4ac5b27bc23fb038abc052889698c`.
 - **Potential study:** paired Brainstem and PSG/Dreem validation with participant-level splits.
 - **Do not claim yet:** sleep stage, sleep quality, sleep disorder, or clinical screening.
 
@@ -20,16 +20,16 @@ This is the review queue for methods that are scientifically interesting but do 
 
 ## Guided-breathing response
 
-- **What already fits:** Android uploads pace, phase timings, average heart rate, lnLF, and RSA-like metrics with raw R-R.
-- **Exact delta:** explicit `exerciseSubtype`; common iOS/Android protocol version; canonical server-side calculation; phase/adherence contract; historical-record disambiguation.
+- **What already fits:** both apps upload raw R-R plus `rateCPM` and the four phase fields `ih`, `ip`, `eh`, and `ep` for guided sessions. These fields can disambiguate compatible historical sessions inside the generic `exercise` type.
+- **Exact delta:** canonical server-side calculation; group only identical pace/phase contracts; make missing coverage and artifacts abstain; add `exerciseSubtype=guided_breathing` and `protocolVersion` to future uploads without excluding structurally compatible historical records.
 - **Potential study:** within-person descriptive response across matched breathing protocols.
 - **Do not claim yet:** stress reduction, treatment effect, or clinical autonomic status.
 
 ## Active-stand response
 
 - **Primary lead:** [Active stand practical guide](https://pubmed.ncbi.nlm.nih.gov/31076939/).
-- **What already fits:** posture recordings contain R-R/heart-rate and app-guided rest/stand phases.
-- **Exact delta:** explicit phase markers and timing; aligned iOS/Android protocol; canonical server calculation; device/protocol provenance. Clinical interpretation additionally needs continuous beat-to-beat blood pressure, which Brainstem does not collect.
+- **What already fits:** both apps use the same 120-second warm-up, 120-second rest, and 60-second stand sequence and upload raw R-R plus `postureScore`. Complete historical records can be recomputed using the last three minutes: rest `[-180s, -60s)` and stand `[-60s, 0s)`.
+- **Exact delta:** canonical server calculation; coverage/artifact abstention; device/protocol provenance; explicit phase markers and a protocol version for future uploads. Clinical interpretation additionally needs continuous beat-to-beat blood pressure, which Brainstem does not collect.
 - **Potential study:** descriptive heart-rate rise and recovery repeatability.
 - **Do not claim yet:** orthostatic hypotension, POTS, diagnosis, or clinical active-stand result.
 
