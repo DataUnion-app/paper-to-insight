@@ -1,0 +1,20 @@
+{
+  "schema": "paper-to-insight.overnight-heart-rate-movement/generated-v1",
+  "movement": {
+    "schema": "brainstem.normalized-movement/v1",
+    "coverageFraction": 1.0,
+    "samples": [
+      {"offsetSeconds": 0, "activityMilliG": 20},
+      {"offsetSeconds": 1, "activityMilliG": 100},
+      {"offsetSeconds": 2, "activityMilliG": 120},
+      {"offsetSeconds": 3, "activityMilliG": 180},
+      {"offsetSeconds": 4, "activityMilliG": 10},
+      {"offsetSeconds": 5, "activityMilliG": 30},
+      {"offsetSeconds": 6, "activityMilliG": 110},
+      {"offsetSeconds": 7, "activityMilliG": 40},
+      {"offsetSeconds": 8, "activityMilliG": 20},
+      {"offsetSeconds": 9, "activityMilliG": 50}
+    ]
+  },
+  "heartRateBpmBySecond": [55, 55, 60, 60, 55, 55, 60, 55, 55, 55]
+}

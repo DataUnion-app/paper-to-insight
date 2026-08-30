@@ -2,7 +2,7 @@
 
 This package reproduces the pinned Apache-2.0 NightSignal running-median and two-consecutive-night threshold mechanics on a compact derivative of its public Fitbit sample. It then freezes a narrower Brainstem translation: compare two recent qualifying full-night sleeping-rate summaries with the median of the preceding seven.
 
-The translation is descriptive. It does not return NightSignal's infection labels or call a threshold event an alert, illness, disease, or risk.
+The translation is descriptive. It does not return NightSignal's infection labels or call a threshold event an alert, illness, disease, or risk. A separate generated fixture also freezes the non-paper movement extension: 1 Hz movement coverage, contiguous events above the apps' existing 100 milli-g threshold, quiet-window proportion, and aligned descriptive heart-rate means. It does not infer sleep stages, sleep quality, or device placement.
 
 ## Public proof
 
@@ -11,7 +11,7 @@ python3 reproduce.py
 python3 -m unittest test_algorithm.py
 ```
 
-The compact fixture contains only the first 30 nightly mean values derived from the source CSV after applying its midnight-to-06:59, zero-step filter and integer mean. Dates, raw heart-rate rows, and identifiers are intentionally omitted.
+The compact public fixture contains only the first 30 nightly mean values derived from the source CSV after applying its midnight-to-06:59, zero-step filter and integer mean. The movement fixture is generated and contains ten bounded, identity-free seconds used only to prove alignment, threshold, event-window, missingness, and abstention mechanics. Dates, raw source rows, and identifiers are intentionally omitted.
 
 ## Source boundary
 

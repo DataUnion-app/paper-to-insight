@@ -2,17 +2,17 @@
   "schema": "paper-to-insight.candidate/v1",
   "approvalState": "candidate",
   "packageId": "brainstem.overnight-heart-rate-change",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "paper": {
     "title": "Pre-symptomatic detection of COVID-19 from smartwatch data",
     "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/33208926/",
     "doi": "10.1038/s41551-020-00640-6",
-    "claim": "Reproduces the published NightSignal threshold mechanics, then limits the Brainstem translation to descriptive overnight heart-rate change from a personal baseline.",
+    "claim": "Reproduces the published NightSignal threshold mechanics, limits the Brainstem translation to descriptive overnight heart-rate change from a personal baseline, and separately adds generated-only descriptive movement mechanics.",
     "claimClass": "descriptive",
     "population": "The paper and public sample do not validate a Brainstem device or participant population.",
     "referenceStandard": "Pinned author implementation and checksum-pinned compact derivative of its public Fitbit sample.",
     "implementationRelation": "independent_reimplementation",
-    "relationEvidence": "The source running-median and two-night +3/+4 bpm mechanics are independently reproduced; the Brainstem seven-prior-night translation is explicitly separate and non-clinical.",
+    "relationEvidence": "The source running-median and two-night +3/+4 bpm mechanics are independently reproduced; the Brainstem seven-prior-night translation and generated movement descriptors are explicitly separate and non-clinical.",
     "classification": {
       "paperDecision": "not_applicable",
       "labels": [],
@@ -43,15 +43,16 @@
     }
   ],
   "compatibility": {
-    "brainstemContract": "brainstem.full-night-summary-selector/v1",
-    "requiredSignals": ["R-R-derived full-night sleeping rate", "ordered distinct qualifying nights"],
+    "brainstemContract": "brainstem.normalized-movement/v1 plus brainstem.full-night-summary-selector/v1",
+    "requiredSignals": ["R-R-derived full-night sleeping rate", "ordered distinct qualifying nights", "aligned normalized movement"],
     "window": "Seven prior qualifying nights followed by two comparison nights.",
-    "preprocessing": "Use compact full-night summaries; calculate the prior-seven median without allowing comparison nights to move their own baseline.",
+    "preprocessing": "Use compact full-night summaries; calculate the prior-seven median without allowing comparison nights to move their own baseline; derive movement coverage, contiguous events, quiet proportion, and aligned heart-rate means only from the frozen movement contract.",
     "brainstemVerdict": "compatible",
     "mismatches": [
       "The source uses Fitbit/Apple Watch resting heart rate rather than Brainstem R-R-derived sleeping rate.",
       "Source infection labels and alerts are deliberately excluded.",
-      "Historical capture-time and device-provenance limitations remain explicit."
+      "Historical capture-time and device-provenance limitations remain explicit.",
+      "Movement descriptors are a generated Brainstem extension and are not part of the NightSignal paper."
     ]
   },
   "evidence": {
@@ -65,13 +66,13 @@
       "proposed": true,
       "minimumParticipants": 20,
       "minimumCell": 20,
-      "output": "Participant-equal aggregate distribution of within-person overnight change; no nightly or disease-labelled rows."
+      "output": "Participant-equal aggregate distribution of within-person overnight heart-rate and movement descriptors; no nightly, raw-stream, or disease-labelled rows."
     },
     "personal": {
       "proposed": true,
       "inputOwner": "authenticated_participant_only",
       "referencePolicy": "immutable_reviewed_aggregate_only",
-      "output": "Owner-only two-night change from the preceding seven-night personal median, with non-clinical limitations."
+      "output": "Owner-only nine-night heart-rate and movement history with descriptive coverage and within-person change, with non-clinical limitations."
     }
   },
   "abstention": [
@@ -90,11 +91,12 @@
     "medical advice"
   ],
   "files": [
-    {"path": "README.md", "sha256": "affb1d87ffb8a7681754b512256b138fb4dee01dfa34d6f1dac30294e4bda007"},
-    {"path": "algorithm.py", "sha256": "e459164d237165a07629e8ff34d834a9f83c2dd009e22fbda8715b0979cccf9e"},
+    {"path": "README.md", "sha256": "776a1f68cbe2df95f18e0d1af1b39f7de55662e5e84f7dc37e654a4d9a238346"},
+    {"path": "algorithm.py", "sha256": "0fd670635b11d1c89c89129889d51845ebb453d87b096064fbd4331bf464c363"},
     {"path": "expected-public.json", "sha256": "556dc43e168024d292dcd4d275b25b21376f6c0a829f66adc1da21e693cea04b"},
+    {"path": "generated-movement.json", "sha256": "2fed75f363f843cd28640b6d3ee827b3412fd808736edc18f24178661420f910"},
     {"path": "public-data.json", "sha256": "eb645b9200da77f1aa3b9418eaef7708a332de8e24538f237a2ac6dccf6dae95"},
     {"path": "reproduce.py", "sha256": "f14bdac1c9d8413b8a22e9fc88f1978dcdc66b7ccd98000aa5712f315d6c1d1a"},
-    {"path": "test_algorithm.py", "sha256": "368ba2e7f6c8e8ec2ef6bb46a33b63f9aeb885e5efe21c99c73c32af1e4eca0c"}
+    {"path": "test_algorithm.py", "sha256": "95f94a87c96a4f10e8a11353eabe4a92b59c1d74ea16d2c31b88057eb36b0f8b"}
   ]
 }
