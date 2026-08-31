@@ -1,2 +1,8 @@
 Paper-to-Insight
 Copyright 2026 DataUnion
+
+The generated sleep-measure-reliability example is original Apache-2.0 code
+inspired by "Minimum number of nights for reliable estimation of habitual
+sleep using a consumer sleep tracker" (DOI 10.1093/sleepadvances/zpac026).
+No paper text, author code, or study data is included. Its generated fixture is
+dedicated to the public domain under CC0-1.0.
