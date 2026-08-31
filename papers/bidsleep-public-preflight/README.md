@@ -146,3 +146,28 @@ python3 -m venv /tmp/bidsleep-converter
 /tmp/bidsleep-converter/bin/python \
   papers/bidsleep-public-preflight/test_converter.py
 ```
+
+## Public paper-LSTM benchmark
+
+After explicit human approval, the exact three pinned `Bidslab40/6` files were
+downloaded and verified. The real public night converted to 691 epochs with 688
+released labels. `paper_lstm.py` selects the paper-derived architecture rather
+than the conflicting GRU source: five CNN layers, a two-layer bidirectional
+intra-epoch LSTM, `Freq`, the public simple-cosine `Time` proxy, an LSTM
+encoder/decoder with attention, and a skip connection.
+
+`public-benchmark-receipt.json` records the first MPS resource probe: one
+1,200-epoch padded public night, batch size 1, one Adam step at learning rate
+0.00015, 3.84 seconds wall time, 556 MB peak RSS, and logits shape
+`[1,1200,4]`. This is a compute and shape proof, not a reproduced result. The
+reported loss remains unreproduced until the full train-only weighting contract
+is frozen.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 \
+  papers/bidsleep-public-preflight/test_paper_lstm.py
+python3 papers/bidsleep-public-preflight/paper_lstm.py \
+  /approved/public/Bidslab40/6/aligned.npz \
+  /approved/public/Bidslab40/6/aligned.receipt.json \
+  /tmp/bidsleep-paper-lstm-benchmark.json --device mps
+```

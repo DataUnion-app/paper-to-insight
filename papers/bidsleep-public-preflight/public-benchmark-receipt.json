@@ -1,0 +1,71 @@
+{
+  "architecture": {
+    "classes": [
+      "wake",
+      "light",
+      "deep",
+      "rem"
+    ],
+    "cnn": "5x Conv1d(128,kernel=5); max-pool 6 then 5; dropout=0.5",
+    "encoderDecoder": "LSTM hidden=96; additive attention; dropout=0.2; skip connection",
+    "epochCovariates": [
+      "accepted_ihr_hz",
+      "simple_cosine_clock_proxy"
+    ],
+    "epochs": 1200,
+    "intraEpoch": "2-layer bidirectional LSTM hidden=32; FC=128; dropout=0.5",
+    "parameters": 605404,
+    "signalChannels": [
+      "ihr_bpm_zscore",
+      "acceleration_magnitude_g_zscore"
+    ],
+    "subEpochSamples": 30
+  },
+  "benchmark": {
+    "batchSize": 1,
+    "learningRate": 0.00015,
+    "logitsShape": [
+      1,
+      1200,
+      4
+    ],
+    "loss": "masked_cross_entropy_resource_probe",
+    "lossValue": 1.3781230449676514,
+    "optimizationSteps": 1,
+    "peakRssBytes": 555679744,
+    "releasedLabels": 688,
+    "sourceEpochs": 691,
+    "wallSeconds": 3.8416040409938432
+  },
+  "claims": {
+    "brainstemExecutionEnabled": false,
+    "brainstemTransferValidated": false,
+    "catalogueEntryEnabled": false,
+    "clinicalUse": false,
+    "reportedResultReproduced": false,
+    "sourceImplementationReproduced": false
+  },
+  "device": "mps",
+  "environment": {
+    "numpy": "1.26.4",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python": "3.12.7",
+    "torch": "2.7.1"
+  },
+  "publicIdentity": {
+    "night": "6",
+    "subject": "Bidslab40"
+  },
+  "publicOnly": true,
+  "reconstructionChoices": [
+    "paper LSTMs replace the conflicting public-source GRUs",
+    "Time is the public five-hour-shifted cosine proxy because personalized step input is absent",
+    "teacher forcing uses the previous label and a zero start token, preventing current-label leakage",
+    "the resource probe uses masked cross entropy; the full training loss remains to be frozen"
+  ],
+  "schema": "paper-to-insight.bidsleep-paper-lstm-benchmark/v1",
+  "seed": 20260831,
+  "sourceAlignedArchiveSha256": "e3d93c28b5b75f50bc909a4afce0059ec028abbb67506576e8dc27a652436fda",
+  "status": "passed",
+  "variant": "paper_lstm_freq_cosine_time_v1"
+}
