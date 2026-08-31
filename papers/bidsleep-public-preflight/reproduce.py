@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import platform
 import random
 import time
@@ -255,6 +256,51 @@ def fit_temperature(logits: torch.Tensor, labels: torch.Tensor) -> float:
     return float(log_temperature.detach().exp().clamp(0.05, 20.0))
 
 
+def validate_checkpoint(payload: dict, signature: dict) -> None:
+    if payload.get("schema") != "paper-to-insight.bidsleep-training-checkpoint/v1":
+        raise ValueError("training checkpoint schema is invalid")
+    if payload.get("signature") != signature:
+        raise ValueError("training checkpoint belongs to a different experiment")
+
+
+def save_checkpoint(path, signature, epoch, model, optimizer, best, history, elapsed, device):
+    payload = {
+        "schema": "paper-to-insight.bidsleep-training-checkpoint/v1",
+        "signature": signature,
+        "epoch": epoch,
+        "model": {name: value.detach().cpu() for name, value in model.state_dict().items()},
+        "optimizer": optimizer.state_dict(),
+        "best": best,
+        "history": history,
+        "elapsedSeconds": elapsed,
+        "cpuRng": torch.get_rng_state(),
+        "deviceRng": torch.mps.get_rng_state() if device.type == "mps" else None,
+    }
+    temporary = path.with_suffix(path.suffix + ".part")
+    torch.save(payload, temporary)
+    os.replace(temporary, path)
+
+
+def restore_checkpoint(path, signature, model, optimizer, device):
+    payload = torch.load(path, map_location="cpu", weights_only=True)
+    validate_checkpoint(payload, signature)
+    model.load_state_dict(payload["model"])
+    optimizer.load_state_dict(payload["optimizer"])
+    for state in optimizer.state.values():
+        for name, value in state.items():
+            if torch.is_tensor(value):
+                state[name] = value.to(device)
+    torch.set_rng_state(payload["cpuRng"])
+    if device.type == "mps":
+        torch.mps.set_rng_state(payload["deviceRng"])
+    return (
+        int(payload["epoch"]) + 1,
+        payload["best"],
+        payload["history"],
+        float(payload["elapsedSeconds"]),
+    )
+
+
 def run(args) -> dict:
     seed_everything(args.seed)
     plan_path = args.plan.resolve()
@@ -276,14 +322,35 @@ def run(args) -> dict:
     if device_name == "auto":
         device_name = "mps" if torch.backends.mps.is_available() else "cpu"
     device = torch.device(device_name)
+    args.output.mkdir(parents=True, exist_ok=True)
     model = PaperLSTM().to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
     class_counts = train_class_counts(train_records)
     fn_weights, fp_weights = rwl_matrices(class_counts)
     best = {"weightedF1": -1.0, "epoch": 0, "state": None, "metrics": None}
     history = []
+    signature = {
+        "planSha256": sha256(plan_path),
+        "variant": "paper_lstm_freq_cosine_time_v1",
+        "seed": args.seed,
+        "device": str(device),
+        "epochs": args.epochs,
+        "batchSize": args.batch_size,
+        "learningRate": args.learning_rate,
+    }
+    checkpoint_path = args.output / "training-checkpoint.pt"
+    start_epoch = 1
+    elapsed_before = 0.0
+    if args.resume:
+        if not checkpoint_path.is_file():
+            raise ValueError("--resume requires an existing training checkpoint")
+        start_epoch, best, history, elapsed_before = restore_checkpoint(
+            checkpoint_path, signature, model, optimizer, device
+        )
+    elif checkpoint_path.exists():
+        raise ValueError("training checkpoint exists; use --resume or a new output directory")
     started = time.perf_counter()
-    for epoch in range(1, args.epochs + 1):
+    for epoch in range(start_epoch, args.epochs + 1):
         model.train()
         order = list(range(len(train_records)))
         random.Random(args.seed + epoch).shuffle(order)
@@ -321,6 +388,17 @@ def run(args) -> dict:
                 "state": {name: value.detach().cpu().clone() for name, value in model.state_dict().items()},
                 "metrics": validation_metrics,
             }
+        save_checkpoint(
+            checkpoint_path,
+            signature,
+            epoch,
+            model,
+            optimizer,
+            best,
+            history,
+            elapsed_before + time.perf_counter() - started,
+            device,
+        )
         if epoch == 1 or epoch % args.progress_every == 0 or epoch == args.epochs:
             print(json.dumps(history[-1], sort_keys=True), flush=True)
     model.load_state_dict(best["state"])
@@ -332,7 +410,6 @@ def run(args) -> dict:
     test_logits, test_labels, test_nights = evaluate(model, test_records, args.batch_size, device)
     calibrated_test_metrics = metrics_from_logits(test_logits / temperature, test_labels)
     uncalibrated_test_metrics = metrics_from_logits(test_logits, test_labels)
-    args.output.mkdir(parents=True, exist_ok=True)
     weights_path = args.output / "paper-lstm-weights.pt"
     torch.save(
         {
@@ -380,7 +457,7 @@ def run(args) -> dict:
             "bestValidationEpoch": best["epoch"],
             "trainClassCounts": class_counts.tolist(),
             "loss": "source-derived RWL with train-only class priors and ratio-consistent FP matrix",
-            "elapsedSeconds": time.perf_counter() - started,
+            "elapsedSeconds": elapsed_before + time.perf_counter() - started,
         },
         "calibration": {
             "method": "validation-only scalar temperature",
@@ -431,6 +508,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=20260831)
     parser.add_argument("--progress-every", type=int, default=10)
     parser.add_argument("--device", choices=("auto", "cpu", "mps"), default="auto")
+    parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     if args.epochs < 1 or args.batch_size < 1 or args.progress_every < 1:
         parser.error("epochs, batch size, and progress interval must be positive")

@@ -77,6 +77,47 @@ class ReproduceTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "unsafe night identity"):
                 MODULE.load_partition(Path(directory), plan, "train")
 
+    def test_checkpoint_signature_mismatch_fails_closed(self):
+        payload = {
+            "schema": "paper-to-insight.bidsleep-training-checkpoint/v1",
+            "signature": {"seed": 1},
+        }
+        MODULE.validate_checkpoint(payload, {"seed": 1})
+        with self.assertRaisesRegex(ValueError, "different experiment"):
+            MODULE.validate_checkpoint(payload, {"seed": 2})
+
+    def test_checkpoint_round_trip_restores_progress(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "checkpoint.pt"
+            signature = {"seed": 7}
+            model = torch.nn.Linear(2, 1)
+            optimizer = torch.optim.Adam(model.parameters())
+            model(torch.ones(1, 2)).sum().backward()
+            optimizer.step()
+            expected = {name: value.detach().clone() for name, value in model.state_dict().items()}
+            MODULE.save_checkpoint(
+                path,
+                signature,
+                3,
+                model,
+                optimizer,
+                {"weightedF1": 0.5},
+                [{"epoch": 3}],
+                12.5,
+                torch.device("cpu"),
+            )
+            restored = torch.nn.Linear(2, 1)
+            restored_optimizer = torch.optim.Adam(restored.parameters())
+            start, best, history, elapsed = MODULE.restore_checkpoint(
+                path, signature, restored, restored_optimizer, torch.device("cpu")
+            )
+            self.assertEqual(start, 4)
+            self.assertEqual(best["weightedF1"], 0.5)
+            self.assertEqual(history, [{"epoch": 3}])
+            self.assertEqual(elapsed, 12.5)
+            for name, value in restored.state_dict().items():
+                self.assertTrue(torch.equal(value, expected[name]))
+
 
 if __name__ == "__main__":
     unittest.main()

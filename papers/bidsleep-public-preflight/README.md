@@ -173,7 +173,9 @@ all six reported values and deltas are retained. It refuses unsafe partition pat
 writes weights plus a receipt that states whether the reported accuracy was
 reproduced within the predeclared absolute tolerance. This runner still does
 not authorize Brainstem transfer, catalogue publication, study activation, or
-clinical use.
+clinical use. A hash-bound checkpoint is written after every epoch; `--resume`
+continues only when the plan, variant, seed, device, epoch count, batch size,
+and learning rate are unchanged.
 
 `public_corpus.py` is the bounded corpus bridge. It verifies the pinned official
 manifest and reconstructed split, rejects unsafe or symlinked ZIP paths, hashes
