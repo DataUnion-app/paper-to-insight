@@ -173,6 +173,23 @@ reproduced within the predeclared absolute tolerance. This runner still does
 not authorize Brainstem transfer, catalogue publication, study activation, or
 clinical use.
 
+`public_corpus.py` is the bounded corpus bridge. It verifies the pinned official
+manifest and reconstructed split, rejects unsafe or symlinked ZIP paths, hashes
+every signal file while extracting, and converts every night with resumable
+hash checks. Its default 35 GB expanded-signal ceiling stays within the approved
+100 GB temporary-storage budget.
+
+```sh
+/opt/homebrew/anaconda3/bin/python3.12 \
+  papers/bidsleep-public-preflight/public_corpus.py \
+  /approved/public/bidsleep-1.0.0.zip \
+  /approved/public/SHA256SUMS.txt \
+  papers/bidsleep-public-preflight/preflight.json \
+  papers/bidsleep-public-preflight/public-plan.json \
+  /approved/public/raw /approved/public/converted \
+  /approved/public/corpus-receipt.json
+```
+
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 \
   papers/bidsleep-public-preflight/test_paper_lstm.py
