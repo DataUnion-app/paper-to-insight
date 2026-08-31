@@ -158,7 +158,7 @@ encoder/decoder with attention, and a skip connection.
 
 `public-benchmark-receipt.json` records the first MPS resource probe: one
 1,200-epoch padded public night, batch size 1, one Adam step at learning rate
-0.00015, 3.84 seconds wall time, 556 MB peak RSS, and logits shape
+0.00015, 3.27 seconds wall time, 565 MB peak RSS, and logits shape
 `[1,1200,4]`. This is a compute and shape proof, not a reproduced result. The
 reported loss remains unreproduced until the full train-only weighting contract
 is frozen.

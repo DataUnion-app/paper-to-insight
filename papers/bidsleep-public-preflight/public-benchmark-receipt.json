@@ -32,10 +32,10 @@
     "loss": "masked_cross_entropy_resource_probe",
     "lossValue": 1.3781230449676514,
     "optimizationSteps": 1,
-    "peakRssBytes": 555679744,
+    "peakRssBytes": 565346304,
     "releasedLabels": 688,
     "sourceEpochs": 691,
-    "wallSeconds": 3.8416040409938432
+    "wallSeconds": 3.266202875005547
   },
   "claims": {
     "brainstemExecutionEnabled": false,
@@ -60,7 +60,7 @@
   "reconstructionChoices": [
     "paper LSTMs replace the conflicting public-source GRUs",
     "Time is the public five-hour-shifted cosine proxy because personalized step input is absent",
-    "teacher forcing uses the previous label and a zero start token, preventing current-label leakage",
+    "teacher forcing uses only the previous released label and a zero start token; unreleased labels use the prior prediction",
     "the resource probe uses masked cross entropy; the full training loss remains to be frozen"
   ],
   "schema": "paper-to-insight.bidsleep-paper-lstm-benchmark/v1",

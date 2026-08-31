@@ -89,6 +89,7 @@ class PaperLSTM(nn.Module):
         covariates: torch.Tensor,
         sequence_mask: torch.Tensor,
         teacher_labels: torch.Tensor | None = None,
+        teacher_mask: torch.Tensor | None = None,
     ) -> torch.Tensor:
         features = self._features(signal, covariates)
         if sequence_mask.shape != signal.shape[:2] or not sequence_mask.bool().any(dim=1).all():
@@ -97,6 +98,12 @@ class PaperLSTM(nn.Module):
         expected = torch.arange(signal.shape[1], device=signal.device).unsqueeze(0) < lengths.unsqueeze(1)
         if not torch.equal(sequence_mask.bool(), expected):
             raise ValueError("sequence mask must be a left-aligned contiguous prefix")
+        if (teacher_labels is None) != (teacher_mask is None):
+            raise ValueError("teacher labels and mask must be supplied together")
+        if teacher_labels is not None and (
+            teacher_labels.shape != sequence_mask.shape or teacher_mask.shape != sequence_mask.shape
+        ):
+            raise ValueError("teacher labels and mask must match the sequence")
         packed = nn.utils.rnn.pack_padded_sequence(
             features, lengths.cpu(), batch_first=True, enforce_sorted=False
         )
@@ -126,7 +133,9 @@ class PaperLSTM(nn.Module):
             if teacher_labels is None:
                 previous = F.one_hot(logits.argmax(dim=-1), len(CLASSES)).to(logits.dtype)
             else:
-                previous = F.one_hot(teacher_labels[:, index], len(CLASSES)).to(logits.dtype)
+                predicted = F.one_hot(logits.argmax(dim=-1), len(CLASSES)).to(logits.dtype)
+                teacher = F.one_hot(teacher_labels[:, index], len(CLASSES)).to(logits.dtype)
+                previous = torch.where(teacher_mask[:, index].unsqueeze(1), teacher, predicted)
         return torch.stack(outputs, dim=1)
 
 
@@ -195,7 +204,13 @@ def benchmark(archive: Path, receipt_path: Path, output: Path, device_name: str)
     release_mask_tensor = torch.from_numpy(release_mask).unsqueeze(0).to(device)
     started = time.perf_counter()
     optimizer.zero_grad(set_to_none=True)
-    logits = model(signal_tensor, covariate_tensor, sequence_mask_tensor, label_tensor)
+    logits = model(
+        signal_tensor,
+        covariate_tensor,
+        sequence_mask_tensor,
+        label_tensor,
+        release_mask_tensor,
+    )
     loss = F.cross_entropy(logits[release_mask_tensor], label_tensor[release_mask_tensor])
     loss.backward()
     optimizer.step()
@@ -246,7 +261,7 @@ def benchmark(archive: Path, receipt_path: Path, output: Path, device_name: str)
         "reconstructionChoices": [
             "paper LSTMs replace the conflicting public-source GRUs",
             "Time is the public five-hour-shifted cosine proxy because personalized step input is absent",
-            "teacher forcing uses the previous label and a zero start token, preventing current-label leakage",
+            "teacher forcing uses only the previous released label and a zero start token; unreleased labels use the prior prediction",
             "the resource probe uses masked cross entropy; the full training loss remains to be frozen",
         ],
         "claims": {

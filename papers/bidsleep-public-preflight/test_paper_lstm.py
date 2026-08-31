@@ -24,13 +24,27 @@ class PaperLSTMTest(unittest.TestCase):
         covariates = torch.randn(1, 8, 2)
         sequence_mask = torch.tensor([[True, True, True, True, True, True, False, False]])
         labels = torch.tensor([[0, 1, 1, 2, 3, 0, 0, 0]])
-        logits = model(signal, covariates, sequence_mask, labels)
+        logits = model(signal, covariates, sequence_mask, labels, sequence_mask)
         self.assertEqual(tuple(logits.shape), (1, 8, 4))
         loss = torch.nn.functional.cross_entropy(logits[sequence_mask], labels[sequence_mask])
         loss.backward()
         self.assertTrue(torch.isfinite(loss))
         model.eval()
         self.assertEqual(tuple(model(signal, covariates, sequence_mask).shape), (1, 8, 4))
+
+    def test_unreleased_label_cannot_enter_teacher_forcing(self):
+        MODULE.seed_everything(9)
+        model = MODULE.PaperLSTM().eval()
+        signal = torch.randn(1, 4, 30, 2)
+        covariates = torch.randn(1, 4, 2)
+        sequence_mask = torch.ones(1, 4, dtype=torch.bool)
+        teacher_mask = torch.tensor([[True, False, True, True]])
+        labels_a = torch.tensor([[0, 0, 1, 2]])
+        labels_b = torch.tensor([[0, 3, 1, 2]])
+        with torch.no_grad():
+            output_a = model(signal, covariates, sequence_mask, labels_a, teacher_mask)
+            output_b = model(signal, covariates, sequence_mask, labels_b, teacher_mask)
+        self.assertTrue(torch.equal(output_a, output_b))
 
     def test_rejects_empty_attention_mask(self):
         model = MODULE.PaperLSTM()
