@@ -167,7 +167,9 @@ is frozen.
 RWL loss is rebuilt from released training labels, the reconstructed 31/5/11
 subject split is checked again after tensor loading, the best epoch is selected
 on validation weighted F1, scalar calibration uses validation logits only, and
-the test partition is evaluated once. It refuses unsafe partition paths and
+the test partition is evaluated once. Paper-table metrics use macro sensitivity,
+specificity, and precision plus normalized inverse-class-frequency F1 and MCC;
+all six reported values and deltas are retained. It refuses unsafe partition paths and
 writes weights plus a receipt that states whether the reported accuracy was
 reproduced within the predeclared absolute tolerance. This runner still does
 not authorize Brainstem transfer, catalogue publication, study activation, or

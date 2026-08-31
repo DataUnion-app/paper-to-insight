@@ -20,7 +20,14 @@ from paper_lstm import CLASSES, PaperLSTM, load_public_night, seed_everything, s
 
 
 SCHEMA = "paper-to-insight.bidsleep-public-reproduction/v1"
-REPORTED_ACCURACY = 0.7104
+REPORTED_METRICS = {
+    "accuracy": 0.7104,
+    "sensitivity": 0.6998,
+    "specificity": 0.8902,
+    "precision": 0.6983,
+    "weightedF1": 0.7079,
+    "weightedMcc": 0.5599,
+}
 REPRODUCTION_TOLERANCE = 0.02
 RWL_FACTOR = np.asarray(
     [
@@ -84,11 +91,12 @@ def metrics_from_logits(logits: torch.Tensor, labels: torch.Tensor) -> dict:
     if not total:
         raise ValueError("metrics require at least one label")
     per_class = {}
-    weighted_f1 = 0.0
-    weighted_mcc = 0.0
-    weighted_sensitivity = 0.0
-    weighted_specificity = 0.0
-    weighted_precision = 0.0
+    f1_values = []
+    mcc_values = []
+    sensitivity_values = []
+    specificity_values = []
+    precision_values = []
+    supports = []
     for index, name in enumerate(CLASSES):
         tp = int(confusion[index, index])
         fn = int(confusion[index].sum()) - tp
@@ -109,12 +117,16 @@ def metrics_from_logits(logits: torch.Tensor, labels: torch.Tensor) -> dict:
             "f1": f1,
             "mccOneVsRest": mcc,
         }
-        weight = support / total
-        weighted_f1 += weight * (f1 or 0.0)
-        weighted_mcc += weight * (mcc or 0.0)
-        weighted_sensitivity += weight * (sensitivity or 0.0)
-        weighted_specificity += weight * (specificity or 0.0)
-        weighted_precision += weight * (precision or 0.0)
+        supports.append(support)
+        f1_values.append(f1 or 0.0)
+        mcc_values.append(mcc or 0.0)
+        sensitivity_values.append(sensitivity or 0.0)
+        specificity_values.append(specificity or 0.0)
+        precision_values.append(precision or 0.0)
+    if any(support == 0 for support in supports):
+        raise ValueError("paper metrics require support for all four classes")
+    inverse_weights = np.reciprocal(np.asarray(supports, dtype=np.float64))
+    inverse_weights /= inverse_weights.sum()
     probabilities = F.softmax(logits, dim=1)
     confidence, predicted = probabilities.max(dim=1)
     correct = predicted.eq(labels).to(torch.float32)
@@ -128,11 +140,12 @@ def metrics_from_logits(logits: torch.Tensor, labels: torch.Tensor) -> dict:
         "epochs": total,
         "confusionTruthByPrediction": confusion.tolist(),
         "accuracy": float(confusion.diag().sum() / total),
-        "sensitivity": weighted_sensitivity,
-        "specificity": weighted_specificity,
-        "precision": weighted_precision,
-        "weightedF1": weighted_f1,
-        "weightedMcc": weighted_mcc,
+        "sensitivity": float(np.mean(sensitivity_values)),
+        "specificity": float(np.mean(specificity_values)),
+        "precision": float(np.mean(precision_values)),
+        "weightedF1": float(inverse_weights @ f1_values),
+        "weightedMcc": float(inverse_weights @ mcc_values),
+        "metricWeighting": "normalized inverse test-class frequency as stated in paper Table IV",
         "calibration": {
             "expectedCalibrationError10Bins": ece,
             "multiclassBrier": float(torch.square(probabilities - one_hot).sum(dim=1).mean()),
@@ -332,12 +345,14 @@ def run(args) -> dict:
         },
         weights_path,
     )
-    accuracy_delta = calibrated_test_metrics["accuracy"] - REPORTED_ACCURACY
+    metric_deltas = {
+        name: calibrated_test_metrics[name] - value for name, value in REPORTED_METRICS.items()
+    }
     receipt = {
         "schema": SCHEMA,
         "status": (
             "within_predeclared_accuracy_tolerance"
-            if abs(accuracy_delta) <= REPRODUCTION_TOLERANCE
+            if abs(metric_deltas["accuracy"]) <= REPRODUCTION_TOLERANCE
             else "reported_accuracy_not_reproduced"
         ),
         "publicOnly": True,
@@ -371,9 +386,9 @@ def run(args) -> dict:
             "method": "validation-only scalar temperature",
             "temperature": temperature,
         },
-        "reportedAccuracy": REPORTED_ACCURACY,
+        "reportedMetrics": REPORTED_METRICS,
         "predeclaredAbsoluteTolerance": REPRODUCTION_TOLERANCE,
-        "accuracyDelta": accuracy_delta,
+        "metricDeltas": metric_deltas,
         "validation": metrics_from_logits(validation_logits / temperature, validation_labels),
         "test": calibrated_test_metrics,
         "testUncalibrated": uncalibrated_test_metrics,

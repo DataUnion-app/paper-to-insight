@@ -41,6 +41,23 @@ class ReproduceTest(unittest.TestCase):
         self.assertEqual(metrics["weightedMcc"], 1.0)
         self.assertEqual(metrics["confusionTruthByPrediction"], np.eye(4, dtype=int).tolist())
 
+    def test_metrics_follow_paper_macro_and_inverse_frequency_formulas(self):
+        labels = torch.tensor([0, 0, 0, 1, 2, 3])
+        predictions = torch.tensor([0, 0, 1, 1, 2, 3])
+        logits = torch.full((len(labels), 4), -10.0)
+        logits[torch.arange(len(labels)), predictions] = 10.0
+        metrics = MODULE.metrics_from_logits(logits, labels)
+        per_class = list(metrics["perClass"].values())
+        self.assertAlmostEqual(
+            metrics["sensitivity"], np.mean([item["sensitivity"] for item in per_class])
+        )
+        self.assertNotAlmostEqual(metrics["sensitivity"], metrics["accuracy"])
+        inverse = np.reciprocal(np.asarray([item["support"] for item in per_class], dtype=float))
+        inverse /= inverse.sum()
+        self.assertAlmostEqual(
+            metrics["weightedF1"], inverse @ [item["f1"] for item in per_class]
+        )
+
     def test_class_counts_use_only_released_labels(self):
         records = [
             {
