@@ -163,6 +163,16 @@ encoder/decoder with attention, and a skip connection.
 reported loss remains unreproduced until the full train-only weighting contract
 is frozen.
 
+`reproduce.py` freezes that remaining public-only contract: the source-derived
+RWL loss is rebuilt from released training labels, the reconstructed 31/5/11
+subject split is checked again after tensor loading, the best epoch is selected
+on validation weighted F1, scalar calibration uses validation logits only, and
+the test partition is evaluated once. It refuses unsafe partition paths and
+writes weights plus a receipt that states whether the reported accuracy was
+reproduced within the predeclared absolute tolerance. This runner still does
+not authorize Brainstem transfer, catalogue publication, study activation, or
+clinical use.
+
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 \
   papers/bidsleep-public-preflight/test_paper_lstm.py
