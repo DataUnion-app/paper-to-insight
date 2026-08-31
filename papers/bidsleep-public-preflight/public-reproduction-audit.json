@@ -1,0 +1,147 @@
+{
+  "schema": "paper-to-insight.bidsleep-public-reproduction-audit/v1",
+  "date": "2026-08-31",
+  "result": "reported_accuracy_not_reproduced",
+  "publicOnly": true,
+  "dataset": {
+    "name": "BIDSleep",
+    "version": "1.0.0",
+    "doi": "10.13026/a0sy-7t69",
+    "license": "ODC-By-1.0",
+    "manifestFilesVerified": 759,
+    "nightsConverted": 253,
+    "corpusReceiptSha256": "399d8e54d845802e76f6917d40b17feb318642c0bf75029566723defe88de7e1"
+  },
+  "experiment": {
+    "planSha256": "3802db5538749946b08ec7f1ff99e352ca0b5bbe38fb3de0c19c5a12c7fa0338",
+    "variant": "paper_lstm_freq_cosine_time_v1",
+    "seed": 20260831,
+    "device": "mps",
+    "subjects": {
+      "train": 31,
+      "validation": 5,
+      "test": 11
+    },
+    "nights": {
+      "train": 174,
+      "validation": 27,
+      "test": 52
+    },
+    "epochs": 500,
+    "batchSize": 20,
+    "optimizer": "Adam",
+    "learningRate": 0.00015,
+    "bestValidationEpoch": 448,
+    "elapsedSeconds": 22645.652094208985,
+    "trainClassCounts": [
+      14972,
+      61829,
+      28059,
+      38030
+    ]
+  },
+  "environment": {
+    "python": "3.12.7",
+    "numpy": "1.26.4",
+    "torch": "2.7.1",
+    "device": "mps"
+  },
+  "calibration": {
+    "method": "validation-only scalar temperature",
+    "temperature": 5.890388488769531
+  },
+  "predeclaredAbsoluteAccuracyTolerance": 0.02,
+  "reportedMetrics": {
+    "accuracy": 0.7104,
+    "sensitivity": 0.6998,
+    "specificity": 0.8902,
+    "precision": 0.6983,
+    "weightedF1": 0.7079,
+    "weightedMcc": 0.5599
+  },
+  "heldOutTest": {
+    "epochs": 43622,
+    "accuracy": 0.37075328826904297,
+    "sensitivity": 0.35836264247637495,
+    "specificity": 0.7792106945952635,
+    "precision": 0.3615534204312251,
+    "weightedF1": 0.24906894448052927,
+    "weightedMcc": 0.13884109531942526,
+    "expectedCalibrationError10Bins": 0.10178954838670506,
+    "multiclassBrier": 0.7036147713661194,
+    "confusionTruthByPrediction": [
+      [3139, 1183, 43, 338],
+      [6539, 10211, 347, 3041],
+      [3880, 2509, 266, 631],
+      [3326, 5496, 116, 2557]
+    ],
+    "classOrder": ["wake", "light", "deep", "rem"],
+    "perClass": {
+      "wake": {
+        "support": 4703,
+        "sensitivity": 0.6674463108654051,
+        "precision": 0.18591565979625682,
+        "f1": 0.2908231806179645,
+        "mccOneVsRest": 0.200114549673945
+      },
+      "light": {
+        "support": 20138,
+        "sensitivity": 0.5070513457145694,
+        "precision": 0.5263673385226043,
+        "f1": 0.5165288211042821,
+        "mccOneVsRest": 0.11617763707505019
+      },
+      "deep": {
+        "support": 7286,
+        "sensitivity": 0.03650837222069723,
+        "precision": 0.344559585492228,
+        "f1": 0.06602134524695955,
+        "mccOneVsRest": 0.06388614032587409
+      },
+      "rem": {
+        "support": 11495,
+        "sensitivity": 0.2224445411048282,
+        "precision": 0.38937109791381147,
+        "f1": 0.2831358653526741,
+        "mccOneVsRest": 0.12026919977811644
+      }
+    }
+  },
+  "metricDeltasFromPaper": {
+    "accuracy": -0.33964671173095706,
+    "sensitivity": -0.34143735752362503,
+    "specificity": -0.1109893054047365,
+    "precision": -0.3367465795687749,
+    "weightedF1": -0.4588310555194707,
+    "weightedMcc": -0.4210589046805747
+  },
+  "failureSummary": [
+    "Held-out accuracy missed the predeclared paper tolerance by 0.31964671173095707 beyond the allowed absolute delta.",
+    "Deep-sleep sensitivity was 0.03650837222069723 and REM sensitivity was 0.2224445411048282.",
+    "Validation weighted F1 peaked late at epoch 448 but did not transfer to the reconstructed held-out subject partition.",
+    "The author subject identities, preprocessing MAT converter, trained weights, and exact Time variant were not published, so this is a paper-derived reconstruction rather than an execution of the unavailable original model."
+  ],
+  "artifacts": {
+    "fullReceiptSha256": "d87dedabd05f494d52167dbb2a5787805775682e3195cbd573d97553229952e7",
+    "weightsSha256": "ae18f99a1e8b667e2c8e23bc0d749f978809570d3a3c7ca699880d1c45180b2a",
+    "checkpointSha256": "7830a7035cc73fc3f26d17ad2e89c71580cfbaa8d924d9d08412d1ffe6ad55b5",
+    "focusedTestsPassed": 34
+  },
+  "independentChecks": {
+    "confusionMatrixTotalsMatchEpochCounts": true,
+    "confusionMatrixAccuracyMatchesReceipt": true,
+    "perClassPrecisionSensitivitySpecificityMatchConfusionMatrix": true,
+    "weightsHashMatchesReceipt": true,
+    "accuracyToleranceVerdictMatches": true
+  },
+  "claims": {
+    "reportedResultReproduced": false,
+    "brainstemTransferValidated": false,
+    "brainstemExecutionEnabled": false,
+    "catalogueEntryEnabled": false,
+    "studyActivationEnabled": false,
+    "clinicalUse": false,
+    "notificationsTriggered": false,
+    "paymentsTriggered": false
+  }
+}

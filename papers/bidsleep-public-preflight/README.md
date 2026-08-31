@@ -1,8 +1,8 @@
 # BIDSleep public reproduction preflight
 
-This package audits a public Apple-Watch sleep-staging reproduction before any
-large download or training run. It is not a Brainstem Insight, study, catalogue
-entry, trained model, or transfer-validation result.
+This package audits and reproduces a public Apple-Watch sleep-staging paper. It
+is not a Brainstem Insight, study, catalogue entry, transfer-validation result,
+or clinical model.
 
 ## Frozen evidence
 
@@ -192,6 +192,18 @@ expert timeline, and nights longer than 1,200 epochs use the first 1,200 epochs
 as the released notebooks do. `public-corpus-audit.json` binds the full local
 receipt hash and aggregate repair counts without committing the 28 GB public
 working copy.
+
+The frozen 500-epoch participant-separated MPS run then completed on all 253
+public nights. Validation-only selection chose epoch 448 and validation-only
+temperature fitting produced `5.890388488769531`. The held-out 11-subject test
+partition reached 37.08% accuracy, versus the paper's 71.04%, outside the
+predeclared absolute tolerance of 2 percentage points. Deep-sleep sensitivity
+was 3.65% and REM sensitivity was 22.24%. The result is therefore an honest
+negative reproduction and must not be offered as a Brainstem Insight.
+`public-reproduction-audit.json` records the split, environment, metrics,
+confusion matrix, artifact hashes, failure summary, and disabled claims. The
+full local receipt is hash-bound by that audit and can be regenerated from the
+public corpus with the command below.
 
 ```sh
 /opt/homebrew/anaconda3/bin/python3.12 \

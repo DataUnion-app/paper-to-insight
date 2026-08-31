@@ -145,10 +145,11 @@ creating a new split, so the reported evaluation is not accepted.
 repository is unrelated to the paper's CNN, and the paper uses its testing set
 for hyperparameter selection without publishing an untouched external result.
 
-`papers/sleep-stage-hrv-lstm` is E0 and disabled, but is the best next
-Brainstem study candidate. The paper uses participant-level evaluation and
-full-night HRV; promotion still needs a licensed public reproduction and
-Brainstem-versus-PSG calibration.
+`papers/sleep-stage-hrv-lstm` is E1 and disabled. A licensed public BIDSleep
+reconstruction completed on a participant-separated 31/5/11 split, but its
+held-out accuracy was 37.08% versus the paper's 71.04%. Deep-sleep sensitivity
+was 3.65%. It remains unavailable; any future path needs a scientifically
+justified reproduction repair before a separate Brainstem-versus-PSG study.
 
 `papers/sleepecg-wrn-gru` is a separate E1 negative result. The exact
 BSD-licensed shipped model runs on an independent public PSG dataset, but its
