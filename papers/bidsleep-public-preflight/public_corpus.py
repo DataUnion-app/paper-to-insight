@@ -11,7 +11,7 @@ import stat
 import zipfile
 from pathlib import Path, PurePosixPath
 
-from converter import convert_night, sha256
+from converter import SCHEMA as CONVERTER_SCHEMA, convert_night, sha256
 from preflight import assemble_public_plan, parse_signal_manifest, validate_preflight
 
 
@@ -150,7 +150,10 @@ def convert_verified(
         if receipt_path.is_file() and archive_path.is_file():
             receipt = json.loads(receipt_path.read_text())
             if (
-                receipt.get("inputSha256") == expected_inputs
+                receipt.get("schema") == CONVERTER_SCHEMA
+                and set(receipt.get("inputRepairs", {}))
+                == {"hr.csv", "motion.csv", "labels.mat"}
+                and receipt.get("inputSha256") == expected_inputs
                 and receipt.get("outputSha256") == sha256(archive_path)
             ):
                 reused += 1

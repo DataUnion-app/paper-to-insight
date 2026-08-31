@@ -18,7 +18,7 @@ from zoneinfo import ZoneInfo
 import numpy as np
 
 
-SCHEMA = "paper-to-insight.bidsleep-aligned-night/v1"
+SCHEMA = "paper-to-insight.bidsleep-aligned-night/v2"
 FILES = ("hr.csv", "motion.csv", "labels.mat")
 SUBJECT = re.compile(r"^(?:Bidslab[0-9]+|generated-subject-[a-z])$")
 NIGHT = re.compile(r"^(?:[1-9][0-9]*|generated-night-[a-z0-9-]+)$")
@@ -50,7 +50,9 @@ def _header(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", value.strip().lower()).strip("_")
 
 
-def read_csv(path: Path, width: int, allowed_headers: set[tuple[str, ...]]) -> np.ndarray:
+def read_csv_with_repairs(
+    path: Path, width: int, allowed_headers: set[tuple[str, ...]]
+) -> tuple[np.ndarray, dict[str, int]]:
     with path.open(newline="", encoding="utf-8-sig") as handle:
         rows = [row for row in csv.reader(handle) if row and any(cell.strip() for cell in row)]
     if not rows:
@@ -60,20 +62,53 @@ def read_csv(path: Path, width: int, allowed_headers: set[tuple[str, ...]]) -> n
     except ValueError:
         if tuple(_header(cell) for cell in rows.pop(0)) not in allowed_headers:
             raise ConverterError(f"{path.name} has an unsupported header")
-    if not rows or any(len(row) != width for row in rows):
-        raise ConverterError(f"{path.name} must contain exactly {width} columns")
+    if not rows:
+        raise ConverterError(f"{path.name} has no data rows")
+    bad_width = [index for index, row in enumerate(rows) if len(row) != width]
+    discarded_final = 0
+    if bad_width:
+        final = rows[-1]
+        try:
+            final_is_numeric = bool(final) and all(math.isfinite(float(cell)) for cell in final)
+        except ValueError:
+            final_is_numeric = False
+        if bad_width != [len(rows) - 1] or len(final) >= width or not final_is_numeric:
+            raise ConverterError(f"{path.name} must contain exactly {width} columns")
+        rows.pop()
+        discarded_final = 1
+    if not rows:
+        raise ConverterError(f"{path.name} has no complete data rows")
     try:
         values = np.asarray([[float(cell) for cell in row] for row in rows], dtype=np.float64)
     except ValueError as error:
         raise ConverterError(f"{path.name} contains a non-numeric value") from error
     if not np.isfinite(values).all():
         raise ConverterError(f"{path.name} contains a non-finite value")
-    timestamps = values[:, 0]
-    if np.any(np.diff(timestamps) <= 0):
-        raise ConverterError(f"{path.name} timestamps must be strictly increasing")
+    order = np.argsort(values[:, 0], kind="stable")
+    reordered = int(np.count_nonzero(order != np.arange(len(values))))
+    values = values[order]
+    timestamps, first, counts = np.unique(
+        values[:, 0], return_index=True, return_counts=True
+    )
+    duplicate_groups = int(np.count_nonzero(counts > 1))
+    duplicate_rows = int(np.sum(counts - 1))
+    if duplicate_rows:
+        columns = np.add.reduceat(values[:, 1:], first, axis=0) / counts[:, None]
+        values = np.column_stack((timestamps, columns))
+    if np.any(np.diff(values[:, 0]) <= 0):
+        raise ConverterError(f"{path.name} timestamps could not be canonicalized")
     if width == 2 and np.any(values[:, 1] <= 0):
         raise ConverterError("heart rate must be positive")
-    return values
+    return values, {
+        "discardedIncompleteFinalRows": discarded_final,
+        "reorderedRows": reordered,
+        "duplicateTimestampGroups": duplicate_groups,
+        "duplicateRowsCollapsed": duplicate_rows,
+    }
+
+
+def read_csv(path: Path, width: int, allowed_headers: set[tuple[str, ...]]) -> np.ndarray:
+    return read_csv_with_repairs(path, width, allowed_headers)[0]
 
 
 def parse_rec_start(value) -> float:
@@ -96,7 +131,9 @@ def parse_rec_start(value) -> float:
     return result
 
 
-def load_labels(path: Path) -> tuple[float, np.ndarray, np.ndarray]:
+def load_labels_with_repairs(
+    path: Path,
+) -> tuple[float, np.ndarray, np.ndarray, dict[str, int]]:
     try:
         from scipy.io import loadmat
     except ImportError as error:
@@ -107,9 +144,25 @@ def load_labels(path: Path) -> tuple[float, np.ndarray, np.ndarray]:
         raise ConverterError("labels.mat is missing a required variable")
     dreem = _labels(values["dreem_label"], "dreem_label")
     expert = _labels(values["expert_label"], "expert_label")
-    if dreem.shape != expert.shape:
-        raise ConverterError("label arrays differ in length")
-    return parse_rec_start(values["recStart"]), dreem, expert
+    dreem_epochs = len(dreem)
+    expert_epochs = len(expert)
+    trimmed = max(dreem_epochs - expert_epochs, 0)
+    padded = max(expert_epochs - dreem_epochs, 0)
+    if trimmed:
+        dreem = dreem[:expert_epochs]
+    elif padded:
+        dreem = np.pad(dreem, (0, padded), constant_values=5)
+    return parse_rec_start(values["recStart"]), dreem, expert, {
+        "dreemSourceEpochs": dreem_epochs,
+        "expertSourceEpochs": expert_epochs,
+        "dreemTailEpochsTrimmed": trimmed,
+        "dreemUnknownTailEpochsPadded": padded,
+    }
+
+
+def load_labels(path: Path) -> tuple[float, np.ndarray, np.ndarray]:
+    rec_start, dreem, expert, _ = load_labels_with_repairs(path)
+    return rec_start, dreem, expert
 
 
 def _labels(value, name: str) -> np.ndarray:
@@ -159,9 +212,12 @@ def convert_arrays(
     _validate_series(motion, 4, "motion")
     if dreem_labels.shape != expert_labels.shape or dreem_labels.ndim != 1:
         raise ConverterError("label arrays must be matching vectors")
-    epochs = len(expert_labels)
-    if not minimum_epochs <= epochs <= maximum_epochs:
-        raise ConverterError(f"night must contain {minimum_epochs} to {maximum_epochs} epochs")
+    source_epochs = len(expert_labels)
+    if source_epochs < minimum_epochs or maximum_epochs < minimum_epochs:
+        raise ConverterError(f"night must contain at least {minimum_epochs} epochs")
+    epochs = min(source_epochs, maximum_epochs)
+    dreem_labels = dreem_labels[:epochs]
+    expert_labels = expert_labels[:epochs]
     if np.any((expert_labels < 0) | (expert_labels > 5)) or np.any(
         (dreem_labels < 0) | (dreem_labels > 5)
     ):
@@ -231,29 +287,41 @@ def convert_night(night: Path, output: Path, subject_id: str, night_id: str) -> 
     missing = [name for name in FILES if not (night / name).is_file()]
     if missing:
         raise ConverterError(f"night is missing: {', '.join(missing)}")
-    hr = read_csv(night / "hr.csv", 2, HR_HEADERS)
-    motion = read_csv(night / "motion.csv", 4, MOTION_HEADERS)
-    rec_start, dreem, expert = load_labels(night / "labels.mat")
+    hr, hr_repairs = read_csv_with_repairs(night / "hr.csv", 2, HR_HEADERS)
+    motion, motion_repairs = read_csv_with_repairs(night / "motion.csv", 4, MOTION_HEADERS)
+    rec_start, dreem, expert, label_repairs = load_labels_with_repairs(
+        night / "labels.mat"
+    )
     arrays = convert_arrays(hr, motion, rec_start, dreem, expert)
     archive = output.with_suffix(".npz")
     receipt_path = output.with_suffix(".receipt.json")
     write_npz(archive, arrays)
-    epochs = len(expert)
+    epochs = len(arrays["stage_original"])
     receipt = {
         "schema": SCHEMA,
         "status": "converted",
         "dataset": {"doi": "10.13026/a0sy-7t69", "version": "1.0.0", "license": "ODC-By-1.0"},
         "publicIdentity": {"subject": subject_id, "night": night_id},
         "inputSha256": {name: sha256(night / name) for name in FILES},
+        "inputRepairs": {
+            "hr.csv": hr_repairs,
+            "motion.csv": motion_repairs,
+            "labels.mat": label_repairs,
+        },
         "outputSha256": sha256(archive),
         "arrays": {name: {"shape": list(value.shape), "dtype": str(value.dtype)} for name, value in sorted(arrays.items())},
         "counts": {
             "epochs": epochs,
+            "sourceExpertEpochs": len(expert),
+            "truncatedTailEpochs": len(expert) - epochs,
             "fullyCoveredEpochs": int(arrays["signal_valid"].reshape(epochs, 30).all(axis=1).sum()),
             "releasedLabels": int(arrays["stage_mask"].sum()),
         },
         "transform": {
             "outlierRule": "absolute population z-score <= 3 per source channel",
+            "timestampCanonicalization": "stable sort; exact timestamp duplicates averaged",
+            "incompleteFinalRowPolicy": "discard at most one numeric final row with fewer columns",
+            "longNightPolicy": "first 1200 epochs, matching released training and testing notebooks",
             "interpolation": "linear 1 Hz anchored at recStart; no extrapolation",
             "acceleration": "sqrt(x^2+y^2+z^2) after interpolation",
             "fourClassLabels": "Wake, Light(N1+N2), Deep(N3), REM; Unknown masked",

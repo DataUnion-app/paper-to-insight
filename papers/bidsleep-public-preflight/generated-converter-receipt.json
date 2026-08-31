@@ -78,7 +78,9 @@
   "counts": {
     "epochs": 600,
     "fullyCoveredEpochs": 600,
-    "releasedLabels": 502
+    "releasedLabels": 502,
+    "sourceExpertEpochs": 600,
+    "truncatedTailEpochs": 0
   },
   "dataset": {
     "doi": "10.13026/a0sy-7t69",
@@ -90,6 +92,26 @@
     "labels.mat": "048c905eefbc1404485d64b2fdff376459c8621eb4aea56cf8885370c006afb1",
     "motion.csv": "301c37695f442de4c96869c1631c5c6ff1925e9be02b27a96824c67fba07fbbc"
   },
+  "inputRepairs": {
+    "hr.csv": {
+      "discardedIncompleteFinalRows": 0,
+      "duplicateRowsCollapsed": 0,
+      "duplicateTimestampGroups": 0,
+      "reorderedRows": 0
+    },
+    "labels.mat": {
+      "dreemSourceEpochs": 600,
+      "dreemTailEpochsTrimmed": 0,
+      "dreemUnknownTailEpochsPadded": 0,
+      "expertSourceEpochs": 600
+    },
+    "motion.csv": {
+      "discardedIncompleteFinalRows": 0,
+      "duplicateRowsCollapsed": 0,
+      "duplicateTimestampGroups": 0,
+      "reorderedRows": 0
+    }
+  },
   "modelBoundary": "paper=2 epoch channels; training source=5; testing source=3 into a 5-channel convolution",
   "modelReady": false,
   "outputSha256": "540dabbe24320a3b84976d8e5e080442f4e59fdf72f75c682d17ea42a86f874b",
@@ -98,15 +120,18 @@
     "night": "generated-night-a",
     "subject": "generated-subject-a"
   },
-  "schema": "paper-to-insight.bidsleep-aligned-night/v1",
+  "schema": "paper-to-insight.bidsleep-aligned-night/v2",
   "status": "converted",
   "transform": {
     "acceleration": "sqrt(x^2+y^2+z^2) after interpolation",
     "cosineClock": "-cos((seconds_since_start - 5*3600) * 2*pi / (24*3600))",
     "elapsedTime": "seconds_since_start / 3600",
     "fourClassLabels": "Wake, Light(N1+N2), Deep(N3), REM; Unknown masked",
+    "incompleteFinalRowPolicy": "discard at most one numeric final row with fewer columns",
     "interpolation": "linear 1 Hz anchored at recStart; no extrapolation",
-    "outlierRule": "absolute population z-score <= 3 per source channel"
+    "longNightPolicy": "first 1200 epochs, matching released training and testing notebooks",
+    "outlierRule": "absolute population z-score <= 3 per source channel",
+    "timestampCanonicalization": "stable sort; exact timestamp duplicates averaged"
   },
   "unsupportedAuthorFields": [
     "personalized_circadian_clock"

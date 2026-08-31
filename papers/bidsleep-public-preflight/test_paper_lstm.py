@@ -80,7 +80,7 @@ class PaperLSTMTest(unittest.TestCase):
             receipt.write_text(
                 json.dumps(
                     {
-                        "schema": "paper-to-insight.bidsleep-aligned-night/v1",
+                        "schema": "paper-to-insight.bidsleep-aligned-night/v2",
                         "brainstemExecutionEnabled": False,
                         "outputSha256": MODULE.sha256(archive),
                     }

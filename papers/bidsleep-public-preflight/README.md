@@ -183,6 +183,16 @@ every signal file while extracting, and converts every night with resumable
 hash checks. Its default 35 GB expanded-signal ceiling stays within the approved
 100 GB temporary-storage budget.
 
+The complete public corpus passed that bridge on 31 August 2026. All 759
+manifest files and all 253 converted-night archives matched their receipts.
+The converter's v2 receipt makes source anomalies explicit: timestamps are
+stable-sorted, exact duplicates are averaged, at most one numeric incomplete
+final CSV row is discarded, unequal Dreem/expert label tails are aligned to the
+expert timeline, and nights longer than 1,200 epochs use the first 1,200 epochs
+as the released notebooks do. `public-corpus-audit.json` binds the full local
+receipt hash and aggregate repair counts without committing the 28 GB public
+working copy.
+
 ```sh
 /opt/homebrew/anaconda3/bin/python3.12 \
   papers/bidsleep-public-preflight/public_corpus.py \

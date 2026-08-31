@@ -1,0 +1,40 @@
+{
+  "schema": "paper-to-insight.bidsleep-public-corpus-audit/v1",
+  "status": "verified_and_converted",
+  "completedOn": "2026-08-31",
+  "publicOnly": true,
+  "dataset": {
+    "doi": "10.13026/a0sy-7t69",
+    "version": "1.0.0",
+    "license": "ODC-By-1.0"
+  },
+  "archiveSha256": "c9b841674b8574cd2f179bef3d964719bcf8fe391bdf91799f2384c3d2565564",
+  "manifestSha256": "13333dff4d4640167435188bc6019c1782684b96d09838cb7e7b3ad005a51460",
+  "planSha256": "3802db5538749946b08ec7f1ff99e352ca0b5bbe38fb3de0c19c5a12c7fa0338",
+  "corpusReceiptSha256": "399d8e54d845802e76f6917d40b17feb318642c0bf75029566723defe88de7e1",
+  "counts": {
+    "manifestFiles": 759,
+    "subjects": 47,
+    "nights": 253,
+    "verifiedOutputHashes": 253,
+    "reusedNightsOnFinalVerification": 253,
+    "epochs": 217904,
+    "releasedLabels": 208427,
+    "nightsWithRepairsOrTruncation": 33
+  },
+  "repairs": {
+    "hrIncompleteFinalRowsDiscarded": 1,
+    "hrDuplicateTimestampGroups": 13,
+    "hrDuplicateRowsCollapsed": 13,
+    "motionIncompleteFinalRowsDiscarded": 2,
+    "motionRowsReordered": 6163,
+    "dreemTailEpochsTrimmed": 164,
+    "dreemUnknownTailEpochsPadded": 2
+  },
+  "claims": {
+    "brainstemTransferValidated": false,
+    "brainstemExecutionEnabled": false,
+    "catalogueEntryEnabled": false,
+    "clinicalUse": false
+  }
+}

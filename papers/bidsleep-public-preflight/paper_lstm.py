@@ -141,7 +141,7 @@ class PaperLSTM(nn.Module):
 
 def load_public_night(archive: Path, receipt_path: Path, epochs: int = 1200):
     receipt = json.loads(receipt_path.read_text())
-    if receipt.get("schema") != "paper-to-insight.bidsleep-aligned-night/v1":
+    if receipt.get("schema") != "paper-to-insight.bidsleep-aligned-night/v2":
         raise ValueError("aligned-night receipt schema is invalid")
     if receipt.get("brainstemExecutionEnabled") is not False:
         raise ValueError("benchmark accepts public-only aligned nights")

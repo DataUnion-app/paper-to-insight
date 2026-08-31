@@ -115,6 +115,49 @@ class ConverterTest(unittest.TestCase):
             self.assertTrue(np.isnan(arrays["signal_1hz"][0, 0]))
             self.assertFalse(bool(arrays["stage_mask"][0]))
 
+    def test_csv_canonicalizes_documented_public_anomalies(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "hr.csv"
+            path.write_text("timestamp,hr\n3,70\n1,60\n1,80\n2,65\n7\n")
+            values, repairs = converter.read_csv_with_repairs(
+                path, 2, converter.HR_HEADERS
+            )
+            np.testing.assert_allclose(values, [[1, 70], [2, 65], [3, 70]])
+            self.assertEqual(
+                repairs,
+                {
+                    "discardedIncompleteFinalRows": 1,
+                    "reorderedRows": 4,
+                    "duplicateTimestampGroups": 1,
+                    "duplicateRowsCollapsed": 1,
+                },
+            )
+            path.write_text("timestamp,hr\n1,60\n2\n3,70\n")
+            with self.assertRaises(converter.ConverterError):
+                converter.read_csv(path, 2, converter.HR_HEADERS)
+
+    def test_label_tails_align_and_long_nights_truncate_like_source(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "labels.mat"
+            savemat(
+                path,
+                {
+                    "recStart": np.asarray([[1_700_000_000.0]]),
+                    "dreem_label": np.asarray([0, 1, 2, 3]),
+                    "expert_label": np.asarray([0, 1, 2]),
+                },
+            )
+            _, dreem, expert, repairs = converter.load_labels_with_repairs(path)
+            np.testing.assert_array_equal(dreem, [0, 1, 2])
+            self.assertEqual(repairs["dreemTailEpochsTrimmed"], 1)
+            offsets = np.arange(90, dtype=np.float64)
+            hr = np.column_stack((1_700_000_000 + offsets, np.full(90, 60.0)))
+            motion = np.column_stack((1_700_000_000 + offsets, np.ones((90, 3))))
+            arrays = converter.convert_arrays(
+                hr, motion, 1_700_000_000, dreem, expert, minimum_epochs=1, maximum_epochs=2
+            )
+            self.assertEqual(len(arrays["stage_original"]), 2)
+
     def test_rejects_bad_timestamps_labels_and_duration(self):
         start = 1_700_000_000.0
         labels = np.asarray([0], dtype=np.uint8)
@@ -152,6 +195,8 @@ class ConverterTest(unittest.TestCase):
             expected = json.loads((ROOT / "generated-converter-receipt.json").read_text())
             self.assertEqual(receipt, expected)
             self.assertEqual(receipt["counts"]["epochs"], 600)
+            self.assertEqual(receipt["counts"]["sourceExpertEpochs"], 600)
+            self.assertEqual(receipt["counts"]["truncatedTailEpochs"], 0)
             self.assertFalse(receipt["modelReady"])
             self.assertEqual(receipt["unsupportedAuthorFields"], ["personalized_circadian_clock"])
             self.assertFalse(receipt["brainstemExecutionEnabled"])
