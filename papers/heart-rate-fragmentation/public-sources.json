@@ -1,0 +1,33 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "original-paper-xml": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5422439/fullTextXML",
+      "sha256": "79e13abca9a3969115ec843950ef4d6ce8b0130ddea733f55fa5e5b3c0d14096"
+    },
+    "reference-code": {
+      "url": "https://physionet.org/files/heart-rate-fragmentation-code/1.0.0/HRF.awk",
+      "sha256": "aec918325b8ca12074db99370e4429c6e6588016df350af39ca7d11d45e1c1a7"
+    },
+    "reference-license": {
+      "url": "https://physionet.org/files/heart-rate-fragmentation-code/1.0.0/LICENSE.txt",
+      "sha256": "ebf399049ef0de69cbef755a9b3c5fdc1d296bdcaa3984b5edb1dc3b81411b28"
+    },
+    "reference-readme": {
+      "url": "https://physionet.org/files/heart-rate-fragmentation-code/1.0.0/README",
+      "sha256": "62e6cbec5642fb5a9729ebc8c164015db334681fa7ce1436eeb09061f88e18ff"
+    },
+    "reference-series-a": {
+      "url": "https://physionet.org/files/heart-rate-fragmentation-code/1.0.0/timeseries_1PVC.txt",
+      "sha256": "5c9684266fd2918d4ae5609807aca3a85346838f113eb382510cbbbcf14c4a52"
+    },
+    "reference-series-b": {
+      "url": "https://physionet.org/files/heart-rate-fragmentation-code/1.0.0/timeseries_1PVC_1outlier.txt",
+      "sha256": "6bcb646aefd7c6dabf4c58a5b6ff2e22a0f334b9e3f290ca3e53f07964eeb62e"
+    },
+    "reference-series-c": {
+      "url": "https://physionet.org/files/heart-rate-fragmentation-code/1.0.0/timeseries_1PVC_2outliers.txt",
+      "sha256": "dbd9b1d350ab11bd222e43715a3d51c7264f58fc478ff9f984a1cbb266f86c10"
+    }
+  }
+}

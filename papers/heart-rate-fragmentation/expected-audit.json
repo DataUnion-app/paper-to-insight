@@ -1,0 +1,21 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.heart-rate-fragmentation",
+  "paperLicense": "CC-BY-4.0",
+  "referenceCodeLicense": "GPL-3.0-only",
+  "authorReferenceReproduced": true,
+  "referenceSeriesCount": 3,
+  "sourceThresholdConflict": {
+    "codeUpperBoundSeconds": 1.8,
+    "readmeUpperBoundSeconds": 1.5
+  },
+  "promotionStatus": "study_only",
+  "eligibleForRuntimeReview": false,
+  "blockReasons": [
+    "normal_to_normal_annotations_unavailable",
+    "source_interval_upper_bound_inconsistent",
+    "minimum_reliable_window_unresolved",
+    "brainstem_device_transfer_unvalidated",
+    "detector_artifact_sensitivity_unvalidated"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "paper-to-insight.heart-rate-fragmentation/result-v1",
+  "status": "complete",
+  "input": {
+    "intervalCount": 60,
+    "durationSeconds": 48.36,
+    "eligibleIntervalCount": 51
+  },
+  "metrics": {
+    "pipPercent": 21.569,
+    "pnnssPercent": 0.0,
+    "pnnlsPercent": 100.0
+  },
+  "warnings": [
+    "Generated methods result on pre-cleaned normal-to-normal intervals only.",
+    "No Brainstem detector R-R, health, age, disease, or risk interpretation is supported."
+  ]
+}

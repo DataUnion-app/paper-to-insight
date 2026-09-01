@@ -1,0 +1,116 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.heart-rate-fragmentation",
+  "version": "0.1.0",
+  "paper": {
+    "title": "Heart Rate Fragmentation: A New Approach to the Analysis of Cardiac Interbeat Interval Dynamics",
+    "canonicalUrl": "https://doi.org/10.3389/fphys.2017.00255",
+    "doi": "10.3389/fphys.2017.00255",
+    "claim": "Reproduces generated fragmentation mechanics and the checksum-pinned author reference outputs without translating them into a Brainstem disease, age, or risk result.",
+    "claimClass": "descriptive",
+    "population": "The paper used adjudicated long-term Holter ECG from healthy adults and patients with coronary artery disease; no Brainstem population or detector is validated.",
+    "referenceStandard": "CC-BY paper definitions plus the author's GPL-3.0 PhysioNet code and three versioned public test series.",
+    "implementationRelation": "independent_reimplementation",
+    "relationEvidence": "The generated implementation is derived from published definitions; the separate source audit executes the unmodified checksum-pinned author code against all three author fixtures and verifies the expected outputs.",
+    "classification": {
+      "paperDecision": "not_applicable",
+      "labels": [],
+      "unit": "generated pre-cleaned normal-to-normal interval sequence"
+    }
+  },
+  "sources": [
+    {
+      "name": "Original heart-rate fragmentation paper full text",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5422439/fullTextXML",
+      "revisionType": "content_sha256",
+      "revision": "79e13abca9a3969115ec843950ef4d6ce8b0130ddea733f55fa5e5b3c0d14096",
+      "sha256": "79e13abca9a3969115ec843950ef4d6ce8b0130ddea733f55fa5e5b3c0d14096",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "name": "Author heart-rate fragmentation reference code",
+      "url": "https://physionet.org/files/heart-rate-fragmentation-code/1.0.0/HRF.awk",
+      "revisionType": "content_sha256",
+      "revision": "aec918325b8ca12074db99370e4429c6e6588016df350af39ca7d11d45e1c1a7",
+      "sha256": "aec918325b8ca12074db99370e4429c6e6588016df350af39ca7d11d45e1c1a7",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://physionet.org/files/heart-rate-fragmentation-code/1.0.0/LICENSE.txt"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated normal-to-normal interval fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-fixture",
+      "sha256": "43f3c3cf67a40347f438a51522cfe021e42a726d3c67be8ad32a40f2e03e56c9",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "generated pre-cleaned NN only; no protected Brainstem contract proposed",
+    "requiredSignals": ["normal-to-normal interbeat intervals", "normal sinus beat annotations", "known detector timing resolution"],
+    "window": "The source has been applied to daytime, nighttime, and 24-hour series but states that no precise minimum reliable window is known.",
+    "preprocessing": "Use only adjudicated normal sinus intervals; exclude non-sinus and outlier regions between surrounding inflection points; preserve timing resolution and source-specific bounds.",
+    "brainstemVerdict": "partially_compatible",
+    "mismatches": [
+      "Current Brainstem recordings expose detector R-R intervals without adjudicated normal-sinus beat labels.",
+      "The reference code uses a 1.8-second upper interval bound while its README documents 1.5 seconds.",
+      "A reliable minimum window and Brainstem detector artifact behavior have not been established.",
+      "The paper's Holter populations and devices do not validate a Brainstem personal or cohort interpretation."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "methods_only",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "not_applicable"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Unavailable until a governed methods study establishes beat labelling, artifact handling, window length, and device transfer."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Unavailable; generated fragmentation values must not be presented as individual age, disease, or cardiovascular risk."
+    }
+  },
+  "abstention": [
+    "unsupported_signal",
+    "insufficient_quality",
+    "insufficient_coverage",
+    "uncalibrated_device",
+    "outside_validated_population",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "biological or cardiovascular age",
+    "coronary artery disease classification",
+    "cardiovascular event or atrial fibrillation risk",
+    "diagnosis or screening",
+    "clinical normal range",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {"path": "README.md", "sha256": "84fdc04305867d8c3b6e78600de600843095fe002ef225c58506f24012ef4f5d"},
+    {"path": "algorithm.py", "sha256": "3bd2112d5ab289cf81ef6527e5ef6d567368939bf4b2282172d1248d20f7d060"},
+    {"path": "expected-audit.json", "sha256": "6b66066349bf26c9f3dde71e8bc353a3ce97064f71f0f483ab38850b16ac6741"},
+    {"path": "expected-generated.json", "sha256": "f267900ff29f392f633e5c76f6e345ba36544036a89638629bebc9a36300da0e"},
+    {"path": "generated-fixture.json", "sha256": "43f3c3cf67a40347f438a51522cfe021e42a726d3c67be8ad32a40f2e03e56c9"},
+    {"path": "public-sources.json", "sha256": "f66dcce44121c3fd5f1efae2d2045a1d70e7819f2b4617084a6d9c57162e0567"},
+    {"path": "reproduce.py", "sha256": "8e5a6c6f17b95fe40d772ecdec5e93da6d51c89608d5bee3bced99f5f75773f1"},
+    {"path": "source-audit.py", "sha256": "937507baa6e50704b974e04aa3b18f8a0fdc7de4315f2b65b1a5ad1549625e7b"},
+    {"path": "test_algorithm.py", "sha256": "18dade0505a34f9b96bc73a1a2b8e76441a283717acb9ad0f8a52df33b52ad7b"},
+    {"path": "test_source_audit.py", "sha256": "6564d97ec3f7770aeaab674a004138d25183c1f3bb65a202cb74d2e0999e8e14"}
+  ]
+}

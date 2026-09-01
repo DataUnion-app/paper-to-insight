@@ -25,6 +25,11 @@ python3 papers/resting-rr-sample-entropy/reproduce.py --verify
 python3 scripts/validate_candidate.py papers/sleep-measure-reliability/candidate.json
 python3 papers/sleep-measure-reliability/test_algorithm.py -v
 python3 papers/sleep-measure-reliability/reproduce.py --verify
+python3 papers/heart-rate-fragmentation/test_algorithm.py -v
+python3 papers/heart-rate-fragmentation/reproduce.py
+python3 papers/heart-rate-fragmentation/test_source_audit.py -v
+python3 papers/heart-rate-fragmentation/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/heart-rate-fragmentation/candidate.json
 python3 papers/apnea-ecg-heart-rate/test_source_audit.py -v
 python3 papers/apnea-ecg-heart-rate/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/apnea-ecg-heart-rate/candidate.json
@@ -108,6 +113,12 @@ validate a device, dataset, or health claim.
 audit finds record-level evaluation and an overlapping-record leak, so it remains
 an E0 candidate with both runtime modes disabled. It is not published to
 DeSciLab.
+
+`papers/heart-rate-fragmentation` reproduces all three checksum-pinned author
+reference vectors and independently verifies generated fragmentation mechanics.
+It remains study-only because Brainstem lacks adjudicated normal-beat labels,
+the source code and README disagree on an interval bound, and reliable window,
+detector-artifact, and device-transfer evidence are absent.
 
 `papers/cardiovascular-event-hrv` is also E0 and disabled. Its source is licensed
 and paper-associated, but its scaler/test contract is incomplete and its
