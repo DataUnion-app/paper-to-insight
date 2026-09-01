@@ -23,8 +23,8 @@ class DisabledPackageTest(unittest.TestCase):
         with self.assertRaises(module.DisabledPackageError):
             module.validate(value, verify_files=verify_files)
 
-    def test_all_six_packages_are_valid_and_bound(self):
-        self.assertEqual(len(module.validate(self.value)["packages"]), 6)
+    def test_all_seven_packages_are_valid_and_bound(self):
+        self.assertEqual(len(module.validate(self.value)["packages"]), 7)
 
     def test_rejects_inventory_or_status_change(self):
         self.rejects(lambda value: value["packages"].pop())

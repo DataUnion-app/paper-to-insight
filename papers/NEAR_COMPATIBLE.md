@@ -10,6 +10,15 @@ This is the review queue for methods that are scientifically interesting but do 
 - **Potential study:** paired Brainstem and PSG/Dreem validation with participant-level splits.
 - **Do not claim yet:** sleep stage, sleep quality, sleep disorder, or clinical screening.
 
+## Night-to-night movement regularity
+
+- **Primary lead:** [Sleep Regularity Index paper](https://doi.org/10.1038/s41598-017-03171-4), which derives regularity from repeated sleep/wake state rather than raw nocturnal movement.
+- **What already fits:** Brainstem full-night records can contain aligned movement events, and the overnight candidate already computes generated-only coverage and event descriptors.
+- **Exact delta:** freeze movement timestamps, units, axes, sample rate, missingness, detector version, and device provenance; require enough distinct nights; prespecify either a new nocturnal movement-repeatability descriptor or collect the all-day sleep/wake states needed for SRI; never relabel a movement-only value as SRI.
+- **Potential study:** within-person repeatability of nocturnal movement timing and coverage, followed by participant-held-out comparison with a separately collected sleep/wake reference.
+- **Promotion status:** blocked until the movement contract and metric identity are frozen.
+- **Do not claim yet:** sleep regularity index, sleep quality, circadian disorder, disease risk, or a clinical normal range.
+
 ## Six-rate resonance response
 
 - **Primary lead:** [Practical resonance-frequency assessment guide](https://pmc.ncbi.nlm.nih.gov/articles/PMC7578229/) and a [7.0-to-4.5 breaths/minute protocol](https://pmc.ncbi.nlm.nih.gov/articles/PMC12081530/).

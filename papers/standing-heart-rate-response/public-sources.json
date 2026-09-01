@@ -1,0 +1,9 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "paper-record": {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31076939&retmode=xml",
+      "sha256": "adb2585de33fc27fb5fa6e8af95c53164c876d66834e8d5a3060fb53e0834be7"
+    }
+  }
+}

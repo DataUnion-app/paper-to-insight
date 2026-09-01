@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[2]
 PACKAGE = Path(__file__).resolve().parent / "packages.json"
 EXPECTED_IDS = {
     "disease-linked-association", "standardised-exercise-recovery",
-    "six-rate-resonance", "apple-health-local-composites", "ecg-arrhythmia",
-    "sleep-apnea",
+    "sleep-movement-regularity", "six-rate-resonance",
+    "apple-health-local-composites", "ecg-arrhythmia", "sleep-apnea",
 }
 EXECUTION_KEYS = {
     "algorithmPolicy", "apiRoute", "participantStudy", "personalCard",

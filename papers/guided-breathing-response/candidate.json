@@ -2,7 +2,7 @@
   "schema": "paper-to-insight.candidate/v1",
   "approvalState": "candidate",
   "packageId": "brainstem.guided-breathing-response",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "paper": {
     "title": "Methods for Heart Rate Variability Biofeedback (HRVB): A Systematic Review and Guidelines",
     "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/36917418/",
@@ -10,9 +10,9 @@
     "claim": "Implements a generated, descriptive, protocol-matched summary of heart-rate dynamics during Brainstem guided-breathing sessions.",
     "claimClass": "descriptive",
     "population": "The systematic review and its included populations do not validate a Brainstem device; this package contains generated participants only.",
-    "referenceStandard": "Published reporting guidance plus a deterministic participant-grouped generated R-R fixture.",
+    "referenceStandard": "Checksum-pinned CC-BY reporting guidance plus a deterministic participant-grouped generated R-R fixture.",
     "implementationRelation": "method_only",
-    "relationEvidence": "The package applies the review's reproducibility requirement by binding the complete pace and phase tuple, then independently recomputes bounded time-domain measures from generated R-R intervals.",
+    "relationEvidence": "The public source audit pins the review's protocol, adherence, and artifact boundaries. The package binds the complete pace and phase tuple, then independently recomputes bounded time-domain measures from generated R-R intervals.",
     "classification": {
       "paperDecision": "not_applicable",
       "labels": [],
@@ -20,6 +20,15 @@
     }
   },
   "sources": [
+    {
+      "name": "HRV biofeedback methods review full text",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10412682/fullTextXML",
+      "revisionType": "content_sha256",
+      "revision": "23f09196243120dbf1587e8f00598154540d7e318d3ea5022831a8ed423ae1a8",
+      "sha256": "23f09196243120dbf1587e8f00598154540d7e318d3ea5022831a8ed423ae1a8",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
     {
       "name": "Independent guided-breathing response implementation",
       "url": "https://github.com/DataUnion-app/paper-to-insight",
@@ -92,12 +101,16 @@
     "medical advice"
   ],
   "files": [
-    {"path": "README.md", "sha256": "86d082c8614ec61d6214713ac41f3cb0f2d4d34e524e0df8451163242cc15ed0"},
+    {"path": "README.md", "sha256": "2ab3f76e0a9df3d6408eb5916039849120915a569d47b9fd52078d7171ef238e"},
     {"path": "algorithm.py", "sha256": "b58d89aba742f4fe8d86296600681697731d6a3efd38d1d96475b05c36457be1"},
+    {"path": "expected-audit.json", "sha256": "5afe4778b32a90cd5221bae9d2f662a35b2eb2b32452381cbc3b0ca134881a64"},
     {"path": "expected-public.json", "sha256": "6a3d9567e21103545907355f1cf1d99926c6067c40cf72804ac84eb7d6dc825e"},
     {"path": "generate_fixture.py", "sha256": "6279968b4bcdfffe02576af5bf6643d86ed268db20cd93c10f9b114e878f872f"},
     {"path": "public-data.json", "sha256": "09dafebaebab44c72aa5dccead10d39e7aae88ef4ac3b3ebb3b8aba43a1f7587"},
+    {"path": "public-sources.json", "sha256": "39120f7ddef2274ec1609415b2aeadbff5233f6e86dd30f5218aca886bebb88e"},
     {"path": "reproduce.py", "sha256": "2605811b05cf6f18009fa397d301429d0e93d16a7169fccdb4abe6260e118b4a"},
-    {"path": "test_algorithm.py", "sha256": "663bd7aced2788c308ec3fa0f602e8f2358a0b0a0d5d8112e191b7e0b6496be5"}
+    {"path": "source-audit.py", "sha256": "57a6a737be17b0b78edc5e7b302597360dd6a1eb2e9f335e4062c71396ce9ed2"},
+    {"path": "test_algorithm.py", "sha256": "663bd7aced2788c308ec3fa0f602e8f2358a0b0a0d5d8112e191b7e0b6496be5"},
+    {"path": "test_source_audit.py", "sha256": "718a1bb98f0021bff825485e8c5b13022e054a63aa777e6396523193cd0f9646"}
   ]
 }

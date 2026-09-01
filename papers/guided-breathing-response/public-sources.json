@@ -1,0 +1,9 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "paper-full-text": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10412682/fullTextXML",
+      "sha256": "23f09196243120dbf1587e8f00598154540d7e318d3ea5022831a8ed423ae1a8"
+    }
+  }
+}

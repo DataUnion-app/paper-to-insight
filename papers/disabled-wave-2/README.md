@@ -1,6 +1,6 @@
 # Disabled Wave 2 evidence packages
 
-These six packages turn near-compatible ideas into exact research deltas. They
+These seven packages turn near-compatible ideas into exact research deltas. They
 are not executable candidates. Every runtime switch is false, every package has
 at least two unresolved blockers, and promotion requires new evidence plus
 scientific, privacy, security, and ethics review.
@@ -9,6 +9,7 @@ scientific, privacy, security, and ethics review.
 | --- | --- | --- |
 | Disease-linked association | M | collect separately dated outcomes under a prospective protocol |
 | Standardised exercise recovery | S-M | freeze exercise, workload, exertion end, and recovery windows |
+| Sleep movement regularity | M | freeze movement provenance and choose a movement metric or collect sleep/wake states |
 | Six-rate resonance | S-M | upload one complete versioned six-rate curve |
 | Apple Health/local composites | M | choose one formula and freeze provenance, units, and owner |
 | ECG/arrhythmia | L | obtain consistent calibrated ECG plus expert labels |

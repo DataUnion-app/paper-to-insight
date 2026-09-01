@@ -1,0 +1,19 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.guided-breathing-response",
+  "paperLicense": "CC-BY-4.0",
+  "paperFullTextPinned": true,
+  "paperRelationship": "reporting_and_protocol_context",
+  "promotionStatus": "promote",
+  "eligibleForProtectedRuntimeReview": true,
+  "promotionScope": "exact_protocol_descriptive_heart_rate_only",
+  "unavailableSignals": [
+    "measured_breathing_adherence",
+    "respiratory_volume"
+  ],
+  "prohibitedInterpretations": [
+    "optimal_resonance_frequency",
+    "treatment_effect",
+    "autonomic_diagnosis"
+  ]
+}

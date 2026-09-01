@@ -1,0 +1,16 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.standing-heart-rate-response",
+  "paperRecordPinned": true,
+  "fullTextAudited": false,
+  "paperRelationship": "protocol_context_only",
+  "requiredClinicalSignalAbsent": "continuous_beat_to_beat_blood_pressure",
+  "promotionStatus": "promote",
+  "eligibleForProtectedRuntimeReview": true,
+  "promotionScope": "descriptive_heart_rate_only",
+  "prohibitedInterpretations": [
+    "orthostatic_hypotension",
+    "postural_orthostatic_tachycardia_syndrome",
+    "clinical_active_stand_result"
+  ]
+}

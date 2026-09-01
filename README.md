@@ -30,6 +30,13 @@ python3 papers/heart-rate-fragmentation/reproduce.py
 python3 papers/heart-rate-fragmentation/test_source_audit.py -v
 python3 papers/heart-rate-fragmentation/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/heart-rate-fragmentation/candidate.json
+python3 papers/standing-heart-rate-response/test_source_audit.py -v
+python3 papers/standing-heart-rate-response/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/standing-heart-rate-response/candidate.json
+python3 papers/guided-breathing-response/test_source_audit.py -v
+python3 papers/guided-breathing-response/source-audit.py --verify
+python3 scripts/validate_candidate.py papers/guided-breathing-response/candidate.json
+python3 papers/disabled-wave-2/validate.py
 python3 papers/apnea-ecg-heart-rate/test_source_audit.py -v
 python3 papers/apnea-ecg-heart-rate/source-audit.py --verify
 python3 scripts/validate_candidate.py papers/apnea-ecg-heart-rate/candidate.json

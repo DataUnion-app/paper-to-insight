@@ -14,6 +14,8 @@ when repeated matched sessions exist, one latest-minus-earliest change.
 python3 generate_fixture.py
 python3 reproduce.py
 python3 -m unittest test_algorithm.py
+python3 -m unittest test_source_audit.py
+python3 source-audit.py --verify
 ```
 
 The source literature shows why exact protocol reporting and pace-matched HRV
@@ -23,3 +25,11 @@ rate, autonomic diagnosis, or a clinical normal range.
 
 Generated reproduction is evidence, not protected-algorithm approval or
 authorization for participant data.
+
+## Promotion verdict
+
+The checksum-pinned CC-BY review requires exact protocol reporting, breathing
+adherence monitoring, and an artifact plan; it also states that no gold
+standard protocol exists. Exact-protocol heart-rate descriptors are promoted
+to protected runtime review. Resonance, adherence, treatment, and autonomic
+interpretations remain excluded.

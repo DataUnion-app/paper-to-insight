@@ -2,17 +2,17 @@
   "schema": "paper-to-insight.candidate/v1",
   "approvalState": "candidate",
   "packageId": "brainstem.standing-heart-rate-response",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "paper": {
-    "title": "Active Stand Testing for Identification of Orthostatic Intolerance",
+    "title": "A practical guide to active stand testing and analysis using continuous beat-to-beat non-invasive blood pressure monitoring",
     "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/31076939/",
     "doi": "10.1007/s10286-019-00606-y",
     "claim": "Implements a generated, descriptive heart-rate response to Brainstem's existing standing protocol without blood-pressure or clinical interpretation.",
     "claimClass": "descriptive",
     "population": "The practical clinical method and its population do not validate a Brainstem device; this package contains generated participants only.",
-    "referenceStandard": "Published active-stand protocol context and deterministic participant-grouped generated R-R fixture.",
+    "referenceStandard": "Checksum-pinned PubMed paper record plus a deterministic participant-grouped generated R-R fixture.",
     "implementationRelation": "method_only",
-    "relationEvidence": "The package independently computes a bounded heart-rate-only descriptor from Brainstem's existing timing contract; it deliberately excludes the blood-pressure measurements and clinical interpretation required by the source method.",
+    "relationEvidence": "The public source audit pins the paper record and confirms the required blood-pressure boundary. The package independently computes a bounded heart-rate-only descriptor from Brainstem's existing timing contract.",
     "classification": {
       "paperDecision": "not_applicable",
       "labels": [],
@@ -20,6 +20,15 @@
     }
   },
   "sources": [
+    {
+      "name": "Active-stand practical guide PubMed record",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31076939&retmode=xml",
+      "revisionType": "content_sha256",
+      "revision": "adb2585de33fc27fb5fa6e8af95c53164c876d66834e8d5a3060fb53e0834be7",
+      "sha256": "adb2585de33fc27fb5fa6e8af95c53164c876d66834e8d5a3060fb53e0834be7",
+      "license": "NCBI data usage policy; publisher copyright retained",
+      "licenseUrl": "https://www.ncbi.nlm.nih.gov/home/about/policies/"
+    },
     {
       "name": "Independent standing heart-rate response implementation",
       "url": "https://github.com/DataUnion-app/paper-to-insight",
@@ -91,12 +100,16 @@
     "medical advice"
   ],
   "files": [
-    {"path": "README.md", "sha256": "4158c814392e34276764bcf7dff84016d5583c5f9592cb65bafb70e98b5ef30e"},
+    {"path": "README.md", "sha256": "41b31c2dc2c47e0b9513587543cc0a1f38f2cf3e447d15322eb1544aa2722753"},
     {"path": "algorithm.py", "sha256": "624c3fb9df14fb1959fbf31041204fa395e068c6cd6536c7e44da487694c9405"},
+    {"path": "expected-audit.json", "sha256": "7c3eb7b2a948c4b394510d57f76e2a4b35fe9a1e540a289fa523267430da1f46"},
     {"path": "expected-public.json", "sha256": "6dffca85f1b858524f56a7343e5a1b8501396e28ae2b7f811f8c45f232778919"},
     {"path": "generate_fixture.py", "sha256": "d1556041e7f0d044f643325f9ca982564182bde18dc7a2101b4e39cd098dcea3"},
     {"path": "public-data.json", "sha256": "59f283b56715556a65303241621a5e39583e84c0a18c4bb748ec123db4d30595"},
+    {"path": "public-sources.json", "sha256": "a1b7fed9ab744a69b7d659bfb1e19d15188ba8ca7127c1a525d65b3ecb2ed7be"},
     {"path": "reproduce.py", "sha256": "0824b3642823bd4fd03ade9f3f81194678cdf976813381546dd60991d29e5f27"},
-    {"path": "test_algorithm.py", "sha256": "c738d6fde8ebdebfd3b67802d48f1832c001594dedad460e7069a8e6496ac2a2"}
+    {"path": "source-audit.py", "sha256": "1580c9a1148f042d140234246dd66fe8aed0b021984738e4fafad53b398c481b"},
+    {"path": "test_algorithm.py", "sha256": "c738d6fde8ebdebfd3b67802d48f1832c001594dedad460e7069a8e6496ac2a2"},
+    {"path": "test_source_audit.py", "sha256": "df2e137503cf5c80053621800e719e84cd2b039ad55b3064cd541350425f3ef0"}
   ]
 }

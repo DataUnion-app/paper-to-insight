@@ -28,8 +28,8 @@
         {"name": "Heart-rate recovery immediately after exercise as a predictor of mortality", "url": "https://pubmed.ncbi.nlm.nih.gov/10536127/", "identifier": "10.1056/NEJM199910283411804", "license": "Publisher copyright", "use": "protocol and recovery-window context only"}
       ],
       "evidenceBindings": [
-        {"path": "papers/standing-heart-rate-response/candidate.json", "sha256": "2ec158d4d254e718a1107964ed0f77839b1ac937d40f86c4537640e6eb8e47b8"},
-        {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "16f672e2dd39159fce30357cc49bb356669dc1f4df4221df6a1e43a7753cf7de"}
+        {"path": "papers/standing-heart-rate-response/candidate.json", "sha256": "5c6cffdda0a89439b3ef0ddd743745b05fe09cd2f9c372c57e1044bb673d81c9"},
+        {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "ac361b4530ddb5683cd0ad2492e529215af264392b04a0c07a0fc55336c2e29d"}
       ],
       "missingDelta": ["explicit exercise subtype and protocol version", "intensity or workload and exertion-end marker", "frozen one-minute and later recovery windows", "artifact and protocol-adherence evidence", "cross-device unit and timing parity"],
       "proposedStudy": {"design": "Within-person repeatability study for one standardised exercise and recovery sequence.", "participants": "Consenting adults able to perform the selected protocol safely.", "reference": "Versioned exercise phase markers, workload, and observed heart-rate recovery; no mortality label.", "split": "Participant-held-out protocol validation plus repeated sessions per participant.", "retention": "Purpose-bound protocol records with governed study pseudonyms."},
@@ -37,6 +37,25 @@
       "cost": {"tier": "S-M", "mainCosts": ["mobile protocol markers", "safety and eligibility wording", "repeat sessions and review"]},
       "promotionGate": ["one approved exercise protocol", "cross-platform phase-marker contract", "repeatability result", "scientific privacy security and ethics approval"],
       "blockers": ["generic exercise records mix incompatible activities", "current uploads do not identify exertion end or workload"],
+      "execution": {"algorithmPolicy": false, "apiRoute": false, "participantStudy": false, "personalCard": false, "payment": false, "notification": false, "schedule": false}
+    },
+    {
+      "packageId": "sleep-movement-regularity",
+      "status": "disabled",
+      "purpose": "Measure repeatability of nocturnal movement timing and coverage without presenting movement-only data as a validated sleep-regularity index.",
+      "primarySources": [
+        {"name": "Irregular sleep/wake patterns are associated with poorer academic performance and delayed circadian and sleep/wake timing", "url": "https://doi.org/10.1038/s41598-017-03171-4", "identifier": "10.1038/s41598-017-03171-4", "license": "CC-BY-4.0", "use": "sleep/wake regularity metric identity and study-design context only"}
+      ],
+      "evidenceBindings": [
+        {"path": "papers/overnight-heart-rate-change/candidate.json", "sha256": "a87be7d8216d8c554e0879836b09ced7e7dfa261600577e8cba2af96ddae37d9"},
+        {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "ac361b4530ddb5683cd0ad2492e529215af264392b04a0c07a0fc55336c2e29d"}
+      ],
+      "missingDelta": ["frozen movement timestamps units axes sample rate and missingness", "detector version and device provenance", "minimum distinct-night and coverage contract", "prespecified nocturnal movement-repeatability formula or separately collected all-day sleep/wake states", "participant-held-out reference and artifact evaluation"],
+      "proposedStudy": {"design": "Repeated-night feasibility and repeatability study for one frozen nocturnal movement descriptor.", "participants": "Consenting participants with enough complete nights under one compatible movement contract.", "reference": "Versioned movement events and, in a later calibration, separately collected sleep/wake state; raw movement never invents an SRI label.", "split": "Participant-held-out evaluation with repeated nights retained within one participant partition.", "retention": "Purpose-bound aligned movement summaries and provenance under governed study pseudonyms."},
+      "claimBoundary": {"allowedNow": ["generated-only nightly movement coverage and event descriptors"], "prohibited": ["sleep regularity index from movement alone", "sleep quality", "circadian disorder", "disease risk", "clinical normal range"]},
+      "cost": {"tier": "M", "mainCosts": ["cross-device movement contract", "repeat-night collection", "separate sleep/wake reference for any SRI validation"]},
+      "promotionGate": ["versioned cross-device movement producer contract", "frozen metric identity and minimum-night rule", "participant-held-out repeatability result", "scientific privacy security and ethics approval"],
+      "blockers": ["historical movement provenance and units are not fully frozen", "no all-day sleep/wake reference exists for a Sleep Regularity Index"],
       "execution": {"algorithmPolicy": false, "apiRoute": false, "participantStudy": false, "personalCard": false, "payment": false, "notification": false, "schedule": false}
     },
     {
@@ -48,8 +67,8 @@
         {"name": "Effects of a Brief Resonance Frequency Breathing Exercise", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12081530/", "identifier": "10.1007/s10484-025-09687-0", "license": "CC-BY-4.0", "use": "7.0-to-4.5 cycles-per-minute protocol context"}
       ],
       "evidenceBindings": [
-        {"path": "papers/guided-breathing-response/candidate.json", "sha256": "2f92167b6c17e4a1ba071c64f8bb6c3bca36906b720b930801bc19b0e209e4bd"},
-        {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "16f672e2dd39159fce30357cc49bb356669dc1f4df4221df6a1e43a7753cf7de"}
+        {"path": "papers/guided-breathing-response/candidate.json", "sha256": "1cc1dc9572f358ff9c49b822ccd0ddd3459238fffe939923daf7718af32311f0"},
+        {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "ac361b4530ddb5683cd0ad2492e529215af264392b04a0c07a0fc55336c2e29d"}
       ],
       "missingDelta": ["one versioned upload containing the complete six-rate curve", "trial order and exact phase timing", "adherence and artifact evidence for every rate", "one cross-platform response and tie rule", "respiration synchrony or an explicit limitation when absent"],
       "proposedStudy": {"design": "Repeated six-rate within-person protocol with counterbalanced or frozen order.", "participants": "Consenting participants with complete compatible guided-breathing sessions.", "reference": "Prespecified curve features and repeat-session agreement, not a clinical endpoint.", "split": "Participant-held-out protocol evaluation; repeated sessions assess within-person stability.", "retention": "Purpose-bound complete-curve records with governed study pseudonyms."},
@@ -67,7 +86,7 @@
         {"name": "Apple HealthKit documentation", "url": "https://developer.apple.com/documentation/healthkit", "identifier": "HealthKit documentation current at preflight", "license": "Apple Developer Website Terms", "use": "platform provenance and API semantics only"}
       ],
       "evidenceBindings": [
-        {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "16f672e2dd39159fce30357cc49bb356669dc1f4df4221df6a1e43a7753cf7de"}
+        {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "ac361b4530ddb5683cd0ad2492e529215af264392b04a0c07a0fc55336c2e29d"}
       ],
       "missingDelta": ["selected measure and versioned formula", "source-device provenance and units", "versioned consented upload contract", "cross-platform owner and equivalence rule", "missingness and device-family policy"],
       "proposedStudy": {"design": "Paired feasibility and repeatability study for one selected measure across supported platforms.", "participants": "Consenting users with the exact source device and application version.", "reference": "Frozen server recomputation or a documented platform measurement with provenance.", "split": "Participant-held-out evaluation with repeated observations per device family.", "retention": "Purpose-bound derived and source-provenance records with governed study pseudonyms."},
