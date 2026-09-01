@@ -1,0 +1,23 @@
+{
+  "schema": "paper-to-insight.source-audit/v1",
+  "candidate": "brainstem.six-rate-breathing-response",
+  "paperLicenses": [
+    "CC-BY-4.0",
+    "CC-BY-4.0"
+  ],
+  "paperFullTextsPinned": true,
+  "paperRelationship": "protocol_and_limitation_context",
+  "promotionStatus": "hold",
+  "eligibleForProtectedRuntimeReview": false,
+  "resolvedDelta": "generated_response_curve_and_all_ties_rule",
+  "blockedRuntimeBy": [
+    "no versioned full-curve mobile upload",
+    "no measured breathing adherence or respiration",
+    "no repeat-session Brainstem evaluation"
+  ],
+  "prohibitedInterpretations": [
+    "optimal_or_therapeutic_rate",
+    "treatment_effect",
+    "autonomic_diagnosis"
+  ]
+}

@@ -67,15 +67,16 @@
         {"name": "Effects of a Brief Resonance Frequency Breathing Exercise", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12081530/", "identifier": "10.1007/s10484-025-09687-0", "license": "CC-BY-4.0", "use": "7.0-to-4.5 cycles-per-minute protocol context"}
       ],
       "evidenceBindings": [
+        {"path": "papers/six-rate-breathing-response/candidate.json", "sha256": "aa25d8b22e3b4a7ba79d8ae8d9412936881a3490f1480a32375872892e1842ed"},
         {"path": "papers/guided-breathing-response/candidate.json", "sha256": "1cc1dc9572f358ff9c49b822ccd0ddd3459238fffe939923daf7718af32311f0"},
         {"path": "papers/NEAR_COMPATIBLE.md", "sha256": "ac361b4530ddb5683cd0ad2492e529215af264392b04a0c07a0fc55336c2e29d"}
       ],
-      "missingDelta": ["one versioned upload containing the complete six-rate curve", "trial order and exact phase timing", "adherence and artifact evidence for every rate", "one cross-platform response and tie rule", "respiration synchrony or an explicit limitation when absent"],
+      "missingDelta": ["one versioned upload containing the complete six-rate curve", "mobile producer proof for the frozen order and final 120-second analysis windows", "adherence and artifact evidence for every rate", "respiration synchrony or an explicit limitation when absent", "repeat-session Brainstem curve-stability evaluation"],
       "proposedStudy": {"design": "Repeated six-rate within-person protocol with counterbalanced or frozen order.", "participants": "Consenting participants with complete compatible guided-breathing sessions.", "reference": "Prespecified curve features and repeat-session agreement, not a clinical endpoint.", "split": "Participant-held-out protocol evaluation; repeated sessions assess within-person stability.", "retention": "Purpose-bound complete-curve records with governed study pseudonyms."},
-      "claimBoundary": {"allowedNow": ["descriptive response at one known breathing rate"], "prohibited": ["optimal therapeutic frequency", "autonomic diagnosis", "anxiety treatment effect", "medical recommendation"]},
+      "claimBoundary": {"allowedNow": ["descriptive response at one known breathing rate", "generated six-rate response curve with all exact largest-RMSSD ties preserved"], "prohibited": ["optimal therapeutic frequency", "autonomic diagnosis", "anxiety treatment effect", "medical recommendation"]},
       "cost": {"tier": "S-M", "mainCosts": ["full-curve mobile upload", "cross-platform parity", "repeat-session collection"]},
       "promotionGate": ["versioned six-rate producer contract", "frozen response and tie rule", "repeatability result", "scientific privacy security and ethics approval"],
-      "blockers": ["current server uploads do not bind all six trials into one curve", "cross-platform full-curve provenance is not frozen"],
+      "blockers": ["current server uploads do not bind all six trials into one versioned curve", "cross-platform producer provenance and repeat-session stability are not proven"],
       "execution": {"algorithmPolicy": false, "apiRoute": false, "participantStudy": false, "personalCard": false, "payment": false, "notification": false, "schedule": false}
     },
     {

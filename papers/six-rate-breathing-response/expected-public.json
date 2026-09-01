@@ -1,0 +1,139 @@
+{
+  "schema": "paper-to-insight.six-rate-breathing-response/result-v1",
+  "status": "complete",
+  "mode": "cohort",
+  "protocol": {
+    "version": "brainstem.resonance-assessment/7-to-4-5-step-0-5/v1",
+    "ratesCpm": [
+      7.0,
+      6.5,
+      6.0,
+      5.5,
+      5.0,
+      4.5
+    ],
+    "order": "descending",
+    "perRateSeconds": 180,
+    "analysisWindowSeconds": 120,
+    "adherenceMeasured": false
+  },
+  "participantCountBand": "20 to 49",
+  "curve": [
+    {
+      "rateCpm": 7.0,
+      "meanHeartRateBpm": {
+        "p25": 65.217,
+        "median": 65.882,
+        "p75": 66.537
+      },
+      "rmssdMs": {
+        "p25": 20.672,
+        "median": 20.717,
+        "p75": 20.756
+      },
+      "sd1Ms": {
+        "p25": 14.616,
+        "median": 14.648,
+        "p75": 14.675
+      }
+    },
+    {
+      "rateCpm": 6.5,
+      "meanHeartRateBpm": {
+        "p25": 65.217,
+        "median": 65.88,
+        "p75": 66.525
+      },
+      "rmssdMs": {
+        "p25": 25.223,
+        "median": 25.274,
+        "p75": 25.322
+      },
+      "sd1Ms": {
+        "p25": 17.833,
+        "median": 17.87,
+        "p75": 17.903
+      }
+    },
+    {
+      "rateCpm": 6.0,
+      "meanHeartRateBpm": {
+        "p25": 65.217,
+        "median": 65.875,
+        "p75": 66.51
+      },
+      "rmssdMs": {
+        "p25": 30.309,
+        "median": 30.371,
+        "p75": 30.429
+      },
+      "sd1Ms": {
+        "p25": 21.428,
+        "median": 21.474,
+        "p75": 21.513
+      }
+    },
+    {
+      "rateCpm": 5.5,
+      "meanHeartRateBpm": {
+        "p25": 65.217,
+        "median": 65.88,
+        "p75": 66.525
+      },
+      "rmssdMs": {
+        "p25": 25.223,
+        "median": 25.274,
+        "p75": 25.322
+      },
+      "sd1Ms": {
+        "p25": 17.833,
+        "median": 17.87,
+        "p75": 17.903
+      }
+    },
+    {
+      "rateCpm": 5.0,
+      "meanHeartRateBpm": {
+        "p25": 65.217,
+        "median": 65.882,
+        "p75": 66.537
+      },
+      "rmssdMs": {
+        "p25": 20.672,
+        "median": 20.717,
+        "p75": 20.756
+      },
+      "sd1Ms": {
+        "p25": 14.616,
+        "median": 14.648,
+        "p75": 14.675
+      }
+    },
+    {
+      "rateCpm": 4.5,
+      "meanHeartRateBpm": {
+        "p25": 65.217,
+        "median": 65.886,
+        "p75": 66.551
+      },
+      "rmssdMs": {
+        "p25": 15.586,
+        "median": 15.62,
+        "p75": 15.65
+      },
+      "sd1Ms": {
+        "p25": 11.02,
+        "median": 11.044,
+        "p75": 11.065
+      }
+    }
+  ],
+  "largestObservedCohortMedianRmssdRatesCpm": [
+    6.0
+  ],
+  "warnings": [
+    "Generated methods example; not a Brainstem reference range.",
+    "Each participant contributes one median curve regardless of session count.",
+    "No optimal or therapeutic rate, adherence, respiration, diagnosis, or treatment effect is inferred."
+  ]
+}

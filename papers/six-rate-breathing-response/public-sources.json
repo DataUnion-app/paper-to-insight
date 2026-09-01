@@ -1,0 +1,13 @@
+{
+  "schema": "paper-to-insight.public-sources/v1",
+  "assets": {
+    "practical-guide-full-text": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7578229/fullTextXML",
+      "sha256": "c58dff91cd485eb3f2d108776d5587ad802d47792c24ed13d8280b7842eab5d4"
+    },
+    "brief-exercise-full-text": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12081530/fullTextXML",
+      "sha256": "084d3ba96a762a862321953da914c2e70e3d7a0e3d2c420dcde2a0cd102cda0a"
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "schema": "paper-to-insight.candidate/v1",
+  "approvalState": "candidate",
+  "packageId": "brainstem.six-rate-breathing-response",
+  "version": "0.1.0",
+  "paper": {
+    "title": "A Practical Guide to Resonance Frequency Assessment for Heart Rate Variability Biofeedback",
+    "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/33117119/",
+    "doi": "10.3389/fnins.2020.570400",
+    "claim": "Implements a generated, descriptive response curve across the exact six paced-breathing rates currently shared by the Brainstem mobile apps.",
+    "claimClass": "descriptive",
+    "population": "The public papers do not validate a Brainstem device or population; this package contains generated participants only.",
+    "referenceStandard": "Two checksum-pinned CC-BY protocol sources plus a deterministic participant-grouped generated R-R fixture.",
+    "implementationRelation": "method_only",
+    "relationEvidence": "The public source audit pins the stepped protocol and its respiration, adherence, and artifact boundaries. The package independently recomputes bounded time-domain measures and preserves all exact response ties.",
+    "classification": {
+      "paperDecision": "not_applicable",
+      "labels": [],
+      "unit": "one complete six-rate paced-breathing session under the frozen generated contract"
+    }
+  },
+  "sources": [
+    {
+      "name": "Practical resonance-assessment guide full text",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7578229/fullTextXML",
+      "revisionType": "content_sha256",
+      "revision": "c58dff91cd485eb3f2d108776d5587ad802d47792c24ed13d8280b7842eab5d4",
+      "sha256": "c58dff91cd485eb3f2d108776d5587ad802d47792c24ed13d8280b7842eab5d4",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "name": "Brief stepped-breathing exercise full text",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12081530/fullTextXML",
+      "revisionType": "content_sha256",
+      "revision": "084d3ba96a762a862321953da914c2e70e3d7a0e3d2c420dcde2a0cd102cda0a",
+      "sha256": "084d3ba96a762a862321953da914c2e70e3d7a0e3d2c420dcde2a0cd102cda0a",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "name": "Independent generated response-curve implementation",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "revisionType": "content_sha256",
+      "revision": "6c9d5870ce603fb81e6d1b451b7b9a029207130865f1ad2bb63eacd609786d90",
+      "sha256": "6c9d5870ce603fb81e6d1b451b7b9a029207130865f1ad2bb63eacd609786d90",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Generated participant-grouped six-rate response fixture",
+      "kind": "synthetic",
+      "url": "https://github.com/DataUnion-app/paper-to-insight",
+      "version": "0.1.0",
+      "doi": "not-applicable:generated-fixture",
+      "sha256": "d3824c603758a829cf5931a44e166b6f9596db46c5bb62ade300922ee69b16be",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "compatibility": {
+    "brainstemContract": "generated six-rate curve with final 120-second R-R windows; no production upload contract exists",
+    "requiredSignals": [
+      "complete ordered 7.0-to-4.5 cycles-per-minute session",
+      "final 120 seconds of raw R-R intervals per rate",
+      "explicit adherence-not-measured provenance"
+    ],
+    "window": "Each rate is assigned for 180 seconds. Analyze only the final 120 seconds, in descending 0.5 cycles-per-minute steps from 7.0 to 4.5.",
+    "preprocessing": "Reject incomplete, reordered, short, overlong, non-finite, implausible, or augmented trials; recompute mean heart rate, RMSSD, and SD1; preserve every exact largest-RMSSD tie; aggregate each participant once.",
+    "brainstemVerdict": "partially_compatible",
+    "mismatches": [
+      "Neither current mobile app uploads one versioned complete six-rate curve.",
+      "Brainstem assigns pacing but does not measure respiration, adherence, or respiratory volume.",
+      "No repeated-session Brainstem evaluation establishes response-curve stability.",
+      "The paper protocols inspect artifacts and use additional physiological signals that are absent from this generated contract."
+    ]
+  },
+  "evidence": {
+    "tier": "E0_candidate",
+    "useClass": "protocol_bound_research",
+    "clinicalUse": "prohibited",
+    "brainstemDecision": "not_applicable"
+  },
+  "modes": {
+    "cohort": {
+      "proposed": false,
+      "minimumParticipants": 20,
+      "minimumCell": 20,
+      "output": "Generated participant-equal aggregate quartiles across six rates; no subject, session, raw R-R, adherence, respiration, or diagnostic rows."
+    },
+    "personal": {
+      "proposed": false,
+      "inputOwner": "authenticated_participant_only",
+      "referencePolicy": "immutable_reviewed_aggregate_only",
+      "output": "Generated owner-only session and median curves with all exact largest-observed-RMSSD ties preserved."
+    }
+  },
+  "abstention": [
+    "insufficient_quality",
+    "insufficient_coverage",
+    "unsupported_signal",
+    "privacy_floor",
+    "reference_unavailable"
+  ],
+  "prohibitedClaims": [
+    "optimal or therapeutic breathing frequency",
+    "breathing adherence",
+    "stress or anxiety treatment effect",
+    "autonomic diagnosis",
+    "diagnosis or screening",
+    "disease prediction or risk",
+    "clinical normal range",
+    "treatment recommendation",
+    "medical advice"
+  ],
+  "files": [
+    {"path": "README.md", "sha256": "cbc3ef2e365ac53cf398e6fca9f7ca1b271b6c55bc2e5230aede0e84763fcf56"},
+    {"path": "algorithm.py", "sha256": "6c9d5870ce603fb81e6d1b451b7b9a029207130865f1ad2bb63eacd609786d90"},
+    {"path": "expected-audit.json", "sha256": "47aa11f9970a744e328d7e80f430386990e539caf88daa245f01fcedc6c24514"},
+    {"path": "expected-public.json", "sha256": "e6a61fc18a626c2d48aac407d1ec85649efc06458c69c4a00e23ef662d8d1d55"},
+    {"path": "generate_fixture.py", "sha256": "381eacdc36c5394b5dc92a88542bf026a201933179c07a02666a7943015e0c30"},
+    {"path": "public-data.json", "sha256": "d3824c603758a829cf5931a44e166b6f9596db46c5bb62ade300922ee69b16be"},
+    {"path": "public-sources.json", "sha256": "9a00dbf8614be5c7c93221146d8855234b3b2b70541a52c5d3afde753b253820"},
+    {"path": "reproduce.py", "sha256": "9bb60422ad7190272daf4313c9dd5a85bb539c86474e4e7545328bad51307a61"},
+    {"path": "source-audit.py", "sha256": "690cc987b991c98d3d2685f2b18962d9f9653f628ac7d5fd786718864541cf10"},
+    {"path": "test_algorithm.py", "sha256": "8d1d8b6edfb5e867653897065d60f8e96fa30e9ce71ce4f57fa7d0af9407c4d5"},
+    {"path": "test_source_audit.py", "sha256": "8326811a46676eb29b56b6c63db01520e09f4b435c7a211026c8c4fb3436ff1e"}
+  ]
+}

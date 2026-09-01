@@ -26,3 +26,8 @@ The validator fails if a package is removed, promoted out of `disabled`, loses
 its blockers or promotion gates, changes a bound evidence file without updating
 review, or enables an algorithm policy, API route, participant study, personal
 card, payment, notification, or schedule.
+
+The six-rate package now binds a generated response curve and an all-exact-ties
+rule. It remains disabled because neither app uploads a versioned complete
+curve, respiration/adherence are unmeasured, and no repeated Brainstem session
+has established stability.
